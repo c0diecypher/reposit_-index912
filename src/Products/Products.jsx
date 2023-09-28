@@ -1,5 +1,5 @@
 import "./css/item.css";
-import productsData from "./productsData";
+import productsData from "./ProductsData";
 import { Link } from "react-router-dom";
 
 const Products = () => {
