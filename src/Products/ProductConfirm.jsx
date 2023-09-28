@@ -29,7 +29,8 @@ function ProductConfirm() {
         <b>{size}</b>
       </span>
     </span>
-    <MainButton 
+  </div>
+  <MainButton 
         onClick={() => {
           alert(`Вы купили ${productData.name}, размер: ${size}за ${price} ₽`);
         }}
@@ -38,7 +39,6 @@ function ProductConfirm() {
         textColor={textColor}
         text={`Купить за ${productPrice}`}
         />
-  </div>
   </>
   );
 }
