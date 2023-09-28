@@ -12,7 +12,7 @@ import Stories from "./Stories/Stories"
 import Catalog from "./Search/Catalog"
 import SizeInfoDetails from "./Products/SizeInfo/SizeInfoDetails"
 import BasketItem from "./Components/BasketItem"
-
+import { useTelegram } from "./Components/Hooks/useTelegram"
 
 // React 
 import { Route, Routes } from "react-router-dom";
@@ -21,6 +21,8 @@ import { useState } from "react"
 import ProductConfirm from "./Products/ProductConfirm"
 
 function App() {
+
+  const { tg } = useTelegram();
   // Состояние корзины
   const [cart, setCart] = useState([]); 
   // Функция для добавления или увеличения количества товара
@@ -74,6 +76,9 @@ function App() {
         path="/"
         element={
           <div className='wrapper'>
+            {tg.expand()}
+            {tg.enableClosingConfirmation()}
+
             <Header />
             <Searchbar />
             <Stories />
