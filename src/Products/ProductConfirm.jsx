@@ -1,4 +1,5 @@
 import "./css/Product.css";
+import { MainButton } from "@twa-dev/sdk/react" 
 
 import { useParams, useLocation } from "react-router-dom";
 
@@ -11,6 +12,11 @@ function ProductConfirm() {
   const { productData } = location.state || {};
 
   // Отображаем информацию о товаре
+
+  const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
+  const [textColor] = useState(
+    window.Telegram.WebApp.themeParams.button_text_color
+  );
   return (
     <>
     <div className="full-item" key={productId}>
@@ -23,6 +29,15 @@ function ProductConfirm() {
         <b>{size}</b>
       </span>
     </span>
+    <MainButton 
+        onClick={() => {
+          alert(`Вы купили ${productData.name}, размер: ${size}за ${price} ₽`);
+        }}
+        progress={progress}
+        color={color}
+        textColor={textColor}
+        text={`Купить за ${productPrice}`}
+        />
   </div>
   </>
   );
