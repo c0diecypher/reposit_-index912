@@ -1,6 +1,6 @@
 import "./css/Search.css";
 import { useState, useEffect } from "react";
-import productsData from "../Products/ProductsData";
+import productsData from "../Products/productsData";
 import { Link } from "react-router-dom";
 
 const filterItem = (searchText, listOfItems) => {
