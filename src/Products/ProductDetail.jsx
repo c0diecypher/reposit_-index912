@@ -108,13 +108,13 @@ function ProductDetail({ sendDataToParent, addToCart }) {
           ))}
         </div>
         <hr className="hr-line" />
-        <MainButton 
+    </div>
+    <MainButton 
         onClick={handlePaymentClick}
         color={color}
         textColor={textColor}
         text={text}
         />
-    </div>
     </>
   );
 }
