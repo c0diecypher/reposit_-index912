@@ -66,7 +66,7 @@ function ProductDetail({ sendDataToParent, addToCart }) {
     });
   };
 
-  const handlePaymentClick = (name, size, price) => {
+  const handlePaymentClick = () => {
     // Передача данных вместе с переходом
     navigate(`/products/confirm/${thisProduct.name}/${paymentData.size}/${paymentData.price}`, {
       state: { productData: paymentData }
@@ -110,7 +110,9 @@ function ProductDetail({ sendDataToParent, addToCart }) {
         <hr className="hr-line" />
     </div>
     <MainButton 
-        onClick={handlePaymentClick}
+        onClick={() => {
+          alert(`Вы купили ${productData.name}, размер: ${size}за ${price} ₽`);
+        }}
         color={color}
         textColor={textColor}
         text={text}
