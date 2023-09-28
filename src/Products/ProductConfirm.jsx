@@ -1,5 +1,4 @@
 import "./css/Product.css";
-import { MainButton } from "@twa-dev/sdk/react" 
 
 import { useParams, useLocation } from "react-router-dom";
 
