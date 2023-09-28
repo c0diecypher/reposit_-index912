@@ -18,7 +18,7 @@ function Header() {
         <div className="usercard_block">
            
         <UserProfile />
-            {user?.first_name}123
+            {user?.first_name}
             <svg
             className="user_block_svg"
             aria-hidden="true"
