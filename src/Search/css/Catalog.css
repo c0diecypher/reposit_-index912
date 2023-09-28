@@ -1,0 +1,54 @@
+.catalog-head {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 8px;
+    margin-left: var(--space-4x);
+    margin-right: var(--space-4x);
+  }
+  
+  .catalog {
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 110%;
+    letter-spacing: -0.01em;
+  }
+  
+  .catalog-icons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding-top: 4px;
+  }
+  
+  .button-search-ico {
+    background: #0000;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    padding: 0;
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .button-search-ico svg {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .button-search-ico:focus {
+    outline: none;
+  }
+  
+  .button-search-ico:active {
+    letter-spacing: normal;
+    transform: translateY(4px);
+    box-shadow: none;
+    transform: scale(0.84);
+    transition: 0.1s;
+  }

@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+
+:root {
+  --space-4x: 16px;
+  --space-6x: 0%;
+  --space-8x: 32px;
+}
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 var(--space-4x); /* Убрано отдельное указание margin-left и margin-right */
+  gap: 14px;
+}
+
+.product-order {
+  margin: 8px 0; /* Убрано отдельное указание margin-top и margin-bottom */
+  text-align: left;
+  margin-left: var(--space-4x);
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 110%;
+  letter-spacing: -0.01em;
+}
+
+.product-card {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+  height: auto; /* Высота теперь автоматически регулируется контентом */
+  background-color: #fff;
+  border-radius: 25px;
+}
+
+.product-image {
+  max-width: 60%;
+  max-height: 150px; /* Задаем максимальную высоту изображения в пикселях или другой подходящей величине */
+  margin-right: 20px;
+  margin-left: 12px;
+  object-fit: cover; /* Используем "cover" для изменения размера изображения с сохранением пропорций и обрезания лишней части */
+}
+
+.product-details {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+}
+
+.product-created{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+  text-align: right;
+  font-size: 12px;
+  letter-spacing: -0.03em;
+}
+.product-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+  font-size: 16px;
+  margin-top: 12px;
+  text-align: left;
+}
+
+.product-price {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+  font-size: 14px;
+  margin-top: 6px;
+  margin-left: 4px;
+  font-weight: 400;
+  text-align: left;
+}
+
+.product-size {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 4px;
+  text-align: left;
+}
+
+.product-size b {
+  font-size: 14px;
+  margin: 4px;
+  color: var(--tg-theme-button-color);
+}
+
+.product-quantity{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 8px;
+  margin-left: 4px;
+  text-align: left;
+}
+.buy-button {
+  background: #393939;
+  border-radius: 17px;
+  width: 100%; /* Использование ширины 100% для кнопки */
+  line-height: 30px;
+  color: #fff;
+  border: none;
+  font-size: 14px;
+  margin-top: 10px;
+}

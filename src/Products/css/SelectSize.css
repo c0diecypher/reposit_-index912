@@ -1,0 +1,139 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+:root {
+  --space-4x: 16px;
+  --space-6x: 0%;
+}
+
+.size_box {
+  user-select: none;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  gap: 4px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin: 0 var(--space-4x-negative);
+  padding: 0 var(--space-4x);
+  position: relative;
+  z-index: 5;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: var(--space-4x);
+}
+
+.size_box::-webkit-scrollbar {
+  display: none;
+}
+
+.size_button {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 62px;
+  height: 72px;
+  outline: none;
+  text-align: unset;
+  background: #0000;
+  border: none;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: transform 0.15s linear;
+  line-height: 62px;
+}
+
+.Story-size-content--select {
+  border-radius: 17px;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: rgb(172, 172, 172);
+}
+.size_outline {
+  position: absolute;
+  inset: 0;
+}
+
+.size-item {
+  position: absolute;
+  width: 62px;
+  height: 62px;
+}
+
+.Story-size-content {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  line-height: 60px;
+  color: #000000;
+}
+
+.Story-size-title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+  color: rgb(0, 0, 0);
+  position: relative;
+  text-align: center;
+}
+
+.size_button:focus {
+  outline: none;
+}
+
+.size_button:active {
+  letter-spacing: normal;
+  transform: translateY(4px);
+  box-shadow: none;
+  transform: scale(0.94);
+  transition: transform 0.08s linear;
+}
+
+.size p {
+    font-size: 14px;
+    text-align: left;
+    padding-left: 4%;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  .size {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 5%;
+  }
+  
+  .size a {
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #000;
+  }
+
+  
+  .box-sized {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .mysized {
+   height: 40px;
+  line-height: 40px;
+  color: #fff;
+  background: #393939;
+  font-size: 14px;
+  font-weight: 500;
+  width: 100%;
+  }
+  
+  .sized {
+    
+    color: #000;
+    border: solid 1px #d6d6d6;
+    background: #e9e9e9;
+  }
