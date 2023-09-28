@@ -39,7 +39,6 @@ function ProductDetail({ sendDataToParent, addToCart }) {
   const thisProduct = productsData.find((prod) => prod.id === productId);
   const [active, setActive] = useState(thisProduct.size[9]);
   const typesKeys = Object.entries(thisProduct.size);
-  const [shown, setShown] = useState(true);
   const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
   const [textColor] = useState(
     window.Telegram.WebApp.themeParams.button_text_color
@@ -109,7 +108,6 @@ function ProductDetail({ sendDataToParent, addToCart }) {
           ))}
         </div>
         <hr className="hr-line" />
-        <button onClick={handlePaymentClick}>Перейти к оплате</button>
         <MainButton 
         onClick={handlePaymentClick}
         color={color}
