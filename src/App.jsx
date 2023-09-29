@@ -15,9 +15,8 @@ import BasketItem from "./Components/BasketItem"
 import { useTelegram } from "./Components/Hooks/useTelegram"
 
 // React 
-import { Route, Routes, useNavigate } from "react-router-dom"
+import { Route, Routes } from "react-router-dom";
 import { BackButton } from "@twa-dev/sdk/react" 
-import { MainButton } from "@twa-dev/sdk/react"
 import { useState } from "react"
 import ProductConfirm from "./Products/ProductConfirm"
 
@@ -69,27 +68,13 @@ function App() {
     addToCart(productData);
   };
 
-  const [paymentData, setPaymentData] = useState(null);
-  const navigate = useNavigate();
-  // Функция, которая будет передаваться в ProductDetail
-  const handlePaymentClick = (price, size, name, img) => {
-    // Вы можете здесь обработать данные, если это необходимо
-    // Например, сохранить их в состоянии App
-    setPaymentData({ price, size, name, img });
+  const [dataFromMainButton, setDataFromMainButton] = useState(true); // Состояние для хранения данных из дочернего компонента
 
-    // И выполнить другие действия, если это необходимо
-
-    // Перейти на страницу с подтверждением
-    navigate(`/products/confirm/${name}/${size}/${price}`, {
-      state: { productData: { price, size, name, img } }
-    });
+  // Функция для обработки данных из дочернего компонента
+  const handleDataFromMainButton = (data) => {
+    setDataFromMainButton(data); // Сохраняем данные в состоянии
+    // Выполняйте здесь другие действия с данными, если необходимо
   };
-
-  const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
-  const [textColor] = useState(
-    window.Telegram.WebApp.themeParams.button_text_color
-  );
-  const [text] = useState("Перейти к оплате");
 
   return (
     <>
@@ -139,14 +124,10 @@ function App() {
             <ProductDetail
             addToCart={addToCart} 
             sendDataToParent={sendDataToParent}
-            onPaymentClick={handlePaymentClick}
+            onDataUpdate={handleDataFromMainButton}
+            dataFromMainButton={dataFromMainButton}
               />
-              <MainButton 
-                 onClick={() => handlePaymentClick(paymentData.price, paymentData.size, paymentData.name, paymentData.img)}
-                color={color}
-                textColor={textColor}
-                 text={text}
-                />
+              {dataFromMainButton}
           </div>
         }
         >
