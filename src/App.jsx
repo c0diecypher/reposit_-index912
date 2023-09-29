@@ -119,7 +119,6 @@ function App() {
           <>
             <BackButton />
             <ProductConfirm
-            onDataUpdate={handleDataFromMainButton} 
             dataFromMainButton={dataFromMainButton}
             />
               {dataFromMainButton}
