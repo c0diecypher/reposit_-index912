@@ -1,4 +1,5 @@
-import { useParams } from "react-router-dom";
+
+import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react"
 import productsData from "./productsData";
 import "./css/Product.css";
@@ -6,7 +7,8 @@ import SizeInfo from "./SizeInfo/SizeInfo";
 import "./css/SelectSize.css";
 import styled from "styled-components";
 import PropTypes from 'prop-types';
-
+import { MainButton } from "@twa-dev/sdk/react" 
+import { useLocation } from 'react-router-dom';
 
 const Size = styled.button`
   width: 62px;
@@ -32,18 +34,18 @@ const Size = styled.button`
   `}
 `;
 
-function ProductDetail({ sendDataToParent, addToCart, onPaymentClick }) {
+function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMainButton }) {
   const { productId } = useParams();
   const [paymentData, setPaymentData] = useState(null);
   const thisProduct = productsData.find((prod) => prod.id === productId);
-  const [active, setActive] = useState(thisProduct.size[9]);
+  const [active, setActive] = useState(paymentData ? paymentData.size : thisProduct.size[9]);
   const typesKeys = Object.entries(thisProduct.size);
   const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
   const [textColor] = useState(
     window.Telegram.WebApp.themeParams.button_text_color
   );
   const [text] = useState("Перейти к оплате");
-  
+  const navigate = useNavigate();
   // Функция для добавления товара в корзину
   const handleAddToCard = (price, size, name, img) => {
     setActive(price);
@@ -54,6 +56,7 @@ function ProductDetail({ sendDataToParent, addToCart, onPaymentClick }) {
       img: thisProduct.img,
       price
     };
+
     addToCart(productData); // Используем addToCart для добавления товара в корзину
     sendDataToParent(productData); // Передаем данные в родительский компонент
 
@@ -63,13 +66,22 @@ function ProductDetail({ sendDataToParent, addToCart, onPaymentClick }) {
       img: thisProduct.img,
       price
     });
-
-    onPaymentClick(price, size, thisProduct.name, thisProduct.img);
+    
   };
 
+  const handlePaymentClick = () => {
+    if (paymentData && paymentData.size) {
+      // Вызываем функцию onDataUpdate, передавая ей данные
+      onDataUpdate(paymentData.size, paymentData.price);
+      navigate(`/products/confirm/${thisProduct.name}/${paymentData.size}/${paymentData.price}`, {
+        state: { productData: paymentData }
+      });
+    } else {
+      alert('Пожалуйста, выберите размер товара перед оплатой.');
+    }
+  };
 
-  
-  
+ 
 
   ProductDetail.propTypes = {
     addToCart: PropTypes.func.isRequired,
@@ -102,6 +114,14 @@ function ProductDetail({ sendDataToParent, addToCart, onPaymentClick }) {
           ))}
         </div>
         <hr className="hr-line" />
+        {dataFromMainButton && (
+  <MainButton 
+      onClick={handlePaymentClick}
+      color={color}
+      textColor={textColor}
+      text={text}
+    />
+)}
     </div>
     </>
   );
