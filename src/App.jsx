@@ -43,29 +43,9 @@ function App() {
     }
   };
   
-  // Функция для уменьшения количества товара
-  const decreaseQuantity = (productId, size) => {
-    const updatedCart = cart.map((product) => {
-      if (product.id === productId && product.size === size) {
-        // Если это товар, который нужно уменьшить, уменьшаем его количество
-        if (product.quantity > 1) {
-          return { ...product, quantity: product.quantity - 1 };
-        }
-      }
-      return product;
-    });
-  
-    setCart(updatedCart);
-  };
-
-  const removeFromCart = (productId, size) => {
-    const updatedCart = cart.filter((product) => !(product.id === productId && product.size === size));
-    setCart(updatedCart);
-  };
-  
   // Функция для отправки данных в родительский компонент
-  const sendDataToParent = (productData) => {
-    addToCart(productData);
+  const sendDataToParent = (paymentData) => {
+    addToCart(paymentData);
   };
 
   const [dataFromMainButton, setDataFromMainButton] = useState(true); // Состояние для хранения данных из дочернего компонента
@@ -92,9 +72,7 @@ function App() {
             <Stories />
             {cart.length > 0 && (
               <BasketItem 
-              cart={cart} 
-              removeFromCart={removeFromCart}
-              decreaseQuantity={decreaseQuantity} />
+              cart={cart}  />
             )}
             <Catalog />
             <Products />
