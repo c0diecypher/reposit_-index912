@@ -21,14 +21,24 @@ function ProductConfirm() {
     <>
     <div className="full-item" key={productId}>
     <img src={"/img/img/" + productData.img} alt="photo" />
-    <h4 className="full-item-name">{productData.name}</h4>
-    <span className="full-item-price"> {price} ₽</span>
-    <span className="full-item-price-order">
-         Размер
-      <span className="full-item-size">
-        <b>{size}</b>
-      </span>
-    </span>
+    
+    <div className="full-item-name">{productData.name}
+    
+        
+      <div className="full-item-size">
+        <b> размер {size} US</b>
+      </div>
+   
+      </div>
+    
+      <div className="full-item-price">
+         <b>{price}₽</b>
+      </div>
+      <div className="public-oferta">
+        <p className="public-ofert-text">Оплачивая заказ, вы соглашаетесь <br/>с условиями <p className="public-oferta-link">публичной оферты</p></p>
+      </div>
+      
+    
   </div>
   <MainButton 
         onClick={() => {
