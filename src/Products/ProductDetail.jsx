@@ -77,7 +77,7 @@ function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMain
         state: { productData: paymentData }
       });
     } else {
-      alert('Пожалуйста, выберите размер товара перед оплатой.');
+      alert(`Напоминаем вам выбрать размер ${thisProduct.name} перед оплатой.`);
     }
   };
 
