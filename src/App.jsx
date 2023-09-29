@@ -121,7 +121,7 @@ function App() {
             <ProductConfirm
             dataFromMainButton={dataFromMainButton}
             />
-              {dataFromMainButton}
+              
           </>
         }
         >
