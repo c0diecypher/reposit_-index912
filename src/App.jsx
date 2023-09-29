@@ -119,7 +119,6 @@ function App() {
           <>
             <BackButton />
             <ProductConfirm
-            dataFromMainButton={dataFromMainButton}
             />
               
           </>
