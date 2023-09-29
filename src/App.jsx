@@ -105,7 +105,7 @@ function App() {
             onDataUpdate={handleDataFromMainButton}
             dataFromMainButton={dataFromMainButton}
               />
-              {dataFromMainButton}
+              
           </div>
         }
         >
