@@ -48,13 +48,14 @@ function App() {
     addToCart(paymentData);
   };
 
-  
-  const [dataMainButtonOrder, setDataMainButtonOrder] = useState(true); // Состояние для хранения данных из ProductDetail компонента
+  const [dataFromMainButton, setDataFromMainButton] = useState(true); // Состояние для хранения данных из ProductDetail компонента
+
   // Функция для обработки данных из дочернего компонента
   const handleDataFromMainButton = (data) => {
-    setDataFromMainButton(data); // Сохраняем данные в состоянии
+    setDataFromMainButton(data); // Сохраняем данные в состоянииa
     // Выполняйте здесь другие действия с данными, если необходимо
   };
+
 
 
   return (
