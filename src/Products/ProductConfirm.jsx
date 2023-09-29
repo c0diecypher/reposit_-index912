@@ -35,7 +35,7 @@ function ProductConfirm() {
          <b>{price}₽</b>
       </div>
       <div className="public-oferta">
-        <p className="public-ofert-text">Оплачивая заказ, вы соглашаетесь <br/>с условиями <p className="public-oferta-link">публичной оферты</p></p>
+        <p className="public-ofert-text">Оплачивая заказ, вы соглашаетесь <br/>с условиями <a className="public-oferta-link">публичной оферты</a></p>
       </div>
       
     
