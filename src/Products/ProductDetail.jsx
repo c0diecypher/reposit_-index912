@@ -57,8 +57,6 @@ function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMain
       price
     };
 
-    addToCart(productData); // Используем addToCart для добавления товара в корзину
-    sendDataToParent(productData); // Передаем данные в родительский компонент
 
     setPaymentData({
       size,
@@ -76,6 +74,9 @@ function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMain
       navigate(`/products/confirm/${thisProduct.name}/${paymentData.size}/${paymentData.price}`, {
         state: { productData: paymentData }
       });
+      sendDataToParent(paymentData); // Передаем данные в родительский компонент
+      // Добавляем товар в корзину после оплаты
+    addToCart(paymentData);
     } else {
       alert(`Напоминаем вам выбрать размер ${thisProduct.name} перед оплатой.`);
     }
