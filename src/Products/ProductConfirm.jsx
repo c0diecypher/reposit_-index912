@@ -1,5 +1,6 @@
 import "./css/Product.css";
-import { useState } from "react"
+import { MainButton } from "@twa-dev/sdk/react" 
+
 import { useParams, useLocation } from "react-router-dom";
 
 function ProductConfirm() {
@@ -7,17 +8,15 @@ function ProductConfirm() {
   const location = useLocation();
   
 
+  // Декодируйте JSON-строку и преобразуйте ее в объект с данными о товаре
   const { productData } = location.state || {};
 
   // Отображаем информацию о товаре
-  const handleOrderClick = () => {
-    alert(`Вы купили ${productName} за ${productPrice} ₽`)
-  }
+
   const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
   const [textColor] = useState(
     window.Telegram.WebApp.themeParams.button_text_color
   );
-  const [text] = useState(`Купить за ${price}`);
   return (
     <>
     <div className="full-item" key={productId}>
@@ -30,13 +29,16 @@ function ProductConfirm() {
         <b>{size}</b>
       </span>
     </span>
-  <MainButton 
-      onClick={handleOrderClick}
-      color={color}
-      textColor={textColor}
-      text={text}
-    />
   </div>
+  <MainButton 
+        onClick={() => {
+          alert(`Вы купили ${productData.name}, размер: ${size}за ${price} ₽`);
+        }}
+        progress={progress}
+        color={color}
+        textColor={textColor}
+        text={`Купить за ${productPrice}`}
+        />
   </>
   );
 }
