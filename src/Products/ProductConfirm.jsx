@@ -2,7 +2,7 @@ import "./css/Product.css";
 import { useState } from "react"
 import { useParams, useLocation } from "react-router-dom";
 
-function ProductConfirm({dataFromMainButton}) {
+function ProductConfirm({ dataFromMainButton }) {
   const { productId, size, price, name, img } = useParams();
   const location = useLocation();
   
@@ -11,7 +11,7 @@ function ProductConfirm({dataFromMainButton}) {
   const { productData } = location.state || {};
 
   // Отображаем информацию о товаре
-  const handlePaymentClick = () => {
+  const handleOrderClick = () => {
     alert(`Вы купили ${productName} за ${productPrice} ₽`)
   }
   const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
@@ -33,7 +33,7 @@ function ProductConfirm({dataFromMainButton}) {
     </span>
     {dataFromMainButton && (
   <MainButton 
-      onClick={handlePaymentClick}
+      onClick={handleOrderClick}
       color={color}
       textColor={textColor}
       text={text}
