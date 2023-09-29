@@ -2,12 +2,11 @@ import "./css/Product.css";
 import { useState } from "react"
 import { useParams, useLocation } from "react-router-dom";
 
-function ProductConfirm({ dataFromMainButton }) {
+function ProductConfirm() {
   const { productId, size, price, name, img } = useParams();
   const location = useLocation();
   
 
-  // Декодируйте JSON-строку и преобразуйте ее в объект с данными о товаре
   const { productData } = location.state || {};
 
   // Отображаем информацию о товаре
@@ -31,14 +30,12 @@ function ProductConfirm({ dataFromMainButton }) {
         <b>{size}</b>
       </span>
     </span>
-    {dataFromMainButton && (
   <MainButton 
       onClick={handleOrderClick}
       color={color}
       textColor={textColor}
       text={text}
     />
-)}
   </div>
   </>
   );
