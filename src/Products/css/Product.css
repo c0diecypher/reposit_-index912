@@ -39,31 +39,27 @@ body::-webkit-scrollbar {
 }
 
 .full-item-price {
-  font-size: 18px;
+  font-size: 20px;
   text-align: left;
   padding-left: 4%;
-  font-weight: 700;
   margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.05em;
 }
 
-.full-item-price-order {
-  display: flex;
-  font-size: 18px;
-  text-align: left;
-  padding-left: 4%;
-  font-weight: 700;
-  margin: 0;
-}
 
 .full-item-size {
   font-size: 18px;
   text-align: left;
+  letter-spacing: -0.05em;
   padding-left: 4%;
-  font-weight: 700;
+  font-weight: 900;
   margin: 0;
   color: var(--tg-theme-link-color);
 }
 .full-item-name {
+  line-height: 100%;
+  display: flex;
   font-size: 20px;
   text-align: left;
   padding-left: 4%;
@@ -123,4 +119,20 @@ body::-webkit-scrollbar {
   width: 100%;
   border: unset;
   outline: unset;
+}
+
+.public-oferta{
+  margin-top: 10px;
+}  
+
+.public-ofert-text{
+  text-align: left;
+  padding-left: 4%;
+  letter-spacing: -0.01em;
+  font-weight: 300;
+}
+
+.public-oferta-link{
+  color: var(--tg-theme-link-color);
+
 }
