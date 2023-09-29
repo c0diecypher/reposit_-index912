@@ -1,5 +1,4 @@
-
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState } from "react"
 import productsData from "./productsData";
 import "./css/Product.css";
@@ -7,7 +6,7 @@ import SizeInfo from "./SizeInfo/SizeInfo";
 import "./css/SelectSize.css";
 import styled from "styled-components";
 import PropTypes from 'prop-types';
-import { MainButton } from "@twa-dev/sdk/react" 
+
 
 const Size = styled.button`
   width: 62px;
@@ -33,7 +32,7 @@ const Size = styled.button`
   `}
 `;
 
-function ProductDetail({ sendDataToParent, addToCart }) {
+function ProductDetail({ sendDataToParent, addToCart, onPaymentClick }) {
   const { productId } = useParams();
   const [paymentData, setPaymentData] = useState(null);
   const thisProduct = productsData.find((prod) => prod.id === productId);
@@ -44,7 +43,7 @@ function ProductDetail({ sendDataToParent, addToCart }) {
     window.Telegram.WebApp.themeParams.button_text_color
   );
   const [text] = useState("Перейти к оплате");
-  const navigate = useNavigate();
+  
   // Функция для добавления товара в корзину
   const handleAddToCard = (price, size, name, img) => {
     setActive(price);
@@ -64,13 +63,8 @@ function ProductDetail({ sendDataToParent, addToCart }) {
       img: thisProduct.img,
       price
     });
-  };
 
-  const handlePaymentClick = () => {
-    // Передача данных вместе с переходом
-    navigate(`/products/confirm/${thisProduct.name}/${paymentData.size}/${paymentData.price}`, {
-      state: { productData: paymentData }
-    });
+    onPaymentClick(price, size, thisProduct.name, thisProduct.img);
   };
 
 
@@ -109,14 +103,6 @@ function ProductDetail({ sendDataToParent, addToCart }) {
         </div>
         <hr className="hr-line" />
     </div>
-    <MainButton 
-        onClick={() => {
-          alert(`Вы купили ${productData.name}, размер: ${size}за ${price} ₽`);
-        }}
-        color={color}
-        textColor={textColor}
-        text={text}
-        />
     </>
   );
 }
