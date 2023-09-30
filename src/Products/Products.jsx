@@ -7,16 +7,16 @@ const Products = () => {
     return (
       <>
       <div className="item">
-        <li key={product.id}>
+        <div key={product.id}>
           <img src={"/img/img/" + product.img} alt="" />
           <h4>{product.price}₽</h4>
           <p>{product.name}</p>
-          <li className="add-item">
+          <button className="add-item">
             <Link to={`/products/${product.id}`}>
-              <ul className="buy-item">Купить</ul>
+              <div className="buy-item">Купить</div>
             </Link>
-          </li>
-        </li>
+          </button>
+        </div>
       </div>
       </>
     );
