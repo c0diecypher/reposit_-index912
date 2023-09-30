@@ -1,4 +1,3 @@
-
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react"
 import productsData from "./productsData";
@@ -9,26 +8,30 @@ import styled from "styled-components";
 import PropTypes from 'prop-types';
 import { MainButton } from "@twa-dev/sdk/react" 
 import { useLocation } from 'react-router-dom';
+import Stories from "../Stories/Stories"
 
 const Size = styled.button`
-  width: 62px;
-  height: 62px;
+  display: flex;
+  flex-direction: column;
+  min-width: 60px;
+  
   opacity: 0.6;
   background: white;
-  border-radius: 25px;
+  border-radius: 10px;
   border: 0;
   outline: 0;
-  border: 2px solid #e3e3e3;
+  border: 1px solid var(--background-secondary);
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
   font-family: "Roboto", sans-serif;
   color: #ff0000;
+  flex-shrink: 0;
 
   ${({ active }) =>
     active &&
     `
-    border: 2px solid #6b6b6b;
+    border-color: var(--button-color);
     opacity: 1;
     
   `}
@@ -38,7 +41,7 @@ function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMain
   const { productId } = useParams();
   const [paymentData, setPaymentData] = useState(null);
   const thisProduct = productsData.find((prod) => prod.id === productId);
-  const [active, setActive] = useState(paymentData ? paymentData.size : thisProduct.size[9]);
+  const [active, setActive] = useState(paymentData ? paymentData : thisProduct.size[9]);
   const typesKeys = Object.entries(thisProduct.size);
   const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
   const [textColor] = useState(
@@ -70,7 +73,7 @@ function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMain
   const handlePaymentClick = () => {
     if (paymentData && paymentData.size) {
       // Вызываем функцию onDataUpdate, передавая ей данные
-      onDataUpdate(paymentData.size, paymentData.price);
+      onDataUpdate(paymentData.size, paymentData.price, paymentData);
       navigate(`/products/confirm/${thisProduct.name}/${paymentData.size}/${paymentData.price}`, {
         state: { productData: paymentData }
       });
@@ -98,7 +101,7 @@ function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMain
 
         <p className="full-item-price">{active}₽</p>
 
-        <hr className="hr-line" />
+        <hr/>
         <SizeInfo />
 
         <div className="size_box">
@@ -109,11 +112,16 @@ function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMain
                 active={active === item[1]}
                 onClick={() => handleAddToCard(item[1],item[0])} // Отвечает за вывод товара
               >
-                <div className="Story-size-content">{item[0]}</div>
+                <div className="Story-size-content">
+                  <div className="size-nubmer">{item[0]}</div>
+                  <div className="size-price">{item[1]}</div>
+                </div>
+                
               </Size>
             </button>
           ))}
         </div>
+        <hr/>
         <hr className="hr-line" />
         {dataFromMainButton && (
   <MainButton 
@@ -124,8 +132,15 @@ function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMain
     />
 )}
     </div>
+    <div className="help-ful">
+    <h2 className="help-title">Полезная инофрмация</h2>
+    <div className="help-stories">
+    <Stories />
+    </div>
+  </div>
     </>
   );
 }
 
 export default ProductDetail;
+
