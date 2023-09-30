@@ -14,10 +14,11 @@ main {
   
   main .item {
     width: 45%;
+    min-width: none;
     background-color: #fff;
-    border-radius: 17px;
+    border-radius: 20px;
     margin: 6px;
-    padding-bottom: 36px;
+    padding-bottom: 4px;
     position: relative;
   }
   
@@ -27,44 +28,37 @@ main {
     user-select: none;
   }
   
-  main .item ul {
-    position: absolute;
-    width: 95%;
-    margin-left: 2.5%;
-    background: #393939;
-    border-radius: 17px;
-    text-align: center;
-    line-height: 30px;
-    font-size: 14px;
-    font-weight: 400;
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    padding: 0;
-  }
-  
-  main .item li {
-    list-style-type: none;
-  }
-  
   main .item p {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
     text-align: left;
-    padding-left: 5%;
-    padding-right: 3%;
     font-weight: 400;
-    height: 24px;
+    font-size: 12px;
+    height: 20px;
   }
   
   main .item h4 {
-    font-size: 16px;
+    font-size: 14px;
     text-align: left;
     padding-left: 5%;
     font-weight: 700;
     margin: 0px;
   }
-  
-  main .item .buy-item {
+  .buy-item {
     text-align: center;
+    padding: 6px 10px;
+    font-size: 12px;
+    line-height: 18px;
+    color: #fff;
+  }
+  .add-item{
+    flex-shrink: 0;
+    font-weight: 500;
+    border-radius: 18px;
+    width: 92%;
+    border: none;
+    margin-bottom: 2px;
+    background: #393939;
+    
   }
