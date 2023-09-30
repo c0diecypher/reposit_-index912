@@ -29,7 +29,7 @@ function UserProfile() {
           userName={user?.first_name}
           entityId={2}
           entityName={`${user?.first_name}`}
-          size={52}
+          size={42}
           theme="apple"
           style={{ marginRight: 10 }}
         />
