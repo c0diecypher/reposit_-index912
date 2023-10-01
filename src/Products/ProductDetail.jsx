@@ -122,7 +122,6 @@ function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMain
           ))}
         </div>
         <hr/>
-        <hr className="hr-line" />
         {dataFromMainButton && (
   <MainButton 
       onClick={handlePaymentClick}
