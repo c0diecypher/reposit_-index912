@@ -42,11 +42,15 @@
 }
 
 .product-image {
-  max-width: 60%;
+  max-width: 80%;
   max-height: 150px; /* Задаем максимальную высоту изображения в пикселях или другой подходящей величине */
-  
-  
+  transform: scale(1);
+  margin-left: -10px;
   object-fit: cover; /* Используем "cover" для изменения размера изображения с сохранением пропорций и обрезания лишней части */
+}
+
+.product-image-container img{
+  transform: scale(1.1);
 }
 
 .product-details {
