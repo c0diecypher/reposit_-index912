@@ -46,7 +46,7 @@ function ProductConfirm() {
   </div>
   <MainButton 
         onClick={() => {
-          alert(`Вы купили ${productData.name}, размер: ${size}за ${price} ₽`);
+          alert(`Вы купили ${productData.name}, <br/>${size} <br/>за ${price} ₽`);
         }}
         color={color}
         textColor={textColor}
