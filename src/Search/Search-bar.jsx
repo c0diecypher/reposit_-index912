@@ -29,7 +29,7 @@ function Searchbar() {
             type="text"
             enterKeyHint="search"
             placeholder="Найти"
-            value=""
+            readOnly
           />
         </div>
       </div>
