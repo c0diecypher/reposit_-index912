@@ -39,7 +39,7 @@ function ProductConfirm() {
     
   </div>
   <div className="help-ful">
-    <h2 className="help-title">Полезная инофрмация</h2>
+    <h2 className="help-title">Полезная информация</h2>
     <div className="help-stories">
     <Stories />
     </div>
