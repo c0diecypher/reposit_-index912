@@ -1,6 +1,6 @@
 // CSS
 import "./App.css"
-import "bootstrap/dist/css/bootstrap.css"
+import "bootstrap/dist/css/bootstrap.css";
 
 // Components
 import Header from "./Components/Header"
@@ -14,6 +14,7 @@ import Catalog from "./Search/Catalog"
 import SizeInfoDetails from "./Products/SizeInfo/SizeInfoDetails"
 import BasketItem from "./Components/BasketItem"
 import { useTelegram } from "./Components/Hooks/useTelegram"
+import ProfilePage from "./Components/Telegram/ProfilePage";
 
 // React 
 import { Route, Routes } from "react-router-dom";
@@ -84,12 +85,11 @@ function App() {
 
         </Route>
         <Route
-        path="/user/:hashid"
+        path="/profile/"
         element={
           <div>
             <BackButton />
-            Profile user non found 404:/
-              
+            <ProfilePage />
           </div>
         }
         >
@@ -105,8 +105,9 @@ function App() {
             sendDataToParent={sendDataToParent}
             onDataUpdate={handleDataFromMainButton}
             dataFromMainButton={dataFromMainButton}
+            
               />
-              
+              {dataFromMainButton}
           </div>
         }
         >
