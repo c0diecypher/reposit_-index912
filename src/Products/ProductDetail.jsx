@@ -1,3 +1,4 @@
+
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react"
 import productsData from "./productsData";
@@ -43,6 +44,19 @@ function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMain
   const thisProduct = productsData.find((prod) => prod.id === productId);
   const [active, setActive] = useState(paymentData ? paymentData : thisProduct.size[9]);
   const typesKeys = Object.entries(thisProduct.size);
+
+// Функция сортировки для упорядочивания размеров в правильном порядке
+const customSort = (a, b) => {
+  const numA = parseFloat(a[0]);
+  const numB = parseFloat(b[0]);
+
+  // Сравниваем числа
+  return numA - numB;
+};
+
+// Сортируем typesKeys с использованием нашей функции сортировки
+typesKeys.sort(customSort)
+
   const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
   const [textColor] = useState(
     window.Telegram.WebApp.themeParams.button_text_color
@@ -132,7 +146,7 @@ function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMain
 )}
     </div>
     <div className="help-ful">
-    <h2 className="help-title">Полезная инофрмация</h2>
+    <h2 className="help-title">Полезная информация</h2>
     <div className="help-stories">
     <Stories />
     </div>
