@@ -84,7 +84,8 @@ a{
 }
 
 .btn_block:active {
-  background-color: transparent;
+  outline: none; /* Убираем контур (серый квадрат) */
+  background-color: transparent; /* Прозрачный фон */
   letter-spacing: normal;
   transform: translateY(2px);
   box-shadow: none;
@@ -97,7 +98,8 @@ a{
 }
 
 .usercard_block:active {
-  background-color: transparent;
+  outline: none; /* Убираем контур (серый квадрат) */
+  background-color: transparent; /* Прозрачный фон */
   letter-spacing: normal;
   transform: translateY(2px);
   box-shadow: none;
