@@ -13,7 +13,7 @@ function Header() {
     <>
       <nav className="nav-form">
                   
-      <Link to={`/user/:hashid`}>
+      <Link to={`/profile/`}>
       <div className="usercard">
         <div className="usercard_block">
            
