@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+
+.profile-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-avatar-box{
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    position: relative;
+    padding: 2px;
+    display: flex;
+  
+}
+
+.profile-avatar-transparent{
+    
+    border-radius: 50%;
+    padding: 0;
+    width: 100%;
+}
+
+.profile-avatar{
+    width: 100%;
+    height: 100%;
+    background: #0000;
+    
+    font-size: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.profile-name{
+    font-style: normal;
+    font-weight: 900;
+    font-family: "Roboto", sans-serif;
+    font-size: 30px;
+    line-height: 110%;
+    letter-spacing: -.02em;
+    margin: 10px 0 5px;
+}
