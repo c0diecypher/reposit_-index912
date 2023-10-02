@@ -1,6 +1,7 @@
 import "./css/Basket.css";
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react'
+import { Link } from "react-router-dom";
 
 const BasketItem = ({ cart, onDataUpdate } ) => {
   const [paymentDate] = useState(new Date()); // Создаем объект Date с текущей датой
@@ -36,7 +37,13 @@ const BasketItem = ({ cart, onDataUpdate } ) => {
           </div>
           <div className="product-name">{product.name.toUpperCase()}</div>
           <p className="product-size">Размер: <b>{product.size}</b></p>
-          <button className="buy-button">Оплатить</button> 
+          <Link
+              to={`/products/confirm/${product.name}/${product.size}/${product.price}`}
+              state={{ productData: product }}
+            >
+              <button className="buy-button">Оплатить</button> 
+            </Link>
+          
         </div>
       </div>
     ))}
