@@ -137,6 +137,7 @@
 }
 
 .Stories:active {
+  background-color: transparent;
   letter-spacing: normal;
   transform: translateY(4px);
   box-shadow: none;
