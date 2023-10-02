@@ -12,7 +12,6 @@
   margin-left: var(--space-4x);
   margin-right: var(--space-4x);
   background-color: #e4e4e4;
-  background-color: transparent;
 }
 
 .wrapper__form__container_input {
@@ -71,6 +70,8 @@
   letter-spacing: normal;
   transform: translateY(4px);
   box-shadow: none;
+  outline: none; /* Убираем контур (серый квадрат) */
+  background-color: transparent; /* Прозрачный фон */
   transform: scale(0.94);
   transition: 0.1s;
 }
