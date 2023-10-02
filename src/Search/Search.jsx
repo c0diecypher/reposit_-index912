@@ -56,18 +56,16 @@ function Search() {
       {itemList.map((product) => {
         return (
           // eslint-disable-next-line react/jsx-key
-          <div className="item">
-            <li key={product.id}>
-              <img src={"/img/img/" + product.img} alt="photo" />
-              <h4>{product.price}₽</h4>
-              <p>{product.name}</p>
-              <li className="add-item">
+          <div className="item" key={product.id}> {/* Перенесли ключ сюда */}
+            <img src={"/img/img/" + product.img} alt="" />
+            <h4>{product.price}₽</h4>
+            <p>{product.name}</p>
+              <button className="add-item">
                 <Link to={`/products/${product.id}`}>
-                  <ul className="buy-item">Купить</ul>
+                  <div className="buy-item">Купить</div>
                 </Link>
-              </li>
-            </li>
-          </div>
+              </button>
+    </div>
         );
       })}
     </div>
