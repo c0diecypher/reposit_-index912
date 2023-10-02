@@ -57,14 +57,14 @@ function Search() {
         return (
           // eslint-disable-next-line react/jsx-key
           <div className="item" key={product.id}> {/* Перенесли ключ сюда */}
+                <Link to={`/products/${product.id}`}>
             <img src={"/img/img/" + product.img} alt="" />
             <h4>{product.price}₽</h4>
             <p>{product.name}</p>
               <button className="add-item">
-                <Link to={`/products/${product.id}`}>
                   <div className="buy-item">Купить</div>
-                </Link>
               </button>
+                </Link>
     </div>
         );
       })}
