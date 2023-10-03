@@ -5,7 +5,7 @@ import { useParams, useLocation } from "react-router-dom";
 import Stories from "../Stories/Stories"
 import { useTelegram } from "../Components/Hooks/useTelegram"
 
-function ProductConfirm({ onDataReceived }) {
+function ProductConfirm() {
   useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
   }, []);
@@ -22,12 +22,12 @@ function ProductConfirm({ onDataReceived }) {
   const [textColor] = useState(
     window.Telegram.WebApp.themeParams.button_text_color
   );
-  const {queryId} = useTelegram();
+  const {tg, queryId} = useTelegram();
   const onSendData = useCallback(() => {
     const data = {
       name: productData.name,
-      price: price,
-      size: size,
+      price: productData.price,
+      size: productData.size,
       queryId
     };
 
@@ -38,7 +38,14 @@ function ProductConfirm({ onDataReceived }) {
       },
       body: JSON.stringify(data)
     });
-  }, [productData.name, price, size, queryId, onDataReceived]);
+  }, [name, price, size, queryId]);
+
+  useEffect(()=>{
+    tg.onEvent('mainButtonClicked', onSendData)
+    return () => {
+      tg.OffEvent('mainButtonClicked', onSendData)
+    }
+  }, [onSendData])
   return (
     <>
     <div className="confirm-item" key={productId}>
