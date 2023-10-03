@@ -19,11 +19,13 @@ import ProfilePage from "./Components/Telegram/ProfilePage";
 // React 
 import { Route, Routes } from "react-router-dom";
 import { BackButton } from "@twa-dev/sdk/react" 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import ProductConfirm from "./Products/ProductConfirm"
 
 function App() {
-
+  useEffect(() => {
+    window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
+  }, []);
   const { tg } = useTelegram();
   // Состояние корзины
   const [cart, setCart] = useState([]); 
