@@ -71,7 +71,7 @@ function App() {
         exact
         path="/"
         element={
-          <div className='wrapper' style={{ height: '100vh', overflowY: 'auto' }}>
+          <div>
             {tg.expand()}
             {tg.enableClosingConfirmation()}
 
@@ -124,7 +124,7 @@ function App() {
         element={
           <div>
             <BackButton />
-            <ProductConfirm onDataReceived={handleSendData}/>
+            <ProductConfirm/>
               
           </div>
         }
