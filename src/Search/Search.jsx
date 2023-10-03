@@ -13,6 +13,9 @@ const filterItem = (searchText, listOfItems) => {
 };
 
 function Search() {
+   useEffect(() => {
+    window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
+  }, []);
   const [itemList, setItemList] = useState(productsData);
   const [searchTerm, setSearchTerm] = useState("");
 
