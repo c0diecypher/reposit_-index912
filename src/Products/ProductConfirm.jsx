@@ -40,12 +40,10 @@ function ProductConfirm() {
     });
   }, [name, price, size, queryId]);
 
-  useEffect(()=>{
-    onSendData.onEvent('mainButtonClicked', onSendData)
-    return () => {
-      onSendData.OffEvent('mainButtonClicked', onSendData)
-    }
-  }, [onSendData])
+  const handleButtonClick = () => {
+    onSendData();
+  };
+
   return (
     <>
     <div className="confirm-item" key={productId}>
@@ -73,7 +71,7 @@ function ProductConfirm() {
     </div>
   </div>
   <MainButton 
-        onClick={onSendData}
+        onClick={handleButtonClick}
         color={color}
         textColor={textColor}
         text={`Купить за ${price}`}
