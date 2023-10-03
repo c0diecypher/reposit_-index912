@@ -38,7 +38,7 @@ function ProductConfirm() {
       },
       body: JSON.stringify(data)
     });
-  }, [productData.name, price, size]);
+  }, [productData.name, price, size, queryId]);
   return (
     <>
     <div className="confirm-item" key={productId}>
