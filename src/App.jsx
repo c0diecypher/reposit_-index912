@@ -19,12 +19,16 @@ import ProfilePage from "./Components/Telegram/ProfilePage";
 // React 
 import { Route, Routes } from "react-router-dom";
 import { BackButton } from "@twa-dev/sdk/react" 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import ProductConfirm from "./Products/ProductConfirm"
 
 function App() {
   useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
+  }, []);
+  const handleSendData = useCallback((data) => {
+    // Handle the data received from ProductConfirm here
+    console.log("Data received in App.js:", data);
   }, []);
   const { tg } = useTelegram();
   // Состояние корзины
@@ -67,7 +71,7 @@ function App() {
         exact
         path="/"
         element={
-          <div className='wrapper'>
+          <div className='wrapper' style={{ height: '100vh', overflowY: 'auto' }}>
             {tg.expand()}
             {tg.enableClosingConfirmation()}
 
@@ -118,11 +122,11 @@ function App() {
         <Route
         path="/products/confirm/:name/:size/:price"
         element={
-          <>
+          <div>
             <BackButton />
-            <ProductConfirm />
+            <ProductConfirm onDataReceived={handleSendData}/>
               
-          </>
+          </div>
         }
         >
           
@@ -139,10 +143,10 @@ function App() {
         <Route
         path="/products/size/"
         element={
-          <>
+          <div>
           <BackButton />
           <SizeInfoDetails />
-          </>
+          </div>
         }
         >
           
