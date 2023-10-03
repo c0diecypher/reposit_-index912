@@ -18,8 +18,8 @@ function ProductConfirm() {
 
   // Отображаем информацию о товаре
 
-  const color = useState(window.Telegram.WebApp.themeParams.button_color);
-  const textColor = useState(
+  const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
+  const [textColor] = useState(
     window.Telegram.WebApp.themeParams.button_text_color
   );
   const {queryId} = useTelegram();
