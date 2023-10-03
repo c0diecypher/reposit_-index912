@@ -1,6 +1,10 @@
 import "../css/SelectSize.css";
-
+import { useEffect } from "react";
 function SizeInfoDetails() {
+   useEffect(() => {
+    window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
+  }, []);
+  
   return (
     <div className="box-sized">
       <div className="mysized">
