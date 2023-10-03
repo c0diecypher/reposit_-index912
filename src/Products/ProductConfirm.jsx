@@ -1,11 +1,12 @@
 import "./css/Product.css";
 import { MainButton } from "@twa-dev/sdk/react" 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { useParams, useLocation } from "react-router-dom";
 import Stories from "../Stories/Stories"
+import { useTelegram } from "../Components/Hooks/useTelegram"
 
 function ProductConfirm() {
-   useEffect(() => {
+  useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
   }, []);
   const { productId, size, price, name, img } = useParams();
@@ -17,10 +18,27 @@ function ProductConfirm() {
 
   // Отображаем информацию о товаре
 
-  const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
-  const [textColor] = useState(
+  const color = useState(window.Telegram.WebApp.themeParams.button_color);
+  const textColor = useState(
     window.Telegram.WebApp.themeParams.button_text_color
   );
+  const {queryId} = useTelegram();
+  const onSendData = useCallback(() => {
+    const data = {
+      name: productData.name,
+      price: price,
+      size: size,
+      queryId
+    };
+
+    fetch('http://31.129.32.26:8000/web-data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    });
+  }, [productData.name, price, size]);
   return (
     <>
     <div className="confirm-item" key={productId}>
@@ -42,15 +60,13 @@ function ProductConfirm() {
     
   </div>
   <div className="help-ful">
-    <h2 className="help-title">Полезная информация</h2>
+    <h2 className="help-title">Полезная инофрмация</h2>
     <div className="help-stories">
     <Stories />
     </div>
   </div>
   <MainButton 
-        onClick={() => {
-          alert(`Вы купили ${productData.name}, <br/>${size} <br/>за ${price} ₽`);
-        }}
+        onClick={onSendData}
         color={color}
         textColor={textColor}
         text={`Купить за ${price}`}
