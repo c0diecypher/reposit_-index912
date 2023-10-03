@@ -1,10 +1,13 @@
 import "./css/Product.css";
 import { MainButton } from "@twa-dev/sdk/react" 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useParams, useLocation } from "react-router-dom";
 import Stories from "../Stories/Stories"
 
 function ProductConfirm() {
+   useEffect(() => {
+    window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
+  }, []);
   const { productId, size, price, name, img } = useParams();
   const location = useLocation();
   
