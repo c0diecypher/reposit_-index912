@@ -4,11 +4,12 @@ import "./css/Stories.css";
 function Stories() {
   const handleZipperApp = () => {
     // Вызываем метод Telegram.WebApp.openLink с опциями
-    Telegram.WebApp.openLink('https://teletype.in/@zipperstore/zipperapp', { try_instant_view: true });
+    Telegram.WebApp.openLink('https://telegra.ph/api', { try_instant_view: true });
   };
   return (
     <>
-    <div className="Stories-box" >
+    <div className="Stories-box">
+      
         <button className="Stories" onClick={handleZipperApp}>
           <span className="Stories-item">
             <svg
@@ -61,7 +62,7 @@ function Stories() {
             </div>
           </div>
         </button>
-      </a>
+      
       <button className="Stories">
         <span className="Stories-item">
           <svg
