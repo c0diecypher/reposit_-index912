@@ -71,11 +71,11 @@ function ProductConfirm() {
     </div>
   </div>
   <MainButton 
-        onClick={handleButtonClick}
-        color={color}
-        textColor={textColor}
-        text={`Купить за ${price}`}
-        />
+  onClick={handleButtonClick}
+  color={color}
+  textColor={textColor}
+  text={`Купить за ${price}`}
+/>
   </>
   );
 }
