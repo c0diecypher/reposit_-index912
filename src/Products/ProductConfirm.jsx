@@ -41,9 +41,9 @@ function ProductConfirm() {
   }, [name, price, size, queryId]);
 
   useEffect(()=>{
-    tg.onEvent('mainButtonClicked', onSendData)
+    onSendData.onEvent('mainButtonClicked', onSendData)
     return () => {
-      tg.OffEvent('mainButtonClicked', onSendData)
+      onSendData.OffEvent('mainButtonClicked', onSendData)
     }
   }, [onSendData])
   return (
