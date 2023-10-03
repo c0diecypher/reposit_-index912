@@ -5,7 +5,7 @@ import { useParams, useLocation } from "react-router-dom";
 import Stories from "../Stories/Stories"
 import { useTelegram } from "../Components/Hooks/useTelegram"
 
-function ProductConfirm() {
+function ProductConfirm({ onDataReceived }) {
   useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
   }, []);
@@ -38,7 +38,7 @@ function ProductConfirm() {
       },
       body: JSON.stringify(data)
     });
-  }, [productData.name, price, size, queryId]);
+  }, [productData.name, price, size, queryId, onDataReceived]);
   return (
     <>
     <div className="confirm-item" key={productId}>
