@@ -31,7 +31,7 @@ function ProductConfirm() {
       queryId
     };
 
-    fetch('http://31.129.32.26:8000/web-data', {
+    fetch('https://31.129.32.26:8000/web-data', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ function ProductConfirm() {
       <div className="public-oferta">
         <p className="public-ofert-text">Оплачивая заказ, вы соглашаетесь <br/>с условиями <a className="public-oferta-link">публичной оферты</a></p>
       </div>
-     <button onClick={handleButtonClick}> купить</button >
+     <button onClick={handleButtonClick} >Купить</button>
     
   </div>
   <div className="help-ful">
