@@ -1,6 +1,6 @@
 
 import { useParams, useNavigate } from "react-router-dom";
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import productsData from "./productsData";
 import "./css/Product.css";
 import SizeInfo from "./SizeInfo/SizeInfo";
@@ -39,6 +39,9 @@ const Size = styled.button`
 `;
 
 function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMainButton }) {
+   useEffect(() => {
+    window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
+  }, []);
   const { productId } = useParams();
   const [paymentData, setPaymentData] = useState(null);
   const thisProduct = productsData.find((prod) => prod.id === productId);
