@@ -2,11 +2,14 @@ import "./css/Stories.css";
 
 
 function Stories() {
+  const handleZipperApp = () => {
+    // Вызываем метод Telegram.WebApp.openLink с опциями
+    Telegram.WebApp.openLink('https://teletype.in/@zipperstore/zipperapp', { try_instant_view: true });
+  };
   return (
     <>
-    <div className="Stories-box">
-      <a href="https://teletype.in/@zipperstore/zipperapp" target="_parent">
-        <button className="Stories">
+    <div className="Stories-box" >
+        <button className="Stories" onClick={handleZipperApp}>
           <span className="Stories-item">
             <svg
               width="104"
