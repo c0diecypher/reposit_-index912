@@ -3,8 +3,12 @@ import '../../css/body.css'
 import './css/ProfilePage.css'
 import { useTelegram } from "../Hooks/useTelegram";
 import { InitialsAvatar } from "@twa-dev/mark42";
+import { useEffect } from 'react';
 
 function ProfilePage() {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
+  }, []);
   const { user } = useTelegram();
 
   return (
