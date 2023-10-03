@@ -5,7 +5,7 @@ function Stories() {
   return (
     <>
     <div className="Stories-box">
-      <a href="https://teletype.in/@zipperstore/zipperapp" target="_top">
+      <a href="https://teletype.in/@zipperstore/zipperapp" target="_parent">
         <button className="Stories">
           <span className="Stories-item">
             <svg
