@@ -140,12 +140,7 @@ typesKeys.sort(customSort)
         </div>
         <hr/>
         {dataFromMainButton && (
-  <MainButton 
-      onClick={handlePaymentClick}
-      color={color}
-      textColor={textColor}
-      text={text}
-    />
+      <button onClick={handlePaymentClick}></button>
 )}
     </div>
     <div className="help-ful">
