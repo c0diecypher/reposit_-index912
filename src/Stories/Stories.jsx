@@ -6,11 +6,20 @@ function Stories() {
     // Вызываем метод Telegram.WebApp.openLink с опциями
     Telegram.WebApp.openLink('https://teletype.in/@zipperstore/zipperapp', { try_instant_view: true });
   };
+
+  const handleDelivery = () => {
+    Telegram.WebApp.openLink('https://teletype.in/@zipperstore/delivery', { try_instant_view: true });
+  };
+
+  const handleSize = () => {
+    Telegram.WebApp.openLink('https://teletype.in/@zipperstore/size', { try_instant_view: true }); 
+  }
+
   return (
     <>
     <div className="Stories-box">
       
-        <button className="Stories" onClick={handleZipperApp}>
+        <button className="Stories"  onClick={handleZipperApp}>
           <span className="Stories-item">
             <svg
               width="104"
@@ -63,7 +72,7 @@ function Stories() {
           </div>
         </button>
       
-      <button className="Stories">
+   {/*   <button className="Stories" >
         <span className="Stories-item">
           <svg
             width="104"
@@ -112,9 +121,9 @@ function Stories() {
           </div>
           <div className="Story-item-title">Зови друзей! +500₽ </div>
         </div>
-      </button>
+      </button> */}
 
-      <button className="Stories">
+      <button className="Stories" onClick={handleDelivery}>
         <span className="Stories-item">
           <svg
             width="104"
@@ -165,7 +174,7 @@ function Stories() {
         </div>
       </button>
 
-      <button className="Stories">
+      <button className="Stories" onClick={handleSize}>
         <span className="Stories-item">
           <svg
             width="104"
