@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from "react"
 import { useParams, useLocation } from "react-router-dom";
 import Stories from "../Stories/Stories"
 import { useTelegram } from "../Components/Hooks/useTelegram"
+import { MainButton } from "@twa-dev/sdk/react" 
 
 function ProductConfirm() {
   useEffect(() => {
@@ -21,7 +22,7 @@ function ProductConfirm() {
   const [textColor] = useState(
     window.Telegram.WebApp.themeParams.button_text_color
   );
-  const {tg, onToggleButton, queryId} = useTelegram();
+  const {queryId} = useTelegram();
   const onSendData = useCallback(() => {
     const data = {
       name: productData.name,
@@ -39,19 +40,6 @@ function ProductConfirm() {
     });
   }, []);
 
-  useEffect(()=>{
-    tg.MainButton.setParams({
-      text: `Купить за ${price}`
-    },[])
-  })
-
-  useEffect( () => {
-    if(!productData.price || !productData.size) {
-      tg.MainButton.hide();
-    }else{
-      tg.MainButton.show();
-    }
-  }, [productData.price, productData.size])
   return (
     <>
     <div className="confirm-item" key={productId}>
@@ -77,6 +65,14 @@ function ProductConfirm() {
     <Stories />
     </div>
   </div>
+  <MainButton 
+                        onClick={() => {
+                          alert(`Вы купили ${productData.name}, <br/>${size} <br/>за ${price} ₽`);
+                        }}
+                        color={color}
+                        textColor={textColor}
+                        text={`Купить за ${price}`}
+                        />
   </>
   );
 }
