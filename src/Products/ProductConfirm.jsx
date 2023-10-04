@@ -1,5 +1,4 @@
 import "./css/Product.css";
-import { MainButton } from "@twa-dev/sdk/react" 
 import { useState, useEffect, useCallback } from "react"
 import { useParams, useLocation } from "react-router-dom";
 import Stories from "../Stories/Stories"
@@ -22,7 +21,7 @@ function ProductConfirm() {
   const [textColor] = useState(
     window.Telegram.WebApp.themeParams.button_text_color
   );
-  const {tg, queryId} = useTelegram();
+  const {tg, onToggleButton, queryId} = useTelegram();
   const onSendData = useCallback(() => {
     const data = {
       name: productData.name,
@@ -40,10 +39,19 @@ function ProductConfirm() {
     });
   }, []);
 
-  const handleButtonClick = () => {
-    onSendData();
-  };
+  useEffect(()=>{
+    tg.MainButton.setParams({
+      text: `Купить за ${price}`
+    },[])
+  })
 
+  useEffect( () => {
+    if(!productData.price || !productData.size) {
+      tg.MainButton.hide();
+    }else{
+      tg.MainButton.show();
+    }
+  }, [productData.price, productData.size])
   return (
     <>
     <div className="confirm-item" key={productId}>
@@ -61,7 +69,6 @@ function ProductConfirm() {
       <div className="public-oferta">
         <p className="public-ofert-text">Оплачивая заказ, вы соглашаетесь <br/>с условиями <a className="public-oferta-link">публичной оферты</a></p>
       </div>
-     
     
   </div>
   <div className="help-ful">
@@ -70,12 +77,6 @@ function ProductConfirm() {
     <Stories />
     </div>
   </div>
-  <MainButton 
-  onClick={handleButtonClick}
-  color={color}
-  textColor={textColor}
-  text={`Купить за ${price}`}
-/>
   </>
   );
 }
