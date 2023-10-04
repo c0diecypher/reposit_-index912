@@ -31,14 +31,14 @@ function ProductConfirm() {
       queryId
     };
 
-    fetch('http://31.129.32.26:8000/web-data', {
+    fetch('http://45.12.228.26:8000/web-data', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data)
     });
-  }, [productData.name, productData.price, productData.size, queryId]);
+  }, []);
 
   const handleButtonClick = () => {
     onSendData();
@@ -61,7 +61,7 @@ function ProductConfirm() {
       <div className="public-oferta">
         <p className="public-ofert-text">Оплачивая заказ, вы соглашаетесь <br/>с условиями <a className="public-oferta-link">публичной оферты</a></p>
       </div>
-     <button onClick={handleButtonClick}>Купить</button>
+     
     
   </div>
   <div className="help-ful">
@@ -70,6 +70,12 @@ function ProductConfirm() {
     <Stories />
     </div>
   </div>
+  <MainButton 
+  onClick={handleButtonClick}
+  color={color}
+  textColor={textColor}
+  text={`Купить за ${price}`}
+/>
   </>
   );
 }
