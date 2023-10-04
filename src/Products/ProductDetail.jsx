@@ -39,7 +39,8 @@ const Size = styled.button`
 `;
 
 function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMainButton }) {
-   useEffect(() => {
+  
+  useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
   }, []);
   const { productId } = useParams();
@@ -110,6 +111,8 @@ typesKeys.sort(customSort)
     // Другие PropTypes, если есть
   };
 
+
+
   return (
     <>
     <div className="full-item">
@@ -140,11 +143,19 @@ typesKeys.sort(customSort)
         </div>
         <hr/>
         {dataFromMainButton && (
-      <button onClick={handlePaymentClick}></button>
+      <MainButton 
+      onClick={handlePaymentClick}
+      text={text}
+      color={color}
+      textColor={textColor}
+      />
+      
+        
 )}
+
     </div>
     <div className="help-ful">
-    <h2 className="help-title">Полезная информация</h2>
+    <h2 className="help-title">Полезная инофрмация</h2>
     <div className="help-stories">
     <Stories />
     </div>
@@ -154,4 +165,3 @@ typesKeys.sort(customSort)
 }
 
 export default ProductDetail;
-
