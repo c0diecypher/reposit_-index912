@@ -41,7 +41,7 @@ function ProductConfirm() {
   }, []);
 
   useEffect(()=>{
-    windoo.Telegram.WebApp.onEvent('mainButtonClicked', onSendData)
+    window.Telegram.WebApp.onEvent('mainButtonClicked', onSendData)
     return () => {
       window.Telegram.WebApp.offEvent('mainButtonClicked', onSendData)
     }
