@@ -31,7 +31,7 @@ function ProductConfirm() {
       queryId
     };
 
-    fetch('http://45.12.228.26:8000/web-data', {
+    fetch('http://81.31.247.236:8000/web-data', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
