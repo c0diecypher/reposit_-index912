@@ -73,7 +73,8 @@ function ProductConfirm() {
     </div>
   </div>
   <MainButton 
-                        onClick={onSendData}
+                        onClick={() => {
+    onSendData();}}
                         color={color}
                         textColor={textColor}
                         text={`Купить за ${price}`}
