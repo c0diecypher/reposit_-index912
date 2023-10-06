@@ -40,13 +40,6 @@ function ProductConfirm() {
     });
   }, []);
 
-  useEffect(()=>{
-    window.Telegram.WebApp.onEvent('mainButtonClicked', onSendData)
-    return () => {
-      window.Telegram.WebApp.offEvent('mainButtonClicked', onSendData)
-    }
-  }, [onSendData])
-
   return (
     <>
     <div className="confirm-item" key={productId}>
@@ -73,6 +66,9 @@ function ProductConfirm() {
     </div>
   </div>
   <MainButton 
+    onClick={() => {
+    onSendData();
+  }}
                         color={color}
                         textColor={textColor}
                         text={`Купить за ${price}`}
