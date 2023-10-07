@@ -85,6 +85,14 @@ typesKeys.sort(customSort)
       img: thisProduct.img,
       price
     });
+
+    if (size) {
+      // Вызываем тактильную обратную связь при успешном выборе размера
+      window.Telegram.WebApp.HapticFeedback.notificationOccurred('success');
+    } else {
+      // Вызываем тактильную обратную связь с типом "error", когда размер не выбран
+      window.Telegram.WebApp.HapticFeedback.notificationOccurred('error');
+    }
     
   };
 
