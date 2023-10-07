@@ -88,6 +88,7 @@ typesKeys.sort(customSort)
 
     if (size) {
       // Вызываем тактильную обратную связь при успешном выборе размера
+      window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
       window.Telegram.WebApp.HapticFeedback.notificationOccurred('success');
     } else {
       // Вызываем тактильную обратную связь с типом "error", когда размер не выбран
