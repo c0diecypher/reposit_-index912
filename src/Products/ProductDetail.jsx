@@ -89,7 +89,6 @@ typesKeys.sort(customSort)
     if (size) {
       // Вызываем тактильную обратную связь при успешном выборе размера
       window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
-      window.Telegram.WebApp.HapticFeedback.notificationOccurred('success');
     } else {
       // Вызываем тактильную обратную связь с типом "error", когда размер не выбран
       window.Telegram.WebApp.HapticFeedback.notificationOccurred('error');
@@ -108,7 +107,7 @@ typesKeys.sort(customSort)
       // Добавляем товар в корзину после оплаты
     addToCart(paymentData);
     } else {
-      alert(`Напоминаем вам выбрать размер ${thisProduct.name} перед оплатой.`);
+      window.Telegram.WebApp.HapticFeedback.notificationOccurred('error');
     }
   };
 
