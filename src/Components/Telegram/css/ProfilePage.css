@@ -46,3 +46,56 @@
     letter-spacing: -.02em;
     margin: 10px 0 5px;
 }
+
+.profile-data {
+    
+    width: auto;
+    margin-top: 60px;
+    padding: 20px;
+    border-radius: 5px;
+    
+  }
+  
+.profile-data h2 {
+    text-align: left;
+    color: #333;
+  }
+  
+.profile-data form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  
+  .profile-data input[type="text"],
+  .profile-data input[type="tel"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .profile-data button[type="submit"] {
+    padding: 10px 20px;
+    background-color: var(--tg-theme-button-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: var(--tg-theme-button-color)
+  }
+
+  .profile-data button{
+    padding: 10px 20px;
+    background-color: var(--tg-theme-button-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+  }
