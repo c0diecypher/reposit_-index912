@@ -71,7 +71,7 @@ function ProfilePage() {
           </span>
         )}
       </p>
-              {renderPhoneNumberStatus()}
+              {renderPhoneNumberStatus}
               <CloudStorage />
                 
                     
