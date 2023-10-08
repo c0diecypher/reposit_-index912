@@ -29,20 +29,18 @@ function ProfilePage() {
     });
   };
 
-   useEffect(() => {
-    // Отправляем запрос на сервер для получения номера телефона
-          fetch('https://zipperconnect.space/api/sendPhoneNumber', { // Замените на ваш URL бэкенда
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ phoneNumber }),
+  useEffect(() => {
+    // Выполняем GET-запрос при монтировании компонента
+    fetch('https://zipperconnect.space/getPhoneNumber')
+      .then((response) => response.json())
+      .then((data) => {
+        const phoneNumber = data.phoneNumber;
+        setPhoneNumber(phoneNumber); // Устанавливаем номер телефона в состояние компонента
       })
-      .catch(error => {
-        console.error('Ошибка при получении номера телефона', error);
+      .catch((error) => {
+        console.error('Ошибка при получении номера телефона с сервера:', error);
       });
   }, []);
-
 
   return (
     <>
