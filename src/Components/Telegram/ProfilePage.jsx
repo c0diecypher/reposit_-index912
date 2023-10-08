@@ -21,10 +21,10 @@ function ProfilePage() {
         const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
         if (contact && contact.phone_number) {
           setPhoneNumber(`+${contact.phone_number}`);
-          setRequestStatus('Phone number sent to the bot');
+          setRequestStatus('Вы успешно привязали номер!');
         }
       } else {
-        setRequestStatus('User declined this request');
+        setRequestStatus('Попробуйте еще раз привязать номер...');
       }
     });
   };
