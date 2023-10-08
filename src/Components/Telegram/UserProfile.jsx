@@ -5,7 +5,7 @@ import "../../css/body.css"
 
 function UserProfile() {
   const { tg, user } = useTelegram();
-  const [profilePhoto, setProfilePhoto] = useState("");
+  const [profilePhoto, setProfilePhoto] = useState(""); // Используйте правильное имя переменной
 
   useEffect(() => {
     // Выполняем GET-запрос к "https://zipperconnect.space/getProfilePhoto"
@@ -14,7 +14,7 @@ function UserProfile() {
       .then((data) => {
         // Создаем объект URL для бинарных данных и устанавливаем его как источник изображения
         const imageUrl = URL.createObjectURL(data);
-        setProfileImage(imageUrl);
+        setProfilePhoto(imageUrl); // Используйте правильное имя переменной
       })
       .catch((error) => {
         console.error('Ошибка при получении изображения профиля:', error);
@@ -23,7 +23,7 @@ function UserProfile() {
 
   return (
     <div>
-      {profileImage && <img src={profileImage} alt="Изображение профиля" />}
+      {profilePhoto && <img src={profilePhoto} alt="Изображение профиля" />}
     </div>
   );
 }
