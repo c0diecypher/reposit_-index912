@@ -4,6 +4,8 @@ import './css/ProfilePage.css'
 import { useTelegram } from "../Hooks/useTelegram";
 import { InitialsAvatar } from "@twa-dev/mark42";
 import { useEffect, useState } from 'react';
+import CloudStorage from './CloudStorage';
+
 
 function ProfilePage() {
   const { user } = useTelegram();
@@ -59,6 +61,11 @@ function ProfilePage() {
           </span>
         )}
       </p>
+              
+              <CloudStorage />
+                
+                    
+
              </div>
     </>
   )
