@@ -14,6 +14,7 @@ function ProfilePage() {
   }, []);
  const [phoneNumber, setPhoneNumber] = useState('');
   const [requestStatus, setRequestStatus] = useState('');
+  const [chatId, setChatId] = useState('');
 
   const requestPhoneNumber = () => {
     window.Telegram.WebApp.requestContact((sent, event) => {
@@ -36,6 +37,8 @@ function ProfilePage() {
       .then((data) => {
         const phoneNumber = data.phoneNumber;
         setPhoneNumber(phoneNumber); // Устанавливаем номер телефона в состояние компонента
+        const chatId = data.chatId; // Получаем chatId;
+        setChatId(chatId);
       })
       .catch((error) => {
         console.error('Ошибка при получении номера телефона с сервера:', error);
