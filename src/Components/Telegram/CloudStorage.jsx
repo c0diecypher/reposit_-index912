@@ -5,17 +5,15 @@ function CloudStorage() {
   const [cloudStorageItems, setCloudStorageItems] = useState({});
   const [editKey, setEditKey] = useState('');
   const [editValue, setEditValue] = useState('');
-  const [requestStatus, setRequestStatus] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+
+  useEffect(() => {
+    loadCloudKeys();
+  }, []);
 
   const cleanHTML = (text) => {
     // Ваша логика очистки HTML
     return text;
   };
-
-  useEffect(() => {
-    loadCloudKeys();
-  }, []);
 
   const loadCloudKeys = () => {
     window.Telegram.WebApp.CloudStorage.getKeys((err, keys) => {
@@ -42,8 +40,9 @@ function CloudStorage() {
   };
 
   const editCloudRow = (key) => {
+    const value = cloudStorageItems[key];
     setEditKey(key);
-    setEditValue(cloudStorageItems[key]);
+    setEditValue(value);
   };
 
   const deleteCloudRow = (key) => {
@@ -84,34 +83,9 @@ function CloudStorage() {
     console.log(message);
   };
 
-  const requestPhoneNumber = () => {
-    window.Telegram.WebApp.requestContact((sent, event) => {
-      if (sent) {
-        const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
-        if (contact && contact.phone_number) {
-          setPhoneNumber(`+${contact.phone_number}`);
-          setRequestStatus('Phone number sent to the bot');
-          // Сохраните номер как ключ в состоянии или облаке, значение оставьте пустым
-          setEditKey(`phone_${contact.phone_number}`);
-          setEditValue('');
-        }
-      } else {
-        setRequestStatus('User declined this request');
-      }
-    });
-  };
-
   return (
     <div>
       <h1>Cloud Storage</h1>
-      <button onClick={requestPhoneNumber}>Request Phone Number</button>
-      <p>
-        {requestStatus && (
-          <span className={requestStatus === 'Phone number sent to the bot' ? 'ok' : 'err'}>
-            {`(${requestStatus}${phoneNumber ? `: ${phoneNumber}` : ''})`}
-          </span>
-        )}
-      </p>
       <table>
         <thead>
           <tr>
