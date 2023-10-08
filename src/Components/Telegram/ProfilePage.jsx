@@ -31,12 +31,12 @@ function ProfilePage() {
 
    useEffect(() => {
     // Отправляем запрос на сервер для получения номера телефона
-    fetch('https://zipperconnect.space/api/getPhoneNumber') // Замените на реальный URL вашего бэкенда
-      .then(response => response.json())
-      .then(data => {
-        if (data.phoneNumber) {
-          setPhoneNumber(data.phoneNumber);
-        }
+          fetch('https://zipperconnect.space/api/sendPhoneNumber', { // Замените на ваш URL бэкенда
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ phoneNumber }),
       })
       .catch(error => {
         console.error('Ошибка при получении номера телефона', error);
