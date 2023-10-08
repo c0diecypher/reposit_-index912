@@ -3,7 +3,7 @@ import '../../css/body.css'
 import './css/ProfilePage.css'
 import { useTelegram } from "../Hooks/useTelegram";
 import { InitialsAvatar } from "@twa-dev/mark42";
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import CloudStorage from './CloudStorage';
 
 
@@ -12,22 +12,7 @@ function ProfilePage() {
   useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
   }, []);
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [requestStatus, setRequestStatus] = useState('');
-
-  const requestPhoneNumber = () => {
-    window.Telegram.WebApp.requestContact((sent, event) => {
-      if (sent) {
-        const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
-        if (contact && contact.phone_number) {
-          setPhoneNumber(`+${contact.phone_number}`);
-          setRequestStatus('Phone number sent to the bot');
-        }
-      } else {
-        setRequestStatus('User declined this request');
-      }
-    });
-  };
+  
  
 
   return (
@@ -53,15 +38,6 @@ function ProfilePage() {
             <div className="profile-data">
                       <h2>Телефон</h2>
                 
-                      <button onClick={requestPhoneNumber}>Request Phone Number</button>
-      <p>
-        {requestStatus && (
-          <span className={requestStatus === 'Phone number sent to the bot' ? 'ok' : 'err'}>
-            {`(${requestStatus}${phoneNumber ? `: ${phoneNumber}` : ''})`}
-          </span>
-        )}
-      </p>
-              
               <CloudStorage />
                 
                     
