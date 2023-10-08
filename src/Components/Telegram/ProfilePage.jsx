@@ -4,7 +4,7 @@ import { useTelegram } from "../Hooks/useTelegram";
 import { InitialsAvatar } from "@twa-dev/mark42";
 import { useEffect, useState } from 'react';
 import CloudStorage from './CloudStorage';
-
+import UserProfile from './UserProfile';
 
 function ProfilePage() {
   const { user } = useTelegram();
@@ -58,6 +58,7 @@ function ProfilePage() {
         />
                     </div>
              <div className="profile-name">{user?.first_name}</div>
+                  <UserProfile />
                 </div>
             </div>
         </div>
