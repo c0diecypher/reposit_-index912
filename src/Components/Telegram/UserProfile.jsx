@@ -8,25 +8,22 @@ function UserProfile() {
   const [profilePhoto, setProfilePhoto] = useState("");
 
   useEffect(() => {
-    fetch('https://zipperconnect.space/getPhotoFile')
-  .then((response) => response.json())
-  .then((data) => {
-    const photoFile = data.photoFile;
-
-    // Найдите элемент <img> в вашем HTML-документе по его id
-    const imgElement = document.getElementById('profileImage');
-
-    // Установите src атрибут тега <img> для отображения изображения
-    imgElement.src = photoFile;
-  })
-  .catch((error) => {
-    console.error('Ошибка при получении photoFile с сервера:', error);
-  });
+    // Выполняем GET-запрос к "https://zipperconnect.space/getProfilePhoto"
+    fetch('https://zipperconnect.space/getProfilePhoto')
+      .then((response) => response.blob()) // Получаем бинарные данные изображения
+      .then((data) => {
+        // Создаем объект URL для бинарных данных и устанавливаем его как источник изображения
+        const imageUrl = URL.createObjectURL(data);
+        setProfileImage(imageUrl);
+      })
+      .catch((error) => {
+        console.error('Ошибка при получении изображения профиля:', error);
+      });
   }, []);
 
   return (
     <div>
-      <img id="profileImage" src={photoFile} alt="profilepage" />
+      {profileImage && <img src={profileImage} alt="Изображение профиля" />}
     </div>
   );
 }
