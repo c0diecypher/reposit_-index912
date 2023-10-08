@@ -85,7 +85,6 @@ function CloudStorage() {
 
   return (
     <div>
-      <h1>Cloud Storage</h1>
       <table>
         <thead>
           <tr>
