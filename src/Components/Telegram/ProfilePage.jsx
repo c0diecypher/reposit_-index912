@@ -29,16 +29,6 @@ function ProfilePage() {
     });
   };
 
-  const renderPhoneNumberStatus = () => {
-    if (requestStatus === 'Номер успешно привязан!') {
-      return <h2>Телефон привязан ✅</h2>;
-    } else if (requestStatus === 'Повторите попытку еще раз...') {
-      return <h2>Телефон не привязан ❌</h2>;
-    } else {
-      return null; // По умолчанию ничего не отображаем
-    }
-  };
- 
 
   return (
     <>
@@ -71,7 +61,6 @@ function ProfilePage() {
           </span>
         )}
       </p>
-              {renderPhoneNumberStatus}
               <CloudStorage />
                 
                     
