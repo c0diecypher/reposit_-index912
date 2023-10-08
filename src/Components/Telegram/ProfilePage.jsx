@@ -10,40 +10,23 @@ function ProfilePage() {
   useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
   }, []);
-  const [fullName, setFullName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [savedData, setSavedData] = useState(null);
+  const [requestStatus, setRequestStatus] = useState('');
 
-  // Функция для сохранения данных в облаке
-  const saveDataToCloud = () => {
-    if (fullName && phoneNumber) {
-      window.Telegram.CloudStorage.setItem('user_data', JSON.stringify({ fullName, phoneNumber }), (error, success) => {
-        if (success) {
-          alert('Данные успешно сохранены в облаке Telegram.');
-        } else {
-          alert('Произошла ошибка при сохранении данных.');
+  const requestPhoneNumber = () => {
+    window.Telegram.WebApp.requestContact((sent, event) => {
+      if (sent) {
+        const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
+        if (contact && contact.phone_number) {
+          setPhoneNumber(`+${contact.phone_number}`);
+          setRequestStatus('Phone number sent to the bot');
         }
-      });
-    } else {
-      alert('Пожалуйста, заполните ФИО и номер телефона.');
-    }
-  };
-
-  // Функция для получения данных из облака
-  const getDataFromCloud = () => {
-    window.Telegram.CloudStorage.getItem('user_data', (error, data) => {
-      if (data) {
-        setSavedData(JSON.parse(data));
       } else {
-        alert('Данные не найдены в облаке Telegram.');
+        setRequestStatus('User declined this request');
       }
     });
   };
-
-  useEffect(() => {
-    getDataFromCloud();
-  }, []);
-
+ 
 
   return (
     <>
@@ -61,38 +44,21 @@ function ProfilePage() {
                         
         />
                     </div>
-             <div className="profile-name">{user?.first_name}Admin</div>
-                                    </div>
-                                </div>
-                            </div>
-                                <div className="profile-data">
-                                <div>
-                          <h1>Форма для сохранения данных в облаке Telegram</h1>
-                          <div>
-                            <label>ФИО:</label>
-                            <input
-                              type="text"
-                              value={fullName}
-                              onChange={(e) => setFullName(e.target.value)}
-                            />
-                          </div>
-                          <div>
-                            <label>Номер телефона:</label>
-                            <input
-                              type="text"
-                              value={phoneNumber}
-                              onChange={(e) => setPhoneNumber(e.target.value)}
-                            />
-                          </div>
-                          <button onClick={saveDataToCloud}>Сохранить в облаке</button>
-                          {savedData && (
-                            <div>
-                              <h2>Сохраненные данные:</h2>
-                              <p>ФИО: {savedData.fullName}</p>
-                              <p>Номер телефона: {savedData.phoneNumber}</p>
-                            </div>
-                          )}
-                        </div>
+             <div className="profile-name">{user?.first_name}</div>
+                </div>
+            </div>
+        </div>
+            <div className="profile-data">
+                      <h2>Телефон</h2>
+                
+                      <button onClick={requestPhoneNumber}>Request Phone Number</button>
+      <p>
+        {requestStatus && (
+          <span className={requestStatus === 'Phone number sent to the bot' ? 'ok' : 'err'}>
+            {`(${requestStatus}${phoneNumber ? `: ${phoneNumber}` : ''})`}
+          </span>
+        )}
+      </p>
              </div>
     </>
   )
