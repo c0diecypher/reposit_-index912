@@ -29,6 +29,19 @@ function ProfilePage() {
     });
   };
 
+   useEffect(() => {
+    // Отправляем запрос на сервер для получения номера телефона
+    fetch('/api/getPhoneNumber') // Замените на реальный URL вашего бэкенда
+      .then(response => response.json())
+      .then(data => {
+        if (data.phoneNumber) {
+          setPhoneNumber(data.phoneNumber);
+        }
+      })
+      .catch(error => {
+        console.error('Ошибка при получении номера телефона', error);
+      });
+  }, []);
 
 
   return (
@@ -57,6 +70,11 @@ function ProfilePage() {
         {/* Показываем кнопку только если номер не привязан */}
         {requestStatus !== 'Номер успешно привязан ✅' && (
           <button onClick={requestPhoneNumber}>Отправить номер телефона</button>
+        )}
+          {phoneNumber ? (
+          <p>Номер телефона: {phoneNumber}</p>
+        ) : (
+          <p>Загрузка номера телефона...</p>
         )}
         
         {requestStatus && (
