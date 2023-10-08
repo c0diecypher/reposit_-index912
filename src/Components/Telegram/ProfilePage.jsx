@@ -53,7 +53,7 @@ function ProfilePage() {
             <div className="profile-data">
                       <h2>Телефон</h2>
                 
-                      <button onClick={requestPhoneNumber}>Request Phone Number</button>
+                      <button onClick={requestPhoneNumber}>Отправить номер телефона</button>
       <p>
         {requestStatus && (
           <span className={requestStatus === 'Phone number sent to the bot' ? 'ok' : 'err'}>
