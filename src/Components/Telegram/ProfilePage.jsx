@@ -21,12 +21,22 @@ function ProfilePage() {
         const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
         if (contact && contact.phone_number) {
           setPhoneNumber(`+${contact.phone_number}`);
-          setRequestStatus('Вы успешно привязали номер!');
+          setRequestStatus('Номер успешно привязан!');
         }
       } else {
-        setRequestStatus('Попробуйте еще раз привязать номер...');
+        setRequestStatus('Повторите попытку еще раз...');
       }
     });
+  };
+
+  const renderPhoneNumberStatus = () => {
+    if (requestStatus === 'Номер успешно привязан!') {
+      return <h2>Телефон привязан ✅</h2>;
+    } else if (requestStatus === 'Повторите попытку еще раз...') {
+      return <h2>Телефон не привязан ❌</h2>;
+    } else {
+      return null; // По умолчанию ничего не отображаем
+    }
   };
  
 
@@ -61,7 +71,7 @@ function ProfilePage() {
           </span>
         )}
       </p>
-              
+              {renderPhoneNumberStatus()}
               <CloudStorage />
                 
                     
