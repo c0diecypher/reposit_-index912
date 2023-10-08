@@ -12,7 +12,7 @@ function ProfilePage() {
   useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
   }, []);
-  const [phoneNumber, setPhoneNumber] = useState('');
+ const [phoneNumber, setPhoneNumber] = useState('');
   const [requestStatus, setRequestStatus] = useState('');
 
   const requestPhoneNumber = () => {
@@ -53,14 +53,14 @@ function ProfilePage() {
             <div className="profile-data">
                       <h2>Телефон</h2>
                 
-                      <button onClick={requestPhoneNumber}>Отправить номер телефона</button>
-      <p>
-        {requestStatus && (
-          <span className={requestStatus === 'Phone number sent to the bot' ? 'ok' : 'err'}>
-            {`(${requestStatus}${phoneNumber ? `: ${phoneNumber}` : ''})`}
-          </span>
-        )}
-      </p>
+                      <button onClick={requestPhoneNumber}>Request Phone Number</button>
+                          <p>
+                            {requestStatus && (
+                              <span className={requestStatus === 'Phone number sent to the bot' ? 'ok' : 'err'}>
+                                {`(${requestStatus}${phoneNumber ? `: ${phoneNumber}` : ''})`}
+                              </span>
+                            )}
+                          </p>
               <CloudStorage />
                 
                     
