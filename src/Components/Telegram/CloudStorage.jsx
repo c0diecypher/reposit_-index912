@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import './css/ProfilePage.css'
 function CloudStorage() {
   const [cloudStorageKeys, setCloudStorageKeys] = useState([]);
   const [cloudStorageItems, setCloudStorageItems] = useState({});
@@ -89,9 +89,9 @@ function CloudStorage() {
       <table>
         <thead>
           <tr>
-            <th>Key</th>
-            <th>Value</th>
-            <th>Actions</th>
+            <th>Номер телефона</th>
+            <th>ФИО</th>
+            <th>Адрес</th>
           </tr>
         </thead>
         <tbody>
@@ -100,8 +100,8 @@ function CloudStorage() {
               <td>{cleanHTML(key)}</td>
               <td>{cleanHTML(cloudStorageItems[key])}</td>
               <td>
-                <button onClick={() => editCloudRow(key)}>Edit</button>
-                <button onClick={() => deleteCloudRow(key)}>Delete</button>
+                <button onClick={() => editCloudRow(key)}>Изменить</button>
+                <button onClick={() => deleteCloudRow(key)}>Удалить</button>
               </td>
             </tr>
           ))}
@@ -110,17 +110,17 @@ function CloudStorage() {
       <form onSubmit={saveCloudForm}>
         <input
           type="text"
-          placeholder="Key"
+          placeholder="Номер телефона"
           value={editKey}
           onChange={(e) => setEditKey(e.target.value)}
         />
         <input
           type="text"
-          placeholder="Value"
+          placeholder="ФИО"
           value={editValue}
           onChange={(e) => setEditValue(e.target.value)}
         />
-        <button type="submit">Save</button>
+        <button type="submit">Сохранить</button>
       </form>
     </div>
   );
