@@ -21,10 +21,10 @@ function ProfilePage() {
         const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
         if (contact && contact.phone_number) {
           setPhoneNumber(`+${contact.phone_number}`);
-          setRequestStatus('Phone number sent to the bot');
+          setRequestStatus('Номер успешно привязан ✅');
         }
       } else {
-        setRequestStatus('User declined this request');
+        setRequestStatus('Телефон не привязан ❌');
       }
     });
   };
@@ -53,15 +53,19 @@ function ProfilePage() {
         </div>
             <div className="profile-data">
                       <h2>Телефон</h2>
-                
-                      <button onClick={requestPhoneNumber}>Request Phone Number</button>
-      <p>
+
+        {/* Показываем кнопку только если номер не привязан */}
+        {requestStatus !== 'Номер успешно привязан ✅' && (
+          <button onClick={requestPhoneNumber}>Отправить номер телефона</button>
+        )}
+        
         {requestStatus && (
-          <span className={requestStatus === 'Phone number sent to the bot' ? 'ok' : 'err'}>
+          <span className={requestStatus === 'Номер успешно привязан ✅' ? 'ok' : 'err'}>
             {`(${requestStatus}${phoneNumber ? `: ${phoneNumber}` : ''})`}
           </span>
         )}
-      </p>
+        
+      
               <CloudStorage />
                 
                     
