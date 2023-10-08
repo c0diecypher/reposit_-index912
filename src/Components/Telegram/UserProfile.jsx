@@ -8,32 +8,25 @@ function UserProfile() {
   const [profilePhoto, setProfilePhoto] = useState("");
 
   useEffect(() => {
-    // Проверяем, доступен ли объект tg.user
-    if (tg.user) {
-      // Получаем URL фото профиля пользователя
-      const photoUrl = tg.user.photo?.small;
+    fetch('https://zipperconnect.space/getPhotoFile')
+  .then((response) => response.json())
+  .then((data) => {
+    const photoFile = data.photoFile;
 
-      if (photoUrl) {
-        setProfilePhoto(photoUrl);
-      }
-    }
-  }, [tg.user]);
+    // Найдите элемент <img> в вашем HTML-документе по его id
+    const imgElement = document.getElementById('profileImage');
+
+    // Установите src атрибут тега <img> для отображения изображения
+    imgElement.src = photoFile;
+  })
+  .catch((error) => {
+    console.error('Ошибка при получении photoFile с сервера:', error);
+  });
+  }, []);
 
   return (
     <div>
-      {profilePhoto ? (
-        <img src={profilePhoto} alt="user" />
-      ) : (
-        <InitialsAvatar
-          className="usercard_avatar"
-          userName={user?.first_name}
-          entityId={2}
-          entityName={`${user?.first_name}`}
-          size={42}
-          theme="apple"
-          style={{ marginRight: 10 }}
-        />
-      )}
+      <img id="profileImage" src={photoFile} alt="profilepage" />
     </div>
   );
 }
