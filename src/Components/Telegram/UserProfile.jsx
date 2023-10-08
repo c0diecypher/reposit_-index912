@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
-import { useTelegram } from "../Hooks/useTelegram";
-import { InitialsAvatar } from "@twa-dev/mark42";
 import "../../css/body.css"
 
 function UserProfile() {
-  const { tg, user } = useTelegram();
   const [profilePhoto, setProfilePhoto] = useState(""); // Используйте правильное имя переменной
 
   useEffect(() => {
