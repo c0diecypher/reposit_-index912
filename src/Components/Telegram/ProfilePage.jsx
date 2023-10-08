@@ -1,4 +1,3 @@
-
 import '../../css/body.css'
 import './css/ProfilePage.css'
 import { useTelegram } from "../Hooks/useTelegram";
@@ -14,7 +13,6 @@ function ProfilePage() {
   }, []);
  const [phoneNumber, setPhoneNumber] = useState('');
   const [requestStatus, setRequestStatus] = useState('');
-  const [userId, setUserId] = useState('');
 
   const requestPhoneNumber = () => {
     window.Telegram.WebApp.requestContact((sent, event) => {
@@ -37,8 +35,6 @@ function ProfilePage() {
       .then((data) => {
         const phoneNumber = data.phoneNumber;
         setPhoneNumber(phoneNumber); // Устанавливаем номер телефона в состояние компонента
-        const chatId = data.userId; // Получаем userId;
-        setUserId(userId);
       })
       .catch((error) => {
         console.error('Ошибка при получении номера телефона с сервера:', error);
