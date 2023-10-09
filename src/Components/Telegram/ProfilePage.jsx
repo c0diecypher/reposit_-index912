@@ -47,7 +47,7 @@ function ProfilePage() {
             <div className="profile-avatar-box">
                 <div className="profile-avatar-transparent">
                     <div className="profile-avatar">
-                      <UserProfile />
+                    
                     <InitialsAvatar
                         className="profile-avatar"
                         userName={user?.first_name}
