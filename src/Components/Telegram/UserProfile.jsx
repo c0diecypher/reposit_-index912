@@ -4,26 +4,30 @@ import { InitialsAvatar } from "@twa-dev/mark42";
 import "../../css/body.css"
 
 function UserProfile() {
-  const { tg, user } = useTelegram();
-  const [profilePhoto, setProfilePhoto] = useState(""); // Правильное имя переменной
+   const [photos, setPhotos] = useState([]); // Состояние для хранения списка фотографий
 
   useEffect(() => {
-    // Выполняем GET-запрос к "https://zipperconnect.space/getProfilePhoto"
+    // Выполняем GET-запрос к бэкенду для получения списка фотографий
     fetch('https://zipperconnect.space/getProfilePhoto')
-      .then((response) => response.blob()) // Получаем бинарные данные изображения
+      .then((response) => response.json())
       .then((data) => {
-        // Создаем объект URL для бинарных данных и устанавливаем его как источник изображения
-        const imageUrl = URL.createObjectURL(data);
-        setProfilePhoto(imageUrl); // Правильное имя переменной
+        // data.photos содержит список фотографий из вашего бэкенда
+        setPhotos(data.photos);
       })
       .catch((error) => {
-        console.error('Ошибка при получении изображения профиля:', error);
+        console.error('Ошибка при получении фотографий с сервера:', error);
       });
   }, []);
 
   return (
     <div>
-      {profilePhoto && <img src={profilePhoto} alt="Изображение профиля" />}
+ 
+      
+          
+            <img src={photos} alt='фото профиля' />
+         
+ 
+
     </div>
   );
 }
