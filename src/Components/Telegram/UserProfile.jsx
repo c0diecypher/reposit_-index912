@@ -5,7 +5,7 @@ import "../../css/body.css"
 
 function UserProfile() {
   const { tg, user } = useTelegram();
-  const [photoUrl, setProfilePhoto] = useState("");
+  const [profilePhoto, setProfilePhoto] = useState("");
 
   useEffect(() => {
     // Проверяем, доступен ли объект tg.user
