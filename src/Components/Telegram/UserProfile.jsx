@@ -4,38 +4,35 @@ import { InitialsAvatar } from "@twa-dev/mark42";
 import "../../css/body.css"
 
 function UserProfile() {
-   const { user } = useTelegram();
-  const [peerWrapVisible, setPeerWrapVisible] = useState(false);
-  const [peerName, setPeerName] = useState("");
-  const [peerPhotoUrl, setPeerPhotoUrl] = useState("");
+  const { tg, user } = useTelegram();
+  const [photoUrl, setProfilePhoto] = useState("");
 
   useEffect(() => {
-    if (user) {
-      setPeerWrapVisible(true);
-      setPeerName({user?.first_name});
-      if (user?.photo_url) {
-        setPeerPhotoUrl({user?.photo_url});
-      }
-    } else if (user) {
-      setPeerWrapVisible(true);
-      setPeerName({user?.title});
-      if ({user?.photo_url}) {
-        setPeerPhotoUrl({user?.photo_url});
+    // Проверяем, доступен ли объект tg.user
+    if (tg.user) {
+      // Получаем URL фото профиля пользователя
+      const photoUrl = tg.user.photo?.small;
+
+      if (photoUrl) {
+        setProfilePhoto(photoUrl);
       }
     }
-  }, []);
+  }, [tg.user]);
 
   return (
     <div>
-      {peerWrapVisible && (
-        <div id="peer_wrap" style={{ display: 'block' }}>
-          <div id="peer_name">{peerName}</div>
-          {peerPhotoUrl ? (
-            <img id="peer_photo" src={peerPhotoUrl} alt="Peer Photo" />
-          ) : (
-            <div id="peer_photo" style={{ display: 'none' }}></div>
-          )}
-        </div>
+      {profilePhoto ? (
+        <img src={profilePhoto} alt="user" />
+      ) : (
+        <InitialsAvatar
+          className="usercard_avatar"
+          userName={user?.first_name}
+          entityId={2}
+          entityName={`${user?.first_name}`}
+          size={42}
+          theme="apple"
+          style={{ marginRight: 10 }}
+        />
       )}
     </div>
   );
