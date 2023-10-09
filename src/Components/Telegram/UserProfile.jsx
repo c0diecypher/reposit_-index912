@@ -4,32 +4,39 @@ import { InitialsAvatar } from "@twa-dev/mark42";
 import "../../css/body.css"
 
 function UserProfile() {
-   const [photos, setPhotos] = useState([]); // Состояние для хранения списка фотографий
    const { user } = useTelegram();
-   
+  const [peerWrapVisible, setPeerWrapVisible] = useState(false);
+  const [peerName, setPeerName] = useState("");
+  const [peerPhotoUrl, setPeerPhotoUrl] = useState("");
+
   useEffect(() => {
-    // Выполняем GET-запрос к бэкенду для получения списка фотографий
-    fetch('https://zipperconnect.space/getProfilePhoto')
-      .then((response) => response.json())
-      .then((data) => {
-        const photoUrl = data.photo_url;
-        setProfilePhoto(photoUrl); 
-      })
-      .catch((error) => {
-        console.error('Ошибка при получении фотографий с сервера:', error);
-      });
+    if (user) {
+      setPeerWrapVisible(true);
+      setPeerName({user?.first_name});
+      if (user?.photo_url) {
+        setPeerPhotoUrl({user?.photo_url});
+      }
+    } else if (user) {
+      setPeerWrapVisible(true);
+      setPeerName({user?.title});
+      if ({user?.photo_url}) {
+        setPeerPhotoUrl({user?.photo_url});
+      }
+    }
   }, []);
 
   return (
     <div>
- 
-      
-          
-            {profilePhoto && <img src={profilePhoto} alt="photo" />}
-             <img src={user?.photo_url} alt="photo" />
-         
- 
-
+      {peerWrapVisible && (
+        <div id="peer_wrap" style={{ display: 'block' }}>
+          <div id="peer_name">{peerName}</div>
+          {peerPhotoUrl ? (
+            <img id="peer_photo" src={peerPhotoUrl} alt="Peer Photo" />
+          ) : (
+            <div id="peer_photo" style={{ display: 'none' }}></div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
