@@ -27,7 +27,7 @@ function ProfilePage() {
       }
     });
   };
-
+ 
   useEffect(() => {
     // Выполняем GET-запрос при монтировании компонента
     fetch('https://zipperconnect.space/getPhoneNumber')
