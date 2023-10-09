@@ -59,7 +59,7 @@ function ProfilePage() {
         />
                     </div>
              <div className="profile-name">{user?.first_name}</div>
-                  <UserProfile />
+                  
                 </div>
             </div>
         </div>
