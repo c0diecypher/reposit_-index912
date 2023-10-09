@@ -5,14 +5,15 @@ import "../../css/body.css"
 
 function UserProfile() {
    const [photos, setPhotos] = useState([]); // Состояние для хранения списка фотографий
-
+   const { user } = useTelegram();
+   
   useEffect(() => {
     // Выполняем GET-запрос к бэкенду для получения списка фотографий
     fetch('https://zipperconnect.space/getProfilePhoto')
       .then((response) => response.json())
       .then((data) => {
-        // data.photos содержит список фотографий из вашего бэкенда
-        setPhotos(data.photos);
+        const photoUrl = data.photo_url;
+        setProfilePhoto(photoUrl); 
       })
       .catch((error) => {
         console.error('Ошибка при получении фотографий с сервера:', error);
@@ -24,7 +25,8 @@ function UserProfile() {
  
       
           
-            <img src={photos} alt='фото профиля' />
+            {profilePhoto && <img src={profilePhoto} alt="photo" />}
+             <img src={user?.photo_url} alt="photo" />
          
  
 
