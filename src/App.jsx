@@ -88,8 +88,6 @@ function App() {
     console.log('auth_date:', auth_date);
     console.log('hash:', hash);
 
- // Создаем строку данных инициализации
-  const initDataString = `query_id=${query_id}\nuser=${JSON.stringify(user)}\nauth_date=${auth_date}\nhash=${hash}`;
   // Отправляем запрос на сервер
   fetch('https://zipperconnect.space/validate-init-data', {
     method: 'POST',
