@@ -73,8 +73,7 @@ function App() {
     // Извлечь параметры из хеша URL
     const tgWebAppVersion = hashParams.get('tgWebAppVersion');
     const initDataString = hashParams.get('tgWebAppData');
-    const initData = new URLSearchParams(initDataString);
-
+    const initData = new URLSearchParams(hashParams.get('tgWebAppData'));
     console.log('tgWebAppStartParam:', tgWebAppStartParam);
     console.log('tgWebAppVersion:', tgWebAppVersion);
 
@@ -88,6 +87,22 @@ function App() {
     console.log('user:', user);
     console.log('auth_date:', auth_date);
     console.log('hash:', hash);
+
+  fetch('https://zipperconnect.space/validate-init-data', {
+  method: 'POST',
+  headers: {
+    'Authorization': `twa-init-data ${initData}`,
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({ hash, auth_date, user, query_id }), // Отправляем только hash
+})
+  .then(response => response.json())
+  .then(data => {
+    console.log('Server Response:', data);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
   }, []);
 
   return (
