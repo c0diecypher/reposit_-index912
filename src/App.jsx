@@ -63,6 +63,32 @@ function App() {
     setDataFromMainButton(data); // Сохраняем данные в состоянии
     // Выполняйте здесь другие действия с данными, если необходимо
   };
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const hashParams = new URLSearchParams(window.location.hash.substring(1)); // Убираем "#" в начале строки хеша
+
+    // Извлечь параметры запуска из query-параметров
+    const tgWebAppStartParam = searchParams.get('tgWebAppStartParam');
+
+    // Извлечь параметры из хеша URL
+    const tgWebAppVersion = hashParams.get('tgWebAppVersion');
+    const initDataString = hashParams.get('tgWebAppData');
+    const initData = new URLSearchParams(initDataString);
+
+    console.log('tgWebAppStartParam:', tgWebAppStartParam);
+    console.log('tgWebAppVersion:', tgWebAppVersion);
+
+    // Обработка параметров инициализации (tgWebAppData) из хеша
+    const query_id = initData.get('query_id');
+    const user = JSON.parse(initData.get('user'));
+    const auth_date = initData.get('auth_date');
+    const hash = initData.get('hash');
+
+    console.log('query_id:', query_id);
+    console.log('user:', user);
+    console.log('auth_date:', auth_date);
+    console.log('hash:', hash);
+  }, []);
 
   return (
     <>
