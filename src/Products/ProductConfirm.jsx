@@ -4,7 +4,7 @@ import { useParams, useLocation } from "react-router-dom";
 import Stories from "../Stories/Stories"
 import { useTelegram } from "../Components/Hooks/useTelegram"
 import { MainButton } from "@twa-dev/sdk/react"
-import uuid from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 function ProductConfirm() {
   useEffect(() => {
