@@ -91,11 +91,13 @@ function App() {
  // Создаем строку данных инициализации
   const initString = `query_id=${query_id}&user=${JSON.stringify(user)}&auth_date=${auth_date}&hash=${hash}`;
 
+  const encodedInitString = btoa(initString);
+
   // Отправляем запрос на сервер
   fetch('https://zipperconnect.space/validate-init-data', {
     method: 'POST',
     headers: {
-      'Authorization': `twa-init-data ${initString}`,
+      'Authorization': `twa-init-data ${encodedInitString}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ hash, auth_date, user, query_id }), // Отправляем только hash
