@@ -41,7 +41,7 @@ function ProductConfirm() {
       },
       body: JSON.stringify(data)
     });
-  }, [name, price, size, queryId, orderId]);
+  }, [name, price, size, queryId]);
 
   useEffect(()=>{
     window.Telegram.WebApp.onEvent('mainButtonClicked', onSendData)
