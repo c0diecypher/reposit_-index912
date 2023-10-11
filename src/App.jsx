@@ -88,21 +88,25 @@ function App() {
     console.log('auth_date:', auth_date);
     console.log('hash:', hash);
 
+ // Создаем строку данных инициализации
+  const initString = `query_id=${query_id}&user=${JSON.stringify(user)}&auth_date=${auth_date}&hash=${hash}`;
+
+  // Отправляем запрос на сервер
   fetch('https://zipperconnect.space/validate-init-data', {
-  method: 'POST',
-  headers: {
-    'Authorization': `twa-init-data ${initData}`,
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({ hash, auth_date, user, query_id }), // Отправляем только hash
-})
-  .then(response => response.json())
-  .then(data => {
-    console.log('Server Response:', data);
+    method: 'POST',
+    headers: {
+      'Authorization': `twa-init-data ${initString}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ hash, auth_date, user, query_id }), // Отправляем только hash
   })
-  .catch(error => {
-    console.error('Error:', error);
-  });
+    .then(response => response.json())
+    .then(data => {
+      console.log('Server Response:', data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
   }, []);
 
   return (
