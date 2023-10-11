@@ -25,7 +25,7 @@ function ProductConfirm() {
   );
   const {queryId} = useTelegram();
   const onSendData = useCallback(() => {
-    const orderId = `№${uuid.v4()}`; // Генерируем уникальный номер заказа
+    const orderId = `№${uuidv4()}`; // Генерируем уникальный номер заказа
     const data = {
       name: productData.name,
       price: productData.price,
