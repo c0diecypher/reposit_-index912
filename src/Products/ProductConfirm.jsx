@@ -26,6 +26,7 @@ function ProductConfirm() {
   const {queryId} = useTelegram();
   const onSendData = useCallback(() => {
     const orderId = `№${uuidv4()}`; // Генерируем уникальный номер заказа
+    console.log(orderId); // Проверьте orderId здесь
     const data = {
       name: productData.name,
       price: productData.price,
@@ -60,7 +61,7 @@ function ProductConfirm() {
         <span className="confirm-item-size" > размер {size} US</span>
    
       </div>
-      <p className="">{orderId}</p>
+     
       <div className="confirm-item-price">
          {price}₽
       </div>
