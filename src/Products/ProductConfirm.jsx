@@ -4,7 +4,6 @@ import { useParams, useLocation } from "react-router-dom";
 import Stories from "../Stories/Stories"
 import { useTelegram } from "../Components/Hooks/useTelegram"
 import { MainButton } from "@twa-dev/sdk/react"
-import { v4 as uuidv4 } from 'uuid';
 
 function ProductConfirm() {
   useEffect(() => {
@@ -25,14 +24,12 @@ function ProductConfirm() {
   );
   const {queryId} = useTelegram();
   const onSendData = useCallback(() => {
-    const orderId = `№${uuidv4()}`; // Генерируем уникальный номер заказа
-    console.log(orderId); // Проверьте orderId здесь
     const data = {
       name: productData.name,
       price: productData.price,
       size: productData.size,
-      queryId,
-      orderId: orderId // Добавляем номер заказа в данные
+      queryId
+     
     };
 
     fetch('https://zipperconnect.space/web-data', {
