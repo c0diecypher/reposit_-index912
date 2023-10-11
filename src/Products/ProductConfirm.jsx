@@ -3,7 +3,8 @@ import { useState, useEffect, useCallback } from "react"
 import { useParams, useLocation } from "react-router-dom";
 import Stories from "../Stories/Stories"
 import { useTelegram } from "../Components/Hooks/useTelegram"
-import { MainButton } from "@twa-dev/sdk/react" 
+import { MainButton } from "@twa-dev/sdk/react"
+import uuid from 'uuid';
 
 function ProductConfirm() {
   useEffect(() => {
@@ -24,11 +25,13 @@ function ProductConfirm() {
   );
   const {queryId} = useTelegram();
   const onSendData = useCallback(() => {
+    const orderId = `№${uuid.v4()}`; // Генерируем уникальный номер заказа
     const data = {
       name: productData.name,
       price: productData.price,
       size: productData.size,
-      queryId
+      queryId,
+      orderId: orderId // Добавляем номер заказа в данные
     };
 
     fetch('https://zipperconnect.space/web-data', {
@@ -38,7 +41,7 @@ function ProductConfirm() {
       },
       body: JSON.stringify(data)
     });
-  }, [name, price, size, queryId]);
+  }, [name, price, size, queryId, orderId]);
 
   useEffect(()=>{
     window.Telegram.WebApp.onEvent('mainButtonClicked', onSendData)
@@ -53,11 +56,11 @@ function ProductConfirm() {
     <img src={"/img/img/" + productData.img} alt="photo" />
     
     <div className="confirm-item-name">{productData.name}
-    
+        
         <span className="confirm-item-size" > размер {size} US</span>
    
       </div>
-    
+      <p className="">{orderId}</p>
       <div className="confirm-item-price">
          {price}₽
       </div>
