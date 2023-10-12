@@ -81,7 +81,7 @@ function App() {
         console.log('auth_date:', auth_date);
         console.log('hash:', hash);
         const headers = new Headers();
-        headers.append('Authorization', `twa-init-data ${initData.toString()}`);
+        headers.append('Authorization', `twa-init-data ${initData}`);
 
         if (initData === null) {
           throw new Error('Ooof! Something is wrong. Init data is missing');
