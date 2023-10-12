@@ -90,21 +90,13 @@ function App() {
 
   // Отправляем запрос на сервер
   fetch('https://zipperconnect.space/validate-init-data', {
-    method: 'POST',
-    headers: {
-      'Authorization': `twa-init-data ${initData}`,
-      'Content-Type': 'application/json',
-      },
-    body: JSON.stringify({ hash, auth_date, user, query_id }),
-  })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Server Response:', data);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-  }, []);
+  method: 'POST',
+  headers: {
+    'Authorization': `twa-init-data ${initData}`,
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({ hash, auth_date, user, query_id }),
+})
 
   return (
     <>
