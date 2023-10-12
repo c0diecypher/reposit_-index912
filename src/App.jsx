@@ -15,7 +15,6 @@ import SizeInfoDetails from "./Products/SizeInfo/SizeInfoDetails"
 import BasketItem from "./Components/BasketItem"
 import { useTelegram } from "./Components/Hooks/useTelegram"
 import ProfilePage from "./Components/Telegram/ProfilePage";
-import { initData } from '@tma.js/init-data';
 // React 
 import { Route, Routes } from "react-router-dom";
 import { BackButton } from "@twa-dev/sdk/react" 
@@ -68,25 +67,30 @@ function App() {
       try {
         const hash = window.location.hash.slice(1);
         const params = new URLSearchParams(hash);
-        const initDataString = params.get('tgWebAppData');
+        const initData = params.get('tgWebAppData');
 
-        // Используем initData для извлечения данных инициализации.
-        const parsedData = initData(initDataString);
-
+        // Теперь вы можете использовать initDataSearchParams для доступа к параметрам
+        const query_id = initData.get('query_id');
+        const user = JSON.parse(initData.get('user'));
+        const auth_date = initData.get('auth_date');
+        const hash = initData.get('hash');
+        // Выводим query_id, user, auth_date и hash в консоль
+        console.log('query_id:', query_id);
+        console.log('user:', user);
+        console.log('auth_date:', auth_date);
+        console.log('hash:', hash);
         const headers = new Headers();
-        headers.append('Authorization', `twa-init-data ${initDataString}`);
+        headers.append('Authorization', `twa-init-data ${initData}`);
 
+        if (initData === null) {
+          throw new Error('Ooof! Something is wrong. Init data is missing');
+        }
         const dataToSend = {
-          query_id: parsedData.query_id,
-          user: JSON.parse(parsedData.user),
-          auth_date: parsedData.auth_date,
-          hash: parsedData.hash,
+          query_id: initData.query_id,
+          user: JSON.parse(initData.user),
+          auth_date: initData.auth_date,
+          hash: initData.hash,
         };
-         // Выводим query_id, user, auth_date и hash в консоль
-          console.log('query_id:', parsedData.query_id);
-          console.log('user:', parsedData.user);
-          console.log('auth_date:', parsedData.auth_date);
-          console.log('hash:', parsedData.hash);
   
         const requestOptions = {
           method: 'POST',
