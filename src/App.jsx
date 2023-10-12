@@ -63,19 +63,9 @@ function App() {
     setDataFromMainButton(data); // Сохраняем данные в состоянии
     // Выполняйте здесь другие действия с данными, если необходимо
   };
-  const searchParams = new URLSearchParams(window.location.search);
-  const hashParams = new URLSearchParams(window.location.hash.substring(1)); // Убираем "#" в начале строки хеша
-
-  // Извлечь параметры запуска из query-параметров
-  const tgWebAppStartParam = searchParams.get('tgWebAppStartParam');
-
-  // Извлечь параметры из хеша URL
-  const tgWebAppVersion = hashParams.get('tgWebAppVersion');
-  const initDataString = hashParams.get('tgWebAppData');
-  const initData = new URLSearchParams(initDataString);
-
-  console.log('tgWebAppStartParam:', tgWebAppStartParam);
-  console.log('tgWebAppVersion:', tgWebAppVersion);
+  const hash = window.location.hash.slice(1);
+  const params = new URLSearchParams(hash);
+  const initData = params.get('tgWebAppData');
 
   // Обработка параметров инициализации (tgWebAppData) из хеша
   const query_id = initData.get('query_id');
@@ -93,20 +83,21 @@ function App() {
 }
   const sendInitDataToServer = async () => {
   try {
-    const response = await fetch('https://zipperconnect.space/validate-init-data', {
-      method: 'POST',
+    // Выполняем POST-запрос на сервер и передаем данные инициализации в заголовке Authorization
+    const response = await axios.post('https://zipperconnect.space/validate-init-data', null, {
       headers: {
-        Authorization: `twa-init-data ${hash}`,
+        Authorization: `twa-init-data ${initData}`,
       },
     });
 
-    const data = await response.json();
-
-    console.log('Server Response:', data);
+    console.log('Server Response:', response.data);
   } catch (error) {
     console.error('Error:', error);
   }
 };
+
+// Вызываем функцию для отправки данных инициализации на сервер
+sendInitDataToServer();
 
 // Вызываем функцию для отправки данных инициализации на сервер
 sendInitDataToServer();
