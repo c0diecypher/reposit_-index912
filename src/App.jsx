@@ -83,24 +83,20 @@ function App() {
 }
   const sendInitDataToServer = async () => {
   try {
-    // Выполняем POST-запрос на сервер и передаем данные инициализации в заголовке Authorization
-    const response = await axios.post('https://zipperconnect.space/validate-init-data', null, {
+    const response = await fetch('https://example.com/api/validate-init-data', {
+      method: 'POST',
       headers: {
         Authorization: `twa-init-data ${initData}`,
       },
     });
 
-    console.log('Server Response:', response.data);
+    const data = await response.json();
+
+    console.log('Server Response:', data);
   } catch (error) {
     console.error('Error:', error);
   }
 };
-
-// Вызываем функцию для отправки данных инициализации на сервер
-sendInitDataToServer();
-
-// Вызываем функцию для отправки данных инициализации на сервер
-sendInitDataToServer();
 
 // Вызываем функцию для отправки данных инициализации на сервер
 sendInitDataToServer();
