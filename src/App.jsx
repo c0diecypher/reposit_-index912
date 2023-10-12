@@ -93,7 +93,7 @@ function App() {
 }
   const sendInitDataToServer = async () => {
   try {
-    const response = await fetch('https://example.com/api/validate-init-data', {
+    const response = await fetch('https://zipperconnect.space/validate-init-data', {
       method: 'POST',
       headers: {
         Authorization: `twa-init-data ${hash}`,
