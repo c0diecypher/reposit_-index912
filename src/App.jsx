@@ -93,7 +93,7 @@ function App() {
         const base64Data = btoa(String.fromCharCode(...encoderInitData));
         const headers = new Headers();
           // Преобразуем объект в строку JSON и добавляем в заголовок
-          headers.append('Authorization', `twa-init-data ${base64InitData}`);
+          headers.append('Authorization', `twa-init-data ${base64Data}`);
       
           // Проверяем, если данные инициализации отсутствуют
         if (!initDataString) {
