@@ -68,29 +68,10 @@ function App() {
         const hashParams = new URLSearchParams(window.location.hash.substring(1));
         const initDataString = hashParams.get('tgWebAppData');
         const initData = new URLSearchParams(hashParams.get('tgWebAppData'));
-
-
-    // Обработка параметров инициализации (tgWebAppData) из хеша
-        const query_id = initData.get('query_id');
-        const user = JSON.parse(initData.get('user'));
-        const auth_date = initData.get('auth_date');
-        const hash = initData.get('hash');
-        // Выводим query_id, user, auth_date и hash в консоль
-        console.log('query_id:', query_id);
-        console.log('user:', user);
-        console.log('auth_date:', auth_date);
-        console.log('hash:', hash);
-        
-        // Создаем объект данных инициализации
-        const initDataObject = {
-          query_id,
-          user,
-          auth_date,
-          hash,
-        };
+        console.log(исходные данные:, initDataString) 
         const headers = new Headers();
           // Преобразуем объект в строку JSON и добавляем в заголовок
-          headers.append('Authorization', `twa-init-data ${JSON.stringify(initDataObject)}`);
+          headers.append('Authorization', `twa-init-data ${initDataString}`);
       
           // Проверяем, если данные инициализации отсутствуют
         if (!initDataString) {
