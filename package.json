@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tma.js/init-data": "^0.2.18",
     "@twa-dev/mark42": "^0.0.38",
     "@twa-dev/sdk": "^6.9.0",
     "bootstrap": "^5.3.2",
