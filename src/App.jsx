@@ -67,29 +67,29 @@ function App() {
       try {
         const hash = window.location.hash.slice(1);
         const params = new URLSearchParams(hash);
-        const initData = params.get('tgWebAppData');
-
+        const initData = new URLSearchParams(params.get('tgWebAppData'));
+        
         // Теперь вы можете использовать initDataSearchParams для доступа к параметрам
         const query_id = initData.get('query_id');
         const user = JSON.parse(initData.get('user'));
         const auth_date = initData.get('auth_date');
-        const hash = initData.get('hash');
+        const hashValue = initData.get('hash');
         // Выводим query_id, user, auth_date и hash в консоль
         console.log('query_id:', query_id);
         console.log('user:', user);
         console.log('auth_date:', auth_date);
         console.log('hash:', hash);
         const headers = new Headers();
-        headers.append('Authorization', `twa-init-data ${initData}`);
+        headers.append('Authorization', `twa-init-data ${initData.toString()}`);
 
         if (initData === null) {
           throw new Error('Ooof! Something is wrong. Init data is missing');
         }
         const dataToSend = {
-          query_id: initData.query_id,
-          user: JSON.parse(initData.user),
-          auth_date: initData.auth_date,
-          hash: initData.hash,
+          query_id: query_id,
+          user: user,
+          auth_date: auth_date,
+          hash: hashValue,
         };
   
         const requestOptions = {
