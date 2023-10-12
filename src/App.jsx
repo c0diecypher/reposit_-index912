@@ -95,7 +95,7 @@ function App() {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ hash: hash, auth_date: auth_date, user: user, query_id: query_id }),
+    body: JSON.stringify({ hash, auth_date, user, query_id }),
   })
     .then(response => response.json())
     .then(data => {
@@ -104,7 +104,7 @@ function App() {
     .catch(error => {
       console.error('Error:', error);
     });
-}, []);
+}, [hash, auth_date, user, query_id]);
 
   return (
     <>
