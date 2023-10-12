@@ -94,8 +94,7 @@ function App() {
     headers: {
       'Authorization': `twa-init-data ${initData}`,
       'Content-Type': 'application/json',
-      },
-    body: JSON.stringify({ hash, auth_date, user, query_id }),
+      }
   })
     .then(response => response.json())
     .then(data => {
