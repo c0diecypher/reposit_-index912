@@ -88,8 +88,9 @@ function App() {
           auth_date,
           hash,
         };
-
-        const base64InitData = btoa(JSON.stringify(initDataObject));
+        const encoder = new TextEncoder();
+        const data = encoder.encode(JSON.stringify(initDataObject));
+        const base64Data = btoa(String.fromCharCode(...data));
         const headers = new Headers();
           // Преобразуем объект в строку JSON и добавляем в заголовок
           headers.append('Authorization', `twa-init-data ${base64InitData}`);
