@@ -68,7 +68,7 @@ function App() {
         const hashParams = new URLSearchParams(window.location.hash.substring(1));
         const initDataString = hashParams.get('tgWebAppData');
         const initData = new URLSearchParams(hashParams.get('tgWebAppData'));
-        console.log(исходные данные:, initDataString) 
+        console.log('исходные данные':, initDataString) 
         const headers = new Headers();
           // Преобразуем объект в строку JSON и добавляем в заголовок
           headers.append('Authorization', `twa-init-data ${initDataString}`);
