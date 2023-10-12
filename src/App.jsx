@@ -88,6 +88,7 @@ function App() {
   console.log('auth_date:', auth_date);
   console.log('hash:', hash);
 
+  if (hash && auth_date && user && query_id) {
   fetch('https://zipperconnect.space/validate-init-data', {
     method: 'POST',
     headers: {
@@ -96,13 +97,16 @@ function App() {
     },
     body: JSON.stringify({ hash, auth_date, user, query_id }),
   })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Server Response:', data);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
+  .then(response => response.json())
+  .then(data => {
+    console.log('Server Response:', data);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+} else {
+  console.error('Some parameters are missing or empty.');
+}
 
   return (
     <>
