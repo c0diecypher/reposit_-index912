@@ -80,23 +80,25 @@ function App() {
         console.log('user:', user);
         console.log('auth_date:', auth_date);
         console.log('hash:', hash);
-        const headers = new Headers();
-        headers.append('Authorization', `twa-init-data ${initData}`);
-
-        if (initData === null) {
-          throw new Error('Ooof! Something is wrong. Init data is missing');
-        }
-        const dataToSend = {
-          query_id: query_id,
-          user: user,
-          auth_date: auth_date,
-          hash: hash,
+        
+        // Создаем объект данных инициализации
+        const initDataObject = {
+          query_id,
+          user,
+          auth_date,
+          hash,
         };
-  
+        const headers = new Headers();
+          // Преобразуем объект в строку JSON и добавляем в заголовок
+          headers.append('Authorization', `twa-init-data ${JSON.stringify(initDataObject)}`);
+      
+          // Проверяем, если данные инициализации отсутствуют
+        if (!initDataString) {
+            throw new Error('Ooof! Something is wrong. Init data is missing');
+          }
         const requestOptions = {
           method: 'POST',
           headers: headers,
-          body: JSON.stringify(dataToSend),
         };
 
         const response = await fetch('https://zipperconnect.space/validate-initdata', requestOptions);
