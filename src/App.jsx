@@ -88,9 +88,11 @@ function App() {
           auth_date,
           hash,
         };
+
+        const base64InitData = btoa(JSON.stringify(initDataObject));
         const headers = new Headers();
           // Преобразуем объект в строку JSON и добавляем в заголовок
-          headers.append('Authorization', `twa-init-data ${JSON.stringify(initDataObject)}`);
+          headers.append('Authorization', `twa-init-data ${base64InitData}`);
       
           // Проверяем, если данные инициализации отсутствуют
         if (!initDataString) {
