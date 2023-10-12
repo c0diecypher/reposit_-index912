@@ -95,7 +95,7 @@ function App() {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: new URLSearchParams({ hash, auth_date, user, query_id }),
+    body: JSON.stringify({ hash: hash, auth_date: auth_data, user: user, query_id: query_id }),
   })
     .then(response => response.json())
     .then(data => {
