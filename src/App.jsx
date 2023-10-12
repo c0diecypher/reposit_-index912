@@ -65,15 +65,16 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const hash = window.location.hash.slice(1);
-        const params = new URLSearchParams(hash);
-        const initData = new URLSearchParams(params.get('tgWebAppData'));
-        
-        // Теперь вы можете использовать initDataSearchParams для доступа к параметрам
+        const hashParams = new URLSearchParams(window.location.hash.substring(1));
+        const initDataString = hashParams.get('tgWebAppData');
+        const initData = new URLSearchParams(hashParams.get('tgWebAppData'));
+
+
+    // Обработка параметров инициализации (tgWebAppData) из хеша
         const query_id = initData.get('query_id');
         const user = JSON.parse(initData.get('user'));
         const auth_date = initData.get('auth_date');
-        const hashValue = initData.get('hash');
+        const hash = initData.get('hash');
         // Выводим query_id, user, auth_date и hash в консоль
         console.log('query_id:', query_id);
         console.log('user:', user);
@@ -89,7 +90,7 @@ function App() {
           query_id: query_id,
           user: user,
           auth_date: auth_date,
-          hash: hashValue,
+          hash: hash,
         };
   
         const requestOptions = {
