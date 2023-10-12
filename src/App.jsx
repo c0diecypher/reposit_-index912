@@ -15,7 +15,7 @@ import SizeInfoDetails from "./Products/SizeInfo/SizeInfoDetails"
 import BasketItem from "./Components/BasketItem"
 import { useTelegram } from "./Components/Hooks/useTelegram"
 import ProfilePage from "./Components/Telegram/ProfilePage";
-import { initData } from '@twa.js/init-data';
+import { initData } from '@tma.js/init-data';
 // React 
 import { Route, Routes } from "react-router-dom";
 import { BackButton } from "@twa-dev/sdk/react" 
