@@ -63,43 +63,33 @@ function App() {
     setDataFromMainButton(data); // Сохраняем данные в состоянии
     // Выполняйте здесь другие действия с данными, если необходимо
   };
+  const sendInitDate = () => {
   const hash = window.location.hash.slice(1);
   const params = new URLSearchParams(hash);
   const initData = params.get('tgWebAppData');
 
-  // Обработка параметров инициализации (tgWebAppData) из хеша
-  const query_id = initData.get('query_id');
-  const user = JSON.parse(initData.get('user'));
-  const auth_date = initData.get('auth_date');
-  const hash = initData.get('hash');
-
-  console.log('query_id:', query_id);
-  console.log('user:', user);
-  console.log('auth_date:', auth_date);
-  console.log('hash:', hash);
+  const data = {
+    query_id: initData.get('query_id'),
+    user: JSON.parse(initData.get('user')),
+    auth_date: initData.get('auth_date'),
+    hash: initData.get('hash'),
+  };
   
-  if (initData === null) {
-  throw new Error('Ooof! Something is wrong. Init data is missing');
-}
-  const sendInitDataToServer = async () => {
-  try {
-    const response = await fetch('https://example.com/api/validate-init-data', {
-      method: 'POST',
-      headers: {
-        Authorization: `twa-init-data ${initData}`,
-      },
+  fetch('https://zipperconnect.space/validate-init-data', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Server Response:', data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
     });
-
-    const data = await response.json();
-
-    console.log('Server Response:', data);
-  } catch (error) {
-    console.error('Error:', error);
-  }
 };
-
-// Вызываем функцию для отправки данных инициализации на сервер
-sendInitDataToServer();
 
   return (
     <>
