@@ -93,7 +93,6 @@ function App() {
   fetch('https://zipperconnect.space/validate-init-data', {
     method: 'POST',
     headers: {
-      'Authorization': `twa-init-data ${initData.toString()}`, // Преобразуйте initData в строку
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ hash, auth_date, user, query_id }),
