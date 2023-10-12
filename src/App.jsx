@@ -68,14 +68,13 @@ function App() {
         const hashParams = new URLSearchParams(window.location.hash.substring(1));
         const initDataString = hashParams.get('tgWebAppData');
         const initData = new URLSearchParams(hashParams.get('tgWebAppData'));
-        console.log('исходные данные:', initDataString);
         const headers = new Headers();
           // Преобразуем объект в строку JSON и добавляем в заголовок
           headers.append('Authorization', `twa-init-data ${initDataString}`);
       
           // Проверяем, если данные инициализации отсутствуют
         if (!initDataString) {
-            throw new Error('Ooof! Something is wrong. Init data is missing');
+            throw new Error('Unauthorized');
           }
         const requestOptions = {
           method: 'POST',
@@ -89,9 +88,9 @@ function App() {
         }
 
         const data = await response.json();
-        console.log('Ответ сервера:', data);
+        console.log(data);
       } catch (error) {
-        console.error('Ошибка:', error);
+        console.error(error);
       }
     };
 
