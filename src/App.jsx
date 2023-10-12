@@ -87,26 +87,32 @@ function App() {
   console.log('user:', user);
   console.log('auth_date:', auth_date);
   console.log('hash:', hash);
-
-  if (hash && auth_date && user && query_id) {
-  fetch('https://zipperconnect.space/validate-init-data', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `twa-init-data ${initData}`,
-    },
-    body: JSON.stringify({ hash, auth_date, user, query_id }),
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log('Server Response:', data);
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-} else {
-  console.error('Some parameters are missing or empty.');
+  
+  if (initData === null) {
+  throw new Error('Ooof! Something is wrong. Init data is missing');
 }
+  const sendInitDataToServer = async () => {
+  try {
+    const response = await fetch('https://example.com/api/validate-init-data', {
+      method: 'POST',
+      headers: {
+        Authorization: `twa-init-data ${hash}`,
+      },
+    });
+
+    const data = await response.json();
+
+    console.log('Server Response:', data);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+
+// Вызываем функцию для отправки данных инициализации на сервер
+sendInitDataToServer();
+
+// Вызываем функцию для отправки данных инициализации на сервер
+sendInitDataToServer();
 
   return (
     <>
