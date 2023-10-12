@@ -17,7 +17,7 @@ import { useTelegram } from "./Components/Hooks/useTelegram"
 import ProfilePage from "./Components/Telegram/ProfilePage";
 
 // React 
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useParams } from "react-router-dom";
 import { BackButton } from "@twa-dev/sdk/react" 
 import { useState, useEffect, useCallback } from "react"
 import ProductConfirm from "./Products/ProductConfirm"
@@ -63,7 +63,6 @@ function App() {
     setDataFromMainButton(data); // Сохраняем данные в состоянии
     // Выполняйте здесь другие действия с данными, если необходимо
   };
-  useEffect(() => {
   const searchParams = new URLSearchParams(window.location.search);
   const hashParams = new URLSearchParams(window.location.hash.substring(1)); // Убираем "#" в начале строки хеша
 
@@ -83,16 +82,18 @@ function App() {
   const user = JSON.parse(initData.get('user'));
   const auth_date = initData.get('auth_date');
   const hash = initData.get('hash');
-
+   const { hash, auth_date, user, query_id, initData} = useParams();
   console.log('query_id:', query_id);
   console.log('user:', user);
   console.log('auth_date:', auth_date);
   console.log('hash:', hash);
-
+  useEffect(() => {
+  
   // Отправляем запрос на сервер
   fetch('https://zipperconnect.space/validate-init-data', {
     method: 'POST',
     headers: {
+      'Authorization': `twa-init-data ${initData}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ hash, auth_date, user, query_id }),
