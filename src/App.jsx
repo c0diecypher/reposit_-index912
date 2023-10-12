@@ -15,7 +15,7 @@ import SizeInfoDetails from "./Products/SizeInfo/SizeInfoDetails"
 import BasketItem from "./Components/BasketItem"
 import { useTelegram } from "./Components/Hooks/useTelegram"
 import ProfilePage from "./Components/Telegram/ProfilePage";
-
+import { initData } from '@twa.js/init-data';
 // React 
 import { Route, Routes } from "react-router-dom";
 import { BackButton } from "@twa-dev/sdk/react" 
@@ -64,45 +64,50 @@ function App() {
     // Выполняйте здесь другие действия с данными, если необходимо
   };
   useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search);
-    const hashParams = new URLSearchParams(window.location.hash.substring(1)); // Убираем "#" в начале строки хеша
+    const fetchData = async () => {
+      try {
+        const hash = window.location.hash.slice(1);
+        const params = new URLSearchParams(hash);
+        const initDataString = params.get('tgWebAppData');
 
-    // Извлечь параметры запуска из query-параметров
-    const tgWebAppStartParam = searchParams.get('tgWebAppStartParam');
+        // Используем initData для извлечения данных инициализации.
+        const parsedData = initData(initDataString);
 
-    // Извлечь параметры из хеша URL
-    const tgWebAppVersion = hashParams.get('tgWebAppVersion');
-    const initDataString = hashParams.get('tgWebAppData');
-    const initData = new URLSearchParams(hashParams.get('tgWebAppData'));
-    console.log('tgWebAppStartParam:', tgWebAppStartParam);
-    console.log('tgWebAppVersion:', tgWebAppVersion);
+        const headers = new Headers();
+        headers.append('Authorization', `twa-init-data ${initDataString}`);
 
-    // Обработка параметров инициализации (tgWebAppData) из хеша
-    const query_id = initData.get('query_id');
-    const user = JSON.parse(initData.get('user'));
-    const auth_date = initData.get('auth_date');
-    const hash = initData.get('hash');
+        const dataToSend = {
+          query_id: parsedData.query_id,
+          user: JSON.parse(parsedData.user),
+          auth_date: parsedData.auth_date,
+          hash: parsedData.hash,
+        };
+         // Выводим query_id, user, auth_date и hash в консоль
+          console.log('query_id:', parsedData.query_id);
+          console.log('user:', parsedData.user);
+          console.log('auth_date:', parsedData.auth_date);
+          console.log('hash:', parsedData.hash);
+  
+        const requestOptions = {
+          method: 'POST',
+          headers: headers,
+          body: JSON.stringify(dataToSend),
+        };
 
-    console.log('query_id:', query_id);
-    console.log('user:', user);
-    console.log('auth_date:', auth_date);
-    console.log('hash:', hash);
+        const response = await fetch('https://zipperconnect.space/validate-initdata', requestOptions);
 
-  // Отправляем запрос на сервер
-  fetch('https://zipperconnect.space/validate-init-data', {
-    method: 'POST',
-    headers: {
-      'Authorization': `twa-init-data ${initData}`,
-      'Content-Type': 'application/json',
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        console.log('Ответ сервера:', data);
+      } catch (error) {
+        console.error('Ошибка:', error);
       }
-  })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Server Response:', data);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
+    };
+
+    fetchData();
   }, []);
 
   return (
