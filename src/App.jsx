@@ -64,39 +64,48 @@ function App() {
     // Выполняйте здесь другие действия с данными, если необходимо
   };
   useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search);
-    const hashParams = new URLSearchParams(window.location.hash.substring(1)); // Убираем "#" в начале строки хеша
+  const searchParams = new URLSearchParams(window.location.search);
+  const hashParams = new URLSearchParams(window.location.hash.substring(1)); // Убираем "#" в начале строки хеша
 
-    // Извлечь параметры запуска из query-параметров
-    const tgWebAppStartParam = searchParams.get('tgWebAppStartParam');
+  // Извлечь параметры запуска из query-параметров
+  const tgWebAppStartParam = searchParams.get('tgWebAppStartParam');
 
-    // Извлечь параметры из хеша URL
-    const tgWebAppVersion = hashParams.get('tgWebAppVersion');
-    const initDataString = hashParams.get('tgWebAppData');
-    const initData = new URLSearchParams(hashParams.get('tgWebAppData'));
-    console.log('tgWebAppStartParam:', tgWebAppStartParam);
-    console.log('tgWebAppVersion:', tgWebAppVersion);
+  // Извлечь параметры из хеша URL
+  const tgWebAppVersion = hashParams.get('tgWebAppVersion');
+  const initDataString = hashParams.get('tgWebAppData');
+  const initData = new URLSearchParams(initDataString);
 
-    // Обработка параметров инициализации (tgWebAppData) из хеша
-    const query_id = initData.get('query_id');
-    const user = JSON.parse(initData.get('user'));
-    const auth_date = initData.get('auth_date');
-    const hash = initData.get('hash');
+  console.log('tgWebAppStartParam:', tgWebAppStartParam);
+  console.log('tgWebAppVersion:', tgWebAppVersion);
 
-    console.log('query_id:', query_id);
-    console.log('user:', user);
-    console.log('auth_date:', auth_date);
-    console.log('hash:', hash);
+  // Обработка параметров инициализации (tgWebAppData) из хеша
+  const query_id = initData.get('query_id');
+  const user = JSON.parse(initData.get('user'));
+  const auth_date = initData.get('auth_date');
+  const hash = initData.get('hash');
+
+  console.log('query_id:', query_id);
+  console.log('user:', user);
+  console.log('auth_date:', auth_date);
+  console.log('hash:', hash);
 
   // Отправляем запрос на сервер
   fetch('https://zipperconnect.space/validate-init-data', {
-  method: 'POST',
-  headers: {
-    'Authorization': `twa-init-data ${initData}`,
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({ hash, auth_date, user, query_id }),
-})
+    method: 'POST',
+    headers: {
+      'Authorization': `twa-init-data ${initData.toString()}`, // Преобразуйте initData в строку
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ hash, auth_date, user, query_id }),
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Server Response:', data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}, []);
 
   return (
     <>
