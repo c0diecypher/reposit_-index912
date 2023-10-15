@@ -124,7 +124,7 @@ typesKeys.sort(customSort)
   return (
     <>
     <div className="full-item">
-        <img src={"/img/img/" + thisProduct.img} alt="photo" />
+        <img src={thisProduct.img[0]} alt="photo" />
         <h4 className="full-item-name">{thisProduct.name}</h4>
 
         <p className="full-item-price">{active}₽</p>
