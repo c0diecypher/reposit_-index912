@@ -51,7 +51,7 @@ function ProductConfirm() {
   return (
     <>
     <div className="confirm-item" key={productId}>
-    <img src={"/img/img/" + productData.img} alt="photo" />
+    <img src={productData.img[0]} alt="photo" />
     
     <div className="confirm-item-name">{productData.name}
         
