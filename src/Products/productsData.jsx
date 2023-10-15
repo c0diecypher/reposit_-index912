@@ -46,7 +46,7 @@ export default [
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/64f362a7ed4f41d19f46d321e6b8a87d.jpg"
     ],
     "category": "Nike",
-    "price": "$--",
+    "price": "$111",
     "size": {
       "6": "$132",
       "6.5": "$126",
@@ -78,7 +78,7 @@ export default [
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20230721/2a8a70fb06894e22b0c0847b976b1a5a.jpg"
     ],
     "category": "Nike",
-    "price": "$--",
+    "price": "$135",
     "size": {
       "5": "$130",
       "5.5": "$129",
@@ -190,7 +190,7 @@ export default [
     "category": "Nike",
     "price": "$66",
     "size": {
-      "9": "$66"
+      " 53x20,3x12,7": "$66"
     }
   },
   {
