@@ -61,7 +61,7 @@ function Search() {
           // eslint-disable-next-line react/jsx-key
           <div className="item" key={product.id}> {/* Перенесли ключ сюда */}
                 <Link to={`/products/${product.id}`}>
-            <img src={"/img/img/" + product.img} alt="" />
+            <img src={product.img[0]} alt="" />
             <h4>{product.price}₽</h4>
             <p>{product.name}</p>
               <button className="add-item">
