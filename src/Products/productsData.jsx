@@ -1,22 +1,38 @@
+
+
 export default [
   {
     id: "1",
-    name: "Adidas Ozweego",
-    img: "adidas-ozweego-black.jpg",
+    name: "Nike Air Force 1 Low 07 White",
+    img: [
+      "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/ead653b6adf34cf2954b2d82cd495aae.jpg",
+      "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/9748e7d5afcb44c3a45dbad820d639f1.jpg",
+      "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/24999091120f4a839c7529ef87bd4eac.jpg",
+      "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/99f19c1605f74d46aa4405665785db47.jpg",
+      "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/64f362a7ed4f41d19f46d321e6b8a87d.jpg"
+    ],
     desc:
       "Кроссовки, вдохновленные винтажным беговым стилем 90-х. Цельный верх из эластичного текстиля и кожи плотно облегает стопу. Легкая подошва обеспечивает максимум комфорта и амортизации.",
-    category: "Adidas",
-    price: "9 999",
+    category: "Nike",
+    price: "$100",
     size: {
-      "6": "7 999",
-      "6.5": "12 000",
-      "7": "13 499",
-      "7.5": "16 499",
-      "8": "17 499",
-      "8.5": "12 499",
-      "9": "9 999",
-      "9.5": "11 499",
-      "10": "10 499"
+      "US M 6": "$132",
+      "US M 6.5": "$126",
+      "US M 7": "$125",
+      "US M 7.5": "$122",
+      "US M 8": "$112",
+      "US M 8.5": "$114",
+      "US M 9": "$110",
+      "US M 9.5": "$113",
+      "US M 10": "$111",
+      "US M 10.5": "$110",
+      "US M 11": "$111",
+      "US M 11.5": "$153",
+      "US M 12": "$154",
+      "US M 12.5": "$202",
+      "US M 13": "$140",
+      "US M 14": "$173",
+      "US M 15": "$258"
     }
   },
   {
