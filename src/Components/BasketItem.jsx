@@ -28,7 +28,7 @@ const BasketItem = ({ cart, onDataUpdate } ) => {
       <div className="product-card" key={product.id}>
           
         <div className="product-image-container">
-          <img src={"/img/img/" + product.img} alt="фото" className="product-image" />
+          <img src={product.img[0]} alt="фото" className="product-image" />
         </div>
         <div className="product-details">
           <div className="product-name-date">
