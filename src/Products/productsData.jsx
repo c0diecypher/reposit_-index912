@@ -1,5 +1,4 @@
 export default [
-  [
     {
     id: "1",
     name: "Adidas Air Force 1 Low 07 White",
@@ -2699,5 +2698,4 @@ export default [
             "12": "$178"
         }
     }
-]
 ]
