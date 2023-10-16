@@ -65,7 +65,7 @@ function Search() {
             <h4>{product.price}₽</h4>
             <p>{product.name}</p>
               <button className="add-item">
-                  <div className="buy-item">Купить</div>
+                  <div className="buy-item">Смотреть подробнее</div>
               </button>
                 </Link>
     </div>
