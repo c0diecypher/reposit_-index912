@@ -1,9 +1,8 @@
-
-
 export default [
-  {
+  [
+    {
     id: "1",
-    name: "Nike Air Force 1 Low 07 White",
+    name: "Adidas Air Force 1 Low 07 White",
     img: [
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/ead653b6adf34cf2954b2d82cd495aae.jpg",
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/9748e7d5afcb44c3a45dbad820d639f1.jpg",
@@ -13,7 +12,7 @@ export default [
     ],
     desc:
       "Кроссовки, вдохновленные винтажным беговым стилем 90-х. Цельный верх из эластичного текстиля и кожи плотно облегает стопу. Легкая подошва обеспечивает максимум комфорта и амортизации.",
-    category: "Nike",
+    category: "Adidas",
     price: "$100",
     size: {
       "6": "$132",
@@ -37,7 +36,7 @@ export default [
   },
   {
     "id": "2",
-    "name": "Nike Air Force 1 Low 07 White",
+    "name": "Adidas Air Force 1 Low 07 White",
     "img": [
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/ead653b6adf34cf2954b2d82cd495aae.jpg",
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/9748e7d5afcb44c3a45dbad820d639f1.jpg",
@@ -45,7 +44,7 @@ export default [
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/99f19c1605f74d46aa4405665785db47.jpg",
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/64f362a7ed4f41d19f46d321e6b8a87d.jpg"
     ],
-    "category": "Nike",
+    "category": "Adidas",
     "price": "$111",
     "size": {
       "6": "$132",
@@ -69,7 +68,7 @@ export default [
   },
   {
     "id": "3",
-    "name": "Nike Dunk Low Retro White Black Panda (2021) (W)",
+    "name": "Adidas Dunk Low Retro White Black Panda (2021) (W)",
     "img": [
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20230721/cc3d42c12794417891cd04316e028a55.jpg",
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20230721/c6499cad674b411eb37c7cc1f68d4114.jpg",
@@ -77,7 +76,7 @@ export default [
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20230721/1e2217fbb2c544c0ae1f4199505fb2bb.jpg",
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20230721/2a8a70fb06894e22b0c0847b976b1a5a.jpg"
     ],
-    "category": "Nike",
+    "category": "Adidas",
     "price": "$135",
     "size": {
       "5": "$130",
@@ -99,7 +98,7 @@ export default [
   },
   {
     "id": "4",
-    "name": "Nike Dunk Low Retro White Black Panda (2021) (GS)",
+    "name": "Adidas Dunk Low Retro White Black Panda (2021) (GS)",
     "img": [
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20230721/3fa438f3719c4e26b54a38b4bdc7e391.jpg",
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20230721/a6d5a14caeac44aebe947a7730650866.jpg",
@@ -107,7 +106,7 @@ export default [
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20230721/f95d84ca3f8540cdbea6c18ad2123c73.jpg",
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20230721/981365ab6ff64e829be0aa3b07732b66.jpg"
     ],
-    "category": "Nike",
+    "category": "Adidas",
     "price": "$111",
     "size": {
       "3.5Y": "$112",
@@ -122,7 +121,7 @@ export default [
   },
   {
     "id": "5",
-    "name": "Nike M2K Tekno Cool White (W)",
+    "name": "Adidas M2K Tekno Cool White (W)",
     "img": [
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20230801/0cb75fe8ff6c490c95be5abf3ad0f676.jpg",
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20230801/d83e8f9ede2f40de973b4febe890669a.jpg",
@@ -130,7 +129,7 @@ export default [
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20230801/cb966106ba024b0f8db091afb60e5f71.jpg",
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20230801/a14185ca99a54051bae7082c7b60ecd7.jpg"
     ],
-    "category": "Nike",
+    "category": "Adidas",
     "price": "$183",
     "size": {
       "5": "$100",
@@ -152,7 +151,7 @@ export default [
   },
   {
     "id": "6",
-    "name": "Nike M2K Tekno White Pure Platinum",
+    "name": "Adidas M2K Tekno White Pure Platinum",
     "img": [
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20220808/1bb669dfebe648cf89c3180b5b02b908.jpg",
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20220808/8ebb0a7fe6534f41873b354d14656b7d.jpg",
@@ -160,7 +159,7 @@ export default [
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20220808/676ddcf460c2447eb93d6eae505dc98c.jpg",
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20220808/4dcaec4da2d346f0ba8d3605e96a1108.jpg"
     ],
-    "category": "Nike",
+    "category": "Adidas",
     "price": "$85",
     "size": {
       "6": "$101",
@@ -180,14 +179,14 @@ export default [
   },
   {
     "id": "7",
-    "name": "Nike Fanny pack Unisex",
+    "name": "Adidas Fanny pack Unisex",
     "img": [
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20220521/fac1c8874dae4284843a783cb2b3598e.jpg",
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20220521/8a40e4286abb4fa799070b841d706c1a.jpg",
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20220521/0849a5f9f0d74ff1b54a32a94c0e883d.jpg",
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20220521/6b3a79c22a3d4057bd31a78e8f669437.jpg"
     ],
-    "category": "Nike",
+    "category": "Adidas",
     "price": "$66",
     "size": {
       " 53x20,3x12,7": "$66"
@@ -195,7 +194,7 @@ export default [
   },
   {
     "id": "8",
-    "name": "Nike Air Force 1 Low 07 Triple Black",
+    "name": "Adidas Air Force 1 Low 07 Triple Black",
     "img": [
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/f66cb369e23c40ea9af4fac595523b49.jpg",
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/ade1f7c3ff93447dbd96400d742c3285.jpg",
@@ -203,7 +202,7 @@ export default [
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/abbd9f4b28764d85b0630854480e1180.jpg",
       "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/237d9a22f2584c6bb980f021e91bc819.jpg"
     ],
-    "category": "Nike",
+    "category": "Adidas",
     "price": "$134",
     "size": {
       "6": "$135",
@@ -221,8 +220,7 @@ export default [
       "12.5": "$253"
     }
   },
-  
-    "9": {
+    {
         "id": "9",
         "name": "adidas originals Samba OG Cloud White Core Black",
         "img": [
@@ -232,7 +230,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230721/e58cb041a87242008b638273ab5a0bec.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230721/25022e062fb84864b454f5a0e5c134c4.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$126",
         "size": {
             "3.5": "$127",
@@ -257,7 +255,7 @@ export default [
             "13": "$185"
         }
     },
-    "10": {
+    {
         "id": "10",
         "name": "adidas Yeezy Slide Pure (First Release)",
         "img": [
@@ -267,7 +265,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/e76ae671a0194d1d972540b677ad08e1.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/c205830e7266443ea5fc4d1c8fccc281.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$--",
         "size": {
             "5.5": "$142",
@@ -281,7 +279,7 @@ export default [
             "13.5": "$236"
         }
     },
-    "11": {
+    {
         "id": "11",
         "name": "adidas originals Yeezy Boost 350 V2 Carbon Welcome Offer",
         "img": [
@@ -290,7 +288,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/82549a1a81dc469390af501a39850818.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/9ecdcc4340c4438e8f4cbb10247fb130.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$280",
         "size": {
             "5": "$150",
@@ -311,7 +309,7 @@ export default [
             "12.5": "$351"
         }
     },
-    "12": {
+    {
         "id": "12",
         "name": "adidas originals Yeezy Slide Bone (2022 Restock)",
         "img": [
@@ -321,7 +319,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230805/d279fb6cf53c480a9478353c8f0996b1.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230805/1bbe26711b9e45de92de0cbf89d08c06.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$128",
         "size": {
             "4": "$123",
@@ -337,7 +335,7 @@ export default [
             "14": "$437"
         }
     },
-    "13": {
+    {
         "id": "13",
         "name": "adidas originals Yeezy Slide \"Onyx\"",
         "img": [
@@ -347,7 +345,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230601/51f46c1f3cb34e4f87c1944ede60a7a9.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230601/27da5bcab5f64efb8ccd4c4024cf13f3.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$116",
         "size": {
             "4": "$110",
@@ -364,7 +362,7 @@ export default [
             "16": "$537"
         }
     },
-    "14": {
+    {
         "id": "14",
         "name": "adidas Yeezy Slide Ochre",
         "img": [
@@ -374,7 +372,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230805/3671a688253a465b84592861f96797b3.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230805/680857947a9341e0ac96520463c32830.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$279",
         "size": {
             "36.5": "$121",
@@ -392,7 +390,7 @@ export default [
             "52": "$279"
         }
     },
-    "15": {
+    {
         "id": "15",
         "name": "adidas Yeezy Boost 350 V2 Onyx (2022/2023)",
         "img": [
@@ -401,7 +399,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220611/32a110d11af8406d9ac08148390bd079.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220611/bc799d5264c14b6fb7025ed8a0d8e047.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$275",
         "size": {
             "4": "$270",
@@ -430,7 +428,7 @@ export default [
             "15.5": "$447"
         }
     },
-    "16": {
+    {
         "id": "16",
         "name": "adidas originals Yeezy Boost 350 V2 Life Casual Shoes Unisex",
         "img": [
@@ -440,7 +438,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/1952195874d94686aecaedf31cc8ec41.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/3d9ef097f1d144558e0e23cb446de1bc.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$268",
         "size": {
             "5": "$153",
@@ -466,7 +464,7 @@ export default [
             "17": "$391"
         }
     },
-    "17": {
+    {
         "id": "17",
         "name": "adidas originals Yeezy Boost 350 V2 Life Casual Shoes Unisex",
         "img": [
@@ -475,7 +473,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/2d2f0d6f7b504a56a80248dfaf2df540.png",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/9192f92226ac438bb886790343be7cfb.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$434",
         "size": {
             "4": "$475",
@@ -495,7 +493,7 @@ export default [
             "13": "$619"
         }
     },
-    "18": {
+    {
         "id": "18",
         "name": "adidas Ozweego Bliss Knit",
         "img": [
@@ -505,7 +503,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230608/5261c99cd0164a9e86d6b0f8e5667dd5.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230608/74b5a5b45fff4835bc8deefd6dd51ef6.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$84",
         "size": {
             "3.5": "$109",
@@ -531,7 +529,7 @@ export default [
             "14": "$193"
         }
     },
-    "19": {
+    {
         "id": "19",
         "name": "adidas originals Yeezy Boost 350 V2 Mono Clay",
         "img": [
@@ -541,7 +539,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/1790df4b7ad4424580ff96d76c290bde.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/16668560fcc94f489d3a6becc6cb0c37.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$184",
         "size": {
             "4": "$178",
@@ -565,7 +563,7 @@ export default [
             "13": "$248"
         }
     },
-    "20": {
+    {
         "id": "20",
         "name": "adidas Samba OG Black White Gum",
         "img": [
@@ -575,7 +573,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/153a3fe8537c42a498730829d523af63.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/e70e9c237f224b6f89244d67c7de59db.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$124",
         "size": {
             "3.5": "$129",
@@ -601,7 +599,7 @@ export default [
             "13.5": "$208"
         }
     },
-    "21": {
+    {
         "id": "21",
         "name": "adidas originals Superstar White Black (2019)",
         "img": [
@@ -611,7 +609,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230721/1f1c5f136fed4862b9420d4927090389.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230721/1292a2a152a84505a2827a502d0bb6ff.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$76",
         "size": {
             "3.5": "$98",
@@ -636,7 +634,7 @@ export default [
             "13": "$137"
         }
     },
-    "22": {
+    {
         "id": "22",
         "name": "adidas originals Ozweego Core Black",
         "img": [
@@ -645,7 +643,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230801/6149097e072d4555ac406ff2d25be239.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230801/f48e2a7a075544d7ba985e784a62a8d8.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$95",
         "size": {
             "3.5": "$104",
@@ -671,7 +669,7 @@ export default [
             "14": "$129"
         }
     },
-    "23": {
+    {
         "id": "23",
         "name": "adidas originals Yeezy Boost 350 V2 Bone",
         "img": [
@@ -681,7 +679,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220314/d11b2939272b458783ce44f5b168f848.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220314/d9b9031d77504a71b638d2c8a256008d.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$240",
         "size": {
             "4": "$260",
@@ -710,7 +708,7 @@ export default [
             "15.5": "$301"
         }
     },
-    "24": {
+    {
         "id": "24",
         "name": "adidas Yeezy Boost 700 Wave Runner",
         "img": [
@@ -719,7 +717,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/772bd4d2fe65410f9378a1b865f79c56.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/7019ae250a254da1bf623c8e25139809.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$363",
         "size": {
             "4": "$357",
@@ -743,7 +741,7 @@ export default [
             "13.5": "$451"
         }
     },
-    "25": {
+    {
         "id": "25",
         "name": "adidas originals Yeezy Boost 350 V2 Life Casual Shoes Unisex",
         "img": [
@@ -752,7 +750,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/5db55651d6024ea780f10b124755fc42.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/6cf69b43c0e34cbd8c6fedd23169311e.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$345",
         "size": {
             "4": "$473",
@@ -775,7 +773,7 @@ export default [
             "12.5": "$480"
         }
     },
-    "26": {
+    {
         "id": "26",
         "name": "adidas originals Yeezy Boost 350 V2 Zyon Welcome Offer",
         "img": [
@@ -784,7 +782,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/6a18d2e40413438eaebd4b5a02eb09d0.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/bb1f46d60b604921b7f974fa9dd7126e.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$283",
         "size": {
             "5": "$170",
@@ -807,7 +805,7 @@ export default [
             "14": "$439"
         }
     },
-    "27": {
+    {
         "id": "27",
         "name": "\u30102018\u3011adidas Yeezy 500 Utility Shoes Black",
         "img": [
@@ -817,7 +815,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230801/1a9946c5d64d48bdbfad91ae87661697.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230801/02ccadcec7c74bdd815b715d58e821bf.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$394",
         "size": {
             "4": "$532",
@@ -840,7 +838,7 @@ export default [
             "12.5": "$579"
         }
     },
-    "28": {
+    {
         "id": "28",
         "name": "adidas originals Yeezy Boost 350 V2 Blue Tint",
         "img": [
@@ -850,7 +848,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/9cb97f4a2dc947d68cfe267456ea5ef5.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/420918cda6ee4b12803693ea8775cbf2.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$344",
         "size": {
             "4": "$228",
@@ -874,7 +872,7 @@ export default [
             "13": "$513"
         }
     },
-    "29": {
+    {
         "id": "29",
         "name": "adidas originals Samba OG Cloud White Core Black",
         "img": [
@@ -884,7 +882,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230721/e58cb041a87242008b638273ab5a0bec.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230721/25022e062fb84864b454f5a0e5c134c4.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$126",
         "size": {
             "3.5": "$127",
@@ -909,7 +907,7 @@ export default [
             "13": "$185"
         }
     },
-    "30": {
+    {
         "id": "30",
         "name": "adidas Yeezy Slide Pure (First Release)",
         "img": [
@@ -919,7 +917,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/e76ae671a0194d1d972540b677ad08e1.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/c205830e7266443ea5fc4d1c8fccc281.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$--",
         "size": {
             "5.5": "$142",
@@ -933,7 +931,7 @@ export default [
             "13.5": "$236"
         }
     },
-    "31": {
+    {
         "id": "31",
         "name": "adidas originals Yeezy Boost 350 V2 Carbon Welcome Offer",
         "img": [
@@ -942,7 +940,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/82549a1a81dc469390af501a39850818.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/9ecdcc4340c4438e8f4cbb10247fb130.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$280",
         "size": {
             "5": "$150",
@@ -963,7 +961,7 @@ export default [
             "12.5": "$351"
         }
     },
-    "32": {
+    {
         "id": "32",
         "name": "adidas originals Yeezy Slide Bone (2022 Restock)",
         "img": [
@@ -973,7 +971,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230805/d279fb6cf53c480a9478353c8f0996b1.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230805/1bbe26711b9e45de92de0cbf89d08c06.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$128",
         "size": {
             "4": "$123",
@@ -989,7 +987,7 @@ export default [
             "14": "$437"
         }
     },
-    "33": {
+    {
         "id": "33",
         "name": "adidas originals Yeezy Slide \"Onyx\"",
         "img": [
@@ -999,7 +997,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230601/51f46c1f3cb34e4f87c1944ede60a7a9.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230601/27da5bcab5f64efb8ccd4c4024cf13f3.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$116",
         "size": {
             "4": "$110",
@@ -1016,7 +1014,7 @@ export default [
             "16": "$537"
         }
     },
-    "34": {
+    {
         "id": "34",
         "name": "adidas Yeezy Slide Ochre",
         "img": [
@@ -1026,7 +1024,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230805/3671a688253a465b84592861f96797b3.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230805/680857947a9341e0ac96520463c32830.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$279",
         "size": {
             "36.5": "$121",
@@ -1044,7 +1042,7 @@ export default [
             "52": "$279"
         }
     },
-    "35": {
+    {
         "id": "35",
         "name": "adidas Yeezy Boost 350 V2 Onyx (2022/2023)",
         "img": [
@@ -1053,7 +1051,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220611/32a110d11af8406d9ac08148390bd079.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220611/bc799d5264c14b6fb7025ed8a0d8e047.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$275",
         "size": {
             "4": "$270",
@@ -1082,7 +1080,7 @@ export default [
             "15.5": "$447"
         }
     },
-    "36": {
+    {
         "id": "36",
         "name": "adidas originals Yeezy Boost 350 V2 Life Casual Shoes Unisex",
         "img": [
@@ -1092,7 +1090,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/1952195874d94686aecaedf31cc8ec41.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/3d9ef097f1d144558e0e23cb446de1bc.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$268",
         "size": {
             "5": "$153",
@@ -1118,7 +1116,7 @@ export default [
             "17": "$391"
         }
     },
-    "37": {
+    {
         "id": "37",
         "name": "adidas originals Yeezy Boost 350 V2 Life Casual Shoes Unisex",
         "img": [
@@ -1127,7 +1125,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/2d2f0d6f7b504a56a80248dfaf2df540.png",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/9192f92226ac438bb886790343be7cfb.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$434",
         "size": {
             "4": "$475",
@@ -1147,7 +1145,7 @@ export default [
             "13": "$619"
         }
     },
-    "38": {
+    {
         "id": "38",
         "name": "adidas Ozweego Bliss Knit",
         "img": [
@@ -1157,7 +1155,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230608/5261c99cd0164a9e86d6b0f8e5667dd5.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230608/74b5a5b45fff4835bc8deefd6dd51ef6.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$84",
         "size": {
             "3.5": "$109",
@@ -1183,7 +1181,7 @@ export default [
             "14": "$193"
         }
     },
-    "39": {
+    {
         "id": "39",
         "name": "adidas originals Yeezy Boost 350 V2 Mono Clay",
         "img": [
@@ -1193,7 +1191,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/1790df4b7ad4424580ff96d76c290bde.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/16668560fcc94f489d3a6becc6cb0c37.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$184",
         "size": {
             "4": "$178",
@@ -1217,7 +1215,7 @@ export default [
             "13": "$248"
         }
     },
-    "40": {
+    {
         "id": "40",
         "name": "adidas Samba OG Black White Gum",
         "img": [
@@ -1227,7 +1225,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/153a3fe8537c42a498730829d523af63.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/e70e9c237f224b6f89244d67c7de59db.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$124",
         "size": {
             "3.5": "$129",
@@ -1253,7 +1251,7 @@ export default [
             "13.5": "$208"
         }
     },
-    "41": {
+    {
         "id": "41",
         "name": "adidas originals Yeezy Boost 700 MNVN Triple Black",
         "img": [
@@ -1262,7 +1260,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230801/4aa325e8470f45ea94bf5306f6b64662.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230801/f54ab274ddc64cbf9738169659f91041.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$314",
         "size": {
             "4": "$173",
@@ -1285,7 +1283,7 @@ export default [
             "12.5": "$338"
         }
     },
-    "42": {
+    {
         "id": "42",
         "name": "adidas originals Yeezy Boost 350 V2 Mono Ice",
         "img": [
@@ -1295,7 +1293,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/a59bf4400de147afa1eb6343377f1e94.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/1e22fd4950f84a58b80a3b9609498a36.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$269",
         "size": {
             "4": "$246",
@@ -1320,7 +1318,7 @@ export default [
             "14": "$415"
         }
     },
-    "43": {
+    {
         "id": "43",
         "name": "adidas PureBoost Go 'Core Black'",
         "img": [
@@ -1330,7 +1328,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/f7dc6a9749b94b3f83a09d308d0cdef1.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/82839bec6d244a5a8e7054ca21e1bbd4.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$74",
         "size": {
             "4.5": "$105",
@@ -1350,7 +1348,7 @@ export default [
             "12": "$85"
         }
     },
-    "44": {
+    {
         "id": "44",
         "name": "adidas originals Yeezy Boost 350 V2 Dazzling Blue",
         "img": [
@@ -1359,7 +1357,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/9076622ef4b14bd182a90dc8f5959445.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/33add171ac9840429c417b279a882be8.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$343",
         "size": {
             "5": "$231",
@@ -1386,7 +1384,7 @@ export default [
             "15.5": "$384"
         }
     },
-    "45": {
+    {
         "id": "45",
         "name": "adidas originals  Superstar Foundation Shoes - Black",
         "img": [
@@ -1396,7 +1394,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/5977a271db6049c09ffa29987efa2b0a.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/76adff86f0004cd7b95424d40f24c3b0.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$142",
         "size": {
             "4": "$251",
@@ -1416,7 +1414,7 @@ export default [
             "11": "$123"
         }
     },
-    "46": {
+    {
         "id": "46",
         "name": "adidas originals Yeezy Slide \"Flax\"",
         "img": [
@@ -1425,7 +1423,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230805/75bcdff6b59f44558c2d6f7ff4f98aeb.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230805/3b8efc50d6b34114b018de30ee80a25f.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$97",
         "size": {
             "4": "$127",
@@ -1440,7 +1438,7 @@ export default [
             "13": "$384"
         }
     },
-    "47": {
+    {
         "id": "47",
         "name": "Adidas originals Yeezy Slide Resin",
         "img": [
@@ -1450,7 +1448,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/eb3f3e0023a04e43a75faa0c9cf964b5.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/3c1c69b8261349959bfbc1ed9339a385.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$--",
         "size": {
             "4": "$103",
@@ -1463,7 +1461,7 @@ export default [
             "13": "$270"
         }
     },
-    "48": {
+    {
         "id": "48",
         "name": "adidas originals Yeezy Boost 350 V2 Life Casual Shoes Unisex",
         "img": [
@@ -1473,7 +1471,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220602/3b520a4fc2dc41ba86aecb0bd2267928.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220602/713a415c341e43adbdc6484a576eac2f.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$324",
         "size": {
             "4": "$295",
@@ -1499,7 +1497,7 @@ export default [
             "15": "$500"
         }
     },
-    "49": {
+    {
         "id": "49",
         "name": "adidas originals Yeezy boost 350 V2 \"Slate\"",
         "img": [
@@ -1509,7 +1507,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220830/0f4141a62159425d9098b15b72fd4029.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220830/4828ae841a664b638091572ca91322dd.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$219",
         "size": {
             "4": "$203",
@@ -1534,7 +1532,7 @@ export default [
             "13.5": "$300"
         }
     },
-    "50": {
+    {
         "id": "50",
         "name": "adidas originals Ozweego Life Casual Shoes Female",
         "img": [
@@ -1544,7 +1542,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/5750264572da469b883b0aa95fc56cc3.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/274302404d384385adb729229ac3f8a6.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$80",
         "size": {
             "5": "$102",
@@ -1561,7 +1559,7 @@ export default [
             "11": "$81"
         }
     },
-    "51": {
+    {
         "id": "51",
         "name": "adidas Yeezy 700 V3 Dark Glow",
         "img": [
@@ -1571,7 +1569,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/cd5c5e81f80443319e6e2f9951ad15c7.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/63368a611add464190052c4bdb252a8d.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$405",
         "size": {
             "5.5": "$451",
@@ -1594,7 +1592,7 @@ export default [
             "14.5": "$627"
         }
     },
-    "52": {
+    {
         "id": "52",
         "name": "adidas originals Ozweego Life Casual Shoes Unisex",
         "img": [
@@ -1604,7 +1602,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220213/742fc42c2114436db9c11f5b16114d51.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220213/350c7e019c7044deb3fb4ca9e63ef3de.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$110",
         "size": {
             "3.5": "$86",
@@ -1628,7 +1626,7 @@ export default [
             "12.5": "$113"
         }
     },
-    "53": {
+    {
         "id": "53",
         "name": "adidas originals Yeezy Foam RNR MX Cinder",
         "img": [
@@ -1638,7 +1636,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230601/d6bf643d843f4d2e87eba47d05d95409.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230601/5c8b56b2e4ad4aab9ce4796e7585740a.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$120",
         "size": {
             "4": "$108",
@@ -1653,7 +1651,7 @@ export default [
             "13": "$131"
         }
     },
-    "54": {
+    {
         "id": "54",
         "name": "adidas originals Yeezy 700 V3 Azael",
         "img": [
@@ -1663,7 +1661,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230801/706af7f0def1423e9f17bc94f70b3a23.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230801/9adedb3c30694d528fd494d756649749.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$269",
         "size": {
             "4": "$213",
@@ -1688,7 +1686,7 @@ export default [
             "14": "$586"
         }
     },
-    "55": {
+    {
         "id": "55",
         "name": "adidas Samba Vegan White Gum",
         "img": [
@@ -1698,7 +1696,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/b11ffc5d14d843d4934a709055658043.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/d882a6e714e9434db3a6e638615505a3.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$183",
         "size": {
             "3.5": "$208",
@@ -1721,7 +1719,7 @@ export default [
             "12.5": "$196"
         }
     },
-    "56": {
+    {
         "id": "56",
         "name": "adidas originals Yeezy Boost 380 Onyx",
         "img": [
@@ -1731,7 +1729,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230608/a9e729ff8cd148beafc1d9e06156a6e4.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230608/c8da7f98b7b24765848dbe1c84d57ade.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$254",
         "size": {
             "4": "$167",
@@ -1754,7 +1752,7 @@ export default [
             "13": "$355"
         }
     },
-    "57": {
+    {
         "id": "57",
         "name": "adidas Yeezy Slide Resin (2022)",
         "img": [
@@ -1764,7 +1762,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230805/89128da7d37040aa9a03c0859478dd3d.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230805/85b7957e599a45e0b1dd99e18e155e26.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$109",
         "size": {
             "4": "$114",
@@ -1781,7 +1779,7 @@ export default [
             "15": "$264"
         }
     },
-    "58": {
+    {
         "id": "58",
         "name": "adidas originals Yeezy Foam Runner Beach Sandals Unisex",
         "img": [
@@ -1791,7 +1789,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220926/4667f7f33a3941dda22300fa17b380cc.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220926/37216f9baa264172a970be5866bb3a01.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$--",
         "size": {
             "4.5": "$168",
@@ -1806,7 +1804,7 @@ export default [
             "14.5": "$351"
         }
     },
-    "59": {
+    {
         "id": "59",
         "name": "adidas originals Yeezy Boost 350 V2 MX Rock",
         "img": [
@@ -1816,7 +1814,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/42c9dd427b774f6ea73fa1fb870de29e.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/dd8f0e5a3c084b4f8e1b9df86417d1ef.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$340",
         "size": {
             "5": "$221",
@@ -1839,7 +1837,7 @@ export default [
             "14.5": "$412"
         }
     },
-    "60": {
+    {
         "id": "60",
         "name": "adidas originals Yeezy Slide Unisex Sports slippers Glow Green",
         "img": [
@@ -1849,7 +1847,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220526/c1788a69eb35402380aea93c21825ced.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220526/bb33a483b547437fac3f3a358da38aaa.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$237",
         "size": {
             "38": "$109",
@@ -1861,7 +1859,7 @@ export default [
             "50": "$237"
         }
     },
-    "61": {
+    {
         "id": "61",
         "name": "adidas originals Yeezy boost 350 Life Casual Shoes Unisex",
         "img": [
@@ -1870,7 +1868,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230601/dabc8731055a473986e197844da271d3.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230601/bf5e49bd454240a1ac7f64d90d5e3c2c.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$234",
         "size": {
             "4": "$227",
@@ -1896,7 +1894,7 @@ export default [
             "14": "$293"
         }
     },
-    "62": {
+    {
         "id": "62",
         "name": "adidas originals Forum 84 Low XLD Off White Collegiate Navy",
         "img": [
@@ -1905,7 +1903,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230721/0634c537ab0245ca8c6a174fb1a0c381.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230721/486fa376c325435ab6379513cffa785b.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$95",
         "size": {
             "3.5": "$111",
@@ -1929,7 +1927,7 @@ export default [
             "12.5": "$108"
         }
     },
-    "63": {
+    {
         "id": "63",
         "name": "adidas originals NMD_R1 Life Casual Shoes Unisex",
         "img": [
@@ -1939,7 +1937,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/fd1a51c276b746048216e9f6a10b7b19.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/1c7c9e22d3e042e1928d834cf7d47aea.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$151",
         "size": {
             "5": "$128",
@@ -1953,7 +1951,7 @@ export default [
             "10.5": "$140"
         }
     },
-    "64": {
+    {
         "id": "64",
         "name": "adidas originals Forum 84 Low Unisex Skate shoes Blue Thread",
         "img": [
@@ -1963,7 +1961,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220216/ccd0c49a512b4858a543929568ccc1ec.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220216/d3cbfab49cf840269246922caf50d8a3.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$174",
         "size": {
             "3.5": "$162",
@@ -1987,7 +1985,7 @@ export default [
             "12.5": "$148"
         }
     },
-    "65": {
+    {
         "id": "65",
         "name": "adidas originals Sambarose Black White Gum (Women's)",
         "img": [
@@ -1997,7 +1995,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/1b6e1b63ce484467b7748c219994baac.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/9c4a27e88b2a44fea9a2b29e30dfed84.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$339",
         "size": {
             "5": "$224",
@@ -2013,7 +2011,7 @@ export default [
             "11": "$339"
         }
     },
-    "66": {
+    {
         "id": "66",
         "name": "adidas originals  Life Casual Shoes Unisex",
         "img": [
@@ -2023,7 +2021,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/3280e4e1d41047c9978622126dd9a756.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/39346c526ccb4405b545c18ab30a1e92.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$110",
         "size": {
             "3.5": "$81",
@@ -2047,7 +2045,7 @@ export default [
             "12.5": "$139"
         }
     },
-    "67": {
+    {
         "id": "67",
         "name": "adidas Yeezy Slide Glow Green",
         "img": [
@@ -2057,7 +2055,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230805/bae3a600350b42d19a534b6571d790b6.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230805/fc6fbbbd709649b198296c20d8ae67df.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$111",
         "size": {
             "4": "$122",
@@ -2072,7 +2070,7 @@ export default [
             "13": "$357"
         }
     },
-    "68": {
+    {
         "id": "68",
         "name": "adidas originals adidas Forum 84 Low Off White Brown",
         "img": [
@@ -2082,7 +2080,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220213/ca4194ca6e724917b04c55d2f53c7774.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220213/f0804edd1d8348d886b281f143e5ac86.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$101",
         "size": {
             "3.5": "$103",
@@ -2106,7 +2104,7 @@ export default [
             "12.5": "$146"
         }
     },
-    "69": {
+    {
         "id": "69",
         "name": "Unisex adidas Adizero Prime X Running shoes",
         "img": [
@@ -2116,7 +2114,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230114/019566c1d8e4436a9d8591f9c58c9de1.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230114/f8f142ce3d0140538a8482a9827367a9.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$185",
         "size": {
             "4.5": "$299",
@@ -2136,7 +2134,7 @@ export default [
             "11.5": "$223"
         }
     },
-    "70": {
+    {
         "id": "70",
         "name": "Adidas Originals Yeezy Boost 700 Unisex Daddy Shoes Bright Blue",
         "img": [
@@ -2146,7 +2144,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230801/62cb80d6ebf24ee3aea7ab62cc980765.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230801/9f7b130b4a684923800d027b0678f689.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$257",
         "size": {
             "4": "$242",
@@ -2169,7 +2167,7 @@ export default [
             "13": "$453"
         }
     },
-    "71": {
+    {
         "id": "71",
         "name": "adidas originals FORUM Unisex Skate shoes Noble Green",
         "img": [
@@ -2179,7 +2177,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230721/f90b09d1ce9546f0825d3e318c0ef812.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230721/fe2cc540cb7d45b5bde8634eb6bc29ac.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$99",
         "size": {
             "3.5": "$108",
@@ -2203,13 +2201,13 @@ export default [
             "12.5": "$267"
         }
     },
-    "72": {
+    {
         "id": "72",
         "name": "adidas Yeezy Boost 350 V2 Carbon Beluga",
         "img": [
             "https://cdn-img.poizonapp.com/node-common/55c0f9cd8e27d7706ff2fa8685d51038.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$253",
         "size": {
             "4": "$268",
@@ -2235,7 +2233,7 @@ export default [
             "14": "$678"
         }
     },
-    "73": {
+    {
         "id": "73",
         "name": "adidas Nite Jogger Triple Black",
         "img": [
@@ -2245,7 +2243,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/73a28903fdbe44e295313706595eb07a.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/58c74674ccde48ae8e073cbb8075380b.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$110",
         "size": {
             "3.5": "$75",
@@ -2263,7 +2261,7 @@ export default [
             "10.5": "$108"
         }
     },
-    "74": {
+    {
         "id": "74",
         "name": "Adidas Originals Forum 84 Unisex Skate Shoes Blue/White",
         "img": [
@@ -2273,7 +2271,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/1d788928ba86421e984b6855091f9b85.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/3393286c5fa64517818066a7c04c66f9.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$163",
         "size": {
             "3.5": "$251",
@@ -2292,7 +2290,7 @@ export default [
             "11.5": "$303"
         }
     },
-    "75": {
+    {
         "id": "75",
         "name": "adidas Terrex Daroga Outdoor functional shoes Unisex",
         "img": [
@@ -2302,7 +2300,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230323/e882f2a036b74c2d8c3f4f351d9ca20d.png",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230323/629a873c8d534eb190401ef6b31d5275.png"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$65",
         "size": {
             "4": "$79",
@@ -2325,7 +2323,7 @@ export default [
             "12.5": "$108"
         }
     },
-    "76": {
+    {
         "id": "76",
         "name": "adidas Y-3 Hokori III Memories of OrangeWhite/Pink/Brown/Red",
         "img": [
@@ -2335,7 +2333,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20221015/07ecb01b9969447f82b1001f3ca2a0b8.jpeg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20221015/2fa949e2b7584f5a9ba3fe2345dc0bab.jpeg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$101",
         "size": {
             "4.5": "$102",
@@ -2354,7 +2352,7 @@ export default [
             "11": "$134"
         }
     },
-    "77": {
+    {
         "id": "77",
         "name": "adidas Harden Vol. 7 Scarlet Core Basketball Shoes Unisex Black",
         "img": [
@@ -2364,7 +2362,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230104/b069df213ec944c4828e08893114efff.png",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230104/8eb0f92fce1c4a77b414b04ea0c81408.png"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$173",
         "size": {
             "6.5": "$150",
@@ -2382,7 +2380,7 @@ export default [
             "12.5": "$264"
         }
     },
-    "78": {
+    {
         "id": "78",
         "name": "adidas originals Yeezy Foam Runner Beach Sandals Unisex",
         "img": [
@@ -2392,7 +2390,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230529/0e774f2ac530451aa6ae7f358a50ae6e.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230529/3c92ad6875ec4bf3a7ae43e168b6c20d.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$178",
         "size": {
             "4": "$121",
@@ -2409,7 +2407,7 @@ export default [
             "15.5": "$178"
         }
     },
-    "79": {
+    {
         "id": "79",
         "name": "adidas Yeezy Boost 700 MNVN Blue Tint",
         "img": [
@@ -2419,7 +2417,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230801/a055ec98b5504f84ada9c498038820ea.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230801/1c7496fea2e34aaf83ebae31b051d93d.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$332",
         "size": {
             "4": "$286",
@@ -2441,7 +2439,7 @@ export default [
             "13": "$337"
         }
     },
-    "80": {
+    {
         "id": "80",
         "name": "adidas Ultra Boost 22 Triple Black",
         "img": [
@@ -2451,7 +2449,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/fd105215012d43deb7aac93cff62fe95.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/34cc97dae80e47a195d0aa099e41917a.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$129",
         "size": {
             "5": "$101",
@@ -2467,7 +2465,7 @@ export default [
             "11": "$128"
         }
     },
-    "81": {
+    {
         "id": "81",
         "name": "adidas originals Forum Buckle Low Bad Bunny Last",
         "img": [
@@ -2477,7 +2475,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20221201/4d0c3c41d53645b08619fd59eb0ed3a0.png",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20221201/25783e330fe143f7aaf061de48a8469d.png"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$212",
         "size": {
             "3.5": "$231",
@@ -2502,7 +2500,7 @@ export default [
             "13": "$217"
         }
     },
-    "82": {
+    {
         "id": "82",
         "name": "Male adidas Harden Stepback Basketball shoes Bliss Pink/Magenta",
         "img": [
@@ -2512,7 +2510,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220515/0e0480574fc84cb0bb16435f74989e2b.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220515/3c1024dc4271456f907da2f231652609.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$141",
         "size": {
             "7": "$188",
@@ -2527,7 +2525,7 @@ export default [
             "11.5": "$219"
         }
     },
-    "83": {
+    {
         "id": "83",
         "name": "adidas originals Campus 00s Dark Green Cloud White",
         "img": [
@@ -2537,7 +2535,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230213/e30fadab4bbf4bddb20abab40f4faa89.png",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230213/4b97099221524990a720763227ad09c9.png"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$104",
         "size": {
             "3.5": "$284",
@@ -2560,7 +2558,7 @@ export default [
             "12.5": "$166"
         }
     },
-    "84": {
+    {
         "id": "84",
         "name": "Adidas Originals Yeezy Slide Slippers Brown",
         "img": [
@@ -2570,7 +2568,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/2c85a20f66fc46159a30446645de6f00.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/3802964b66c941cba1fa27aabb4d9e62.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$299",
         "size": {
             "4": "$201",
@@ -2582,7 +2580,7 @@ export default [
             "15": "$299"
         }
     },
-    "85": {
+    {
         "id": "85",
         "name": "adidas Campus Light Bad Bunny Cream",
         "img": [
@@ -2592,7 +2590,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230104/d36f1e20d74842059998bdce568e2a74.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230104/db5591bce7f9436695e81e7a4fa7e030.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$200",
         "size": {
             "3.5": "$340",
@@ -2616,13 +2614,13 @@ export default [
             "12.5": "$215"
         }
     },
-    "86": {
+    {
         "id": "86",
         "name": "adidas Samba Wales Bonner Silver",
         "img": [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230503/94ee2d91a0674f4d8045868a8100e19c.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$362",
         "size": {
             "3": "$710",
@@ -2647,7 +2645,7 @@ export default [
             "12.5": "$317"
         }
     },
-    "87": {
+    {
         "id": "87",
         "name": "adidas originals Yeezy Slide \"Azure\"",
         "img": [
@@ -2657,7 +2655,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230805/9bd41408770a4ce78a6620590b136df9.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20230805/c10a0ac8046d4a0ea1c25100b85eb03d.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$101",
         "size": {
             "4": "$116",
@@ -2675,7 +2673,7 @@ export default [
             "16": "$295"
         }
     },
-    "88": {
+    {
         "id": "88",
         "name": "adidas Ultra Boost 21 Triple Black",
         "img": [
@@ -2685,7 +2683,7 @@ export default [
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/b09d91b4308b49c292933dfc29c31c86.jpg",
             "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/92d917729da4426a89bc2dc906f51141.jpg"
         ],
-        "category": "Nike",
+        "category": "Adidas",
         "price": "$137",
         "size": {
             "4": "$86",
@@ -2701,4 +2699,5 @@ export default [
             "12": "$178"
         }
     }
-];
+]
+]
