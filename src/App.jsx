@@ -25,6 +25,7 @@ function App() {
   useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
   }, []);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const handleSendData = useCallback((data) => {
     // Handle the data received from ProductConfirm here
     console.log("Data received in App.js:", data);
@@ -82,7 +83,7 @@ function App() {
         };
 
         const response = await fetch('https://zipperconnect.space/validate-initdata', requestOptions);
-
+         setIsAuthenticated(true);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -116,7 +117,7 @@ function App() {
               cart={cart}  />
             )}
             <Catalog />
-            <Products />
+            {isAuthenticated && <Products />}
             <Footer />
           </div>
         }
