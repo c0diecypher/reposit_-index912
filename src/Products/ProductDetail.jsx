@@ -122,6 +122,12 @@ typesKeys.sort(customSort)
   const handleSizePriceClick = () => {
     if (isAuthenticated) {
       window.alert(item[1]);
+    } else {
+      window.alert("Не санкционированный вход");
+    }
+  }
+  const handlePricePriceClick = () => {
+    if (isAuthenticated) {
       window.alert(item[0]);
     } else {
       window.alert("Не санкционированный вход");
@@ -148,7 +154,7 @@ typesKeys.sort(customSort)
                 onClick={() => handleAddToCard(item[1],item[0])} // Отвечает за вывод товара
               >
                 <div className="Story-size-content">
-                   {isAuthenticated && <div className="size-nubmer">{item[0]}</div></div>}
+                   {isAuthenticated && <div className="size-nubmer" onClick={handlePricePriceClick}>{item[0]}</div>}
                   {isAuthenticated && <div className="size-price" onClick={handleSizePriceClick}>{item[1]}</div>}
                 </div>
                 
