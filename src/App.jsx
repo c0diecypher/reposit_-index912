@@ -110,7 +110,7 @@ function App() {
             {tg.enableClosingConfirmation()}
 
             <Header />
-            <Searchbar isAuthenticated={isAuthenticated} />
+            <Searchbar />
             <Stories />
             {cart.length > 0 && (
               <BasketItem 
@@ -145,7 +145,7 @@ function App() {
             sendDataToParent={sendDataToParent}
             onDataUpdate={handleDataFromMainButton}
             dataFromMainButton={dataFromMainButton}
-            
+            isAuthenticated={isAuthenticated}
               />
               {dataFromMainButton}
           </div>
