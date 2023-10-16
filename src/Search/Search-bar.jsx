@@ -2,15 +2,9 @@
 import { Link } from "react-router-dom";
 import "./css/Searchbar.css";
 
-function Searchbar({ isAuthenticated }) {
-  const handleSearchClick = (event) => {
-    if (!isAuthenticated) {
-      event.preventDefault(); // Предотвратите переход, если не авторизованы
-      window.alert("Unauthorized");
-    }
-  }
+function Searchbar() {
   return (
-    <Link to={`/search`} onClick={handleSearchClick}>
+    <Link to={`/search`}>
       <div className="wrapper__form__container__">
         <div className="wrapper__form__container_background"></div>
         <div className="wrapper__form__container_input">
