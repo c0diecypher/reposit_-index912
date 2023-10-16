@@ -10,7 +10,7 @@ const Products = () => {
       <h4>{product.price}₽</h4>
       <p>{product.name}</p>
       <button className="add-item">
-          <div className="buy-item">
+          <div className="buy-item" style={{ display: 'flex', alignItems: 'center' }}>
              <span style={{ marginRight: '5px' }}>🗲</span>
             Купить</div>
       </button>
