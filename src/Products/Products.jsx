@@ -10,7 +10,7 @@ const Products = () => {
       <h4>{product.price}₽</h4>
       <p>{product.name}</p>
       <button className="add-item">
-          <div className="buy-item">Купить</div>
+          <div className="buy-item">🗲 Купить</div>
       </button>
         </Link>
     </div>
