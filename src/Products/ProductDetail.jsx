@@ -38,7 +38,7 @@ const Size = styled.button`
   `}
 `;
 
-function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMainButton }) {
+function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMainButton, isAuthenticated }) {
   
   useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
@@ -119,7 +119,13 @@ typesKeys.sort(customSort)
     // Другие PropTypes, если есть
   };
 
-
+  const handleSizePriceClick = () => {
+    if (isAuthenticated) {
+      window.alert(item[1]);
+    } else {
+      window.alert("Не санкционированный вход");
+    }
+  }
 
   return (
     <>
@@ -142,7 +148,7 @@ typesKeys.sort(customSort)
               >
                 <div className="Story-size-content">
                   <div className="size-nubmer">{item[0]}</div>
-                  <div className="size-price">{item[1]}</div>
+                  {isAuthenticated && <div className="size-price" onClick={handleSizePriceClick}>{item[1]}</div>}
                 </div>
                 
               </Size>
