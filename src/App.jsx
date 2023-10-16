@@ -110,7 +110,7 @@ function App() {
             {tg.enableClosingConfirmation()}
 
             <Header />
-            <Searchbar />
+            <Searchbar isAuthenticated={isAuthenticated} />
             <Stories />
             {cart.length > 0 && (
               <BasketItem 
