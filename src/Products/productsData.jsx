@@ -1414,30 +1414,6 @@ export default [
         }
     },
     {
-        "id": "46",
-        "name": "adidas originals Yeezy Slide \"Flax\"",
-        "img": [
-            "https://cdn-img.poizonapp.com/pro-img/origin-img/20230805/b012df50f2974b3196ba9d7c2d98e83d.jpg",
-            "https://cdn-img.poizonapp.com/pro-img/origin-img/20230805/249e1fa3f2de4d28b3ad13fd8abe9d03.jpg",
-            "https://cdn-img.poizonapp.com/pro-img/origin-img/20230805/75bcdff6b59f44558c2d6f7ff4f98aeb.jpg",
-            "https://cdn-img.poizonapp.com/pro-img/origin-img/20230805/3b8efc50d6b34114b018de30ee80a25f.jpg"
-        ],
-        "category": "Adidas",
-        "price": "$97",
-        "size": {
-            "4": "$127",
-            "5": "$139",
-            "6": "$186",
-            "7": "$151",
-            "8": "$97",
-            "9": "$97",
-            "10": "$118",
-            "11": "$143",
-            "12": "$142",
-            "13": "$384"
-        }
-    },
-    {
         "id": "47",
         "name": "Adidas originals Yeezy Slide Resin",
         "img": [
