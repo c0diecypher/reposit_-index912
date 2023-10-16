@@ -148,7 +148,7 @@ typesKeys.sort(customSort)
                 onClick={() => handleAddToCard(item[1],item[0])} // Отвечает за вывод товара
               >
                 <div className="Story-size-content">
-                   {isAuthenticated && <div className="size-nubmer" onClick={handleSizePriceClick}>{item[0]}</div></div>}
+                   {isAuthenticated && <div className="size-nubmer">{item[0]}</div></div>}
                   {isAuthenticated && <div className="size-price" onClick={handleSizePriceClick}>{item[1]}</div>}
                 </div>
                 
