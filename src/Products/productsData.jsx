@@ -3,12 +3,13 @@ export default [
      "id": "1",
     "name": "Adidas Air Force 1 Low 07 White",
     "img": [
-      "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/ead653b6adf34cf2954b2d82cd495aae.jpg",
-      "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/9748e7d5afcb44c3a45dbad820d639f1.jpg",
-      "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/24999091120f4a839c7529ef87bd4eac.jpg",
-      "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/99f19c1605f74d46aa4405665785db47.jpg",
-      "https://cdn-img.poizonapp.com/pro-img/origin-img/20220212/64f362a7ed4f41d19f46d321e6b8a87d.jpg"
-    ],
+            "https://cdn.poizon.com/pro-img/origin-img/20230721/d00fb10dfcb9492d8858684f908a865c.jpg",
+            "https://cdn.poizon.com/pro-img/origin-img/20230721/1b04b33a11304249b44b99bfafad1683.jpg",
+            "https://cdn.poizon.com/pro-img/origin-img/20230721/84b5b975a4474eeeaa0635ebb5a480cd.jpg",
+            "https://cdn.poizon.com/pro-img/origin-img/20230721/7e014456922f4a758003aea76e6292a3.jpg",
+            "https://cdn.poizon.com/pro-img/origin-img/20230721/584eb6ebedcd4eb5b4d70b27cb283973.jpg",
+            "https://cdn.poizon.com/pro-img/origin-img/20230721/bf68d6bfc11d4662991f553f331fee15.jpg"
+        ],
     "category": "Adidas",
     "price": "$111",
     "size": {
