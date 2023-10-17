@@ -55,12 +55,12 @@ function ProductConfirm() {
     
     <div className="confirm-item-name">{productData.name}
         
-        <span className="confirm-item-size" > размер {size} US</span>
+        <span className="confirm-item-size" > размер {size} EU</span>
    
       </div>
      
       <div className="confirm-item-price">
-         {price}₽
+         {price}
       </div>
       <div className="public-oferta">
         <p className="public-ofert-text">Оплачивая заказ, вы соглашаетесь <br/>с условиями <a className="public-oferta-link">публичной оферты</a></p>
