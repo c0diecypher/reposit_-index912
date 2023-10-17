@@ -7,7 +7,7 @@ const Products = () => {
     <div className="item" key={product.id}> {/* Перенесли ключ сюда */}
         <Link to={`/products/${product.id}`}>
       <img src={product.img[0]} alt="" />
-      <h4>{product.price}₽</h4>
+      <h4>{product.price}</h4>
       <p>{product.name}</p>
       <button className="add-item">
           <div className="buy-item">Купить</div>
