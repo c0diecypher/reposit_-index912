@@ -134,7 +134,7 @@ typesKeys.sort(customSort)
         <img src={thisProduct.img[0]} alt="photo" />
         <h4 className="full-item-name">{thisProduct.name}</h4>
 
-        {isAuthenticated && <p className="full-item-price">{active}₽</p>}
+        {isAuthenticated && <p className="full-item-price">{active}</p>}
 
         <hr/>
         <SizeInfo />
