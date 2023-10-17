@@ -10,8 +10,8 @@ export default [
             "https://cdn.poizon.com/pro-img/origin-img/20230721/584eb6ebedcd4eb5b4d70b27cb283973.jpg",
             "https://cdn.poizon.com/pro-img/origin-img/20230721/bf68d6bfc11d4662991f553f331fee15.jpg"
         ],
-    "category": "Adidas",
-    "price": "$111",
+    "price": "23\u00a0243 \u20bd",
+    "category": "Nike",
     "size": {
             "36.5": "16\u00a0133 \u20bd",
             "37.5": "25\u00a0297 \u20bd",
