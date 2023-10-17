@@ -1,6 +1,6 @@
 export default [
     {
-     "id": "1",
+     "id": 1,
     "name": "Adidas Air Force 1 Low 07 White",
     "img": [
             "https://cdn.poizon.com/pro-img/origin-img/20230721/d00fb10dfcb9492d8858684f908a865c.jpg",
