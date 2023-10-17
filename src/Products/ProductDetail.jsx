@@ -46,7 +46,7 @@ function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMain
   const { productId } = useParams();
   const [paymentData, setPaymentData] = useState(null);
   const thisProduct = productsData.find((prod) => prod.id === productId);
-  const [active, setActive] = useState(paymentData ? paymentData : thisProduct.size);
+  const [active, setActive] = useState(paymentData ? paymentData : thisProduct.size[41]);
   const typesKeys = Object.entries(thisProduct.size);
 
 // Функция сортировки для упорядочивания размеров в правильном порядке
