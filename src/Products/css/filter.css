@@ -1,3 +1,15 @@
+:root {
+    --space-4x: 16px;
+    --space-6x: 0%;
+    --button-text-color: var(#fff);
+    --color: var(#393939);
+    --button-color: var(#007cff);
+    --background-secondary: var( #f3f2f8);
+    --accent: #007cff;
+    --text-color: var(#000);
+    --checkbox-color: var(--text-color);
+  }
+
 .filters{
     display: flex;
     flex-direction: column;
@@ -5,8 +17,7 @@
     inset: 0;
     pointer-events: unset;
     z-index: 9999999;
-    background: var(--background);
-    height: var(--tg-viewport-height);
+    background: var(--background-secondary:);
     overflow: auto;
     padding: 30px var(--space-4x);
     gap: 25px;
