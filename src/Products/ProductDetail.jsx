@@ -131,7 +131,40 @@ typesKeys.sort(customSort)
   return (
     <>
     <div className="full-item">
-        <img src={thisProduct.img[0]} alt="photo" />
+        <div className="images-slider-wrapper">
+        <div className="images-slider-images">
+          <div className="images-slider-image-item">
+            <div className="image-item-wrapper">
+              <img src={thisProduct.img[0]} alt="photo" />
+            </div>
+          </div>
+          <div className="images-slider-image-item">
+            <div className="image-item-wrapper">
+              <img src={thisProduct.img[1]} alt="photo" />
+            </div>
+          </div>
+          <div className="images-slider-image-item">
+            <div className="image-item-wrapper">
+              <img src={thisProduct.img[2]} alt="photo" />
+            </div>
+          </div>
+          <div className="images-slider-image-item">
+            <div className="image-item-wrapper">
+              <img src={thisProduct.img[3]} alt="photo" />
+            </div>
+          </div>
+          <div className="images-slider-image-item">
+            <div className="image-item-wrapper">
+              <img src={thisProduct.img[4]} alt="photo" />
+            </div>
+          </div>
+          <div className="images-slider-image-item">
+            <div className="image-item-wrapper">
+              <img src={thisProduct.img[5]} alt="photo" />
+            </div>
+          </div>
+        </div>
+       </div>
         <h4 className="full-item-name">{thisProduct.name}</h4>
 
         {isAuthenticated && <p className="full-item-price">{active}</p>}
