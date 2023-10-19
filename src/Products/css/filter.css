@@ -17,7 +17,7 @@
     inset: 0;
     pointer-events: unset;
     z-index: 9999999;
-    background: var(--background-secondary:);
+    background: #f3f2f8;
     overflow: auto;
     padding: 30px var(--space-4x);
     gap: 25px;
@@ -44,15 +44,15 @@
     gap: 5px;
 }
 .tag-filter-button{
-    background: var(--background-secondary);
+    background: #f3f2f8;
     font-weight: 500;
     font-size: 14px;
     line-height: 140%;
     padding: 4px 9px;
     border-radius: 18px;
     border: none;
-    border: 1px solid var(--background-secondary);
-    color: var(--text-color);
+    border: 1px solid #000;
+    color: #000;
 }
 
 .checkbox-item{
@@ -110,14 +110,14 @@
 }
 
 .label-price{
-    background: var(--background-secondary);
+    background: #f3f2f8;
     font-weight: 500;
     font-size: 14px;
     line-height: 140%;
     padding: 4px 9px;
     border-radius: 18px;
     border: none;
-    border: 1px solid var(--background-secondary);
+    border: 1px solid #f3f2f8;
     color: var(--text-color);
 }
 
@@ -152,7 +152,7 @@
     flex-direction: column;
     padding: 5px 10px;
     border-radius: 6px;
-    background: var(--background-secondary);
+    background: #f3f2f8;
     flex-grow: 0;
     flex-shrink: 0;
     flex-basis: calc(50% - 5px);
@@ -167,7 +167,7 @@
 
 .filter-price-label-input{
     width: 100%;
-    color: var(--background-secondary);
+    color: #f3f2f8;
     font-weight: 400;
     font-size: 16px;
     line-height: 140%;
