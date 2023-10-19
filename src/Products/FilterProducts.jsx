@@ -67,7 +67,7 @@ function FilterProducts() {
     <div className='filters'>
       <h2>Фильтр</h2>
         <div className='filters-body'>
-        <div className='filter-price-text'>Цена, Р</div>
+        <div className='filter-price-text'>Цена, \u20bd</div>
       <div className='filter-price'>
         <label className='filter-input-price'>
             <div className='filter-price-label'>От</div>
