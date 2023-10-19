@@ -25,7 +25,8 @@ function Catalog() {
               </svg>
             </button>
           </Link>
-          <button className="button-search-ico">
+          <Link to={`/filtered`}>
+            <button className="button-search-ico">
             <svg
               viewBox="0 0 25 25"
               fill="none"
@@ -40,6 +41,7 @@ function Catalog() {
               ></path>
             </svg>
           </button>
+          </Link>
         </div>
       </div>
     </>
