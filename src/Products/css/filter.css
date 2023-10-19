@@ -55,6 +55,14 @@
     color: #000;
 }
 
+.tag-filter-button:active {
+    letter-spacing: normal;
+    transform: translateY(2px);
+    box-shadow: none;
+    transform: scale(0.94);
+    transition: 0.2s;
+  }
+
 .checkbox-item{
     display: inline-flex;
     align-items: flex-start;
@@ -121,6 +129,14 @@
     border: none;
     border: 1px solid #f3f2f8;
     color: var(--text-color);
+}
+
+.label-price:active{
+    letter-spacing: normal;
+    transform: translateY(2px);
+    box-shadow: none;
+    transform: scale(0.94);
+    transition: 0.2s;
 }
 
 .label-price.selected{
