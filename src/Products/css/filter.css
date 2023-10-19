@@ -1,0 +1,166 @@
+.filters{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 0;
+    pointer-events: unset;
+    z-index: 9999999;
+    background: var(--background);
+    height: var(--tg-viewport-height);
+    overflow: auto;
+    padding: 30px var(--space-4x);
+    gap: 25px;
+}
+
+.filters-body{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.filters-item{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 15px;
+}
+
+.tag-filters-item{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+.tag-filter-button{
+    background: var(--background-secondary);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 140%;
+    padding: 4px 9px;
+    border-radius: 18px;
+    border: none;
+    border: 1px solid var(--background-secondary);
+    color: var(--text-color);
+}
+
+.checkbox-item{
+    display: inline-flex;
+    align-items: flex-start;
+    cursor: pointer;
+    gap: 4px;
+    align-items: center;
+    border: none;
+}
+
+.checkbox-text{
+    display: inline;
+    font-size: 12px;
+}
+
+.checkbox-check{
+    display: flex;
+    position: relative;
+    align-items: center;
+    height: var(--checkbox-size,15px);
+    width: var(--checkbox-size,15px);
+}
+
+.checkbox-check-input{
+    position: absolute;
+    overflow: hidden;
+    white-space: nowrap;
+    border-width: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.checkbox-icon{
+   
+    align-items: center;
+}
+
+.checkbox-icon svg{
+    outline: none; /* Убираем обводку */
+  width: 100%; /* Уменьшаем размер */
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+}
+
+.sort-price{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.label-price{
+    background: var(--background-secondary);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 140%;
+    padding: 4px 9px;
+    border-radius: 18px;
+    border: none;
+    border: 1px solid var(--background-secondary);
+    color: var(--text-color);
+}
+
+.label-price.selected{
+    border: 1px solid black;
+}
+
+.filter-price-label{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 140%;
+}
+
+.filter-price{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-price-text{
+    text-align: left;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 140%;
+}
+
+.filter-input-price{
+    display: flex;
+    flex-direction: column;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background: var(--background-secondary);
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: calc(50% - 5px);
+}
+
+.filter-price-label{
+    text-align: left;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 140%;
+}
+
+.filter-price-label-input{
+    width: 100%;
+    color: var(--hint-color);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+    border: none;
+    background: #0000;
+    outline: none;
+}
