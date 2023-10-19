@@ -17,24 +17,33 @@
     inset: 0;
     pointer-events: unset;
     z-index: 9999999;
-    background: #f3f2f8;
+    background: #e4e4e4;
     overflow: auto;
     padding: 30px var(--space-4x);
     gap: 25px;
+}
+
+.filters h2{
+    text-align: left;
 }
 
 .filters-body{
     display: flex;
     flex-direction: column;
     gap: 15px;
+    
 }
 
 .filters-item{
     display: flex;
     flex-direction: column;
     gap: 15px;
-    border-bottom: 1px solid #fff;
+
     padding-bottom: 15px;
+}
+
+.filters-item h3{
+    text-align: left;
 }
 
 .tag-filters-item{
@@ -44,14 +53,13 @@
     gap: 5px;
 }
 .tag-filter-button{
-    background: #fff;
+    background: #f3f2f8;
     font-weight: 500;
     font-size: 14px;
     line-height: 140%;
     padding: 4px 9px;
     border-radius: 18px;
     border: none;
-    border: 1px solid #000;
     color: #000;
 }
 
@@ -120,7 +128,7 @@
 }
 
 .label-price{
-    background: #fff;
+    background: #f3f2f8;
     font-weight: 500;
     font-size: 14px;
     line-height: 140%;
@@ -148,6 +156,7 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 140%;
+    
 }
 
 .filter-price{
@@ -155,6 +164,7 @@
     flex-direction: row;
     align-items: center;
     gap: 10px;
+    
 }
 
 .filter-price-text{
@@ -170,7 +180,7 @@
     flex-direction: column;
     padding: 5px 10px;
     border-radius: 6px;
-    background: #fff;
+    background: #f3f2f8;
     flex-grow: 0;
     flex-shrink: 0;
     flex-basis: calc(50% - 5px);
