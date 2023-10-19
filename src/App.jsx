@@ -15,11 +15,13 @@ import SizeInfoDetails from "./Products/SizeInfo/SizeInfoDetails"
 import BasketItem from "./Components/BasketItem"
 import { useTelegram } from "./Components/Hooks/useTelegram"
 import ProfilePage from "./Components/Telegram/ProfilePage";
+import ProductConfirm from "./Products/ProductConfirm";
+import FilterProducts from "./Products/FilterProducts";
 // React 
 import { Route, Routes } from "react-router-dom";
 import { BackButton } from "@twa-dev/sdk/react" 
 import { useState, useEffect, useCallback } from "react"
-import ProductConfirm from "./Products/ProductConfirm"
+
 
 function App() {
   useEffect(() => {
@@ -181,6 +183,17 @@ function App() {
           <BackButton />
           <SizeInfoDetails />
           </div>
+        }
+        >
+          
+        </Route>
+        <Route
+        path="/filtered"
+        element={
+          <>
+          <BackButton />
+          <FilterProducts />
+          </>
         }
         >
           
