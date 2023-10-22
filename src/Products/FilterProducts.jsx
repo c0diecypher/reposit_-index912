@@ -51,7 +51,7 @@ function FilterProducts() {
     if (sortBy === 'cheap') {
       updatedProducts = updatedProducts.filter((product) => {
         const price = parseFloat(product.price.replace(/\D/g, ''));
-        return price < 30000;
+        return price < 10000;
       });
     }
 
@@ -62,7 +62,7 @@ function FilterProducts() {
     if (sortBy === 'expensive') {
       updatedProducts = updatedProducts.filter((product) => {
         const price = parseFloat(product.price.replace(/\D/g, ''));
-        return price >= 30000;
+        return price >= 20000;
       });
     }
 
@@ -112,7 +112,7 @@ function FilterProducts() {
             className={`label-price ${sortBy === 'cheap' ? 'selected' : ''}`}
             onClick={() => setSortBy('cheap')}
           >
-            Дешевые
+            Меньше
           </button>
           <button
             className={`label-price ${sortBy === 'best_seller' ? 'selected' : ''}`}
@@ -124,7 +124,7 @@ function FilterProducts() {
             className={`label-price ${sortBy === 'expensive' ? 'selected' : ''}`}
             onClick={() => setSortBy('expensive')}
           >
-            Дорогие
+            Больше
           </button>
         </div>
         <div className="filters-item">
