@@ -10,7 +10,8 @@ import PropTypes from 'prop-types';
 import { MainButton } from "@twa-dev/sdk/react" 
 import { useLocation } from 'react-router-dom';
 import Stories from "../Stories/Stories"
-
+const availableSizes = Object.keys(thisProduct.size);
+const defaultSize = availableSizes[0]; // Берем первое доступное значение размера
 const Size = styled.button`
   display: flex;
   flex-direction: column;
@@ -46,7 +47,7 @@ function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMain
   const { productId } = useParams();
   const [paymentData, setPaymentData] = useState(null);
   const thisProduct = productsData.find((prod) => prod.id === productId);
-  const [active, setActive] = useState(paymentData ? paymentData : thisProduct.size[0]);
+  const [active, setActive] = useState(paymentData ? paymentData : thisProduct.size[defaultSize]);
   const typesKeys = Object.entries(thisProduct.size);
 
 // Функция сортировки для упорядочивания размеров в правильном порядке
