@@ -1,4 +1,4 @@
-export default[
+export default [
     {
         "id": "4",
         "name": "Nike Blazer Low LE",
@@ -2441,7 +2441,7 @@ export default[
             "https://cdn.poizon.com/pro-img/origin-img/20230707/1f307a0b7efe457fb026c761a69a61e0.jpg"
         ],
         "price": "10\u00a0445 \u20bd",
-        "category": "UNDEFEATED",
+        "category": "Nike",
         "best_seller": "best_seller",
         "size": {
             "36": "10\u00a0445 \u20bd",
@@ -2763,7 +2763,7 @@ export default[
             "https://cdn.poizon.com/pro-img/origin-img/20220212/f5da529cd98947fab087d76b50f96960.jpg"
         ],
         "price": "17\u00a0555 \u20bd",
-        "category": "Joy",
+        "category": "Nike",
         "best_seller": "best_seller",
         "size": {
             "46": "17\u00a0555 \u20bd"
@@ -4410,7 +4410,7 @@ export default[
             "https://cdn.poizon.com/pro-img/origin-img/20220212/74bbcdcce5e34e72b95e5196c8175bfa.jpg"
         ],
         "price": "28\u00a0615 \u20bd",
-        "category": "Supreme",
+        "category": "Nike",
         "best_seller": "best_seller",
         "size": {
             "44": "28\u00a0615 \u20bd",
@@ -7296,7 +7296,7 @@ export default[
             "https://cdn.poizon.com/pro-img/origin-img/20220212/978e46b88c93497795f4f4bd7070774a.jpg"
         ],
         "price": "25\u00a0455 \u20bd",
-        "category": "Supreme",
+        "category": "Nike",
         "best_seller": "best_seller",
         "size": {
             "41": "25\u00a0455 \u20bd",
@@ -7795,7 +7795,7 @@ export default[
             "https://cdn.poizon.com/pro-img/origin-img/20230707/c7575c487a8b4777ac34aae6351fb2f1.jpg"
         ],
         "price": "12\u00a0815 \u20bd",
-        "category": "Pedro",
+        "category": "Nike",
         "best_seller": "best_seller",
         "size": {
             "37.5": "12\u00a0815 \u20bd"
