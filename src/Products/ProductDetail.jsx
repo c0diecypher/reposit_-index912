@@ -42,10 +42,29 @@ function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMain
   useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
   }, []);
+
+  const setActiveSize = () => {
+    const size41 = thisProduct.size[41]; // Попытка получить размер 41
+
+useEffect(() => {
+  // Проверим, если размер 41 отсутствует, установим ближайший доступный размер
+  if (!thisProduct.size[41]) {
+    const availableSizes = Object.keys(thisProduct.size).map(Number); // Преобразуем ключи в числа
+    availableSizes.sort((a, b) => Math.abs(a - 41) - Math.abs(b - 41)); // Сортируем по близости к 41
+    const closestSize = availableSizes[0]; // Берем ближайший размер
+
+    if (closestSize) {
+      setActive(thisProduct.size[closestSize]);
+    }
+  }
+}, [thisProduct]);
+  };
+
+  
   const { productId } = useParams();
   const [paymentData, setPaymentData] = useState(null);
   const thisProduct = productsData.find((prod) => prod.id === productId);
-  const [active, setActive] = useState(paymentData ? paymentData : thisProduct.size[41]);
+  const [active, setActive] = useState(paymentData || thisProduct.size[41]);
   const typesKeys = Object.entries(thisProduct.size);
 
 // Функция сортировки для упорядочивания размеров в правильном порядке
