@@ -8,7 +8,8 @@ function FilterProducts() {
   const [minPrice, setMinPrice] = useState(''); // Минимальная цена
   const [maxPrice, setMaxPrice] = useState(''); // Максимальная цена
   const [sortBy, setSortBy] = useState(''); // Состояние для выбора сортировки
-
+  const [filtersSelected, setFiltersSelected] = useState(false);
+  const [filtersApplied, setFiltersApplied] = useState(false);
   // Функция, которая обрабатывает изменение выбранных брендов
   const handleBrandChange = (brand) => {
     if (selectedBrands.includes(brand)) {
@@ -21,7 +22,8 @@ function FilterProducts() {
   // Функция, которая применяет фильтры и сортировку
   const applyFiltersAndSort = () => {
     let filteredProducts = productsData;
-
+    setFiltersApplied(true); 
+    setFiltersSelected(true);
     // Фильтр по брендам
     if (selectedBrands.length > 0) {
       filteredProducts = filteredProducts.filter((product) =>
@@ -61,13 +63,24 @@ function FilterProducts() {
     setFilteredProducts(filteredProducts);
   };
 
+  const clearFilters = () => {
+    // ... ваша логика сброса фильтров ...
+
+    setFilteredProducts([]);
+    setSelectedBrands([]);
+    setMinPrice('');
+    setMaxPrice('');
+    setSortBy('');
+    setFiltersApplied(false); // Сбрасываем флаг после сброса фильтров
+  };
+
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   return (
     <div className='filters'>
       <h2>Фильтр</h2>
         <div className='filters-body'>
-        <div className='filter-price-text'>Цена, ₽</div>
+        <div className='filter-price-text'>Цена, Р</div>
       <div className='filter-price'>
         <label className='filter-input-price'>
             <div className='filter-price-label'>От</div>
@@ -145,6 +158,7 @@ function FilterProducts() {
                   strokeWidth="1.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
+                  fill="none"
                 ></path>
               </svg>
             )}
@@ -158,7 +172,15 @@ function FilterProducts() {
 
       </div>
       </div>
-      <button onClick={applyFiltersAndSort}>Применить фильтр</button>
+      {filtersApplied ? ( // Проверяем флаг для отображения кнопок
+        <div>
+          <button onClick={clearFilters}>Сбросить фильтры</button>
+        </div>
+      ) : (
+        <div>
+          <button onClick={applyFiltersAndSort}>Применить фильтр</button>
+        </div>
+      )}
       <h3>Результаты фильтрации и сортировки:</h3>
       {filteredProducts.length === 0 ? (
         <p>Нет товаров, соответствующих выбранным критериям.</p>
