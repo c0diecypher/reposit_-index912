@@ -204,3 +204,18 @@
     background: #0000;
     outline: none;
 }
+
+.active-filter-text{
+    padding: 10px;
+    background: #fff;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 120%;
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.active-filter-h3{
+    font-size: 14px;
+}
