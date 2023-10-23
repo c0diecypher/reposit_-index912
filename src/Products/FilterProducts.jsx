@@ -12,11 +12,63 @@ function FilterProducts() {
   const [sortBy, setSortBy] = useState(''); // Состояние для выбора сортировки
   const [filtersApplied, setFiltersApplied] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState([]); // Состояние для отфильтрованных товаров
+  const [activeFiltersText, setActiveFiltersText] = useState(''); // Состояние для отображения выбранных фильтров
+  const [filtersVisible, setFiltersVisible] = useState(true);
   const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
   const [textColor] = useState(
     window.Telegram.WebApp.themeParams.button_text_color
   );
-  const [text] = useState("Перейти к оплате");
+  const updateActiveFiltersText = () => {
+    const filters = [];
+
+    if (selectedCategories.length > 0 || sortBy !== '') {
+      // Добавляем "Применены фильтры" только если есть активные фильтры или сортировка
+      filters.push('Применены фильтры:');
+
+      if (sortBy === 'cheap') {
+        filters.push('Недорогие');
+      } else if (sortBy === 'expensive') {
+        filters.push('Дорогие');
+      } else if (sortBy === 'best_seller') {
+        filters.push('Популярные');
+      }
+      // Добавьте другие фильтры по мере необходимости
+    } else {
+      filters.push('Применены фильтры');
+    }
+
+    if (minPrice || maxPrice) {
+      const priceRange = [];
+      if (minPrice) {
+        priceRange.push(`от ${minPrice}₽`);
+      }
+      if (maxPrice) {
+        priceRange.push(`до ${maxPrice}₽`);
+      }
+      filters.push(`${priceRange.join(' - ')}`);
+    }
+
+    if (selectedCategories.length > 0) {
+      filters.push(selectedCategories.join(', '));
+    }
+
+
+    // Добавьте другие фильтры по мере необходимости
+
+    const filtersText = filters.length > 0 ? filters.join(' ') : '';
+    setActiveFiltersText(filtersText);
+  };
+
+   // Обработчик изменения фильтров
+   const handleFiltersChange = () => {
+    // Обновляем выбранные фильтры
+    updateActiveFiltersText();
+    // Применяем фильтры и сортировку
+    applyFiltersAndSort();
+
+    setFiltersVisible(false);
+  };
+
   
   // Функция, которая обрабатывает изменение выбранных категорий
   const handleCategoryChange = (category) => {
@@ -84,14 +136,16 @@ function FilterProducts() {
     setSortBy('');
     setFiltersApplied(false);
     setFilteredProducts([]); // Очищаем отфильтрованные товары
+    setFiltersVisible(true);
   };
 
   const uniqueCategories = getUniqueCategories(productsData);
 
   return (
     <div className="filters">
-      <h2>Фильтр</h2>
+     {filtersVisible && (
       <div className="filters-body">
+        <h2>Фильтр</h2>
         <div className="filter-price-text">Цена, Р</div>
         <div className="filter-price">
           <label className="filter-input-price">
@@ -175,6 +229,7 @@ function FilterProducts() {
           </div>
         </div>
       </div>
+      )}
       {filtersApplied ? (
             <MainButton 
           onClick={clearFilters}
@@ -184,7 +239,7 @@ function FilterProducts() {
           />
       ) : (
         <MainButton 
-          onClick={applyFiltersAndSort}
+          onClick={handleFiltersChange}
           text={`Применить фильтр`}
           color={color}
           textColor={textColor}
@@ -192,22 +247,28 @@ function FilterProducts() {
       )}
       <h3>Результаты фильтрации и сортировки:</h3>
       {filteredProducts.length === 0 ? (
-        <p>Нет товаров, соответствующих выбранным критериям.</p>
+        <p></p>
       ) : (
-        <main>
-          {filteredProducts.map((product) => (
-            <div className="item" key={product.id}>
-              <Link to={`/products/${product.id}`}>
-                <img src={product.img[0]} alt="" />
-                <h4>{product.price}₽</h4>
-                <p>{product.name}</p>
-                <button className="add-item">
-                  <div className="buy-item">Купить</div>
-                </button>
-              </Link>
-            </div>
-          ))}
-        </main>
+        <div>
+          <div className="active-filter-text">
+            <span>
+              {activeFiltersText}</span>
+          </div>
+          <main>
+            {filteredProducts.map((product) => (
+              <div className="item" key={product.id}>
+                <Link to={`/products/${product.id}`}>
+                  <img src={product.img[0]} alt="" />
+                  <h4>{product.price}₽</h4>
+                  <p>{product.name}</p>
+                  <button className="add-item">
+                    <div className="buy-item">Купить</div>
+                  </button>
+                </Link>
+              </div>
+            ))}
+          </main>
+        </div>
       )}
     </div>
   );
