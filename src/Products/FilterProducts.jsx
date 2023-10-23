@@ -178,14 +178,14 @@ function FilterProducts() {
       {filtersApplied ? (
             <MainButton 
           onClick={clearFilters}
-          text=`Cбросить фильры`
+          text={`Сбросить фильтр`}
           color={color}
           textColor={textColor}
           />
       ) : (
         <MainButton 
           onClick={applyFiltersAndSort}
-          text=`Применить Фильтр`
+          text={`Применить фильтр`}
           color={color}
           textColor={textColor}
           />
