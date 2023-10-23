@@ -3,6 +3,7 @@ import productsData from './productsData';
 import { Link } from 'react-router-dom';
 import './css/item.css';
 import './css/filter.css';
+import { MainButton } from "@twa-dev/sdk/react" 
 
 function FilterProducts() {
   const [selectedCategories, setSelectedCategories] = useState([]); // Состояние для выбранных категорий
@@ -11,7 +12,12 @@ function FilterProducts() {
   const [sortBy, setSortBy] = useState(''); // Состояние для выбора сортировки
   const [filtersApplied, setFiltersApplied] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState([]); // Состояние для отфильтрованных товаров
-
+  const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
+  const [textColor] = useState(
+    window.Telegram.WebApp.themeParams.button_text_color
+  );
+  const [text] = useState("Перейти к оплате");
+  
   // Функция, которая обрабатывает изменение выбранных категорий
   const handleCategoryChange = (category) => {
     if (selectedCategories.includes(category)) {
@@ -170,13 +176,19 @@ function FilterProducts() {
         </div>
       </div>
       {filtersApplied ? (
-        <div>
-          <button onClick={clearFilters}>Сбросить фильтры</button>
-        </div>
+            <MainButton 
+          onClick={clearFilters}
+          text=`Cбросить фильры`
+          color={color}
+          textColor={textColor}
+          />
       ) : (
-        <div>
-          <button onClick={applyFiltersAndSort}>Применить фильтр</button>
-        </div>
+        <MainButton 
+          onClick={applyFiltersAndSort}
+          text=`Применить Фильтр`
+          color={color}
+          textColor={textColor}
+          />
       )}
       <h3>Результаты фильтрации и сортировки:</h3>
       {filteredProducts.length === 0 ? (
