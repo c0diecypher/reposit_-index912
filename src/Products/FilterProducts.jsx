@@ -245,7 +245,6 @@ function FilterProducts() {
           textColor={textColor}
           />
       )}
-      <h3>Результаты фильтрации и сортировки:</h3>
       {filteredProducts.length === 0 ? (
         <p></p>
       ) : (
