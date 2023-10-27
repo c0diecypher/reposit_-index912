@@ -10,6 +10,7 @@
   --tg-bg: var(--tg-theme-bg-color, #f2f4f6);
   --tg-second: var(--tg-theme-secondary-bg-color, #ededed);
   --tg-text: var(--tg-theme-text-color, #000);
+  --tg-button-text: var(--tg-theme-button-text-color, #fff);
 }
 
 
@@ -96,3 +97,31 @@ main {
     border: 1px solid var(--tg-text);
     
   }
+
+  .item:focus {
+    outline: none;
+  }
+  
+  main .item:active{
+    letter-spacing: normal;
+    transform: translateY(2px);
+    box-shadow: none;
+    transform: scale(0.94);
+    transition: 0.2s;
+    
+  }
+
+  .item:active .add-item {
+    /* Ваши стили для кнопки .add-item при активации .item */
+    background-color: var(--tg-text); /* Замените 'your-active-button-color' на желаемый цвет фона кнопки .add-item при активации */
+    transition: linear 0.2s;
+  }
+  
+  /* Стили для текста кнопки .buy-item при активации .item */
+  .item:active .add-item .buy-item {
+    /* Ваши стили для текста кнопки .buy-item при активации .item */
+    color: var(--tg-button-text); /* Замените 'your-active-button-text-color' на желаемый цвет текста кнопки .buy-item при активации */
+    transition: linear 0.2s;
+  }
+
+  
