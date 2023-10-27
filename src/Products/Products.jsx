@@ -35,12 +35,14 @@ const Products = () => {
       {items.map((product) => (
         <div className="item" key={product.id}>
           <Link to={`/products/${product.id}`}>
-            <img src={product.img[0]} alt="" />
-            <h4>{product.price}</h4>
-            <p>{product.name}</p>
-            <button className="add-item">
-              <div className="buy-item">Купить</div>
-            </button>
+            <div className="item-img">
+              <img src={product.img[0]} alt="" />
+            </div>
+              <h4>{product.price}</h4>
+              <p>{product.name}</p>
+              <button className="add-item">
+                <div className="buy-item">Купить</div>
+              </button>
           </Link>
         </div>
       ))}
