@@ -83,7 +83,7 @@ main {
     padding: 6px 10px;
     font-size: 12px;
     line-height: 18px;
-    color: #fff;
+    color: var(--tg-text);
   }
   .add-item{
     flex-shrink: 0;
@@ -92,6 +92,7 @@ main {
     width: 92%;
     border: none;
     margin-bottom: 2px;
-    background: #393939;
+    background-color: #0000;
+    border: 1px solid var(--tg-text);
     
   }
