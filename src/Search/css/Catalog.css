@@ -9,11 +9,12 @@
   --accent: #007cff;
   --tg-bg: var(--tg-theme-bg-color, #f2f4f6);
   --tg-second-bg:  var(--tg-theme-secondary-bg-color, #ffffff);
+  --tg-text: var(--tg-theme-text-color);
 }
 
 
 .catalog-head {
-    color: var(--button-text-color);
+    color: var(--tg-text);
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -47,7 +48,7 @@
     color: var(--text-color);
     padding: 0;
     text-decoration: none;
-    color: var(--button-text-color);
+    color: var(--tg-text);
   }
   
   .button-search-ico svg {
