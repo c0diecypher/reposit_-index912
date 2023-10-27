@@ -116,7 +116,7 @@ main {
   }
   
   .item:active .add-item .buy-item {
-    color: var(--tg-button-text); 
+    color: var(--tg-bg); 
     transition: linear 0.2s;
   }
 
