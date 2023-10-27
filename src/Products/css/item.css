@@ -22,6 +22,7 @@ main {
     justify-content: center;
     gap: 2px;
     margin-top: 4px;
+    user-select: none;
     background: var(--tg-bg);
   }
   
@@ -30,6 +31,7 @@ main {
   }
   
   main .item {
+    user-select: none;
     width: 45%;
     min-width: none;
     background-color: var(--tg-second);
