@@ -8,17 +8,16 @@
   --button-color: var(--tg-theme-button-color, #007cff);
   --background-secondary: var(--tg-theme-secondary-bg-color, #f3f2f8);
   --accent: #007cff;
+  --tg-bg: var(--tg-theme-bg-color, #f2f4f6);
 }
 
 
 
 body {
   user-select: none;
-  background-color: #e4e4e4;
   color: rgb(39, 39, 39);
   font-family: "Roboto", sans-serif;
-  
-  background-color: #e4e4e4;
+  background: var(--tg-bg);
 }
 
 body::-webkit-scrollbar {
@@ -32,48 +31,6 @@ body::-webkit-scrollbar {
   padding-bottom: 4px;
   position: relative;
 }
-
-.images-slider-images::-webkit-scrollbar {
-    display: none;
-  }
-  .images-slider-wrapper{
-    position: relative;
-    background: #fff;
-    z-index: 9999;
-  }
-
-  .images-slider-images{
-    display: grid;
-    grid-auto-flow: column;
-    width: 100%;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-  }
-
-  .images-slider-image-item{
-    padding: 0 12px;
-
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-  }
-
-  .image-item-wrapper{
-    
-    width: calc(100vw - 20px);
-    display: block;
-    
-  }
-  
-  .image-item-wrapper img{
-    margin-top: 4%;
-    margin-bottom: 4%;
-    object-fit: cover;
-    -webkit-user-select: none;
-    user-select: none;
-    pointer-events: none;
-    width: 100%;
-  }
-
 
 .full-item-price {
   font-style: normal;
@@ -261,4 +218,45 @@ hr{
   .help-stories{
    margin-left: 0;
    padding: 0; 
+  }
+
+  .images-slider-images::-webkit-scrollbar {
+    display: none;
+  }
+  .images-slider-wrapper{
+    position: relative;
+    background: #fff;
+    z-index: 9999;
+  }
+
+  .images-slider-images{
+    display: grid;
+    grid-auto-flow: column;
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .images-slider-image-item{
+    padding: 0 12px;
+
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .image-item-wrapper{
+    
+    width: calc(100vw - 20px);
+    display: block;
+    
+  }
+  
+  .image-item-wrapper img{
+    margin-top: 4%;
+    margin-bottom: 4%;
+    object-fit: cover;
+    -webkit-user-select: none;
+    user-select: none;
+    pointer-events: none;
+    width: 100%;
   }
