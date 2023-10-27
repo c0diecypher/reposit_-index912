@@ -22,7 +22,6 @@ main {
     justify-content: center;
     gap: 2px;
     margin-top: 4px;
-    user-select: none;
     background: var(--tg-bg);
   }
   
@@ -31,7 +30,6 @@ main {
   }
   
   main .item {
-    user-select: none;
     width: 45%;
     min-width: none;
     background-color: var(--tg-second);
@@ -63,14 +61,13 @@ main {
     font-weight: 400;
     font-size: 12px;
     height: 20px;
+    width: 90%;
+    padding-left: 5%;
     color: var(--tg-text);
   }
   
   main .item-info{
-    z-index: 1; 
-    position: relative;
-    background: #e4e5;
-    border-radius: 17px;
+    margin-top: 32px;
   }
 
   main .item h4 {
@@ -78,7 +75,7 @@ main {
     text-align: left;
     padding-left: 5%;
     font-weight: 700;
-    margin-top: 32px;
+    margin: 0;
     color: var(--tg-text);
   }
   .buy-item {
@@ -114,13 +111,12 @@ main {
   }
 
   .item:active .add-item {
-    background-color: var(--tg-text); /* Замените 'your-active-button-color' на желаемый цвет фона кнопки .add-item при активации */
+    background-color: var(--tg-text);
     transition: linear 0.2s;
   }
   
-  
   .item:active .add-item .buy-item {
-    color: var(--tg-bg);
+    color: var(--tg-button-text); 
     transition: linear 0.2s;
   }
 
