@@ -7,7 +7,6 @@
   max-width: 100%;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: #e4e4e4;
 }
 
 .wrapper__form__container_input_ {
@@ -54,37 +53,3 @@
   text-align: left;
 }
 
-.item {
-  width: 45%;
-  min-width: none;
-  background-color: #fff;
-  border-radius: 20px;
-  margin: 6px;
-  padding-bottom: 4px;
-  position: relative;
-}
-
-.item img {
-  width: 90%;
-  border-radius: 17px;
-  user-select: none;
-}
-
-.item p {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  text-align: left;
-  font-weight: 400;
-  font-size: 12px;
-  height: 20px;
-  padding-left: 5%;
-}
-
-.item h4 {
-  font-size: 14px;
-  text-align: left;
-  padding-left: 5%;
-  font-weight: 700;
-  margin: 0px;
-}
