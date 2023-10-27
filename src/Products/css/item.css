@@ -112,15 +112,13 @@ main {
   }
 
   .item:active .add-item {
-    /* Ваши стили для кнопки .add-item при активации .item */
     background-color: var(--tg-text); /* Замените 'your-active-button-color' на желаемый цвет фона кнопки .add-item при активации */
     transition: linear 0.2s;
   }
   
-  /* Стили для текста кнопки .buy-item при активации .item */
+  
   .item:active .add-item .buy-item {
-    /* Ваши стили для текста кнопки .buy-item при активации .item */
-    color: var(--tg-theme-link-color); /* Замените 'your-active-button-text-color' на желаемый цвет текста кнопки .buy-item при активации */
+    color: var(--tg-bg);
     transition: linear 0.2s;
   }
 
