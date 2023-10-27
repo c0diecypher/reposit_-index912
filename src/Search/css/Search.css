@@ -1,5 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 
+:root {
+  --space-4x: 16px;
+  --space-6x: 0%;
+  --space-8x: 32px;
+  --button-text-color: var(--tg-theme-button-text-color, #fff);
+  --color: var(--tg-theme-button-color, #393939);
+  --button-color: var(--tg-theme-button-color, #007cff);
+  --accent: #007cff;
+  --tg-bg: var(--tg-theme-bg-color, #f2f4f6);
+  --tg-second: var(--tg-theme-secondary-bg-color, #ededed);
+  --tg-text: var(--tg-theme-text-color, #000);
+  --tg-button-text: var(--tg-theme-button-text-color, #fff);
+}
+
+
 .wrapper__form__container {
   z-index: 9;
   width: 100%;
@@ -36,20 +51,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #393939;
+  color: var(--tg-text);
+  opacity: 0.8;
 }
 
 .wrapper__form__container_input_ input {
   position: relative;
   font-size: 17px;
-  line-height: 210%;
+  line-height: 200%;
   flex: 1 1;
   width: 100%;
-  padding: 8px 15px 8px 42px;
-  background: #fff;
+  padding: 8px 15px 8px 38px;
+  background: var(--tg-second);
   border: none;
   outline: none;
-  color: #000000;
   text-align: left;
 }
 
+::placeholder{
+  color: var(--tg-text);
+  opacity: 0.8;
+}
