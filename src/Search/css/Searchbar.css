@@ -4,6 +4,13 @@
   --space-4x: 16px;
   --space-6x: 0%;
   --space-8x: 32px;
+  --button-text-color: var(--tg-theme-button-text-color, #fff);
+  --color: var(--tg-theme-button-color, #393939);
+  --button-color: var(--tg-theme-button-color, #007cff);
+  --background-secondary: var(--tg-theme-secondary-bg-color, #f3f2f8);
+  --accent: #007cff;
+  --tg-bg: var(--tg-theme-bg-color, #f2f4f6);
+  --tg-second-bg:  var(--tg-theme-secondary-bg-color, #ffffff);
 }
 
 .wrapper__form__container__ {
@@ -11,7 +18,7 @@
   width: auto;
   margin-left: var(--space-4x);
   margin-right: var(--space-4x);
-  background-color: #e4e4e4;
+
 }
 
 .wrapper__form__container_input {
@@ -54,7 +61,7 @@
   flex: 1 1;
   width: 100%;
   padding: 8px 15px 8px 42px;
-  background: #fff;
+  background: var(--tg-second-bg);
   border: none;
   outline: none;
   border-radius: 20px;
@@ -70,8 +77,6 @@
   letter-spacing: normal;
   transform: translateY(4px);
   box-shadow: none;
-  outline: none; /* Убираем контур (серый квадрат) */
-  background-color: transparent; /* Прозрачный фон */
   transform: scale(0.94);
   transition: 0.1s;
 }
