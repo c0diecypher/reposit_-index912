@@ -1,6 +1,14 @@
 :root {
   --space-4x: 16px;
   --space-6x: 0%;
+  --space-8x: 32px;
+  --button-text-color: var(--tg-theme-button-text-color, #fff);
+  --color: var(--tg-theme-button-color, #393939);
+  --button-color: var(--tg-theme-button-color, #007cff);
+  --accent: #007cff;
+  --tg-bg: var(--tg-theme-bg-color, #f2f4f6);
+  --tg-second: var(--tg-theme-secondary-bg-color, #ededed);
+  --tg-text: var(--tg-theme-text-color, #000);
 }
 
 
@@ -52,23 +60,22 @@ a{
 .btn_block svg {
   width: 26px;
   height: 26px;
-  color: #5c7cfa;
+  color: var(--tg-text);
   margin-left: 1px;
 }
 
 .nav-form .btn_block {
-  background: #fff;
-  border: none;
+  background: var(--tg-second);
+  border: 1px solid var(--tg-text);
   padding: 4px 10px 4px 4px;
   border-radius: 20px;
   gap: 4px;
   display: flex;
   align-items: center;
   flex-direction: row;
-  color: var(--text-color);
+  color: var(--tg-text);
   font-weight: 500;
-  font-size: 16px;
-  line-height: 110%;
+  font-size: 14px;
   font-family: "Roboto", sans-serif;
 }
 
@@ -84,8 +91,6 @@ a{
 }
 
 .btn_block:active {
-  outline: none; /* Убираем контур (серый квадрат) */
-  background-color: transparent; /* Прозрачный фон */
   letter-spacing: normal;
   transform: translateY(2px);
   box-shadow: none;
@@ -98,8 +103,6 @@ a{
 }
 
 .usercard_block:active {
-  outline: none; /* Убираем контур (серый квадрат) */
-  background-color: transparent; /* Прозрачный фон */
   letter-spacing: normal;
   transform: translateY(2px);
   box-shadow: none;
