@@ -88,20 +88,3 @@
   font-weight: 700;
   margin: 0px;
 }
-.buy-item {
-  text-align: center;
-  padding: 6px 10px;
-  font-size: 12px;
-  line-height: 18px;
-  color: #fff;
-}
-.add-item{
-  flex-shrink: 0;
-  font-weight: 500;
-  border-radius: 18px;
-  width: 92%;
-  border: none;
-  margin-bottom: 2px;
-  background: #393939;
-  
-}
