@@ -84,7 +84,7 @@ a{
   font-weight: 400;
   font-size: 10px;
   line-height: 120%;
-  color: linear-gradient(rgb(250,250,250) 0%, rgb(230,230,230) 100%);
+  color: var(--tg-theme-hint-color);
 }
 
 .btn_block:focus {
