@@ -1,3 +1,19 @@
+
+:root {
+  --space-4x: 16px;
+  --space-6x: 0%;
+  --space-8x: 32px;
+  --button-text-color: var(--tg-theme-button-text-color, #fff);
+  --color: var(--tg-theme-button-color, #393939);
+  --button-color: var(--tg-theme-button-color, #007cff);
+  --background-secondary: var(--tg-theme-secondary-bg-color, #f3f2f8);
+  --accent: #007cff;
+  --tg-bg: var(--tg-theme-bg-color, #f2f4f6);
+  --tg-second-bg:  var(--tg-theme-secondary-bg-color, #ffffff);
+}
+
+
+
 main {
     display: flex;
     max-width: 100%;
@@ -5,7 +21,7 @@ main {
     justify-content: center;
     gap: 2px;
     margin-top: 4px;
-    background: #e4e4e4;
+    background: var(--tg-bg);
   }
   
   .item p {
