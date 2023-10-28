@@ -3,14 +3,14 @@ import { useTelegram } from "../Hooks/useTelegram";
 import { InitialsAvatar } from "@twa-dev/mark42";
 import "../../css/body.css"
 
-function UserProfile() {
+function UserProfile({ userId }) {
   const { tg, user } = useTelegram();
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     // Замените 'userId' на фактический ID пользователя, информацию о котором вы хотите получить
-    const userId = '';
+    const userId = `${userId}`;
 
     // Выполняем GET-запрос на сервер для получения информации о пользователе
     fetch(`https://zipperconnect.space/userProfile/${userId}`)
