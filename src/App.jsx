@@ -83,6 +83,7 @@ function App() {
           // Проверяем, что пользователь имеет свойство "id"
           if (user && user.id) {
             const userId = user.id;
+            setUserId(userId);
             console.log('User ID:', userId);
           }
         }
