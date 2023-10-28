@@ -65,6 +65,8 @@ function App() {
     setDataFromMainButton(data); // Сохраняем данные в состоянии
     // Выполняйте здесь другие действия с данными, если необходимо
   };
+
+  const [userId, setUserId] = useState("");
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -125,7 +127,7 @@ function App() {
             {tg.expand()}
             {tg.enableClosingConfirmation()}
 
-            <Header />
+            <Header userId={userId} />
             <Searchbar />
             <Stories />
             {cart.length > 0 && (
