@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import CloudStorage from './CloudStorage';
 import UserProfile from './UserProfile';
 
-function ProfilePage() {
+function ProfilePage({userId}) {
   const { user } = useTelegram();
   useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
