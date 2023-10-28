@@ -40,6 +40,7 @@ a{
   border-radius: 999999px;
   width: 42px;
   height: 42px;
+  margin-left: 0var(--space-4x);
 }
 
 .user_block_svg {
