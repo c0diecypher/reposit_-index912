@@ -74,10 +74,15 @@ function App() {
          
         console.log('данные2:', initDataString);
         const userMatch = /user=([^&]+)/.exec(initDataString);
-        if (userMatch) {
+          if (userMatch) {
           const userString = userMatch[1];
           const user = JSON.parse(decodeURIComponent(userString));
-          console.log(user);
+        
+          // Проверяем, что пользователь имеет свойство "id"
+          if (user && user.id) {
+            const userId = user.id;
+            console.log('User ID:', userId);
+          }
         }
         
         const headers = new Headers();
