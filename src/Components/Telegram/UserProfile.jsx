@@ -7,7 +7,7 @@ function UserProfile({ userId }) {
   const { tg, user } = useTelegram();
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState(null);
-
+  console.log('айдишник',userId)
   useEffect(() => {
     // Замените 'userId' на фактический ID пользователя, информацию о котором вы хотите получить
     // Выполняем GET-запрос на сервер для получения информации о пользователе
