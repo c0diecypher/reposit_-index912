@@ -10,7 +10,7 @@ function UserProfile({ userId }) {
 
   useEffect(() => {
     // Замените 'userId' на фактический ID пользователя, информацию о котором вы хотите получить
-    const userId = `${userId}`;
+    const userId = userId;
 
     // Выполняем GET-запрос на сервер для получения информации о пользователе
     fetch(`https://zipperconnect.space/userProfile/${userId}`)
