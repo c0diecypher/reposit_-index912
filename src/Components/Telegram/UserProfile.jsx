@@ -10,7 +10,7 @@ function UserProfile() {
 
   useEffect(() => {
     // Замените 'userId' на фактический ID пользователя, информацию о котором вы хотите получить
-    const userId = 'userId';
+    const userId = '';
 
     // Выполняем GET-запрос на сервер для получения информации о пользователе
     fetch(`https://zipperconnect.space/userProfile/${userId}`)
@@ -23,6 +23,7 @@ function UserProfile() {
       .then((data) => {
         // Обработка успешного ответа
         setUserData(data);
+        console.log('Received user data:', data);
       })
       .catch((err) => {
         // Обработка ошибки
