@@ -147,7 +147,7 @@ function App() {
         element={
           <div>
             <BackButton />
-            <ProfilePage />
+            <ProfilePage userId={userId} />
           </div>
         }
         >
