@@ -8,11 +8,13 @@ function UserProfile({ userId }) {
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState(null);
   console.log('айдишник',userId)
+
+   const userValueId = { userId}
   useEffect(() => {
     // Замените 'userId' на фактический ID пользователя, информацию о котором вы хотите получить
-    const userId = {userId}
+    const userId = userValueId
     // Выполняем GET-запрос на сервер для получения информации о пользователе
-    fetch(`https://zipperconnect.space/userProfile/${userId}`)
+    fetch(`https://zipperconnect.space/userProfile/${userValueId}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
