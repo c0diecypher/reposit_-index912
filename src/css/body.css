@@ -36,6 +36,12 @@ a{
   
 }
 
+.usercard_avatar img{
+  border-radius: 20px;
+  width: 62px;
+  height: 62px;
+}
+
 .user_block_svg {
   width: 12px;
   height: 12px;
