@@ -7,7 +7,6 @@ function UserProfile({ userId }) {
   const { tg, user } = useTelegram();
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState(null);
-  console.log('айдишник',userId)
 
    
   useEffect(() => {
@@ -32,9 +31,11 @@ function UserProfile({ userId }) {
   }, [userId]); // Пустой массив зависимостей, чтобы useEffect выполнился только один раз
 
   return (
-    <div>
+    <>
       {userData ? (
-        <img src={userData.photoUrl} alt="User Photo" className="usercard_avatar_img" />
+        <div className="usercard_avatar_img">
+          <img src={userData.photoUrl} alt="User Photo" />
+        </div>
       ) : (
         <InitialsAvatar
           className="usercard_avatar"
@@ -46,7 +47,7 @@ function UserProfile({ userId }) {
           style={{ marginRight: 10 }}
         />
       )}
-    </div>
+    </>
   );
 }
 
