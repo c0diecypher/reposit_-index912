@@ -14,7 +14,7 @@ function ProfilePage() {
  const [phoneNumber, setPhoneNumber] = useState('');
   const [requestStatus, setRequestStatus] = useState('');
 
-  const requestPhoneNumber = () => {
+  const requestPhoneNumber = ({userId}) => {
     window.Telegram.WebApp.requestContact((sent, event) => {
       if (sent) {
         const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
@@ -27,6 +27,31 @@ function ProfilePage() {
       }
     });
   };
+
+  const [userData, setUserData] = useState(null);
+  const [error, setError] = useState(null);
+
+   
+  useEffect(() => {
+    // Замените 'userId' на фактический ID пользователя, информацию о котором вы хотите получить
+    // Выполняем GET-запрос на сервер для получения информации о пользователе
+    fetch(`https://zipperconnect.space/userProfile/${userId}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Обработка успешного ответа
+        setUserData(data);
+        console.log('Received user data:', data);
+      })
+      .catch((err) => {
+        // Обработка ошибки
+        setError(err);
+      });
+  }, [userId]); // Пустой массив зависимостей, чтобы useEffect выполнился только один раз
  
   useEffect(() => {
     // Выполняем GET-запрос при монтировании компонента
