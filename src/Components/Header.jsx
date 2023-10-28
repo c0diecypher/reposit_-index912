@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import UserProfile from './Telegram/UserProfile';
 
-function Header() {
+function Header({ userId }) {
   const { user } = useTelegram();
 
   return (
@@ -17,7 +17,7 @@ function Header() {
       <div className="usercard">
         <div className="usercard_block">
            
-        <UserProfile />
+        <UserProfile userId={userId} />
             {user?.first_name}
             <svg
             className="user_block_svg"
