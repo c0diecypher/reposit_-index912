@@ -73,7 +73,7 @@ function ProfilePage({userId}) {
                 <div className="profile-avatar-transparent">
                     <div className="profile-avatar">
                     {userData ? (
-                        <div className="usercard_avatar">
+                        <div className="profile-avatar">
                           <img src={userData.photoUrl} alt="User Photo" className="usercard_avatar_img" />
                         </div>
                       ) : (
