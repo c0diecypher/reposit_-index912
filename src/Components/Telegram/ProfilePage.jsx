@@ -72,16 +72,22 @@ function ProfilePage() {
             <div className="profile-avatar-box">
                 <div className="profile-avatar-transparent">
                     <div className="profile-avatar">
-                    
-                    <InitialsAvatar
-                        className="profile-avatar"
-                        userName={user?.first_name}
-                        entityId={2}
-                        entityName={`${user?.first_name}`}
-                        size={100}
-                        theme="apple"
-                        
-        />
+                    {userData ? (
+                        <div className="usercard_avatar">
+                          <img src={userData.photoUrl} alt="User Photo" className="usercard_avatar_img" />
+                        </div>
+                      ) : (
+                        <InitialsAvatar
+                          className="usercard_avatar"
+                          userName={user?.first_name}
+                          entityId={2}
+                          entityName={`${user?.first_name}`}
+                          size={42}
+                          theme="apple"
+                          style={{ marginRight: 10 }}
+                        />
+                      )}
+                                  
                     </div>
              <div className="profile-name">{user?.first_name}</div>
                   
