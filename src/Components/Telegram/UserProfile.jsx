@@ -33,8 +33,8 @@ function UserProfile({ userId }) {
   return (
     <>
       {userData ? (
-        <div className="usercard_avatar_img">
-          <img src={userData.photoUrl} alt="User Photo" />
+        <div className="usercard_avatar">
+          <img src={userData.photoUrl} alt="User Photo" className="usercard_avatar_img" />
         </div>
       ) : (
         <InitialsAvatar
