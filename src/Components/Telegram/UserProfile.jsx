@@ -35,7 +35,7 @@ function UserProfile({ userId }) {
     <div>
       <p>{userId}</p>
       {userData ? (
-        <img src={userData.photoUrl} alt="User Photo" className="usercard_avatar" />
+        <img src={userData.photoUrl} alt="User Photo" className="usercard_avatar_img" />
       ) : (
         <InitialsAvatar
           className="usercard_avatar"
