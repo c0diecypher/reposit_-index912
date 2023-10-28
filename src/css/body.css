@@ -37,9 +37,9 @@ a{
 }
 
 .usercard_avatar_img{
-  border-radius: 20px;
-  width: 62px;
-  height: 62px;
+  border-radius: 999999px;
+  width: 42px;
+  height: 42px;
 }
 
 .user_block_svg {
