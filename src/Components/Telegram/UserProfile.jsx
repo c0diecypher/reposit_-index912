@@ -5,24 +5,35 @@ import "../../css/body.css"
 
 function UserProfile() {
   const { tg, user } = useTelegram();
-  const [profilePhoto, setProfilePhoto] = useState("");
+  const [userData, setUserData] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Проверяем, доступен ли объект tg.user
-    if (tg.user) {
-      // Получаем URL фото профиля пользователя
-      const photoUrl = tg.user.photo?.small;
+    // Замените 'userId' на фактический ID пользователя, информацию о котором вы хотите получить
+    const userId = 'userId';
 
-      if (photoUrl) {
-        setProfilePhoto(photoUrl);
-      }
-    }
-  }, [tg.user]);
+    // Выполняем GET-запрос на сервер для получения информации о пользователе
+    fetch(`https://zipperconnect.space/userProfile/${userId}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Обработка успешного ответа
+        setUserData(data);
+      })
+      .catch((err) => {
+        // Обработка ошибки
+        setError(err);
+      });
+  }, []); // Пустой массив зависимостей, чтобы useEffect выполнился только один раз
 
   return (
     <div>
-      {profilePhoto ? (
-        <img src={profilePhoto} alt="user" />
+      {userData ? (
+        <img src={userData.photoUrl} alt="User Photo" />
       ) : (
         <InitialsAvatar
           className="usercard_avatar"
