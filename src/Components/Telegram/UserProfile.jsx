@@ -31,6 +31,7 @@ function UserProfile({ userId }) {
 
   return (
     <div>
+      <p>{userId}</p>
       {userData ? (
         <img src={userData.photoUrl} alt="User Photo" />
       ) : (
