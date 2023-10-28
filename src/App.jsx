@@ -127,7 +127,6 @@ function App() {
           <div>
             {tg.expand()}
             {tg.enableClosingConfirmation()}
-            <p>User ID: {userId}</p>
             <Header userId={userId} />
             <Searchbar />
             <Stories />
