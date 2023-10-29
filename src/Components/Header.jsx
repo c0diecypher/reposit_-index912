@@ -38,7 +38,7 @@ function Header({ userId }) {
         
       </div>
        </Link>
-       <a href="https://t.me/zipperwear" target="_blank" rel="noopener noreferrer">
+       <a href="https://t.me/zipper_store" target="_blank" rel="noopener noreferrer">
         <button className="btn_block" onClick={() => {}}>
           <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -51,7 +51,7 @@ function Header({ userId }) {
             ></path>
           </svg>
           <div>
-            @zipperstore
+            @zipper_store
             <div className="btn_block_title">наш telegram-канал</div>
           </div>
         </button>
