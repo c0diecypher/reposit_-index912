@@ -139,6 +139,32 @@ function FilterProducts() {
     setFiltersVisible(true);
   };
 
+  const handleMinPriceChange = (e) => {
+    // Используем регулярное выражение, чтобы удалить все нецифровые символы из введенного значения
+    const value = e.target.value.replace(/\D/g, '');
+
+    // Убеждаемся, что значение не превышает 7 знаков
+    if (value.length > 7) {
+      return;
+    }
+
+    // Обновляем состояние минимальной цены
+    setMinPrice(value);
+  };
+
+  const handleMaxPriceChange = (e) => {
+    // Используем регулярное выражение, чтобы удалить все нецифровые символы из введенного значения
+    const value = e.target.value.replace(/\D/g, '');
+
+    // Убеждаемся, что значение не превышает 7 знаков
+    if (value.length > 7) {
+      return;
+    }
+
+    // Обновляем состояние максимальной цены
+    setMaxPrice(value);
+  };
+
   const uniqueCategories = getUniqueCategories(productsData);
 
   return (
@@ -154,7 +180,7 @@ function FilterProducts() {
               className="filter-price-label-input"
               type="text"
               value={minPrice}
-              onChange={(e) => setMinPrice(e.target.value)}
+              onChange={handleMinPriceChange}
             />
           </label>
           <label className="filter-input-price">
@@ -163,7 +189,7 @@ function FilterProducts() {
               className="filter-price-label-input"
               type="text"
               value={maxPrice}
-              onChange={(e) => setMaxPrice(e.target.value)}
+              onChange={handleMaxPriceChange}
             />
           </label>
         </div>
