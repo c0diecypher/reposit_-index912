@@ -27,7 +27,7 @@ function UserProfile({ userId }) {
         // Обработка ошибки
         setError(err);
       });
-  }, []); // Пустой массив зависимостей, чтобы useEffect выполнился только один раз
+  }, [userId]);
 
   return (
     <>
