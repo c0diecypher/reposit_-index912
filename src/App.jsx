@@ -82,7 +82,7 @@ function App() {
         
           // Проверяем, что пользователь имеет свойство "id"
           if (user && user.id) {
-            const userId = user.id;
+            const userId = user.id.toString();
             setUserId(userId);
             
           }
