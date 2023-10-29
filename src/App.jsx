@@ -30,7 +30,7 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const handleSendData = useCallback((data) => {
     // Handle the data received from ProductConfirm here
-    console.log("Data received in App.js:", data);
+    // console.log("Data received in App.js:", data);
   }, []);
   const { tg } = useTelegram();
   // Состояние корзины
@@ -74,7 +74,7 @@ function App() {
         const initDataString = hashParams.get('tgWebAppData');
         const initData = new URLSearchParams(hashParams.get('tgWebAppData'));
          
-        console.log('данные2:', initDataString);
+       
         const userMatch = /user=([^&]+)/.exec(initDataString);
           if (userMatch) {
           const userString = userMatch[1];
@@ -84,7 +84,7 @@ function App() {
           if (user && user.id) {
             const userId = user.id;
             setUserId(userId);
-            console.log('User ID:', userId);
+            
           }
         }
         
@@ -108,9 +108,9 @@ function App() {
         }
 
         const data = await response.json();
-        console.log(data);
+        //console.log(data);
       } catch (error) {
-        console.error(error);
+        //console.error(error);
       }
     };
 
@@ -143,7 +143,7 @@ function App() {
 
         </Route>
         <Route
-        path="/profile/"
+        path="/profile/${userId}"
         element={
           <div>
             <BackButton />
