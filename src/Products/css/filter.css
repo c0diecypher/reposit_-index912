@@ -32,8 +32,7 @@
       display: flex;
       flex-direction: column;
       gap: 15px;
-      margin-left: var(--space-4x);
-      margin-right: var(--space-4x);
+      margin: var(--space-4x) var(--space-4x) 0 var(--space-4x);
   }
 
 .filters-item{
