@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import './css/item.css';
 import './css/filter.css';
 import { MainButton } from "@twa-dev/sdk/react" 
+import { BackButton } from "@twa-dev/sdk/react" 
 
 function FilterProducts() {
   const [selectedCategories, setSelectedCategories] = useState([]); // Состояние для выбранных категорий
@@ -257,11 +258,8 @@ function FilterProducts() {
       </div>
       )}
       {filtersApplied ? (
-            <MainButton 
+            <BackButton 
           onClick={clearFilters}
-          text={`Сбросить фильтр`}
-          color={color}
-          textColor={textColor}
           />
       ) : (
         <MainButton 
