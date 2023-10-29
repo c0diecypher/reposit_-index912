@@ -212,13 +212,39 @@
 }
 
 .active-filter-text{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
     padding: 10px;
     background: var(--tg-bg);
-    color: var(--tg-text);
-    text-align: left;
+    font-style: normal;
+    font-weight: 400;
     font-size: 14px;
     line-height: 120%;
-}
+    border-radius: 10px;
+    gap: 10px;
+    margin: 0 var(--space-4x) 0 var(--space-4x);
+  }
+
+  .active-filter-text span{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    transition: color, .4s ease-in-out;
+  }
+
+  .active-filter-btn{
+    color: var(--tg-text);
+    padding: 0;
+    border: none;
+    background-color: #0000;
+  }
+
+  .active-filter-btn svg{
+    width: 20px;
+    height: 20px;
+  }
 
 .active-filter-h3{
     font-size: 14px;
