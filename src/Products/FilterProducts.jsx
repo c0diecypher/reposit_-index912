@@ -257,15 +257,19 @@ function FilterProducts() {
           <main>
             {filteredProducts.map((product) => (
               <div className="item" key={product.id}>
-                <Link to={`/products/${product.id}`}>
+              <Link to={`/products/${product.id}`}>
+                <div className="item-img">
                   <img src={product.img[0]} alt="" />
-                  <h4>{product.price}₽</h4>
+                </div>
+                  <div className="item-info">
+                  <h4>{product.price}</h4>
                   <p>{product.name}</p>
                   <button className="add-item">
                     <div className="buy-item">Купить</div>
                   </button>
-                </Link>
-              </div>
+                  </div>
+              </Link>
+            </div>
             ))}
           </main>
         </>
