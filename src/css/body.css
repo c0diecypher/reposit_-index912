@@ -74,7 +74,7 @@ a{
 }
 
 .nav-form .btn_block {
-  background: var(--tg-bg);
+  background: var(--tg-second);
   border: 1px solid var(--tg-text);
   padding: 4px 10px 4px 4px;
   border-radius: 20px;
