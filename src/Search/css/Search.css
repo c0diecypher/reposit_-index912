@@ -62,7 +62,7 @@
   flex: 1 1;
   width: 100%;
   padding: 8px 15px 8px 38px;
-  background: var(--tg-second);
+  background: var(--tg-bg);
   border: none;
   outline: none;
   text-align: left;
