@@ -22,7 +22,7 @@ main {
     justify-content: center;
     gap: 2px;
     margin-top: 4px;
-    background: var(--tg-bg);
+    background: var(--tg-second);
   }
   
   .item p {
@@ -32,7 +32,7 @@ main {
   main .item {
     width: 45%;
     min-width: none;
-    background-color: var(--tg-second);
+    background-color: var(--tg-bg);
     border-radius: 20px;
     margin: 6px;
     padding-bottom: 4px;
@@ -116,7 +116,7 @@ main {
   }
   
   .item:active .add-item .buy-item {
-    color: var(--tg-bg); 
+    color: var(--tg-second); 
     transition: linear 0.2s;
   }
 
