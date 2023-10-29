@@ -16,9 +16,6 @@
 
 body {
   user-select: none;
-  background: #e4e4e4;
-  color: rgb(39, 39, 39);
-  background-color: #e4e4e4;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
 }
@@ -29,7 +26,6 @@ body::-webkit-scrollbar {
 
 .wrapper {
   width: 100%;
-  background: #e4e4e4;
 }
 
 .version {
