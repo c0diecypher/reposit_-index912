@@ -143,7 +143,7 @@ function App() {
 
         </Route>
         <Route
-        path="/profile/${userId}"
+        path="/profile/:userId"
         element={
           <div>
             <BackButton />
