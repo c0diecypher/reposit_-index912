@@ -63,7 +63,7 @@
   flex: 1 1;
   width: 100%;
   padding: 8px 15px 8px 42px;
-  background: var(--tg-second);
+  background: var(--tg-bg);
   border: none;
   outline: none;
   border-radius: 20px;
