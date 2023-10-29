@@ -1,30 +1,31 @@
 :root {
-    --space-4x: 16px;
-    --space-6x: 0%;
-    --button-text-color: var(#fff);
-    --color: var(#393939);
-    --button-color: var(#007cff);
-    --background-secondary: var( #f3f2f8);
-    --accent: #007cff;
-    --text-color: var(#000);
-    --checkbox-color: var(--text-color);
-  }
+  --space-4x: 16px;
+  --space-6x: 0%;
+  --space-8x: 32px;
+  --button-text-color: var(--tg-theme-button-text-color, #fff);
+  --color: var(--tg-theme-button-color, #393939);
+  --button-color: var(--tg-theme-button-color, #007cff);
+  --accent: #007cff;
+  --tg-bg: var(--tg-theme-bg-color, #f2f4f6);
+  --tg-second: var(--tg-theme-secondary-bg-color, #ededed);
+  --tg-text: var(--tg-theme-text-color, #000);
+  --tg-button-text: var(--tg-theme-button-text-color, #fff);
+}
 
 .filters{
     display: flex;
     flex-direction: column;
-    position: fixed;
     inset: 0;
     pointer-events: unset;
     z-index: 9999999;
-    background: #e4e4e4;
+    background: var(--tg-bg);
     overflow: auto;
-    padding: 30px var(--space-4x);
     gap: 25px;
 }
 
 .filters h2{
     text-align: left;
+    color: var(--tg-text);
 }
 
 .filters-body{
@@ -44,6 +45,7 @@
 
 .filters-item h3{
     text-align: left;
+    color: var(--tg-text);
 }
 
 .tag-filters-item{
@@ -53,14 +55,14 @@
     gap: 5px;
 }
 .tag-filter-button{
-    background: #f3f2f8;
+    background: var(--tg-second);
     font-weight: 500;
     font-size: 14px;
     line-height: 140%;
     padding: 4px 9px;
     border-radius: 18px;
     border: none;
-    color: #000;
+    color: var(--tg-text);
 }
 
 .tag-filter-button:active {
@@ -116,6 +118,7 @@
   height: 100%;
   display: inline-flex;
   align-items: center;
+    color: var(--tg-text);
   background: #0000;
 }
 
@@ -128,15 +131,15 @@
 }
 
 .label-price{
-    background: #f3f2f8;
+    background-color: var(--tg-second);
     font-weight: 500;
     font-size: 14px;
     line-height: 140%;
     padding: 4px 9px;
     border-radius: 18px;
     border: none;
-    border: 1px solid #f3f2f8;
-    color: var(--text-color);
+    border: 1px solid var(--tg-second);
+    color: var(--tg-text);
 }
 
 .label-price:active{
@@ -148,11 +151,13 @@
 }
 
 .label-price.selected{
-    border: 1px solid black;
+    border: 1px solid var(--tg-text);
 }
 
 .filter-price-label{
     font-style: normal;
+    color: var(--tg-text);
+    opacity: 0.8;
     font-weight: 500;
     font-size: 16px;
     line-height: 140%;
@@ -180,7 +185,7 @@
     flex-direction: column;
     padding: 5px 10px;
     border-radius: 6px;
-    background: #f3f2f8;
+    background: var(--tg-second);
     flex-grow: 0;
     flex-shrink: 0;
     flex-basis: calc(50% - 5px);
@@ -196,7 +201,7 @@
 .filter-price-label-input{
     text-align: left;
     width: 100%;
-    color: black;
+    color: var(--tg-text);
     font-weight: 400;
     font-size: 16px;
     line-height: 140%;
@@ -207,13 +212,11 @@
 
 .active-filter-text{
     padding: 10px;
-    background: #fff;
-    font-style: normal;
-    font-weight: 400;
+    background: var(--tg-second);
+    color: var(--tg-text);
+    text-align: left;
     font-size: 14px;
     line-height: 120%;
-    border-radius: 10px;
-    gap: 10px;
 }
 
 .active-filter-h3{
