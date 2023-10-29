@@ -22,7 +22,6 @@ function UserProfile({ userId }) {
       .then((data) => {
         // Обработка успешного ответа
         setUserData(data);
-        console.log('Received user data:', data);
       })
       .catch((err) => {
         // Обработка ошибки
