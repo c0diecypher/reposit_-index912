@@ -232,6 +232,7 @@
     margin: 0;
     box-sizing: border-box;
     transition: color, .4s ease-in-out;
+    color: var(--tg-text);
   }
 
   .active-filter-btn{
