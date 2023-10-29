@@ -258,9 +258,17 @@ function FilterProducts() {
       </div>
       )}
       {filtersApplied ? (
-            <BackButton 
-          onClick={clearFilters}
-          />
+        <div className="active-filter-text">
+          <span>
+          {activeFiltersText}
+          </span>
+          <button className="active-filter-btn" onClick={clearFilters}>
+            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 5 5 15M5 5l10 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              </path>
+           </svg>
+          </button>
+      </div>
       ) : (
         <MainButton 
           onClick={handleFiltersChange}
@@ -273,11 +281,6 @@ function FilterProducts() {
         <p></p>
       ) : (
         <>
-          <div className="active-filter-text">
-            <span>
-              {activeFiltersText}
-            </span>
-          </div>
           <main>
             {filteredProducts.map((product) => (
               <div className="item" key={product.id}>
