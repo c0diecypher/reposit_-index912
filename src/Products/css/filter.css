@@ -29,11 +29,11 @@
 }
 
 .filters-body{
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    
-}
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin: var(--space-8x);
+  }
 
 .filters-item{
     display: flex;
