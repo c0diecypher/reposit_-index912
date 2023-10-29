@@ -248,10 +248,11 @@ function FilterProducts() {
       {filteredProducts.length === 0 ? (
         <p></p>
       ) : (
-        <div>
+        <>
           <div className="active-filter-text">
             <span>
-              {activeFiltersText}</span>
+              {activeFiltersText}
+            </span>
           </div>
           <main>
             {filteredProducts.map((product) => (
@@ -267,7 +268,7 @@ function FilterProducts() {
               </div>
             ))}
           </main>
-        </div>
+        </>
       )}
     </div>
   );
