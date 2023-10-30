@@ -36,10 +36,6 @@ const Size = styled.button`
 `;
 
 function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMainButton, isAuthenticated }) {
-  
-  useEffect(() => {
-    window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
-  }, []);
 
   const setActiveSize = () => {
     const size41 = thisProduct.size[41]; // Попытка получить размер 41
