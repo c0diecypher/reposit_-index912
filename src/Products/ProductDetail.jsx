@@ -14,18 +14,16 @@ const Size = styled.button`
   display: flex;
   flex-direction: column;
   min-width: 60px;
-  
   opacity: 0.6;
-  background: white;
+  background: var(--tg-bg);
   border-radius: 10px;
-  border: 0;
   outline: 0;
-  border: 1px solid var(--background-secondary);
+  border: 1px solid var(--tg-text);
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
   font-family: "Roboto", sans-serif;
-  color: #ff0000;
+  color: var(--tg-text);
   flex-shrink: 0;
 
   ${({ active }) =>
