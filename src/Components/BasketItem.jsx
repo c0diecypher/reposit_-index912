@@ -25,27 +25,42 @@ const BasketItem = ({ cart, onDataUpdate } ) => {
   <div className="product-order">Оплачивается</div>
   <div className="product-container">
     {cart.map((product) => (
-      <div className="product-card" key={product.id}>
-          
-        <div className="product-image-container">
-          <img src={product.img[0]} alt="фото" className="product-image" />
+      <>
+      <div className="product-container-order">
+        <Link
+                    to={`/products/confirm/${product.name}/${product.size}/${product.price}`}
+                    state={{ productData: product }}
+                    className="item-link">
+        
+        <div className="product-image-component">
+          <div className="product-image-container">
+            <div className="product-image-card">
+              <div className="product-image-inner">
+              <img src={product.img[0]} alt="фото" className="product-image-inner-row" />
+              </div>
+            </div>
+          </div>
         </div>
+
         <div className="product-details">
-          <div className="product-name-date">
-            <div className="product-price"><b>{product.price} ₽</b></div>
-            <div className="product-created">Создан: {paymentDate.toLocaleDateString("ru-RU", options)}</div>
+          <div className="product-price-and-datecreated">
+            <div className="product-price-and-date">
+            <span className="product-price">{product.price}</span>
+            <span className="product-created">Создан: {paymentDate.toLocaleDateString("ru-RU", options)}</span>
+            </div>
           </div>
           <div className="product-name">{product.name.toUpperCase()}</div>
-          <p className="product-size">Размер: <b>{product.size}</b></p>
-          <Link
-              to={`/products/confirm/${product.name}/${product.size}/${product.price}`}
-              state={{ productData: product }}
-            >
-              <button className="buy-button">Оплатить</button> 
-            </Link>
+          <span className="product-size">Размер: <b>{product.size}</b></span>
           
-        </div>
-      </div>
+          
+          <span className="product-size">Оплатить</span>
+            
+          
+          </div>
+          
+  </Link>
+  </div>
+      </>
     ))}
   </div>
 </div>
