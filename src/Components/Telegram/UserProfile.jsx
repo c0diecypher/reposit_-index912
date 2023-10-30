@@ -31,21 +31,15 @@ function UserProfile({ userId }) {
 
   return (
     <>
-      {userData ? (
+     {userData ? (
         <div className="usercard_avatar">
           <img src={userData.photoUrl} className="usercard_avatar_img" />
         </div>
       ) : (
-        <InitialsAvatar
-          className="usercard_avatar"
-          userName={user?.first_name}
-          entityId={2}
-          entityName={`${user?.first_name}`}
-          size={52}
-          theme="apple"
-          style={{ marginRight: 10 }}
-        />
-      )}
+        <div className="usercard_avatar">
+          <div  className="usercard_avatar_logo">⚡</div>
+        </div>
+          )}
     </>
   );
 }
