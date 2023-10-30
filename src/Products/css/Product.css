@@ -20,7 +20,7 @@ body {
   user-select: none;
   color: var(--tg-text);
   font-family: "Roboto", sans-serif;
-  background: var(--tg-second);
+  background: var(--tg-bg);
 }
 
 body::-webkit-scrollbar {
@@ -29,7 +29,7 @@ body::-webkit-scrollbar {
 
 .full-item {
   width: 100%;
-  background: var(--tg-bg);
+  background: var(--tg-second);
   border-radius: 0 0 18px 18px;
   padding-bottom: 4px;
   position: relative;
