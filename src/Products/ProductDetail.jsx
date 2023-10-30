@@ -219,7 +219,7 @@ typesKeys.sort(customSort)
       
         
 )}
-
+      </div>
     </div>
     <div className="help-ful">
     <h2 className="help-title">Полезная инофрмация</h2>
