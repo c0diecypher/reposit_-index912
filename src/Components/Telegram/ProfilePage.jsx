@@ -67,50 +67,62 @@ function ProfilePage({userId}) {
 
   return (
     <>
-        <div className="profile-header">
+       <div className="profile-header">
             <div className="profile-avatar-box">
                 <div className="profile-avatar-transparent">
                     <div className="profile-avatar">
                     {userData ? (
-                        <div className="usercard_avatar">
+                        <div className="profile-avatar">
                           <img src={userData.photoUrl} className="usercard_avatar_img" />
                         </div>
                       ) : (
-                        <div className="usercard_avatar">
-                          <div  className="usercard_avatar_logo">⚡</div>
+                        <div className="profile-avatar">
+                          <div  className="profile-avatar-logo">⚡</div>
                         </div>
                       )}
                                   
                     </div>
-             <div className="profile-name">{user?.first_name}</div>
+                    <div className="profile-name">123{user?.first_name}</div>
                   
                 </div>
             </div>
         </div>
             <div className="profile-data">
-                      <h2>Телефон</h2>
-
-        {/* Показываем кнопку только если номер не привязан */}
-        {requestStatus !== 'Номер успешно привязан ✅' && (
-          <button onClick={requestPhoneNumber}>Отправить номер телефона</button>
-        )}
-          {phoneNumber ? (
-          <p>Номер телефона: {phoneNumber}</p>
-        ) : (
-          <p>Загрузка номера телефона...</p>
-        )}
-        
-        {requestStatus && (
-          <span className={requestStatus === 'Номер успешно привязан ✅' ? 'ok' : 'err'}>
-            {`(${requestStatus}${phoneNumber ? `: ${phoneNumber}` : ''})`}
-          </span>
-        )}
-        
-      
-              <CloudStorage />
+              <div className='profile-data-title'>
+                  Телефон не привязан
+                  <span>❌</span>
+              </div>
+                <div className="profile-data-info">
+                  <span>Телефон</span>
+                  <span className="profile-data-text">+7 ... ... .. ..</span>
+                </div>
+             </div>
+             <div className="profile-data">
+              <div className='profile-data-title'>
+                    Данные доставки
+                </div>
+                <div className="profile-data-info">
+                  <span>ФИО</span>
+                  <span className="profile-data-text">Не указан</span>
+                </div>
+                <div className="profile-data-info">
+                  <span>Телефон</span>
+                  <span className="profile-data-text">Не указан</span>
+                </div>
+                <div className="profile-data-info">
+                  <span>Город</span>
+                  <span className="profile-data-text">Не указан</span>
+                </div>
+                <div className="profile-data-info">
+                  <span>Пункт выдачи</span>
+                  <span className="profile-data-text">Не указан</span>
+                </div>
                 
-                    
+                <button className="btn-profile-data-info btn-profile-data">Редактировать</button>
+                
+                
 
+                
              </div>
     </>
   )
