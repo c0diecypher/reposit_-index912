@@ -53,7 +53,7 @@
 }
 
 .product-container-order{
-  margin: var(--space-4x);
+  margin: 0 var(--space-4x) var(--space-4x);
   background: var(--tg-bg);
   border-radius: 20px;
 }
