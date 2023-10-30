@@ -24,9 +24,6 @@ import { useState, useEffect, useCallback } from "react"
 
 
 function App() {
-  useEffect(() => {
-    window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
-  }, []);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const handleSendData = useCallback((data) => {
     // Handle the data received from ProductConfirm here
