@@ -51,21 +51,57 @@ function ProductConfirm() {
   return (
     <>
     <div className="confirm-item" key={productId}>
-    <img src={productData.img[0]} alt="photo" />
-    
+    <div className="confirm-item" key={productId}>
+      <div className="images-slider-wrapper">
+        <div className="images-slider-images">
+          <div className="images-slider-image-item">
+            <div className="image-item-wrapper">
+              <img src={productData.img[0]} alt="photo" />
+            </div>
+          </div>
+          <div className="images-slider-image-item">
+            <div className="image-item-wrapper">
+              <img src={productData.img[1]} alt="photo" />
+            </div>
+          </div>
+          <div className="images-slider-image-item">
+            <div className="image-item-wrapper">
+              <img src={productData.img[2]} alt="photo" />
+            </div>
+          </div>
+          <div className="images-slider-image-item">
+            <div className="image-item-wrapper">
+              <img src={productData.img[3]} alt="photo" />
+            </div>
+          </div>
+          <div className="images-slider-image-item">
+            <div className="image-item-wrapper">
+              <img src={productData.img[4]} alt="photo" />
+            </div>
+          </div>
+          <div className="images-slider-image-item">
+            <div className="image-item-wrapper">
+              <img src={productData.img[5]} alt="photo" />
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div className="bg-full-item-name">
     <div className="confirm-item-name">{productData.name}
-        
-        <span className="confirm-item-size" > размер {size} EU</span>
+        <span className="confirm-item-size" > размер {size} US</span>
    
       </div>
-     
+      </div>
+      <div className="item-order-info">
       <div className="confirm-item-price">
-         {price}
+         {price}₽
       </div>
       <div className="public-oferta">
         <p className="public-ofert-text">Оплачивая заказ, вы соглашаетесь <br/>с условиями <a className="public-oferta-link">публичной оферты</a></p>
       </div>
-    
+       <hr/>
+      </div>
   </div>
   <div className="help-ful">
     <h2 className="help-title">Полезная инофрмация</h2>
