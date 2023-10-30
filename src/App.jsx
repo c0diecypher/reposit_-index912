@@ -114,6 +114,18 @@ function App() {
     fetchData();
   }, []);
 
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  // Сохраните текущее положение прокрутки при монтировании компонента
+  useEffect(() => {
+    setScrollPosition(window.scrollY);
+  }, []);
+
+  // Восстановите положение прокрутки при возврате на страницу Products
+  useEffect(() => {
+    window.scrollTo(0, scrollPosition);
+  }, [scrollPosition]);
+
   return (
     <>
       <Routes>
