@@ -82,7 +82,7 @@ function ProfilePage({userId}) {
                       )}
                                   
                     </div>
-                    <div className="profile-name">123{user?.first_name}</div>
+                    <div className="profile-name">{user?.first_name}</div>
                   
                 </div>
             </div>
