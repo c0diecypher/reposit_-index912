@@ -183,9 +183,12 @@ typesKeys.sort(customSort)
           </div>
         </div>
        </div>
-        <h4 className="full-item-name">{thisProduct.name}</h4>
-
-        {isAuthenticated && <p className="full-item-price">{active}</p>}
+        <div className="bg-full-item-name">
+        <div className="full-item-name">{thisProduct.name}
+        </div>
+        </div>
+        <div className="item-order-info">
+        <p className="full-item-price">{active}</p>
 
         <hr/>
         <SizeInfo />
