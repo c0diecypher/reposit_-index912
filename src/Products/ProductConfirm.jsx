@@ -51,7 +51,6 @@ function ProductConfirm() {
   return (
     <>
     <div className="confirm-item" key={productId}>
-    <div className="confirm-item" key={productId}>
       <div className="images-slider-wrapper">
         <div className="images-slider-images">
           <div className="images-slider-image-item">
