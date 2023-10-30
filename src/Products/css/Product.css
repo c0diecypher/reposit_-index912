@@ -216,12 +216,13 @@ hr{
     flex-direction: column;
     gap: 14px;
     padding-bottom: 30px;
-    background-color: #fff;
+    background-color: var(--tg-second);
     border-radius: 20px;
     margin-top: 8px;
   }
 
   .help-title{
+    color: var(--tg-text);
     font-size: 18px;
     font-weight: 800;
     line-height: 130%;
