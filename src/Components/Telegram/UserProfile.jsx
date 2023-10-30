@@ -10,29 +10,24 @@ function UserProfile({ userId }) {
 
    
   useEffect(() => {
-    if (userId !== undefined && userId !== null) {
-      const userIdString = userId.toString(); // Преобразуйте userId в строку
-
-      // Выполняем GET-запрос на сервер для получения информации о пользователе
-      fetch(`https://zipperconnect.space/userProfile/${userIdString}`)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then((data) => {
-          // Обработка успешного ответа
-          setUserData(data);
-        })
-        .catch((err) => {
-          // Обработка ошибки
-          setError(err);
-        });
-    } else {
-      // Обработка случая, когда userId не определен
-      setError(new Error('userId is undefined or null'));
-    }
+    // Замените 'userId' на фактический ID пользователя, информацию о котором вы хотите получить
+    // Выполняем GET-запрос на сервер для получения информации о пользователе
+    fetch(`https://zipperconnect.space/userProfile/${userId}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Обработка успешного ответа
+        setUserData(data);
+        console.log('Received user data:', data);
+      })
+      .catch((err) => {
+        // Обработка ошибки
+        setError(err);
+      });
   }, [userId]);
 
   return (
