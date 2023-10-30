@@ -1,6 +1,6 @@
 
 import '../css/body.css'
-
+import { useState, useEffect } from 'react';
 import { useTelegram } from "./Hooks/useTelegram";
 import { Link } from "react-router-dom";
 
