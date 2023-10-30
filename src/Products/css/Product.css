@@ -166,10 +166,10 @@ hr{
 
 .confirm-item{
   width: 100%;
-  background: #ffffff;
-  border-radius: 15px;
+  background: var(--tg-bg);
+  border-radius: 0 0 18px 18px;
+  padding-bottom: 4px;
   position: relative;
-  padding-bottom: 18px;
 }
 
 .confirm-item img{
