@@ -15,21 +15,13 @@
 }
 
 
-
-body {
-  user-select: none;
-  color: var(--tg-text);
-  font-family: "Roboto", sans-serif;
-  background: var(--tg-bg);
-}
-
 body::-webkit-scrollbar {
   display: none;
 }
 
 .full-item {
   width: 100%;
-  background: var(--tg-second);
+  background: var(--tg-bg);
   border-radius: 0 0 18px 18px;
   padding-bottom: 4px;
   position: relative;
@@ -216,7 +208,7 @@ hr{
     flex-direction: column;
     gap: 14px;
     padding-bottom: 30px;
-    background-color: var(--tg-second);
+    background-color: var(--tg-bg);
     border-radius: 20px;
     margin-top: 8px;
   }
