@@ -101,23 +101,13 @@ main {
     outline: none;
   }
   
-  main .item:active{
-    letter-spacing: normal;
-    transform: translateY(2px);
-    box-shadow: none;
-    transform: scale(0.94);
-    transition: 0.2s;
-    
-  }
-
-  .item:active .add-item {
+.item:active .add-item {
     background-color: var(--tg-text);
-    transition: linear 0.2s;
+    transition: linear 0.4s;
   }
   
   .item:active .add-item .buy-item {
     color: var(--tg-second); 
-    transition: linear 0.2s;
+    transition: linear 0.4s;
   }
-
   
