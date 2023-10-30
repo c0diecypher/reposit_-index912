@@ -51,8 +51,8 @@ a{
 }
 
 .user_block_svg {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   flex: 0 0 16px;
 }
 
@@ -123,4 +123,18 @@ a{
   box-shadow: none;
   transform: scale(0.94);
   transition: 0.2s;
+}
+
+.usercard_avatar_logo{
+  border-radius: 999999px;
+    border: 1px solid var(--tg-second);
+    width: 42px;
+    height: 42px;
+    overflow: hidden;
+    background: var(--tg-bg);
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
