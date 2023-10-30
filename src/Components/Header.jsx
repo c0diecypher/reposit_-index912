@@ -40,13 +40,7 @@ function Header({ userId }) {
       <Link to={`/profile/`}>
       <div className="usercard">
         <div className="usercard_block">
-        {userData ? (
-        <div className="usercard_avatar">
-          <img src={userData.photoUrl} className="usercard_avatar_img" />
-        </div>
-      ) : (
-        <UserProfile />
-          )}
+          <UserProfile />
             {user?.first_name}
             <svg
             className="user_block_svg"
