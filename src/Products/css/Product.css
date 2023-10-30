@@ -18,6 +18,7 @@
 
 body {
   user-select: none;
+  color: var(--tg-text);
   font-family: "Roboto", sans-serif;
   background: var(--tg-second);
 }
@@ -29,7 +30,7 @@ body::-webkit-scrollbar {
 .full-item {
   width: 100%;
   background: var(--tg-bg);
-  border-radius: 15px;
+  border-radius: 0 0 18px 18px;
   padding-bottom: 4px;
   position: relative;
 }
@@ -42,13 +43,13 @@ body::-webkit-scrollbar {
   text-align: left;
   padding-left: 4%;
   margin: 0;
-  color: var(--tg-text);
+  
   
 }
 
 hr{
   border: none;
-    border-top: 1px solid  rgb(224, 224, 224);
+    border-top: 1px solid var(--tg-text);
     margin:  var(--space-4x);
 }
 
@@ -59,19 +60,30 @@ hr{
   padding-left: 4%;
   font-weight: 900;
   margin: 0;
-  color: var(--tg-text);
+  color: var(--tg-theme-link-color);
+}
+
+.bg-full-item-name{
+  background-color: #fff;
+  padding-bottom: var(--space-8x);
+  z-index: 1;
+  position: relative;
 }
 .full-item-name {
-  line-height: 110%;
-  display: flex;
+  color: #000;
   font-style: normal;
-  font-size: 30px;
-  text-align: left;
-  padding-left: 4%;
   font-weight: 900;
-  margin-bottom: 8px;
-  margin: 0;
-  color: var(--tg-text);
+  font-size: 30px;
+  line-height: 110%;
+  text-align: left;
+  margin: 0 var(--space-4x);
+}
+
+.full-item-name span{
+  margin-top: var(--space-4x);
+  
+  
+  
 }
 .full-item li {
   list-style-type: none;
@@ -91,7 +103,7 @@ hr{
   line-height: 30px;
   font-size: 14px;
   font-weight: 400;
-  color: var(--tg-text);
+  color: #fff;
 }
 
 .full-item .hr-line {
@@ -99,8 +111,7 @@ hr{
   padding: 0;
   height: 0;
   border: none;
-  border-top: 2px solid var(--tg-text);
-  
+  border-top: 2px solid rgb(224, 224, 224);
 }
 
 .main_button_callback {
@@ -157,7 +168,7 @@ hr{
   text-align: left;
   padding-left: 4%;
   margin: 0;
-  color: var(--tg-text);
+  
   
 }
 
@@ -175,7 +186,7 @@ hr{
   border-radius: 15px;
 }
 .confirm-item-name{
-  color: var(--black);
+  color: var(--tg-text);
   font-style: normal;
   font-weight: 900;
   font-size: 30px;
@@ -242,8 +253,7 @@ hr{
   }
 
   .images-slider-image-item{
-    padding: 0 12px;
-
+    padding: 0 10px;
     scroll-snap-align: start;
     scroll-snap-stop: always;
   }
@@ -256,11 +266,20 @@ hr{
   }
   
   .image-item-wrapper img{
-    margin-top: 4%;
-    margin-bottom: 4%;
+    margin: 4% 0 5% 0;
     object-fit: cover;
     -webkit-user-select: none;
     user-select: none;
     pointer-events: none;
     width: 100%;
+  }
+
+  .item-order-info{
+    color: var(--text-color);
+    position: relative;
+    z-index: 2;
+    background: var(--tg-bg);
+    border-radius: 20px 20px 20px 20px;
+    padding-top: var(--space-4x);
+    margin-top: -28px;
   }
