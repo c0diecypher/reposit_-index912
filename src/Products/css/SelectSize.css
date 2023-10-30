@@ -2,11 +2,15 @@
 :root {
   --space-4x: 16px;
   --space-6x: 0%;
+  --space-8x: 32px;
   --button-text-color: var(--tg-theme-button-text-color, #fff);
   --color: var(--tg-theme-button-color, #393939);
   --button-color: var(--tg-theme-button-color, #007cff);
-  --background-secondary: var(--tg-theme-secondary-bg-color, #f3f2f8);
   --accent: #007cff;
+  --tg-bg: var(--tg-theme-bg-color, #f2f4f6);
+  --tg-second: var(--tg-theme-secondary-bg-color, #ededed);
+  --tg-text: var(--tg-theme-text-color, #000);
+  --tg-button-text: var(--tg-theme-button-text-color, #fff);
 }
 
 .size_box {
@@ -97,14 +101,14 @@
     font-size: 18px;
     margin-left: var(--space-4x);
     font-weight: 600;
-   
     line-height: 130%;
   }
   
   .size {
     display: flex;
     justify-content: space-between;
-    margin-right: var(--space-4x)
+    margin-right: var(--space-4x);
+    color: var(--tg-text);
   }
   
   .size a {
