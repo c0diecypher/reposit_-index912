@@ -33,25 +33,24 @@ function ProfilePage({userId}) {
 
    
   useEffect(() => {
-    // Замените 'userId' на фактический ID пользователя, информацию о котором вы хотите получить
-    // Выполняем GET-запрос на сервер для получения информации о пользователе
-    fetch(`https://zipperconnect.space/userProfile/${userId}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        // Обработка успешного ответа
-        setUserData(data);
-        console.log('Received user data:', data);
-      })
-      .catch((err) => {
-        // Обработка ошибки
-        setError(err);
-      });
-  }, [userId]); // Пустой массив зависимостей, чтобы useEffect выполнился только один раз
+    if (userId) {
+      fetch(`https://zipperconnect.space/userProfile/${userId}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          // Обработка успешного ответа
+          setUserData(data);
+        })
+        .catch((err) => {
+          // Обработка ошибки
+          setError(err);
+        });
+    }
+  }, [userId]);
  
   useEffect(() => {
     // Выполняем GET-запрос при монтировании компонента
@@ -73,19 +72,13 @@ function ProfilePage({userId}) {
                 <div className="profile-avatar-transparent">
                     <div className="profile-avatar">
                     {userData ? (
-                        <div className="profile-avatar">
-                          <img src={userData.photoUrl} alt="User Photo" className="usercard_avatar_img" />
+                        <div className="usercard_avatar">
+                          <img src={userData.photoUrl} className="usercard_avatar_img" />
                         </div>
                       ) : (
-                        <InitialsAvatar
-                          className="usercard_avatar"
-                          userName={user?.first_name}
-                          entityId={2}
-                          entityName={`${user?.first_name}`}
-                          size={42}
-                          theme="apple"
-                          style={{ marginRight: 10 }}
-                        />
+                        <div className="usercard_avatar">
+                          <div  className="usercard_avatar_logo">⚡</div>
+                        </div>
                       )}
                                   
                     </div>
