@@ -37,7 +37,7 @@ function Header({ userId }) {
     <>
       <nav className="nav-form">
                   
-      <Link to={`/profile/:userId`}>
+      <Link to={`/profile/`}>
       <div className="usercard">
         <div className="usercard_block">
         {userData ? (
