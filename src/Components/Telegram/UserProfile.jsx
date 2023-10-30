@@ -12,7 +12,7 @@ function UserProfile({ userId }) {
   useEffect(() => {
     // Замените 'userId' на фактический ID пользователя, информацию о котором вы хотите получить
     // Выполняем GET-запрос на сервер для получения информации о пользователе
-    fetch("https://zipperconnect.space/userProfile/:userId")
+    fetch("https://zipperconnect.space/userProfile/" + userId)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
