@@ -10,27 +10,24 @@ function UserProfile({ userId }) {
 
    
   useEffect(() => {
-  // Замените 'userId' на фактический ID пользователя, информацию о котором вы хотите получить
-  // Выполняем GET-запрос на сервер для получения информации о пользователе
-  fetch("https://zipperconnect.space/userProfile/" + userId.toString())
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then((data) => {
-      // Обработка успешного ответа
-      console.log('Received user data:', data);
-      setUserData(data);
-      setError(null); // Сбросить ошибку, если она существует
-    })
-    .catch((err) => {
-      // Обработка ошибки
-      setError(err);
-      setUserData(null); // Сбросить данные пользователя в случае ошибки
-    });
-}, [userId]);
+    if (userId) {
+      fetch(`https://zipperconnect.space/userProfile/${userId}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          // Обработка успешного ответа
+          setUserData(data);
+        })
+        .catch((err) => {
+          // Обработка ошибки
+          setError(err);
+        });
+    }
+  }, [userId]);
 
   return (
     <>
