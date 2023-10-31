@@ -16,7 +16,10 @@ function SettingsProfile() {
   const [error, setError] = useState(null);
   const [fullName, setFullName] = useState(''); // Исходное значение
   const [phoneNumber, setPhoneNumber] = useState(''); // Исходное значение
-
+  const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
+  const [textColor] = useState(
+    window.Telegram.WebApp.themeParams.button_text_color
+  );
   const handleSaveClick = ({userId}) => {
     // Собираем данные из полей ввода
   
