@@ -118,9 +118,9 @@ function ProfilePage({userId}) {
                   <span>Пункт выдачи</span>
                   <span className="profile-data-text">Не указан</span>
                 </div>
-                
-                <button className="btn-profile-data-info btn-profile-data">
-                <Link to={`/profile/settings`}>Редактировать</Link></button>
+                <Link to={`/profile/settings`}>
+                  <button className="btn-profile-data-info btn-profile-data">Редактировать</button>
+                </Link>
                 
                 
 
