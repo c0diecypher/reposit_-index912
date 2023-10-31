@@ -4,14 +4,13 @@ import { useTelegram } from "../Hooks/useTelegram";
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MainButton } from "@twa-dev/sdk/react"
+import { BackButton } from "@twa-dev/sdk/react"
 
-
-function SettingsProfile({userId}) {
+function SettingsProfile() {
   const { user } = useTelegram();
   useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
   }, []);
-  const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState(null);
   const [fullName, setFullName] = useState(''); // Исходное значение
@@ -20,7 +19,7 @@ function SettingsProfile({userId}) {
   const [textColor] = useState(
     window.Telegram.WebApp.themeParams.button_text_color
   );
-  const handleSaveClick = () => {
+  const handleSaveClick = ({userId}) => {
     // Собираем данные из полей ввода
   
     // Создаем объект с данными, включая userId
@@ -54,7 +53,7 @@ function SettingsProfile({userId}) {
         // Обработка ошибки
         setError(err);
       });
-      navigate('/profile');
+      <BackButton/>
   };
 
   return (
