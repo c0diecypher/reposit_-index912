@@ -3,7 +3,7 @@ import './css/ProfilePage.css'
 import { useTelegram } from "../Hooks/useTelegram";
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { MainButton } from "@twa-dev/sdk/react"
 
 
 function SettingsProfile() {
