@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import CloudStorage from './CloudStorage';
 import UserProfile from './UserProfile';
 import { Link } from 'react-router-dom';
+import { MainButton } from "@twa-dev/sdk/react"
+
 
 function ProfilePage({userId}) {
   const { user } = useTelegram();
@@ -31,7 +33,10 @@ function ProfilePage({userId}) {
 
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState(null);
-
+  const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
+  const [textColor] = useState(
+    window.Telegram.WebApp.themeParams.button_text_color
+  );
    
   useEffect(() => {
     if (userId) {
@@ -52,6 +57,9 @@ function ProfilePage({userId}) {
         });
     }
   }, [userId]);
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [fullName, setFullName] = useState(''); // Исходное значение
  
   useEffect(() => {
     // Выполняем GET-запрос при монтировании компонента
@@ -66,9 +74,91 @@ function ProfilePage({userId}) {
       });
   }, []);
 
-  return (
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleSaveClick = () => {
+    // Сохранение данных в базу данных
+    const newData = {
+      userId,
+      fullName,
+      phoneNumber,
+    };
+
+    fetch('https://zipperconnect.space/customer/settingsProfile', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Обработка успешного ответа
+        setUserData(data);
+        // Опционально: отобразите сообщение об успешном сохранении
+        alert('Данные успешно сохранены!');
+      })
+      .catch((err) => {
+        // Обработка ошибки
+        setError(err);
+      });
+
+    // После успешного сохранения, перейти в режим просмотра
+    setIsEditing(false);
+  };
+
+ return (
     <>
-       <div className="profile-header">
+     {isEditing ? (
+      <>
+            <div className="profile-data">
+              <div className='profile-data-title'>
+                  Данные доставки
+              </div>
+                <div className="profile-data-info">
+                  <h2>Данные получателя</h2>
+                </div>
+                <div className="profile-select-info">
+                
+                  <div className="profile-select-input">
+                    <label className="profile-select-label">Фамилия, имя и очетство</label>
+                    <input type="text" className="profile-search-value"  value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}/>
+                    <div className="profile-select-info-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="tabler-icon tabler-icon-chevron-right">
+                        <path d="M9 6l6 6l-6 6"></path>
+                      </svg>
+                      </div>
+                  </div>
+                  <div className="profile-select-input">
+                    <label className="profile-select-label">Телефон</label>
+                    <input type="text" className="profile-search-value" value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}/>
+                    <div className="profile-select-info-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="tabler-icon tabler-icon-chevron-right">
+                        <path d="M9 6l6 6l-6 6"></path>
+                      </svg>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        <MainButton 
+            onClick={handleSaveClick}
+            color={color}
+            textColor={textColor}
+            text={`Сохранить`}
+                        />
+        </>
+      ) : (
+        <>
+        <div className="profile-header">
             <div className="profile-avatar-box">
                 <div className="profile-avatar-transparent">
                     <div className="profile-avatar">
@@ -83,7 +173,7 @@ function ProfilePage({userId}) {
                       )}
                                   
                     </div>
-                    <div className="profile-name">{user?.first_name}</div>
+                    <div className="profile-name">123{user?.first_name}</div>
                   
                 </div>
             </div>
@@ -118,16 +208,14 @@ function ProfilePage({userId}) {
                   <span>Пункт выдачи</span>
                   <span className="profile-data-text">Не указан</span>
                 </div>
-                <Link to={`/profile/settings`}>
-                  <button className="btn-profile-data-info btn-profile-data">Редактировать</button>
-                </Link>
-                
-                
 
-                
+                <button className="btn-profile-data-info btn-profile-data" onClick={handleEditClick}>
+                Редактировать</button>             
              </div>
+             </>
+             )}
     </>
   )
-}
+ }
 
 export default ProfilePage;
