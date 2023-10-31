@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { MainButton } from "@twa-dev/sdk/react"
 
 
-function SettingsProfile() {
+function SettingsProfile({userId}) {
   const { user } = useTelegram();
   useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
@@ -20,7 +20,7 @@ function SettingsProfile() {
   const [textColor] = useState(
     window.Telegram.WebApp.themeParams.button_text_color
   );
-  const handleSaveClick = ({userId}) => {
+  const handleSaveClick = () => {
     // Собираем данные из полей ввода
   
     // Создаем объект с данными, включая userId
