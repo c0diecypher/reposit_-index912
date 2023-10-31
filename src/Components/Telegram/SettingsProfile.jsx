@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { MainButton } from "@twa-dev/sdk/react" 
 
 
-function SettingsProfile() {
+function SettingsProfile(  {userId}  ) {
   const { user } = useTelegram();
   useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
