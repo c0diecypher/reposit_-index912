@@ -163,6 +163,17 @@ function App() {
           
         </Route>
         <Route
+        path="/profile/settings"
+        element={
+          <div>
+            <BackButton />
+            <SettingsProfile userId={userId}/>
+          </div>
+        }
+        >
+          
+        </Route>
+        <Route
         path="/products/:productId"
         element={
           <div>
