@@ -86,6 +86,7 @@
 .checkbox-text{
     display: inline;
     font-size: 12px;
+    color: var(--tg-text);
 }
 
 .checkbox-check{
@@ -233,6 +234,7 @@
     box-sizing: border-box;
     transition: color, .4s ease-in-out;
     color: var(--tg-text);
+    text-align: left;
   }
 
   .active-filter-btn{
