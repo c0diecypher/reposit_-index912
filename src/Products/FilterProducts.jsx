@@ -14,6 +14,8 @@ function FilterProducts() {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [activeFiltersText, setActiveFiltersText] = useState('');
   const [filtersVisible, setFiltersVisible] = useState(true);
+  const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
+  const [textColor] = useState(window.Telegram.WebApp.themeParams.button_text_color);
 
   const updateActiveFiltersText = () => {
     const filters = [];
