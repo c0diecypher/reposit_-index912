@@ -5,6 +5,7 @@ import { InitialsAvatar } from "@twa-dev/mark42";
 import { useEffect, useState } from 'react';
 import CloudStorage from './CloudStorage';
 import UserProfile from './UserProfile';
+import { Link } from 'react-router-dom';
 
 function ProfilePage({userId}) {
   const { user } = useTelegram();
