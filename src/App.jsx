@@ -17,6 +17,7 @@ import { useTelegram } from "./Components/Hooks/useTelegram"
 import ProfilePage from "./Components/Telegram/ProfilePage";
 import ProductConfirm from "./Products/ProductConfirm";
 import FilterProducts from "./Products/FilterProducts";
+import SettingsProfile from "./Components/Telegram/SettingsProfile"
 // React 
 import { Route, Routes } from "react-router-dom";
 import { BackButton } from "@twa-dev/sdk/react" 
