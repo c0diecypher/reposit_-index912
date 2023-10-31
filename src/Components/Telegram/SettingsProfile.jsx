@@ -2,23 +2,23 @@ import '../../css/body.css'
 import './css/ProfilePage.css'
 import { useTelegram } from "../Hooks/useTelegram";
 import { useEffect, useState } from 'react';
-import { MainButton } from "@twa-dev/sdk/react" 
+import { useNavigate } from 'react-router-dom';
 
 
-function SettingsProfile(  {userId}  ) {
+
+function SettingsProfile() {
   const { user } = useTelegram();
   useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
   }, []);
-  const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
-  const [textColor] = useState(window.Telegram.WebApp.themeParams.button_text_color);
+  const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState(null);
+  const [fullName, setFullName] = useState(''); // Исходное значение
+  const [phoneNumber, setPhoneNumber] = useState(''); // Исходное значение
 
-  const handleSaveClick = () => {
+  const handleSaveClick = ({userId}) => {
     // Собираем данные из полей ввода
-    const fullName = document.querySelector('.profile-select-input input[name="fullName"]').value;
-    const phoneNumber = document.querySelector('.profile-select-input input[name="phoneNumber"]').value;
   
     // Создаем объект с данными, включая userId
     const newData = {
@@ -51,6 +51,7 @@ function SettingsProfile(  {userId}  ) {
         // Обработка ошибки
         setError(err);
       });
+      navigate('/profile');
   };
 
   return (
@@ -66,7 +67,8 @@ function SettingsProfile(  {userId}  ) {
                 
                   <div className="profile-select-input">
                     <label className="profile-select-label">Фамилия, имя и очетство</label>
-                    <input type="text" className="profile-search-value"/>
+                    <input type="text" className="profile-search-value"  value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}/>
                     <div className="profile-select-info-icon">
                       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="tabler-icon tabler-icon-chevron-right">
                         <path d="M9 6l6 6l-6 6"></path>
@@ -75,7 +77,8 @@ function SettingsProfile(  {userId}  ) {
                   </div>
                   <div className="profile-select-input">
                     <label className="profile-select-label">Телефон</label>
-                    <input type="text" className="profile-search-value"/>
+                    <input type="text" className="profile-search-value" value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}/>
                     <div className="profile-select-info-icon">
                       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="tabler-icon tabler-icon-chevron-right">
                         <path d="M9 6l6 6l-6 6"></path>
