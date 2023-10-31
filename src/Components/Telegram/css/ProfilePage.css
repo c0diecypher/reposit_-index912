@@ -116,7 +116,18 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 110%;
-    margin: 0 var(--space-4x) 0 var(--space-4x);;
+    margin: 0 var(--space-4x) 0 var(--space-4x);
+  }
+
+.profile-data-info h2{
+    color: var(--tg-text);
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 130%;
+    letter-spacing: -.01em;
+    margin-bottom: 10px;
+    margin-top: 30px;
   }
 
   .profile-data-info span{
@@ -174,7 +185,7 @@
     flex-direction: column;
   }
   
-  .usercard_avatar_logo{
+   .usercard_avatar_logo{
     border-radius: 999999px;
       border: 1px solid var(--tg-second);
       width: 42px;
@@ -186,4 +197,61 @@
       align-items: center;
       justify-content: center;
       text-align: center;
+  }
+
+  .profile-select-input{
+    position: relative;
+    box-shadow: var(--input-shaddow-bottom);
+    height: 56px;
+  }
+
+  .profile-select-label{
+    position: absolute;
+    top: 7px;
+    font-size: 12px;
+    line-height: 140%;
+    color: var(--tg-theme-hint-color)
+  }
+
+::placeholder{
+  color: var(--tg-text);
+}
+
+  .profile-select-info{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    margin: var(--space-4x);
+  }
+
+  .profile-search-value{
+    width: 100%;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 25px;
+    letter-spacing: .01em;
+    padding-top: 24px;
+    padding-bottom: 7px;
+    color: var(--tg-text);
+    background: none;
+    border: none;
+    outline: none;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-right: 32px;
+    text-overflow: ellipsis;
+    text-align: left;
+  }
+
+  .profile-select-info-icon{
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 0;
+    width: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--tg-text);
+    opacity: 0.6;
   }
