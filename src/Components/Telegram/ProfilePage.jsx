@@ -188,7 +188,7 @@ function ProfilePage({userId}) {
                     <div className="profile-name">{user?.first_name}</div>
                   
                 </div>
-            </div>
+            </div> 
         </div>
             <div className="profile-data">
               <div className='profile-data-title'>
@@ -199,6 +199,8 @@ function ProfilePage({userId}) {
                   <span>Телефон</span>
                   <span className="profile-data-text">Не указан</span>
                 </div>
+                <button className="btn-profile-data-info btn-profile-data">
+                Привязать</button> 
              </div>
              <div className="profile-data">
               <div className='profile-data-title'>
