@@ -105,6 +105,9 @@ function ProfilePage({userId}) {
           // Обработка успешного ответа
           // Возможно, обновление состояния или другие действия
           console.log('Данные успешно сохранены', data);
+          console.log(userId);
+          console.log(fullName);
+          console.log(phoneNumber);
         })
         .catch((err) => {
           // Обработка ошибки
