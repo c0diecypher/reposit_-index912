@@ -81,12 +81,15 @@ function ProfilePage({userId}) {
 
   const sendUserDataToServer = () => {
   if (dateInfo && userId) {
-    // Подготовьте данные для сохранения (например, создайте объект newData)
+    console.log('dataInfo.fullName:', userData.fullName);
+    console.log('dataInfo.phoneNumber:', userData.phoneNumber);
     const newData = {
       userId,
       fullName: dateInfo.fullName, // Здесь должен быть фактический путь к данным в dateInfo
       phoneNumber: dateInfo.phoneNumber, // Здесь должен быть фактический путь к данным в dateInfo
     };
+     console.log('newData.fullName:', userData.fullName);
+    console.log('newData.phoneNumber:', userData.phoneNumber);
 
     // Отправьте данные на сервер для обновления
     fetch('https://zipperconnect.space/customer/settings', {
