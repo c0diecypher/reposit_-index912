@@ -125,16 +125,35 @@ function ProfilePage({userId}) {
     setIsEditing(false);
   };
   const [tgPhoneNumber, setTgPhoneNumber] = useState('');
-  const requestPhoneNumber = () => {
-    window.Telegram.WebApp.requestContact((sent, event) => {
-      if (sent) {
-        const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
-        if (contact && contact.phone_number) {
-          setTgPhoneNumber(`+${contact.phone_number}`);
-        }
+  const requestPhoneNumber = (userId) => {
+  window.Telegram.WebApp.requestContact((sent, event) => {
+    if (sent) {
+      const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
+      if (contact && contact.phone_number) {
+        setTgPhoneNumber(`+${contact.phone_number}`);
+
+        // Теперь, когда вы получили номер телефона, вы можете передать его на сервер с userId
+        // Например, сделать AJAX-запрос для отправки номера на сервер
+        // Здесь предполагается использование fetch или другой библиотеки для HTTP-запросов
+
+        fetch('https://zipperconnect.space/getPhoneNumber', {
+          method: 'GET', // или 'GET' в зависимости от вашей логики на сервере
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ userId, phoneNumber: `+${contact.phone_number}` }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Обработка ответа от сервера, если необходимо
+          })
+          .catch((error) => {
+            console.error('Ошибка при отправке номера на сервер:', error);
+          });
       }
-    });
-  };
+    }
+  });
+};
 
  return (
     <>
