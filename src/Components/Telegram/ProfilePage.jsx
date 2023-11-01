@@ -144,13 +144,28 @@ function ProfilePage({userId}) {
       .then((data) => {
         const tgPhoneNumber = data.tgPhoneNumber;
         setTgPhoneNumber(tgPhoneNumber); // Устанавливаем номер телефона в состояние компонента
-        console.log(tgPhoneNumber);
-        console.log(setTgPhoneNumber);
       })
       .catch((error) => {
         console.error('Ошибка при получении номера телефона с сервера:', error);
       });
   }, []);
+
+  useEffect(() => {
+    if (userId) {
+    fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data && data.userCity) {
+          setTgPhoneNumber(data.userCity);
+        } else {
+          console.error('Данные не были получены');
+        }
+      })
+      .catch((error) => {
+        console.error('Ошибка при запросе данных:', error);
+      });
+      }
+  }, [userId]);
 
  return (
     <>
