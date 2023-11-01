@@ -88,7 +88,7 @@ function ProfilePage({userId}) {
       };
   
       // Отправьте данные на сервер для обновления
-      fetch('https://zipperconnect.space/customer/settingsProfile', {
+      fetch('https://zipperconnect.space/customer/settings', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
