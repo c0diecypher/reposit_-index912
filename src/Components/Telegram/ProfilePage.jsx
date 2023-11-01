@@ -27,24 +27,7 @@ function ProfilePage({userId}) {
   const formatPhoneNumber = (value) => {
     // Удалите все символы, кроме цифр
     const digitsOnly = value.replace(/\D/g, '');
-
-    // Форматируйте номер как +X (XXX) XXX-XX-XX
-    let formattedNumber = '+';
-    if (digitsOnly.length >= 1) {
-      formattedNumber += digitsOnly[0];
-    }
-    if (digitsOnly.length >= 4) {
-      formattedNumber += ` (${digitsOnly.substring(1, 4)}`;
-    }
-    if (digitsOnly.length >= 7) {
-      formattedNumber += `) ${digitsOnly.substring(4, 7)}`;
-    }
-    if (digitsOnly.length >= 9) {
-      formattedNumber += `-${digitsOnly.substring(7, 9)}`;
-    }
-    if (digitsOnly.length >= 11) {
-      formattedNumber += `-${digitsOnly.substring(9, 11)}`;
-    }
+    const formattedNumber = `+7(${digitsOnly.slice(1, 4)})-${digitsOnly.slice(4, 7)}-${digitsOnly.slice(7, 9)}-${digitsOnly.slice(9, 11)}`;
 
     return formattedNumber;
   };
