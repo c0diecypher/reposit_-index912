@@ -126,32 +126,24 @@ function ProfilePage({userId}) {
   };
   
   const [tgPhoneNumber, setTgPhoneNumber] = useState('');
+  const [loading, setLoading] = useState(true);
    const requestPhoneNumber = () => {
-    window.Telegram.WebApp.requestContact((sent, event) => {
-      if (sent) {
-        const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
-        if (contact && contact.phone_number) {
-          setTgPhoneNumber(`+${contact.phone_number}`);
-        }
+  setLoading(true); // Устанавливаем состояние loading в true перед выполнением запроса
+  window.Telegram.WebApp.requestContact((sent, event) => {
+    if (sent) {
+      const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
+      if (contact && contact.phone_number) {
+        setTgPhoneNumber(`+${contact.phone_number}`);
       }
-    });
-  };
- 
-  useEffect(() => {
-    // Выполняем GET-запрос при монтировании компонента
-    fetch('https://zipperconnect.space/getPhoneNumber')
-      .then((response) => response.json())
-      .then((data) => {
-        const tgPhoneNumber = data.tgPhoneNumber;
-        setTgPhoneNumber(tgPhoneNumber); // Устанавливаем номер телефона в состояние компонента
-      })
-      .catch((error) => {
-        console.error('Ошибка при получении номера телефона с сервера:', error);
-      });
-  }, []);
+      setLoading(false); // Завершаем состояние loading после успешного запроса
+    }
+  });
+};
 
   useEffect(() => {
-    if (userId) {
+  if (userId) {
+    setLoading(true); // Устанавливаем состояние ожидания данных
+
     fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
       .then((response) => response.json())
       .then((data) => {
@@ -163,10 +155,12 @@ function ProfilePage({userId}) {
       })
       .catch((error) => {
         console.error('Ошибка при запросе данных:', error);
+      })
+      .finally(() => {
+        setLoading(false); // Завершаем ожидание данных
       });
-      }
-  }, [userId]);
-
+  }
+}, [userId]);
  return (
     <>
      {isEditing ? (
@@ -233,18 +227,18 @@ function ProfilePage({userId}) {
         </div>
             <div className="profile-data">
               <div className='profile-data-title'>
-                  Телефон {tgPhoneNumber ? 'привязан' : 'не привязан'}
-              <span style={{marginLeft: '5px'}}>{tgPhoneNumber ? '✅' : '❌'}</span>
+                  Телефон {loading ? 'загрузка...' : (tgPhoneNumber ? 'привязан' : 'не привязан')}
+              <span style={{ marginLeft: '5px' }}>{loading ? '⌛' : (tgPhoneNumber ? '✅' : '❌')}</span>
               </div>
                 <div className="profile-data-info">
                   <span>Телефон</span>
-                  <span className="profile-data-text">{tgPhoneNumber || 'Не указан'}</span>
+                  <span className="profile-data-text">{loading ? 'Загрузка...' : (tgPhoneNumber || 'Не указан')}</span>
                 </div>
-                {!tgPhoneNumber && (
-                    <button className="btn-profile-data-info btn-profile-data" onClick={requestPhoneNumber}>
-                      Привязать
-                    </button>
-                  )}
+                {!loading && !tgPhoneNumber && (
+                  <button className="btn-profile-data-info btn-profile-data" onClick={requestPhoneNumber}>
+                    Привязать
+                  </button>
+                )}
              </div>
              <div className="profile-data">
               <div className='profile-data-title'>
