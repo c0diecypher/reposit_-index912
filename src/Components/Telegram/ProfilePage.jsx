@@ -14,23 +14,9 @@ function ProfilePage({userId}) {
   useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
   }, []);
- const [phoneNumber, setPhoneNumber] = useState('');
-  const [requestStatus, setRequestStatus] = useState('');
-
-  const requestPhoneNumber = ({userId}) => {
-    window.Telegram.WebApp.requestContact((sent, event) => {
-      if (sent) {
-        const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
-        if (contact && contact.phone_number) {
-          setPhoneNumber(`+${contact.phone_number}`);
-          setRequestStatus('Номер успешно привязан ✅');
-        }
-      } else {
-        setRequestStatus('Телефон не привязан ❌');
-      }
-    });
-  };
-
+  const [isEditing, setIsEditing] = useState(false);
+  const [fullName, setFullName] = useState(''); // Исходное значение
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState(null);
   const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
@@ -39,50 +25,42 @@ function ProfilePage({userId}) {
   );
    
   useEffect(() => {
-  if (userId) {
-    fetch(`https://zipperconnect.space/userProfile/${userId}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        // Обработка успешного ответа
-        setUserData(data);
+    if (userId) {
+      fetch(`https://zipperconnect.space/userProfile/${userId}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          // Обработка успешного ответа
+          setUserData(data);
+        })
+        .catch((err) => {
+          // Обработка ошибки
+          setError(err);
+        });
+    }
+  }, [userId]);
 
-        // Проверка, есть ли данные userFio и userAdress
-        if (data && data.userFio && data.userAdress) {
-          setFullName(data.userFio);
-          setPhoneNumber(data.userAdress);
-        } else {
-          // Если данные отсутствуют, можно установить значения по умолчанию или обработать их иначе
-          setFullName('Не указано');
-          setPhoneNumber('Не указан');
-        }
-      })
-      .catch((err) => {
-        // Обработка ошибки
-        setError(err);
-      });
-  }
-}, [userId]);
-
-  const [isEditing, setIsEditing] = useState(false);
-  const [fullName, setFullName] = useState(''); // Исходное значение
- 
   useEffect(() => {
-    // Выполняем GET-запрос при монтировании компонента
-    fetch('https://zipperconnect.space/getPhoneNumber')
+    if (userId) {
+    fetch(`https://zipperconnect.space/userProfile/${userId}`)
       .then((response) => response.json())
       .then((data) => {
-        const phoneNumber = data.phoneNumber;
-        setPhoneNumber(phoneNumber); // Устанавливаем номер телефона в состояние компонента
+        if (data && data.userAdress && data.userFio) {
+          setPhoneNumber(data.userAdress);
+          setFullName(data.userFio);
+        } else {
+          console.error('Данные не были получены');
+        }
       })
       .catch((error) => {
-        console.error('Ошибка при получении номера телефона с сервера:', error);
+        console.error('Ошибка при запросе данных:', error);
       });
-  }, []);
+      }
+  }, [userId]);
 
   const handleEditClick = () => {
     setIsEditing(true);
