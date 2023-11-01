@@ -1,23 +1,19 @@
-import '../../css/body.css'
-import './css/ProfilePage.css'
+import '../../css/body.css';
+import './css/ProfilePage.css';
 import { useTelegram } from "../Hooks/useTelegram";
-import { InitialsAvatar } from "@twa-dev/mark42";
 import { useEffect, useState } from 'react';
-import CloudStorage from './CloudStorage';
-import UserProfile from './UserProfile';
-import { Link } from 'react-router-dom';
-import { MainButton } from "@twa-dev/sdk/react"
+import { MainButton } from "@twa-dev/sdk/react";
 
-
-function ProfilePage({userId}) {
+function ProfilePage({ userId }) {
   const { user } = useTelegram();
   useEffect(() => {
-    window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
+    window.scrollTo(0, 0);
   }, []);
- const [phoneNumber, setPhoneNumber] = useState('');
+
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [requestStatus, setRequestStatus] = useState('');
 
-  const requestPhoneNumber = ({userId}) => {
+  const requestPhoneNumber = () => {
     window.Telegram.WebApp.requestContact((sent, event) => {
       if (sent) {
         const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
@@ -26,19 +22,16 @@ function ProfilePage({userId}) {
           setRequestStatus('Номер успешно привязан ✅');
         }
       } else {
-        setRequestStatus('Телефон не привязан ❌');
+        
+        setRequestStatus
+setRequestStatus('Телефон не привязан ❌');
       }
     });
   };
 
   const [userData, setUserData] = useState(null);
-  const [infoData, setInfoData] = useState(null);
   const [error, setError] = useState(null);
-  const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
-  const [textColor] = useState(
-    window.Telegram.WebApp.themeParams.button_text_color
-  );
-   
+
   useEffect(() => {
     if (userId) {
       fetch(`https://zipperconnect.space/userProfile/${userId}`)
@@ -49,49 +42,29 @@ function ProfilePage({userId}) {
           return response.json();
         })
         .then((data) => {
-          // Обработка успешного ответа
           setUserData(data);
         })
         .catch((err) => {
-          // Обработка ошибки
           setError(err);
         });
     }
   }, [userId]);
 
   const [isEditing, setIsEditing] = useState(false);
-  const [fullName, setFullName] = useState(''); // Исходное значение
- 
-  useEffect(() => {
-    // Выполняем GET-запрос при монтировании компонента
-    fetch('https://zipperconnect.space/getPhoneNumber')
-      .then((response) => response.json())
-      .then((data) => {
-        const phoneNumber = data.phoneNumber;
-        setPhoneNumber(phoneNumber); // Устанавливаем номер телефона в состояние компонента
-      })
-      .catch((error) => {
-        console.error('Ошибка при получении номера телефона с сервера:', error);
-      });
-  }, []);
-
-  const handleEditClick = () => {
-    setIsEditing(true);
-  };
+  const [fullName, setFullName] = useState('');
 
   const sendUserDataToServer = () => {
-    if (infoData && userId) {
-      console.log('userData.fullName:', infoData.fullName);
-    console.log('userData.phoneNumber:', infoData.phoneNumber);
-      console.log('userId:', userId);
-      // Подготовьте данные для сохранения (например, создайте объект newData)
+    if (userData && userId) {
+      console.log('userData.fullName:', userData.fullName);
+      console.log('userData.phoneNumber:', userData.phoneNumber);
       const newData = {
         userId,
-        fullName: infoData.fullName, // Здесь должен быть фактический путь к данным в userData
-        phoneNumber: infoData.phoneNumber, // Здесь должен быть фактический путь к данным в userData
+        fullName: userData.fullName,
+        phoneNumber: userData.phoneNumber,
       };
-  
-      // Отправьте данные на сервер для обновления
+      console.log('newData.fullName:', newData.fullName);
+      console.log('newData.phoneNumber:', newData.phoneNumber);
+
       fetch('https://zipperconnect.space/customer/settings', {
         method: 'POST',
         headers: {
@@ -106,25 +79,21 @@ function ProfilePage({userId}) {
           return response.json();
         })
         .then((data) => {
-          // Обработка успешного ответа
-          // Возможно, обновление состояния или другие действия
           console.log('Данные успешно сохранены', data);
+          console.log(userId);
+          console.log(userData.fullName);
+          console.log(userData.phoneNumber);
         })
         .catch((err) => {
-          // Обработка ошибки
           console.error('Ошибка при сохранении данных:', err);
         });
     }
   };
 
   const handleSaveClick = () => {
-    // Вызываем функцию sendUserDataToServer для отправки данных на сервер
     sendUserDataToServer();
-  
-    // Дополнительные действия после сохранения, если необходимо
     setIsEditing(false);
   };
-  
 
  return (
     <>
