@@ -124,13 +124,14 @@ function ProfilePage({userId}) {
     // Дополнительные действия после сохранения, если необходимо
     setIsEditing(false);
   };
+  
   const [tgPhoneNumber, setTgPhoneNumber] = useState('');
    const requestPhoneNumber = () => {
     window.Telegram.WebApp.requestContact((sent, event) => {
       if (sent) {
         const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
         if (contact && contact.phone_number) {
-          setPhoneNumber(`+${contact.phone_number}`);
+          setTgPhoneNumber(`+${contact.phone_number}`);
         }
       }
     });
@@ -141,8 +142,8 @@ function ProfilePage({userId}) {
     fetch('https://zipperconnect.space/getPhoneNumber')
       .then((response) => response.json())
       .then((data) => {
-        const phoneNumber = data.phoneNumber;
-        setPhoneNumber(phoneNumber); // Устанавливаем номер телефона в состояние компонента
+        const tgPhoneNumber = data.tgPhoneNumber;
+        setTgPhoneNumber(tgPhoneNumber); // Устанавливаем номер телефона в состояние компонента
       })
       .catch((error) => {
         console.error('Ошибка при получении номера телефона с сервера:', error);
@@ -220,7 +221,7 @@ function ProfilePage({userId}) {
               </div>
                 <div className="profile-data-info">
                   <span>Телефон</span>
-                  <span className="profile-data-text">Не указан</span>
+                  <span className="profile-data-text">{tgPhoneNumber || 'Не указан'}</span>
                 </div>
                 {!tgPhoneNumber && (
                     <button className="btn-profile-data-info btn-profile-data" onClick={requestPhoneNumber}>
