@@ -60,6 +60,23 @@ function ProfilePage({userId}) {
     }
   }, [userId]);
 
+  useEffect(() => {
+    // Выполняем GET-запрос при монтировании компонента
+    fetch('/customer/settings/client/' + userId)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data && data.userAdress && data.userFio) {
+          setPhoneNumber(data.userAdress);
+          setFullName(data.userFio);
+        } else {
+          console.error('Данные не были получены');
+        }
+      })
+      .catch((error) => {
+        console.error('Ошибка при запросе данных:', error);
+      });
+  }, [userId]);
+
   const [isEditing, setIsEditing] = useState(false);
   const [fullName, setFullName] = useState(''); // Исходное значение
  
