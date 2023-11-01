@@ -78,48 +78,49 @@ function ProfilePage({userId}) {
     setIsEditing(true);
   };
 
+  const sendUserDataToServer = () => {
+    if (userData && userId) {
+      // Подготовьте данные для сохранения (например, создайте объект newData)
+      const newData = {
+        userId,
+        fullName: userData.fullName, // Здесь должен быть фактический путь к данным в userData
+        phoneNumber: userData.phoneNumber, // Здесь должен быть фактический путь к данным в userData
+      };
+  
+      // Отправьте данные на сервер для обновления
+      fetch('https://zipperconnect.space/customer/settingsProfile', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newData),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          // Обработка успешного ответа
+          // Возможно, обновление состояния или другие действия
+          console.log('Данные успешно сохранены', data);
+        })
+        .catch((err) => {
+          // Обработка ошибки
+          console.error('Ошибка при сохранении данных:', err);
+        });
+    }
+  };
+
   const handleSaveClick = () => {
-    // Сохранение данных в базу данных
-    const newData = {
-      userId,
-      fullName,
-      phoneNumber,
-    };
-
-    useEffect(() => {
-  if (userData && userId) {
-    // Подготовьте данные для сохранения (например, создайте объект newData)
-    const newData = {
-      userId,
-      fullName: userData.fullName, // Здесь должен быть фактический путь к данным в userData
-      phoneNumber: userData.phoneNumber, // Здесь должен быть фактический путь к данным в userData
-    };
-
-    // Отправьте данные на сервер для обновления
-    fetch('https://zipperconnect.space/customer/settings', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newData),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        // Обработка успешного ответа
-        // Возможно, обновление состояния или другие действия
-        console.log('Данные успешно сохранены', data);
-      })
-      .catch((err) => {
-        // Обработка ошибки
-        console.error('Ошибка при сохранении данных:', err);
-      });
-  }
-}, [userData, userId]);
+    // Вызываем функцию sendUserDataToServer для отправки данных на сервер
+    sendUserDataToServer();
+  
+    // Дополнительные действия после сохранения, если необходимо
+    setIsEditing(false);
+  };
+  
 
  return (
     <>
