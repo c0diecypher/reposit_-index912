@@ -79,42 +79,41 @@ function ProfilePage({userId}) {
   };
 
   const sendUserDataToServer = () => {
-    if (userData && userId) {
-      console.log('userData.fullName:', userData.fullName);
-    console.log('userData.phoneNumber:', userData.phoneNumber);
-      console.log('userId:', userId);
-      // Подготовьте данные для сохранения (например, создайте объект newData)
-      const newData = {
-        userId,
-        fullName: userData.fullName, // Здесь должен быть фактический путь к данным в userData
-        phoneNumber: userData.phoneNumber, // Здесь должен быть фактический путь к данным в userData
-      };
-  
-      // Отправьте данные на сервер для обновления
-      fetch('https://zipperconnect.space/customer/settings', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newData),
+  console.log('fullName:', fullName);
+  console.log('phoneNumber:', phoneNumber);
+
+  if (userId) {
+    // Prepare the data for saving
+    const newData = {
+      userId,
+      fullName, // Use the component state directly
+      phoneNumber, // Use the component state directly
+    };
+
+    // Send the data to the server for updating
+    fetch('https://zipperconnect.space/customer/settings', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
       })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then((data) => {
-          // Обработка успешного ответа
-          // Возможно, обновление состояния или другие действия
-          console.log('Данные успешно сохранены', data);
-        })
-        .catch((err) => {
-          // Обработка ошибки
-          console.error('Ошибка при сохранении данных:', err);
-        });
-    }
-  };
+      .then((data) => {
+        // Handle the successful response
+        console.log('Data successfully saved', data);
+      })
+      .catch((err) => {
+        // Handle errors
+        console.error('Error while saving data:', err);
+      });
+  }
+};
 
   const handleSaveClick = () => {
     // Вызываем функцию sendUserDataToServer для отправки данных на сервер
