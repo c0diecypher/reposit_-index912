@@ -125,40 +125,29 @@ function ProfilePage({userId}) {
     setIsEditing(false);
   };
   const [tgPhoneNumber, setTgPhoneNumber] = useState('');
-  const requestPhoneNumber = () => {
-  window.Telegram.WebApp.requestContact((sent, event) => {
-    if (sent) {
-      const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
-      if (contact && contact.phone_number) {
-        setTgPhoneNumber(`+${contact.phone_number}`);
-
-        // Теперь, когда вы получили номер телефона, вы можете передать его на сервер с userId
-        // Например, сделать AJAX-запрос для отправки номера на сервер
-
-        if (userId) {
-          fetch('https://zipperconnect.space/getPhoneNumber', {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            // Передаем userId в параметрах запроса
-            // и номер телефона из contact
-            // Также, вы можете использовать encodeURIComponent для безопасности
-            // и кодирования параметров запроса
-            body: JSON.stringify({ userId, phoneNumber: `+${contact.phone_number}` }),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              // Обработка ответа от сервера, если необходимо
-            })
-            .catch((error) => {
-              console.error('Ошибка при отправке номера на сервер:', error);
-            });
+   const requestPhoneNumber = () => {
+    window.Telegram.WebApp.requestContact((sent, event) => {
+      if (sent) {
+        const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
+        if (contact && contact.phone_number) {
+          setPhoneNumber(`+${contact.phone_number}`);
         }
       }
-    }
-  });
-};
+    });
+  };
+ 
+  useEffect(() => {
+    // Выполняем GET-запрос при монтировании компонента
+    fetch('https://zipperconnect.space/getPhoneNumber')
+      .then((response) => response.json())
+      .then((data) => {
+        const phoneNumber = data.phoneNumber;
+        setPhoneNumber(phoneNumber); // Устанавливаем номер телефона в состояние компонента
+      })
+      .catch((error) => {
+        console.error('Ошибка при получении номера телефона с сервера:', error);
+      });
+  }, []);
 
  return (
     <>
