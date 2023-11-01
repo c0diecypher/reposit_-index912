@@ -50,8 +50,6 @@ function ProfilePage({userId}) {
         .then((data) => {
           // Обработка успешного ответа
           setUserData(data);
-          setFullName(data.fullName); // Пример: обновите состояние с полным именем
-          setPhoneNumber(data.phoneNumber); // Пример: обновите состояние с номером телефона
         })
         .catch((err) => {
           // Обработка ошибки
@@ -61,7 +59,7 @@ function ProfilePage({userId}) {
   }, [userId]);
 
   useEffect(() => {
-    // Выполняем GET-запрос при монтировании компонента
+    if (userId) {
     fetch('/customer/settings/client/' + userId)
       .then((response) => response.json())
       .then((data) => {
@@ -75,6 +73,7 @@ function ProfilePage({userId}) {
       .catch((error) => {
         console.error('Ошибка при запросе данных:', error);
       });
+      }
   }, [userId]);
 
   const [isEditing, setIsEditing] = useState(false);
