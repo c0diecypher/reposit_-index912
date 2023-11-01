@@ -183,7 +183,7 @@ function ProfilePage({userId}) {
               </div>
                 <div className="profile-data-info">
                   <span>Телефон</span>
-                  <span className="profile-data-text">{phoneNumber || 'Не указан'}</span>
+                  <span className="profile-data-text">Не указан</span>
                 </div>
              </div>
              <div className="profile-data">
@@ -196,7 +196,7 @@ function ProfilePage({userId}) {
                 </div>
                 <div className="profile-data-info">
                   <span>Телефон</span>
-                  <span className="profile-data-text">Не указан</span>
+                  <span className="profile-data-text">{phoneNumber || 'Не указан'}</span>
                 </div>
                 <div className="profile-data-info">
                   <span>Город</span>
