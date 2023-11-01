@@ -24,17 +24,18 @@ function ProfilePage({userId}) {
     window.Telegram.WebApp.themeParams.button_text_color
   );
 
-  const formatPhoneNumber = (value) => {
-    // Удалите все символы, кроме цифр
-    const digitsOnly = value.replace(/\D/g, '');
-    const formattedNumber = `+7(${digitsOnly.slice(1, 4)})-${digitsOnly.slice(4, 7)}-${digitsOnly.slice(7, 9)}-${digitsOnly.slice(9, 11)}`;
+  const handlePhoneNumberInput = (e) => {
+    const inputValue = e.target.value;
+    // Удалить все символы, кроме цифр
+    const digitsOnly = inputValue.replace(/\D/g, '');
 
-    return formattedNumber;
-  };
-
-  const handlePhoneNumberChange = (e) => {
-    const formattedValue = formatPhoneNumber(e.target.value);
-    setPhoneNumber(formattedValue);
+    if (digitsOnly.length >= 11) {
+      // Ограничить номер 11 цифрами
+      const formattedNumber = `+${digitsOnly.slice(0, 1)}(${digitsOnly.slice(1, 4)})-${digitsOnly.slice(4, 7)}-${digitsOnly.slice(7, 9)}-${digitsOnly.slice(9, 11)}`;
+      setPhoneNumber(formattedNumber);
+    } else {
+      setPhoneNumber(digitsOnly);
+    }
   };
    
   useEffect(() => {
@@ -151,7 +152,7 @@ function ProfilePage({userId}) {
                   <div className="profile-select-input">
                     <label className="profile-select-label">Телефон</label>
                     <input type="text" className="profile-search-value" value={phoneNumber}
-                    onChange={handlePhoneNumberChange}/>
+                    onChange={handlePhoneNumberInput}/>
                     <div className="profile-select-info-icon">
                       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="tabler-icon tabler-icon-chevron-right">
                         <path d="M9 6l6 6l-6 6"></path>
