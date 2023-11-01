@@ -86,7 +86,17 @@ function ProfilePage({userId}) {
       phoneNumber,
     };
 
-    fetch('https://zipperconnect.space/customer/settingsProfile', {
+    useEffect(() => {
+  if (userData && userId) {
+    // Подготовьте данные для сохранения (например, создайте объект newData)
+    const newData = {
+      userId,
+      fullName: userData.fullName, // Здесь должен быть фактический путь к данным в userData
+      phoneNumber: userData.phoneNumber, // Здесь должен быть фактический путь к данным в userData
+    };
+
+    // Отправьте данные на сервер для обновления
+    fetch('https://zipperconnect.space/customer/settings', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -101,18 +111,15 @@ function ProfilePage({userId}) {
       })
       .then((data) => {
         // Обработка успешного ответа
-        setUserData(data);
-        // Опционально: отобразите сообщение об успешном сохранении
-        alert('Данные успешно сохранены!');
+        // Возможно, обновление состояния или другие действия
+        console.log('Данные успешно сохранены', data);
       })
       .catch((err) => {
         // Обработка ошибки
-        setError(err);
+        console.error('Ошибка при сохранении данных:', err);
       });
-
-    // После успешного сохранения, перейти в режим просмотра
-    setIsEditing(false);
-  };
+  }
+}, [userData, userId]);
 
  return (
     <>
