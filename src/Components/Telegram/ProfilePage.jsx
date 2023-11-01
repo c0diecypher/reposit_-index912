@@ -80,6 +80,9 @@ function ProfilePage({userId}) {
 
   const sendUserDataToServer = () => {
     if (userData && userId) {
+      console.log('userData.fullName:', userData.fullName);
+    console.log('userData.phoneNumber:', userData.phoneNumber);
+      console.log('userId:', userId);
       // Подготовьте данные для сохранения (например, создайте объект newData)
       const newData = {
         userId,
@@ -105,9 +108,6 @@ function ProfilePage({userId}) {
           // Обработка успешного ответа
           // Возможно, обновление состояния или другие действия
           console.log('Данные успешно сохранены', data);
-          console.log(userId);
-          console.log(fullName);
-          console.log(phoneNumber);
         })
         .catch((err) => {
           // Обработка ошибки
