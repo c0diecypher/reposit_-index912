@@ -144,6 +144,8 @@ function ProfilePage({userId}) {
       .then((data) => {
         const tgPhoneNumber = data.tgPhoneNumber;
         setTgPhoneNumber(tgPhoneNumber); // Устанавливаем номер телефона в состояние компонента
+        console.log(tgPhoneNumber);
+        console.log(setTgPhoneNumber);
       })
       .catch((error) => {
         console.error('Ошибка при получении номера телефона с сервера:', error);
