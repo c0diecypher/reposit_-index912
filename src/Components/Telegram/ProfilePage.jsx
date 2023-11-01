@@ -50,6 +50,8 @@ function ProfilePage({userId}) {
         .then((data) => {
           // Обработка успешного ответа
           setUserData(data);
+          setFullName(data.fullName); // Пример: обновите состояние с полным именем
+          setPhoneNumber(data.phoneNumber); // Пример: обновите состояние с номером телефона
         })
         .catch((err) => {
           // Обработка ошибки
@@ -183,7 +185,7 @@ function ProfilePage({userId}) {
                       )}
                                   
                     </div>
-                    <div className="profile-name">123{user?.first_name}</div>
+                    <div className="profile-name">{user?.first_name}</div>
                   
                 </div>
             </div>
@@ -195,7 +197,7 @@ function ProfilePage({userId}) {
               </div>
                 <div className="profile-data-info">
                   <span>Телефон</span>
-                  <span className="profile-data-text">+7 ... ... .. ..</span>
+                  <span className="profile-data-text">{phoneNumber || 'Не указан'}</span>
                 </div>
              </div>
              <div className="profile-data">
@@ -204,7 +206,7 @@ function ProfilePage({userId}) {
                 </div>
                 <div className="profile-data-info">
                   <span>ФИО</span>
-                  <span className="profile-data-text">Не указан</span>
+                  <span className="profile-data-text">{fullName || 'Не указан'}</span>
                 </div>
                 <div className="profile-data-info">
                   <span>Телефон</span>
