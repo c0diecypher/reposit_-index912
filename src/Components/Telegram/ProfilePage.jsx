@@ -46,7 +46,7 @@ function ProfilePage({userId}) {
 
   useEffect(() => {
     if (userId) {
-    fetch(`https://zipperconnect.space/userProfile/${userId}`)
+    fetch(`https://zipperconnect.space/customer/settings/client/${userId}`)
       .then((response) => response.json())
       .then((data) => {
         if (data && data.userAdress && data.userFio) {
