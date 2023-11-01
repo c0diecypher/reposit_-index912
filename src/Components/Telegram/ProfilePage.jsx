@@ -32,6 +32,7 @@ function ProfilePage({userId}) {
   };
 
   const [userData, setUserData] = useState(null);
+  const [infoUser, setInfoUser] = useState(null);
   const [error, setError] = useState(null);
   const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
   const [textColor] = useState(
@@ -79,42 +80,41 @@ function ProfilePage({userId}) {
   };
 
   const sendUserDataToServer = () => {
-    if (userData && userId) {
-      console.log('userData.fullName:', userData.fullName);
-    console.log('userData.phoneNumber:', userData.phoneNumber);
-      console.log('userId:', userId);
-      // Подготовьте данные для сохранения (например, создайте объект newData)
-      const newData = {
-        userId,
-        fullName: userData.fullName, // Здесь должен быть фактический путь к данным в userData
-        phoneNumber: userData.phoneNumber, // Здесь должен быть фактический путь к данным в userData
-      };
-  
-      // Отправьте данные на сервер для обновления
-      fetch('https://zipperconnect.space/customer/settings', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newData),
+  if (dateInfo && userId) {
+    // Подготовьте данные для сохранения (например, создайте объект newData)
+    const newData = {
+      userId,
+      fullName: dateInfo.fullName, // Здесь должен быть фактический путь к данным в dateInfo
+      phoneNumber: dateInfo.phoneNumber, // Здесь должен быть фактический путь к данным в dateInfo
+    };
+
+    // Отправьте данные на сервер для обновления
+    fetch('https://zipperconnect.space/customer/settings', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw an Error('Network response was not ok');
+        }
+        return response.json();
       })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then((data) => {
-          // Обработка успешного ответа
-          // Возможно, обновление состояния или другие действия
-          console.log('Данные успешно сохранены', data);
-        })
-        .catch((err) => {
-          // Обработка ошибки
-          console.error('Ошибка при сохранении данных:', err);
-        });
-    }
-  };
+      .then((data) => {
+        // Обработка успешного ответа
+        // Возможно, обновление состояния или другие действия
+        console.log('Данные успешно сохранены', data);
+        console.log(userId);
+        console.log(dateInfo.fullName);
+        console.log(dateInfo.phoneNumber);
+      })
+      .catch((err) => {
+        // Обработка ошибки
+        console.error('Ошибка при сохранении данных:', err);
+      });
+  }
 
   const handleSaveClick = () => {
     // Вызываем функцию sendUserDataToServer для отправки данных на сервер
