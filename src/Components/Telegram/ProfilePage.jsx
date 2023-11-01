@@ -39,42 +39,34 @@ function ProfilePage({userId}) {
   );
    
   useEffect(() => {
-    if (userId) {
-      fetch(`https://zipperconnect.space/userProfile/${userId}`)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then((data) => {
-          // Обработка успешного ответа
-          setUserData(data);
-        })
-        .catch((err) => {
-          // Обработка ошибки
-          setError(err);
-        });
-    }
-  }, [userId]);
-
-  useEffect(() => {
-    if (userId) {
-    fetch('/customer/settings/client/' + userId)
-      .then((response) => response.json())
+  if (userId) {
+    fetch(`https://zipperconnect.space/userProfile/${userId}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then((data) => {
-        if (data && data.userAdress && data.userFio) {
-          setPhoneNumber(data.userAdress);
+        // Обработка успешного ответа
+        setUserData(data);
+
+        // Проверка, есть ли данные userFio и userAdress
+        if (data && data.userFio && data.userAdress) {
           setFullName(data.userFio);
+          setPhoneNumber(data.userAdress);
         } else {
-          console.error('Данные не были получены');
+          // Если данные отсутствуют, можно установить значения по умолчанию или обработать их иначе
+          setFullName('Не указано');
+          setPhoneNumber('Не указан');
         }
       })
-      .catch((error) => {
-        console.error('Ошибка при запросе данных:', error);
+      .catch((err) => {
+        // Обработка ошибки
+        setError(err);
       });
-      }
-  }, [userId]);
+  }
+}, [userId]);
 
   const [isEditing, setIsEditing] = useState(false);
   const [fullName, setFullName] = useState(''); // Исходное значение
