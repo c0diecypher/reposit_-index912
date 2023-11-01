@@ -124,7 +124,17 @@ function ProfilePage({userId}) {
     // Дополнительные действия после сохранения, если необходимо
     setIsEditing(false);
   };
-  
+  const [tgPhoneNumber, setTgPhoneNumber] = useState('');
+  const requestPhoneNumber = () => {
+    window.Telegram.WebApp.requestContact((sent, event) => {
+      if (sent) {
+        const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
+        if (contact && contact.phone_number) {
+          setTgPhoneNumber(`+${contact.phone_number}`);
+        }
+      }
+    });
+  };
 
  return (
     <>
@@ -192,15 +202,18 @@ function ProfilePage({userId}) {
         </div>
             <div className="profile-data">
               <div className='profile-data-title'>
-                  Телефон не привязан
-                  <span>❌</span>
+                  Телефон {tgPhoneNumber ? 'привязан' : 'не привязан'}
+              <span style={{marginLeft: '5px'}}>{tgPhoneNumber ? '✅' : '❌'}</span>
               </div>
                 <div className="profile-data-info">
                   <span>Телефон</span>
                   <span className="profile-data-text">Не указан</span>
                 </div>
-                <button className="btn-profile-data-info btn-profile-data">
-                Привязать</button> 
+                {!tgPhoneNumber && (
+                    <button className="btn-profile-data-info btn-profile-data" onClick={requestPhoneNumber}>
+                      Привязать
+                    </button>
+                  )}
              </div>
              <div className="profile-data">
               <div className='profile-data-title'>
