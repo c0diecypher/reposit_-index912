@@ -1,23 +1,19 @@
-import '../../css/body.css'
-import './css/ProfilePage.css'
+import '../../css/body.css';
+import './css/ProfilePage.css';
 import { useTelegram } from "../Hooks/useTelegram";
-import { InitialsAvatar } from "@twa-dev/mark42";
 import { useEffect, useState } from 'react';
-import CloudStorage from './CloudStorage';
-import UserProfile from './UserProfile';
-import { Link } from 'react-router-dom';
-import { MainButton } from "@twa-dev/sdk/react"
+import { MainButton } from "@twa-dev/sdk/react";
 
-
-function ProfilePage({userId}) {
+function ProfilePage({ userId }) {
   const { user } = useTelegram();
   useEffect(() => {
-    window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
+    window.scrollTo(0, 0);
   }, []);
- const [phoneNumber, setPhoneNumber] = useState('');
+
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [requestStatus, setRequestStatus] = useState('');
 
-  const requestPhoneNumber = ({userId}) => {
+  const requestPhoneNumber = () => {
     window.Telegram.WebApp.requestContact((sent, event) => {
       if (sent) {
         const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
@@ -26,19 +22,16 @@ function ProfilePage({userId}) {
           setRequestStatus('Номер успешно привязан ✅');
         }
       } else {
-        setRequestStatus('Телефон не привязан ❌');
+        
+        setRequestStatus
+setRequestStatus('Телефон не привязан ❌');
       }
     });
   };
 
   const [userData, setUserData] = useState(null);
-  const [infoUser, setInfoUser] = useState(null);
   const [error, setError] = useState(null);
-  const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
-  const [textColor] = useState(
-    window.Telegram.WebApp.themeParams.button_text_color
-  );
-   
+
   useEffect(() => {
     if (userId) {
       fetch(`https://zipperconnect.space/userProfile/${userId}`)
@@ -49,84 +42,58 @@ function ProfilePage({userId}) {
           return response.json();
         })
         .then((data) => {
-          // Обработка успешного ответа
           setUserData(data);
         })
         .catch((err) => {
-          // Обработка ошибки
           setError(err);
         });
     }
   }, [userId]);
 
   const [isEditing, setIsEditing] = useState(false);
-  const [fullName, setFullName] = useState(''); // Исходное значение
- 
-  useEffect(() => {
-    // Выполняем GET-запрос при монтировании компонента
-    fetch('https://zipperconnect.space/getPhoneNumber')
-      .then((response) => response.json())
-      .then((data) => {
-        const phoneNumber = data.phoneNumber;
-        setPhoneNumber(phoneNumber); // Устанавливаем номер телефона в состояние компонента
-      })
-      .catch((error) => {
-        console.error('Ошибка при получении номера телефона с сервера:', error);
-      });
-  }, []);
-
-  const handleEditClick = () => {
-    setIsEditing(true);
-  };
+  const [fullName, setFullName] = useState('');
 
   const sendUserDataToServer = () => {
-  if (dateInfo && userId) {
-    console.log('dataInfo.fullName:', userData.fullName);
-    console.log('dataInfo.phoneNumber:', userData.phoneNumber);
-    const newData = {
-      userId,
-      fullName: dateInfo.fullName, // Здесь должен быть фактический путь к данным в dateInfo
-      phoneNumber: dateInfo.phoneNumber, // Здесь должен быть фактический путь к данным в dateInfo
-    };
-     console.log('newData.fullName:', userData.fullName);
-    console.log('newData.phoneNumber:', userData.phoneNumber);
+    if (userData && userId) {
+      console.log('userData.fullName:', userData.fullName);
+      console.log('userData.phoneNumber:', userData.phoneNumber);
+      const newData = {
+        userId,
+        fullName: userData.fullName,
+        phoneNumber: userData.phoneNumber,
+      };
+      console.log('newData.fullName:', newData.fullName);
+      console.log('newData.phoneNumber:', newData.phoneNumber);
 
-    // Отправьте данные на сервер для обновления
-    fetch('https://zipperconnect.space/customer/settings', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newData),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw an Error('Network response was not ok');
-        }
-        return response.json();
+      fetch('https://zipperconnect.space/customer/settings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newData),
       })
-      .then((data) => {
-        // Обработка успешного ответа
-        // Возможно, обновление состояния или другие действия
-        console.log('Данные успешно сохранены', data);
-        console.log(userId);
-        console.log(dateInfo.fullName);
-        console.log(dateInfo.phoneNumber);
-      })
-      .catch((err) => {
-        // Обработка ошибки
-        console.error('Ошибка при сохранении данных:', err);
-      });
-  }
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log('Данные успешно сохранены', data);
+          console.log(userId);
+          console.log(userData.fullName);
+          console.log(userData.phoneNumber);
+        })
+        .catch((err) => {
+          console.error('Ошибка при сохранении данных:', err);
+        });
+    }
+  };
 
   const handleSaveClick = () => {
-    // Вызываем функцию sendUserDataToServer для отправки данных на сервер
     sendUserDataToServer();
-  
-    // Дополнительные действия после сохранения, если необходимо
     setIsEditing(false);
   };
-  
 
  return (
     <>
