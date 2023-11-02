@@ -126,46 +126,57 @@ function ProfilePage({userId}) {
   };
   
   
+  
   const [tgPhoneNumber, setTgPhoneNumber] = useState('');
-const [loading, setLoading] = useState(true);
-const [hasFetchedData, setHasFetchedData] = useState(false); // Состояние для отслеживания того, были ли данные уже получены
-
-// Функция для выполнения запроса данных
-const fetchData = () => {
-  if (userId && !hasFetchedData) { // Проверяем, что данные еще не были получены
-    setLoading(true);
-
-    fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data && data.userCity) {
-          setTgPhoneNumber(data.userCity);
-          setHasFetchedData(true); // Устанавливаем флаг, что данные были успешно получены
-        } else {
-          console.error('Данные не были получены');
-        }
-      })
-      .catch((error) => {
-        console.error('Ошибка при запросе данных:', error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }
+  const [loading, setLoading] = useState(true);
+   const requestPhoneNumber = () => {
+  setLoading(true); // Устанавливаем состояние loading в true перед выполнением запроса
+  window.Telegram.WebApp.requestContact((sent, event) => {
+    if (sent) {
+      const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
+      if (contact && contact.phone_number) {
+        setTgPhoneNumber(`+${contact.phone_number}`);
+      }
+      setLoading(false); // Завершаем состояние loading после успешного запроса
+    }
+  });
 };
 
-// Выполняем первоначальный запрос данных при загрузке компонента
-useEffect(() => {
-  fetchData();
+    // Функция для выполнения запроса данных
+  const fetchData = () => {
+    if (userId) {
+      setLoading(true);
 
-  // Затем создаем интервал для периодического опроса сервера
-  const intervalId = setInterval(fetchData, 5000); // Запрос каждую минуту (подстройте под свои потребности)
-
-  // Очистка интервала при размонтировании компонента
-  return () => {
-    clearInterval(intervalId);
+      fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data && data.userCity) {
+            setTgPhoneNumber(data.userCity);
+          } else {
+            console.error('Данные не были получены');
+          }
+        })
+        .catch((error) => {
+          console.error('Ошибка при запросе данных:', error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   };
-}, [userId, hasFetchedData]); // Убедитесь, что hasFetchedData добавлен в зависимости useEffect
+
+  // Выполняем первоначальный запрос данных при загрузке компонента
+  useEffect(() => {
+    fetchData();
+
+    // Затем создаем интервал для периодического опроса сервера
+    const intervalId = setInterval(fetchData, 60000); // Запрос каждую минуту (подстройте под свои потребности)
+
+    // Очистка интервала при размонтировании компонента
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [userId]);
   
  return (
     <>
