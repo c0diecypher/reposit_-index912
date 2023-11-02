@@ -63,8 +63,8 @@ function ProfilePage({userId}) {
     fetch(`https://zipperconnect.space/customer/settings/client/${userId}`)
       .then((response) => response.json())
       .then((data) => {
-        if (data && data.userAdress && data.userFio) {
-          setPhoneNumber(data.userAdress);
+        if (data && data.phoneNumber && data.userFio) {
+          setPhoneNumber(data.phoneNumber);
           setFullName(data.userFio);
         } else {
           console.error('Данные не были получены');
@@ -150,8 +150,8 @@ function ProfilePage({userId}) {
       fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
         .then((response) => response.json())
         .then((data) => {
-          if (data && data.userCity) {
-            setTgPhoneNumber(data.userCity);
+          if (data && data.tgPhoneNumber) {
+            setTgPhoneNumber(data.tgPhoneNumber);
           } else {
             console.error('Данные не были получены');
           }
