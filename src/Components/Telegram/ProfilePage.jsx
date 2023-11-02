@@ -129,24 +129,8 @@ function ProfilePage({userId}) {
   const [loading, setLoading] = useState(true);
   const [isPhoneNumberRequested, setIsPhoneNumberRequested] = useState(false);
 
-  const handleRequestPhoneNumber = () => {
-  setLoading(true); // Начинаем загрузку данных
-
-  window.Telegram.WebApp.requestContact((sent, event) => {
-    if (sent) {
-      const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
-      if (contact && contact.phone_number) {
-        setTgPhoneNumber(`+${contact.phone_number}`);
-        setIsPhoneNumberRequested(true); // Устанавливаем isPhoneNumberRequested в true
-      }
-      setLoading(false);
-    } else {
-      setLoading(false);
-    }
-  });
-};
-
-  useEffect(() => {
+  // Добавьте этот useEffect для обработки нажатия на кнопку "Привязать"
+useEffect(() => {
   if (userId && isPhoneNumberRequested) {
     setLoading(true);
 
@@ -168,6 +152,26 @@ function ProfilePage({userId}) {
       });
   }
 }, [userId, isPhoneNumberRequested]);
+
+const handleRequestPhoneNumber = () => {
+  // Устанавливаем состояние для запроса после нажатия кнопки "Привязать"
+  setIsPhoneNumberRequested(true);
+  
+  // Оставляем setLoading(true) здесь, если это необходимо
+  setLoading(true);
+  
+  window.Telegram.WebApp.requestContact((sent, event) => {
+    if (sent) {
+      const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
+      if (contact && contact.phone_number) {
+        setTgPhoneNumber(`+${contact.phone_number}`);
+      }
+      setLoading(false);
+    } else {
+      setLoading(false);
+    }
+  });
+};
  return (
     <>
      {isEditing ? (
@@ -242,7 +246,7 @@ function ProfilePage({userId}) {
                   <span className="profile-data-text">{loading ? 'Загрузка...' : (tgPhoneNumber || 'Не указан')}</span>
                 </div>
                 {!loading && !tgPhoneNumber && (
-                  <button className="btn-profile-data-info btn-profile-data" onClick={requestPhoneNumber}>
+                  <button className="btn-profile-data-info btn-profile-data" onClick={handleRequestPhoneNumber}>
                     Привязать
                   </button>
                 )}
