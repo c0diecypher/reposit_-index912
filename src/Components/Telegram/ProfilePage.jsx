@@ -126,51 +126,46 @@ function ProfilePage({userId}) {
   };
   
 const [tgPhoneNumber, setTgPhoneNumber] = useState('');
-const [loading, setLoading] = useState(true);
-const [isDataUpdated, setDataUpdated] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-const requestPhoneNumber = () => {
-  setLoading(true);
-  window.Telegram.WebApp.requestContact((sent, event) => {
-    if (sent) {
-      const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
-      if (contact && contact.phone_number) {
-        setTgPhoneNumber(`+${contact.phone_number}`);
-        setLoading(false);
-        setDataUpdated(true); // Помечаем данные как обновленные
-      }
-    }
-  });
-};
+  const fetchData = () => {
+    if (userId) {
+      setLoading(true);
 
-const fetchData = () => {
-  if (userId && !isDataUpdated) {
-    setLoading(true);
-
-    fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data && data.userCity) {
-          setTgPhoneNumber(data.userCity);
-          setDataUpdated(true); // Помечаем данные как обновленные
-        } else {
-          console.error('Данные не были получены');
-        }
-      })
-      .catch((error) => {
-        console.error('Ошибка при запросе данных:', error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+      fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data && data.userCity) {
+            setTgPhoneNumber(data.userCity);
+          } else {
+            console.error('Данные не были получены');
+          }
+        })
+        .catch((error) => {
+          console.error('Ошибка при запросе данных:', error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     }
   };
 
-useEffect(() => {
-  if (!isDataUpdated) {
-    fetchData();
-  }
-}, [userId, isDataUpdated]);
+  useEffect(() => {
+    fetchData(); // Вызываем fetchData при первой загрузке компонента
+
+    const intervalId = setInterval(() => {
+      fetchData(); // Вызываем fetchData каждую минуту
+
+      // Если данные успешно получены, очищаем интервал
+      if (!loading && tgPhoneNumber) {
+        clearInterval(intervalId);
+      }
+    }, 5000);
+
+    return () => {
+      clearInterval(intervalId); // Очистка интервала при размонтировании компонента
+    };
+  }, [userId, loading, tgPhoneNumber]);
   
  return (
     <>
