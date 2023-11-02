@@ -37,7 +37,7 @@ function Header({ userId }) {
     <>
       <nav className="nav-form">
                   
-      <Link to={`/profile/`}>
+      
       <div className="usercard">
         <div className="usercard_block">
           <UserProfile userId={userId} />
@@ -61,7 +61,7 @@ function Header({ userId }) {
         </div>
         
       </div>
-       </Link>
+      
        <a href="https://t.me/zipper_store" target="_blank" rel="noopener noreferrer">
         <button className="btn_block" onClick={() => {}}>
           <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
