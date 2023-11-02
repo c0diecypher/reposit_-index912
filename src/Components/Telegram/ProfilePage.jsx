@@ -125,56 +125,52 @@ function ProfilePage({userId}) {
     setIsEditing(false);
   };
   
-  const [tgPhoneNumber, setTgPhoneNumber] = useState('');
-  const [loading, setLoading] = useState(true);
-   const requestPhoneNumber = () => {
-  setLoading(true); // Устанавливаем состояние loading в true перед выполнением запроса
+const [tgPhoneNumber, setTgPhoneNumber] = useState('');
+const [loading, setLoading] = useState(true);
+const [isDataUpdated, setDataUpdated] = useState(false);
+
+const requestPhoneNumber = () => {
+  setLoading(true);
   window.Telegram.WebApp.requestContact((sent, event) => {
     if (sent) {
       const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
       if (contact && contact.phone_number) {
         setTgPhoneNumber(`+${contact.phone_number}`);
+        setLoading(false);
+        setDataUpdated(true); // Помечаем данные как обновленные
       }
-      setLoading(false); // Завершаем состояние loading после успешного запроса
     }
   });
 };
 
-    // Функция для выполнения запроса данных
-  const fetchData = () => {
-    if (userId) {
-      setLoading(true);
+const fetchData = () => {
+  if (userId && !isDataUpdated) {
+    setLoading(true);
 
-      fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
-        .then((response) => response.json())
-        .then((data) => {
-          if (data && data.userCity) {
-            setTgPhoneNumber(data.userCity);
-          } else {
-            console.error('Данные не были получены');
-          }
-        })
-        .catch((error) => {
-          console.error('Ошибка при запросе данных:', error);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+    fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data && data.userCity) {
+          setTgPhoneNumber(data.userCity);
+          setDataUpdated(true); // Помечаем данные как обновленные
+        } else {
+          console.error('Данные не были получены');
+        }
+      })
+      .catch((error) => {
+        console.error('Ошибка при запросе данных:', error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
     }
   };
 
-  // Выполняем первоначальный запрос данных при загрузке компонента
-  useEffect(() => {
+useEffect(() => {
+  if (!isDataUpdated) {
     fetchData();
-
-    // Затем создаем интервал для периодического опроса сервера
-    const intervalId = setInterval(fetchData, 60000); // Запрос каждую минуту (подстройте под свои потребности)
-
-    // Очистка интервала при размонтировании компонента
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [userId]);
+  }
+}, [userId, isDataUpdated]);
   
  return (
     <>
