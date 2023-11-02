@@ -149,16 +149,15 @@ function ProfilePage({userId}) {
       .then((data) => {
         if (data && data.userCity) {
           setTgPhoneNumber(data.userCity);
-          window.location.reload(); // Перезагрузка страницы
+          setLoading(false); // Завершаем ожидание данных и обновляем компонент
         } else {
           console.error('Данные не были получены');
+          setLoading(false); // Завершаем ожидание данных, хотя данные не получены
         }
       })
       .catch((error) => {
         console.error('Ошибка при запросе данных:', error);
-      })
-      .finally(() => {
-        setLoading(false); // Завершаем ожидание данных
+        setLoading(false); // Завершаем ожидание данных при возникновении ошибки
       });
   }
 }, [userId]);
