@@ -140,27 +140,42 @@ function ProfilePage({userId}) {
   });
 };
 
-  useEffect(() => {
-  if (userId) {
-    setLoading(true); // Устанавливаем состояние ожидания данных
+    // Функция для выполнения запроса данных
+  const fetchData = () => {
+    if (userId) {
+      setLoading(true);
 
-    fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data && data.userCity) {
-          setTgPhoneNumber(data.userCity);
-        } else {
-          console.error('Данные не были получены');
-        }
-      })
-      .catch((error) => {
-        console.error('Ошибка при запросе данных:', error);
-      })
-      .finally(() => {
-        setLoading(false); // Завершаем ожидание данных
-      });
-  }
-}, [userId]);
+      fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data && data.userCity) {
+            setTgPhoneNumber(data.userCity);
+          } else {
+            console.error('Данные не были получены');
+          }
+        })
+        .catch((error) => {
+          console.error('Ошибка при запросе данных:', error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
+
+  // Выполняем первоначальный запрос данных при загрузке компонента
+  useEffect(() => {
+    fetchData();
+
+    // Затем создаем интервал для периодического опроса сервера
+    const intervalId = setInterval(fetchData, 60000); // Запрос каждую минуту (подстройте под свои потребности)
+
+    // Очистка интервала при размонтировании компонента
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [userId]);
+  
  return (
     <>
      {isEditing ? (
