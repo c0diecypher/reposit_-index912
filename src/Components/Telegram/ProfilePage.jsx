@@ -127,23 +127,30 @@ function ProfilePage({userId}) {
   
   const [tgPhoneNumber, setTgPhoneNumber] = useState('');
   const [loading, setLoading] = useState(true);
-   const requestPhoneNumber = () => {
-  setLoading(true); // Устанавливаем состояние loading в true перед выполнением запроса
+  const [isPhoneNumberRequested, setIsPhoneNumberRequested] = useState(false);
+
+  const handleRequestPhoneNumber = () => {
+  setLoading(true); // Начинаем загрузку данных
+
   window.Telegram.WebApp.requestContact((sent, event) => {
     if (sent) {
       const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
       if (contact && contact.phone_number) {
         setTgPhoneNumber(`+${contact.phone_number}`);
+        setIsPhoneNumberRequested(true); // Устанавливаем isPhoneNumberRequested в true
       }
-      setLoading(false); // Завершаем состояние loading после успешного запроса
+      setLoading(false);
+    } else {
+      setLoading(false);
     }
   });
 };
 
   useEffect(() => {
-  if (userId) {
-    setLoading(true); // Устанавливаем состояние ожидания данных
+  if (userId && isPhoneNumberRequested) {
+    setLoading(true);
 
+    // Выполните запрос данных здесь
     fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
       .then((response) => response.json())
       .then((data) => {
@@ -157,10 +164,10 @@ function ProfilePage({userId}) {
         console.error('Ошибка при запросе данных:', error);
       })
       .finally(() => {
-        setLoading(false); // Завершаем ожидание данных
+        setLoading(false);
       });
   }
-}, [userId]);
+}, [userId, isPhoneNumberRequested]);
  return (
     <>
      {isEditing ? (
