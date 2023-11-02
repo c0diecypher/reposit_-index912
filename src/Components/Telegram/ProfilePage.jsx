@@ -126,63 +126,65 @@ function ProfilePage({userId}) {
   };
   
   const [tgPhoneNumber, setTgPhoneNumber] = useState('');
-const [loading, setLoading] = useState(true);
-const [isDataUpdated, setDataUpdated] = useState(false);
-const [intervalId, setIntervalId] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [isDataUpdated, setDataUpdated] = useState(false);
+  const [intervalId, setIntervalId] = useState(null);
+  const [showPhoneNumberButton, setShowPhoneNumberButton] = useState(true);
 
-const requestPhoneNumber = () => {
-  setLoading(true);
-  window.Telegram.WebApp.requestContact((sent, event) => {
-    if (sent) {
-      const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
-      if (contact && contact.phone_number) {
-        setTgPhoneNumber(`+${contact.phone_number}`);
-        setLoading(false);
-        setDataUpdated(true); // Помечаем данные как обновленные
-      }
-    }
-  });
-};
-
-const fetchData = () => {
-  if (userId && isDataUpdated) {
+  const requestPhoneNumber = () => {
     setLoading(true);
-
-    fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data && data.userCity) {
-          setTgPhoneNumber(data.userCity);
-        } else {
-          console.error('Данные не были получены');
-          return; // Если данные не получены, выходим из функции, не устанавливая isDataUpdated
+    window.Telegram.WebApp.requestContact((sent, event) => {
+      if (sent) {
+        const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
+        if (contact && contact.phone_number) {
+          setTgPhoneNumber(`+${contact.phone_number}`);
+          setLoading(false);
+          setDataUpdated(true); // Помечаем данные как обновленные
+          setShowPhoneNumberButton(false); // Скрываем кнопку после успешного запроса
         }
-      })
-      .catch((error) => {
-        console.error('Ошибка при запросе данных:', error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }
-};
+      }
+    });
+  };
 
-useEffect(() => {
-  if (!isDataUpdated) {
-    fetchData();
-  }
+  const fetchData = () => {
+    if (userId && isDataUpdated) {
+      setLoading(true);
 
-  if (!intervalId && isDataUpdated) {
-    const newIntervalId = setInterval(fetchData, 7000);
-    setIntervalId(newIntervalId);
-  }
-
-  return () => {
-    if (intervalId) {
-      clearInterval(intervalId);
+      fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data && data.userCity) {
+            setTgPhoneNumber(data.userCity);
+          } else {
+            console.error('Данные не были получены');
+            return; // Если данные не получены, выходим из функции, не устанавливая isDataUpdated
+          }
+        })
+        .catch((error) => {
+          console.error('Ошибка при запросе данных:', error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     }
   };
-}, [userId, isDataUpdated, intervalId]);
+
+  useEffect(() => {
+    if (!isDataUpdated) {
+      fetchData();
+    }
+
+    if (!intervalId && isDataUpdated) {
+      const newIntervalId = setInterval(fetchData, 7000);
+      setIntervalId(newIntervalId);
+    }
+
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [userId, isDataUpdated, intervalId]);
   
  return (
     <>
@@ -257,7 +259,7 @@ useEffect(() => {
                   <span>Телефон</span>
                   <span className="profile-data-text">{loading ? 'Загрузка...' : (tgPhoneNumber || 'Не указан')}</span>
                 </div>
-                {!loading && !tgPhoneNumber && (
+                {showPhoneNumberButton && !loading && !tgPhoneNumber && (
                   <button className="btn-profile-data-info btn-profile-data" onClick={requestPhoneNumber}>
                     Привязать
                   </button>
