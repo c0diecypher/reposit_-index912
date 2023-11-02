@@ -166,20 +166,17 @@ function ProfilePage({userId}) {
   };
 
   // Выполняем первоначальный запрос данных при загрузке компонента
- useEffect(() => {
-  // Первый запрос через 5 секунд
-  const firstRequestTimer = setTimeout(() => {
-    requestPhoneNumber();
-  }, 5000); // 5000 миллисекунд в 5 секундах
+  useEffect(() => {
+    fetchData();
 
-  // Затем устанавливаем интервал для последующих запросов каждый час
-  const intervalId = setInterval(fetchData, 3600000); // 3600000 миллисекунд в часе
+    // Затем создаем интервал для периодического опроса сервера
+    const intervalId = setInterval(fetchData, 5000); // Запрос каждую минуту (подстройте под свои потребности)
 
-  return () => {
-    clearInterval(intervalId);
-    clearTimeout(firstRequestTimer);
-  };
-}, [userId]);
+    // Очистка интервала при размонтировании компонента
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [userId]);
   
  return (
     <>
