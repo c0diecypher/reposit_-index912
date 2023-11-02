@@ -16,7 +16,7 @@ function ProfilePage({userId}) {
   }, []);
   const [isEditing, setIsEditing] = useState(false);
   const [fullName, setFullName] = useState(''); // Исходное значение
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [userPhone, setUserPhone] = useState('');
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState(null);
   const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
@@ -32,9 +32,9 @@ function ProfilePage({userId}) {
     if (digitsOnly.length >= 11) {
       // Ограничить номер 11 цифрами
       const formattedNumber = `+${digitsOnly.slice(0, 1)}(${digitsOnly.slice(1, 4)})-${digitsOnly.slice(4, 7)}-${digitsOnly.slice(7, 9)}-${digitsOnly.slice(9, 11)}`;
-      setPhoneNumber(formattedNumber);
+      setUserPhone(formattedNumber);
     } else {
-      setPhoneNumber(digitsOnly);
+      setUserPhone(digitsOnly);
     }
   };
    
@@ -64,7 +64,7 @@ function ProfilePage({userId}) {
       .then((response) => response.json())
       .then((data) => {
         if (data && data.phoneNumber && data.userFio) {
-          setPhoneNumber(data.phoneNumber);
+          setUserPhone(data.phoneNumber);
           setFullName(data.userFio);
         } else {
           console.error('Данные не были получены');
@@ -82,14 +82,14 @@ function ProfilePage({userId}) {
 
   const sendUserDataToServer = () => {
   console.log('fullName:', fullName);
-  console.log('phoneNumber:', phoneNumber);
+  console.log('userPhone:', userPhone);
 
   if (userId) {
     // Prepare the data for saving
     const newData = {
       userId,
       fullName, // Use the component state directly
-      phoneNumber, // Use the component state directly
+      userPhone, // Use the component state directly
     };
 
     // Send the data to the server for updating
@@ -203,7 +203,7 @@ function ProfilePage({userId}) {
                   </div>
                   <div className="profile-select-input">
                     <label className="profile-select-label">Телефон</label>
-                    <input type="text" className="profile-search-value" value={phoneNumber}
+                    <input type="text" className="profile-search-value" value={userPhone}
                     onChange={handlePhoneNumberInput}/>
                     <div className="profile-select-info-icon">
                       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="tabler-icon tabler-icon-chevron-right">
@@ -267,7 +267,7 @@ function ProfilePage({userId}) {
                 </div>
                 <div className="profile-data-info">
                   <span>Телефон</span>
-                  <span className="profile-data-text">{phoneNumber || 'Не указан'}</span>
+                  <span className="profile-data-text">{userPhone || 'Не указан'}</span>
                 </div>
                 <div className="profile-data-info">
                   <span>Город</span>
