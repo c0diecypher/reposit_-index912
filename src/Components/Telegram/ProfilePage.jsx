@@ -165,16 +165,11 @@ function ProfilePage({userId}) {
 
   // Выполняем первоначальный запрос данных при загрузке компонента
   useEffect(() => {
+  if (updateCount < 2) { // Выполняем только два раза
     fetchData();
-
-    // Затем создаем интервал для периодического опроса сервера
-    const intervalId = setInterval(fetchData, 7000); // Запрос каждую минуту (подстройте под свои потребности)
-
-    // Очистка интервала при размонтировании компонента
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [userId]);
+    setUpdateCount(updateCount + 1); // Увеличиваем счетчик обновлений
+  }
+}, [updateCount, userId]);
   
  return (
     <>
