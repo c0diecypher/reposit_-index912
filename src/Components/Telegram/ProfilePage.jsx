@@ -127,14 +127,23 @@ function ProfilePage({userId}) {
   
   const [tgPhoneNumber, setTgPhoneNumber] = useState('');
   const [loading, setLoading] = useState(true);
-  const [isPhoneNumberRequested, setIsPhoneNumberRequested] = useState(false);
+   const requestPhoneNumber = () => {
+  setLoading(true); // Устанавливаем состояние loading в true перед выполнением запроса
+  window.Telegram.WebApp.requestContact((sent, event) => {
+    if (sent) {
+      const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
+      if (contact && contact.phone_number) {
+        setTgPhoneNumber(`+${contact.phone_number}`);
+      }
+      setLoading(false); // Завершаем состояние loading после успешного запроса
+    }
+  });
+};
 
-  // Добавьте этот useEffect для обработки нажатия на кнопку "Привязать"
-useEffect(() => {
-  if (userId && isPhoneNumberRequested) {
-    setLoading(true);
+  useEffect(() => {
+  if (userId) {
+    setLoading(true); // Устанавливаем состояние ожидания данных
 
-    // Выполните запрос данных здесь
     fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
       .then((response) => response.json())
       .then((data) => {
@@ -148,30 +157,10 @@ useEffect(() => {
         console.error('Ошибка при запросе данных:', error);
       })
       .finally(() => {
-        setLoading(false);
+        setLoading(false); // Завершаем ожидание данных
       });
   }
-}, [userId, isPhoneNumberRequested]);
-
-const handleRequestPhoneNumber = () => {
-  // Устанавливаем состояние для запроса после нажатия кнопки "Привязать"
-  setIsPhoneNumberRequested(true);
-  
-  // Оставляем setLoading(true) здесь, если это необходимо
-  setLoading(true);
-  
-  window.Telegram.WebApp.requestContact((sent, event) => {
-    if (sent) {
-      const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
-      if (contact && contact.phone_number) {
-        setTgPhoneNumber(`+${contact.phone_number}`);
-      }
-      setLoading(false);
-    } else {
-      setLoading(false);
-    }
-  });
-};
+}, [userId]);
  return (
     <>
      {isEditing ? (
@@ -246,7 +235,7 @@ const handleRequestPhoneNumber = () => {
                   <span className="profile-data-text">{loading ? 'Загрузка...' : (tgPhoneNumber || 'Не указан')}</span>
                 </div>
                 {!loading && !tgPhoneNumber && (
-                  <button className="btn-profile-data-info btn-profile-data" onClick={handleRequestPhoneNumber}>
+                  <button className="btn-profile-data-info btn-profile-data" onClick={requestPhoneNumber}>
                     Привязать
                   </button>
                 )}
