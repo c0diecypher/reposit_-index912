@@ -127,27 +127,22 @@ function ProfilePage({userId}) {
   
   const [tgPhoneNumber, setTgPhoneNumber] = useState('');
   const [loading, setLoading] = useState(true);
-  const [isDataUpdated, setDataUpdated] = useState(false);
-  const [intervalId, setIntervalId] = useState(null);
-  const [showPhoneNumberButton, setShowPhoneNumberButton] = useState(true);
-
-  const requestPhoneNumber = () => {
-    setLoading(true);
-    window.Telegram.WebApp.requestContact((sent, event) => {
-      if (sent) {
-        const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
-        if (contact && contact.phone_number) {
-          setTgPhoneNumber(`+${contact.phone_number}`);
-          setLoading(false);
-          setDataUpdated(true); // Помечаем данные как обновленные
-          setShowPhoneNumberButton(false); // Скрываем кнопку после успешного запроса
-        }
+   const requestPhoneNumber = () => {
+  setLoading(true); // Устанавливаем состояние loading в true перед выполнением запроса
+  window.Telegram.WebApp.requestContact((sent, event) => {
+    if (sent) {
+      const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
+      if (contact && contact.phone_number) {
+        setTgPhoneNumber(`+${contact.phone_number}`);
       }
-    });
-  };
+      setLoading(false); // Завершаем состояние loading после успешного запроса
+    }
+  });
+};
 
+    // Функция для выполнения запроса данных
   const fetchData = () => {
-    if (userId && isDataUpdated) {
+    if (userId) {
       setLoading(true);
 
       fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
@@ -157,7 +152,6 @@ function ProfilePage({userId}) {
             setTgPhoneNumber(data.userCity);
           } else {
             console.error('Данные не были получены');
-            return; // Если данные не получены, выходим из функции, не устанавливая isDataUpdated
           }
         })
         .catch((error) => {
@@ -169,22 +163,18 @@ function ProfilePage({userId}) {
     }
   };
 
+  // Выполняем первоначальный запрос данных при загрузке компонента
   useEffect(() => {
-    if (!isDataUpdated) {
-      fetchData();
-    }
+    fetchData();
 
-    if (!intervalId && isDataUpdated) {
-      const newIntervalId = setInterval(fetchData, 7000);
-      setIntervalId(newIntervalId);
-    }
+    // Затем создаем интервал для периодического опроса сервера
+    const intervalId = setInterval(fetchData, 60000); // Запрос каждую минуту (подстройте под свои потребности)
 
+    // Очистка интервала при размонтировании компонента
     return () => {
-      if (intervalId) {
-        clearInterval(intervalId);
-      }
+      clearInterval(intervalId);
     };
-  }, [userId, isDataUpdated, intervalId]);
+  }, [userId]);
   
  return (
     <>
@@ -259,7 +249,7 @@ function ProfilePage({userId}) {
                   <span>Телефон</span>
                   <span className="profile-data-text">{loading ? 'Загрузка...' : (tgPhoneNumber || 'Не указан')}</span>
                 </div>
-                {showPhoneNumberButton && !loading && !tgPhoneNumber && (
+                {!loading && !tgPhoneNumber && (
                   <button className="btn-profile-data-info btn-profile-data" onClick={requestPhoneNumber}>
                     Привязать
                   </button>
