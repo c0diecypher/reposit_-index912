@@ -127,10 +127,9 @@ function ProfilePage({userId}) {
   
   
   
-  const [tgPhoneNumber, setTgPhoneNumber] = useState('');
+const [tgPhoneNumber, setTgPhoneNumber] = useState('');
 const [loading, setLoading] = useState(true);
 const [phoneNumberBound, setPhoneNumberBound] = useState(false); // Флаг, показывающий, привязан ли номер
-const [initialDataFetched, setInitialDataFetched] = useState(false); // Флаг, показывающий, были ли получены начальные данные
 
 const requestPhoneNumber = () => {
   setLoading(true);
@@ -146,45 +145,35 @@ const requestPhoneNumber = () => {
   });
 };
 
-const fetchData = () => {
-  if (userId) {
+const updateDataInDatabase = () => {
+  if (userId && phoneNumberBound) { // Выполняем запрос к базе данных только если номер привязан
     setLoading(true);
-    fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
+
+    // Здесь выполняйте запрос на обновление данных в базе данных
+    // Пример:
+    fetch(`https://example.com/updateData?userId=${userId}&phoneNumber=${tgPhoneNumber}`)
       .then((response) => response.json())
       .then((data) => {
-        if (data && data.tgPhoneNumber) {
-          setTgPhoneNumber(data.tgPhoneNumber);
-        } else {
-          console.error('Данные не были получены');
-        }
+        // Обработка успешного запроса к базе данных
       })
       .catch((error) => {
         console.error('Ошибка при запросе данных:', error);
       })
       .finally(() => {
         setLoading(false);
-        setInitialDataFetched(true); // Устанавливаем флаг, что начальные данные были получены
       });
   }
 };
 
 useEffect(() => {
-  if (!phoneNumberBound) {
-    requestPhoneNumber(); // Выполняем запрос на привязку номера, если номер не привязан
-  } else if (!initialDataFetched) {
-    fetchData(); // Выполняем запрос начальных данных, если номер привязан, но начальные данные еще не получены
-  }
+  requestPhoneNumber(); // Выполняем запрос на привязку номера
 
-  if (phoneNumberBound && initialDataFetched) {
-    // Если номер привязан и начальные данные получены, создаем интервал для периодического опроса сервера
-    const intervalId = setInterval(fetchData, 5000); // Запрос каждую минуту (подстройте под свои потребности)
+  const intervalId = setInterval(updateDataInDatabase, 5000); // Запрос к базе данных каждую минуту (подстройте под свои потребности)
 
-    // Очистка интервала при размонтировании компонента
-    return () => {
-      clearInterval(intervalId);
-    };
-  }
-}, [userId, phoneNumberBound, initialDataFetched]);
+  return () => {
+    clearInterval(intervalId);
+  };
+}, [userId, phoneNumberBound, tgPhoneNumber]);
   
  return (
     <>
