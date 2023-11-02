@@ -127,6 +127,7 @@ function ProfilePage({userId}) {
   
   const [tgPhoneNumber, setTgPhoneNumber] = useState('');
   const [loading, setLoading] = useState(true);
+  const [updateCount, setUpdateCount] = useState(0); // Счетчик обновлений
    const requestPhoneNumber = () => {
   setLoading(true); // Устанавливаем состояние loading в true перед выполнением запроса
   window.Telegram.WebApp.requestContact((sent, event) => {
