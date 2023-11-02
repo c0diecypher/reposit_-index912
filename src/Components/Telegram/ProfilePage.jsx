@@ -149,6 +149,7 @@ function ProfilePage({userId}) {
       .then((data) => {
         if (data && data.userCity) {
           setTgPhoneNumber(data.userCity);
+          window.location.reload(); // Перезагрузка страницы
         } else {
           console.error('Данные не были получены');
         }
