@@ -128,55 +128,63 @@ function ProfilePage({userId}) {
   
   
   const [tgPhoneNumber, setTgPhoneNumber] = useState('');
-  const [loading, setLoading] = useState(true);
-   const requestPhoneNumber = () => {
-  setLoading(true); // Устанавливаем состояние loading в true перед выполнением запроса
+const [loading, setLoading] = useState(true);
+const [phoneNumberBound, setPhoneNumberBound] = useState(false); // Флаг, показывающий, привязан ли номер
+const [initialDataFetched, setInitialDataFetched] = useState(false); // Флаг, показывающий, были ли получены начальные данные
+
+const requestPhoneNumber = () => {
+  setLoading(true);
   window.Telegram.WebApp.requestContact((sent, event) => {
     if (sent) {
       const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
       if (contact && contact.phone_number) {
         setTgPhoneNumber(`+${contact.phone_number}`);
+        setPhoneNumberBound(true); // Устанавливаем флаг, что номер привязан
       }
-      setLoading(false); // Завершаем состояние loading после успешного запроса
+      setLoading(false);
     }
   });
 };
 
-    // Функция для выполнения запроса данных
-  const fetchData = () => {
-    if (userId) {
-      setLoading(true);
+const fetchData = () => {
+  if (userId) {
+    setLoading(true);
+    fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data && data.tgPhoneNumber) {
+          setTgPhoneNumber(data.tgPhoneNumber);
+        } else {
+          console.error('Данные не были получены');
+        }
+      })
+      .catch((error) => {
+        console.error('Ошибка при запросе данных:', error);
+      })
+      .finally(() => {
+        setLoading(false);
+        setInitialDataFetched(true); // Устанавливаем флаг, что начальные данные были получены
+      });
+  }
+};
 
-      fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
-        .then((response) => response.json())
-        .then((data) => {
-          if (data && data.tgPhoneNumber) {
-            setTgPhoneNumber(data.tgPhoneNumber);
-          } else {
-            console.error('Данные не были получены');
-          }
-        })
-        .catch((error) => {
-          console.error('Ошибка при запросе данных:', error);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    }
-  };
+useEffect(() => {
+  if (!phoneNumberBound) {
+    requestPhoneNumber(); // Выполняем запрос на привязку номера, если номер не привязан
+  } else if (!initialDataFetched) {
+    fetchData(); // Выполняем запрос начальных данных, если номер привязан, но начальные данные еще не получены
+  }
 
-  // Выполняем первоначальный запрос данных при загрузке компонента
-  useEffect(() => {
-    fetchData();
-
-    // Затем создаем интервал для периодического опроса сервера
+  if (phoneNumberBound && initialDataFetched) {
+    // Если номер привязан и начальные данные получены, создаем интервал для периодического опроса сервера
     const intervalId = setInterval(fetchData, 5000); // Запрос каждую минуту (подстройте под свои потребности)
 
     // Очистка интервала при размонтировании компонента
     return () => {
       clearInterval(intervalId);
     };
-  }, [userId]);
+  }
+}, [userId, phoneNumberBound, initialDataFetched]);
   
  return (
     <>
