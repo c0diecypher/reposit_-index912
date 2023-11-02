@@ -126,65 +126,63 @@ function ProfilePage({userId}) {
   };
   
   const [tgPhoneNumber, setTgPhoneNumber] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [isDataUpdated, setDataUpdated] = useState(false);
-  const [updateCount, setUpdateCount] = useState(0); // Счетчик обновлений после нажатия
+const [loading, setLoading] = useState(true);
+const [isDataUpdated, setDataUpdated] = useState(false);
+const [intervalId, setIntervalId] = useState(null);
 
-   const requestPhoneNumber = () => {
-  setLoading(true); // Устанавливаем состояние loading в true перед выполнением запроса
+const requestPhoneNumber = () => {
+  setLoading(true);
   window.Telegram.WebApp.requestContact((sent, event) => {
     if (sent) {
       const contact = event && event.responseUnsafe && event.responseUnsafe.contact;
       if (contact && contact.phone_number) {
         setTgPhoneNumber(`+${contact.phone_number}`);
+        setLoading(false);
+        setDataUpdated(true); // Помечаем данные как обновленные
       }
-      setLoading(false); // Завершаем состояние loading после успешного запроса
     }
   });
 };
 
-    // Функция для выполнения запроса данных
-  const fetchData = () => {
-    if (userId) {
-      setLoading(true);
+const fetchData = () => {
+  if (userId && isDataUpdated) {
+    setLoading(true);
 
-      fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
-        .then((response) => response.json())
-        .then((data) => {
-          if (data && data.userCity) {
-            setTgPhoneNumber(data.userCity);
-          } else {
-            console.error('Данные не были получены');
-          }
-        })
-        .catch((error) => {
-          console.error('Ошибка при запросе данных:', error);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    }
-  };
+    fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data && data.userCity) {
+          setTgPhoneNumber(data.userCity);
+        } else {
+          console.error('Данные не были получены');
+          return; // Если данные не получены, выходим из функции, не устанавливая isDataUpdated
+        }
+      })
+      .catch((error) => {
+        console.error('Ошибка при запросе данных:', error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
+};
 
-  // Выполняем первоначальный запрос данных при загрузке компонента
-  useEffect(() => {
+useEffect(() => {
   if (!isDataUpdated) {
     fetchData();
-    setUpdateCount(updateCount + 1); // Увеличиваем счетчик обновлений после нажатия
-    if (updateCount >= 2) {
-      // Если счетчик достиг двух, сбрасываем флаг и больше не обновляем данные
-      setDataUpdated(true);
-    }
   }
 
-  // Затем создаем интервал для периодического опроса сервера
-  const intervalId = setInterval(fetchData, 7000); // Запрос каждые 7 секунд
+  if (!intervalId && isDataUpdated) {
+    const newIntervalId = setInterval(fetchData, 7000);
+    setIntervalId(newIntervalId);
+  }
 
-  // Очистка интервала при размонтировании компонента
   return () => {
-    clearInterval(intervalId);
+    if (intervalId) {
+      clearInterval(intervalId);
+    }
   };
-}, [userId, isDataUpdated, updateCount]);
+}, [userId, isDataUpdated, intervalId]);
   
  return (
     <>
