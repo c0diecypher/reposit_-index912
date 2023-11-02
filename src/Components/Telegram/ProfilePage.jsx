@@ -168,7 +168,7 @@ function ProfilePage({userId}) {
     fetchData();
 
     // Затем создаем интервал для периодического опроса сервера
-    const intervalId = setInterval(fetchData, 60000); // Запрос каждую минуту (подстройте под свои потребности)
+    const intervalId = setInterval(fetchData, 7000); // Запрос каждую минуту (подстройте под свои потребности)
 
     // Очистка интервала при размонтировании компонента
     return () => {
