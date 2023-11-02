@@ -141,32 +141,26 @@ function ProfilePage({userId}) {
 };
 
   useEffect(() => {
-  const fetchData = async () => {
-    if (userId) {
-      setLoading(true); // Устанавливаем состояние ожидания данных
+  if (userId) {
+    setLoading(true); // Устанавливаем состояние ожидания данных
 
-      try {
-        const response = await fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`);
-        if (!response.ok) {
-          throw new Error('Ошибка при запросе данных');
-        }
-        
-        const data = await response.json();
-
+    fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
+      .then((response) => response.json())
+      .then((data) => {
         if (data && data.userCity) {
           setTgPhoneNumber(data.userCity);
+          window.location.reload(); // Перезагрузка страницы
         } else {
           console.error('Данные не были получены');
         }
-      } catch (error) {
+      })
+      .catch((error) => {
         console.error('Ошибка при запросе данных:', error);
-      } finally {
+      })
+      .finally(() => {
         setLoading(false); // Завершаем ожидание данных
-      }
-    }
-  };
-
-  fetchData(); // Вызываем функцию fetchData, которая выполняет асинхронный запрос
+      });
+  }
 }, [userId]);
  return (
     <>
