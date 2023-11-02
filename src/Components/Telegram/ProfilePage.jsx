@@ -125,47 +125,47 @@ function ProfilePage({userId}) {
     setIsEditing(false);
   };
   
-const [tgPhoneNumber, setTgPhoneNumber] = useState('');
-  const [loading, setLoading] = useState(true);
+  
+  const [tgPhoneNumber, setTgPhoneNumber] = useState('');
+const [loading, setLoading] = useState(true);
+const [hasFetchedData, setHasFetchedData] = useState(false); // Состояние для отслеживания того, были ли данные уже получены
 
-  const fetchData = () => {
-    if (userId) {
-      setLoading(true);
+// Функция для выполнения запроса данных
+const fetchData = () => {
+  if (userId && !hasFetchedData) { // Проверяем, что данные еще не были получены
+    setLoading(true);
 
-      fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
-        .then((response) => response.json())
-        .then((data) => {
-          if (data && data.userCity) {
-            setTgPhoneNumber(data.userCity);
-          } else {
-            console.error('Данные не были получены');
-          }
-        })
-        .catch((error) => {
-          console.error('Ошибка при запросе данных:', error);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    }
+    fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data && data.userCity) {
+          setTgPhoneNumber(data.userCity);
+          setHasFetchedData(true); // Устанавливаем флаг, что данные были успешно получены
+        } else {
+          console.error('Данные не были получены');
+        }
+      })
+      .catch((error) => {
+        console.error('Ошибка при запросе данных:', error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
+};
+
+// Выполняем первоначальный запрос данных при загрузке компонента
+useEffect(() => {
+  fetchData();
+
+  // Затем создаем интервал для периодического опроса сервера
+  const intervalId = setInterval(fetchData, 5000); // Запрос каждую минуту (подстройте под свои потребности)
+
+  // Очистка интервала при размонтировании компонента
+  return () => {
+    clearInterval(intervalId);
   };
-
-  useEffect(() => {
-    fetchData(); // Вызываем fetchData при первой загрузке компонента
-
-    const intervalId = setInterval(() => {
-      fetchData(); // Вызываем fetchData каждую минуту
-
-      // Если данные успешно получены, очищаем интервал
-      if (!loading && tgPhoneNumber) {
-        clearInterval(intervalId);
-      }
-    }, 5000);
-
-    return () => {
-      clearInterval(intervalId); // Очистка интервала при размонтировании компонента
-    };
-  }, [userId, loading, tgPhoneNumber]);
+}, [userId, hasFetchedData]); // Убедитесь, что hasFetchedData добавлен в зависимости useEffect
   
  return (
     <>
