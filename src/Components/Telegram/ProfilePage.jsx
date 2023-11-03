@@ -177,6 +177,19 @@ function ProfilePage({userId}) {
       clearInterval(intervalId);
     };
   }, [userId]);
+
+  const [deliveryType, setDeliveryType] = useState('courier'); // Изначально выбран "Доставка курьером"
+  const [address, setAddress] = useState(''); // Значение поля "Адрес доставки"
+
+  const handleDeliveryTypeChange = (newDeliveryType) => {
+    setDeliveryType(newDeliveryType);
+    // Если выбран "Самовывоз из ПВЗ", устанавливаем "Пункт выдачи" в поле адреса
+    if (newDeliveryType === 'pickup') {
+      setAddress('');
+    } else {
+      setAddress(''); // В противном случае сбрасываем поле адреса
+    }
+  };
   
  return (
     <>
