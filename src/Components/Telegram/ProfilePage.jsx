@@ -206,7 +206,7 @@ function ProfilePage({userId}) {
                         Доставка курьером
                       </div>
                       <div className="delivery-type-image">
-                        <img src="../img/svg/bx1.png" alt="" />
+                        <img src="../img/svg/bx3.png" alt="" />
                       </div>
                     </div>
                   </button>
