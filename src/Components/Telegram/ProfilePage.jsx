@@ -203,7 +203,7 @@ function ProfilePage({userId}) {
                   Данные доставки
               </div>
                 <div className="profile-data-info">
-                  <h2>Данные получателя</h2>
+                  <h2>Вид доставки</h2>
                 </div>
                 <div className="delivery-type-input">
                 
@@ -236,6 +236,9 @@ function ProfilePage({userId}) {
                     </div>
                   </button>
                   
+                </div>
+                 <div className="profile-data-info">
+                  <h2>Данные получателя</h2>
                 </div>
                  <div className="profile-select-info">
                     <div className="profile-select-input">
