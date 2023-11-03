@@ -195,7 +195,7 @@ function ProfilePage({userId}) {
     <>
      {isEditing ? (
       <>
-            <div className="profile-data">
+           <div className="profile-data">
               <div className='profile-data-title'>
                   Данные доставки
               </div>
@@ -205,8 +205,7 @@ function ProfilePage({userId}) {
                 <div className="delivery-type-input">
                 
                   <button
-                   className={`button-delivery ${deliveryType === 'pickup' ? 'selected' : ''}`}
-                   onClick={() => handleDeliveryTypeChange('pickup')}
+                   className={`button-delivery`}  
                   >
                   {deliveryType === 'pickup' && (
                     <span className="delivery-type-item-outline">
@@ -228,37 +227,26 @@ function ProfilePage({userId}) {
                       <div className='bg-delivery-type'></div>
                       <div className="delivery-type-image">
                         <img src="../img/svg/bx4bg.png" alt="" />
+                        
                       </div>
-                    </div>
-                  </button>
-                  <button 
-                  className={`button-delivery ${deliveryType === 'courier' ? 'selected' : ''}`}
-                  onClick={() => handleDeliveryTypeChange('courier')}
-                  >
-                    {deliveryType === 'courier' && (
-                    <span className="delivery-type-item-outline">
-                  <svg width="135" height="100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0.5" y="0.5" width="134" height="99" rx="19.5" stroke="url(#outline_svg__a)"></rect>
-                      <defs><radialGradient id="outline_svg__a" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="rotate(-38.951 123.34 28.893) scale(146.314 152.629)">
-                        <stop stopColor="#EB9C00"></stop>
-                        <stop offset="0.271" stopColor="#FF4769"></stop>
-                        <stop offset="0.664" stopColor="#3D50FF"></stop>
-                        <stop offset="1" stopColor="#00B3FF"></stop>
-                        </radialGradient></defs>
-                  </svg>
-                 </span>
-                 )}
-                    <div className="delivery-type-item-content">
-                      <div className="delivery-type-title" style={{color:'#000'}}>
-                        Доставка курьером
-                      </div>
-                      <div className="delivery-type-image">
-                        <img src="../img/svg/bx3.png" alt="" />
-                      </div>
+                      
                     </div>
                   </button>
                   
                 </div>
+                <div className="profile-select-info">
+                    <div className="profile-select-input">
+                      <label className="profile-select-label">
+                        {deliveryType === 'pickup' ? 'Адрес доставки' : 'Пункт выдачи'}
+                      </label>
+                      <input
+                        type="text"
+                        className="profile-search-value"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                      />
+                    </div>
+                  </div>
                 <div className="profile-select-info">
                     <div className="profile-select-input">
                       <label className="profile-select-label">
