@@ -246,20 +246,6 @@ function ProfilePage({userId}) {
                       />
                     </div>
                   </div>
-  
-                <div className="profile-select-info">
-                    <div className="profile-select-input">
-                      <label className="profile-select-label">
-                        {deliveryType === 'pickup' ? 'Пункт выдачи' : 'Адрес доставки'}
-                      </label>
-                      <input
-                        type="text"
-                        className="profile-search-value"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                      />
-                    </div>
-                  </div>
                 <div className="profile-select-info">
                 
                   <div className="profile-select-input">
