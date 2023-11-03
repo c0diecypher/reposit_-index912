@@ -189,6 +189,29 @@ function ProfilePage({userId}) {
                 <div className="profile-data-info">
                   <h2>Данные получателя</h2>
                 </div>
+                <div className="delivery-type-input">
+                  <button className="button-delivery">
+                    <div className="delivery-type-item-content">
+                      <div className="delivery-type-title">
+                        Самовывоз <br/>из ПВЗ
+                      </div>
+                      <div className="delivery-type-image">
+                        <img src="../../../public/img/svg/wb5.png" alt="" />
+                      </div>
+                    </div>
+                  </button>
+                  <button className="button-delivery">
+                    <div className="delivery-type-item-content">
+                      <div className="delivery-type-title" style={{color:'#000'}}>
+                        Доставка курьером
+                      </div>
+                      <div className="delivery-type-image">
+                        <img src="../../../public/img/svg/bx1.png" alt="" />
+                      </div>
+                    </div>
+                  </button>
+                  
+                </div>
                 <div className="profile-select-info">
                 
                   <div className="profile-select-input">
