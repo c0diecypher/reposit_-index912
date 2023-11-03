@@ -225,8 +225,9 @@ function ProfilePage({userId}) {
                       <div className="delivery-type-title">
                         Самовывоз <br/>из ПВЗ
                       </div>
+                      <div className='bg-delivery-type'></div>
                       <div className="delivery-type-image">
-                        <img src="../img/svg/wb5.png" alt="" />
+                        <img src="../img/svg/bx4bg.png" alt="" />
                       </div>
                     </div>
                   </button>
