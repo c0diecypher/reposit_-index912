@@ -63,9 +63,10 @@ function ProfilePage({userId}) {
     fetch(`https://zipperconnect.space/customer/settings/client/${userId}`)
       .then((response) => response.json())
       .then((data) => {
-        if (data && data.phoneNumber && data.userFio) {
+        if (data && data.phoneNumber && data.userFio && data.userAdress) {
           setUserPhone(data.phoneNumber);
           setFullName(data.userFio);
+          setAddress(data.userAdress)
         } else {
           console.error('Данные не были получены');
         }
@@ -90,6 +91,7 @@ function ProfilePage({userId}) {
       userId,
       fullName, // Use the component state directly
       userPhone, // Use the component state directly
+      address,
     };
 
     // Send the data to the server for updating
