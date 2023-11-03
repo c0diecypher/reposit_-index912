@@ -345,8 +345,8 @@ function ProfilePage({userId}) {
                   <span className="profile-data-text">Не указан</span>
                 </div>
                 <div className="profile-data-info">
-                  <span>Пункт выдачи</span>
-                  <span className="profile-data-text">Не указан</span>
+                  <span>Адрес доставки</span>
+                  <span className="profile-data-text">{address || 'Не указан'}</span>
                 </div>
 
                 <button className="btn-profile-data-info btn-profile-data" onClick={handleEditClick}>
