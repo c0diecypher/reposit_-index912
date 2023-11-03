@@ -196,7 +196,7 @@ function ProfilePage({userId}) {
                         Самовывоз <br/>из ПВЗ
                       </div>
                       <div className="delivery-type-image">
-                        <img src="../../../public/img/svg/wb5.png" alt="" />
+                        <img src="../img/svg/wb5.png" alt="" />
                       </div>
                     </div>
                   </button>
@@ -206,7 +206,7 @@ function ProfilePage({userId}) {
                         Доставка курьером
                       </div>
                       <div className="delivery-type-image">
-                        <img src="../../../public/img/svg/bx1.png" alt="" />
+                        <img src="../img/svg/bx1.png" alt="" />
                       </div>
                     </div>
                   </button>
