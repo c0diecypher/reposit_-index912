@@ -318,7 +318,7 @@
   }
 
   .bg-delivery-type{
-    background: linear-gradient(120deg, var(--tg-text), var(--tg-hint));
+    background: linear-gradient(-100deg, var(--tg-text), var(--tg-hint));
     opacity: 0.1;
     width: 100%;
     height: 100%;
