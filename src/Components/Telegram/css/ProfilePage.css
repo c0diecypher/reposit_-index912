@@ -12,6 +12,7 @@
   --tg-bg: var(--tg-theme-bg-color, #f2f4f6);
   --tg-second: var(--tg-theme-secondary-bg-color, #ededed);
   --tg-text: var(--tg-theme-text-color, #000);
+  --tg-hint: var(--tg-theme-hint-color, #d0d0d0);
 }
 
 .profile-header{
