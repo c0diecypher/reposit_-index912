@@ -63,10 +63,11 @@ function ProfilePage({userId}) {
     fetch(`https://zipperconnect.space/customer/settings/client/${userId}`)
       .then((response) => response.json())
       .then((data) => {
-        if (data && data.phoneNumber && data.userFio && data.userAdress) {
+        if (data && data.phoneNumber && data.userFio && data.userAdress && data.userCity) {
           setUserPhone(data.phoneNumber);
           setFullName(data.userFio);
-          setAddress(data.userAdress)
+          setAddress(data.userAdress);
+          setUserCity(data.userCity);
         } else {
           console.error('Данные не были получены');
         }
@@ -92,6 +93,7 @@ function ProfilePage({userId}) {
       fullName, // Use the component state directly
       userPhone, // Use the component state directly
       address,
+      userCity,
     };
 
     // Send the data to the server for updating
@@ -181,7 +183,7 @@ function ProfilePage({userId}) {
   }, [userId]);
 
   const [address, setAddress] = useState(''); // Значение поля "Адрес доставки"
-
+  const [userCity, setUserCity] = useState('');
   const handleDeliveryTypeChange = (newDeliveryType) => {
     setAddress(newDeliveryType);
     // Если выбран "Самовывоз из ПВЗ", устанавливаем "Пункт выдачи" в поле адреса
@@ -235,6 +237,24 @@ function ProfilePage({userId}) {
                   </button>
                   
                 </div>
+                 <div className="profile-select-info">
+                    <div className="profile-select-input">
+                      <label className="profile-select-label">
+                        Город
+                      </label>
+                      <input
+                        type="text"
+                        className="profile-search-value"
+                        value={userCity}
+                        onChange={(e) => setUserCity(e.target.value)}
+                      />
+                       <div className="profile-select-info-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="tabler-icon tabler-icon-chevron-right">
+                          <path d="M9 6l6 6l-6 6"></path>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
                 <div className="profile-select-info">
                     <div className="profile-select-input">
                       <label className="profile-select-label">
