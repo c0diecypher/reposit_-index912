@@ -178,11 +178,10 @@ function ProfilePage({userId}) {
     };
   }, [userId]);
 
-  const [deliveryType, setDeliveryType] = useState('courier'); // Изначально выбран "Доставка курьером"
   const [address, setAddress] = useState(''); // Значение поля "Адрес доставки"
 
   const handleDeliveryTypeChange = (newDeliveryType) => {
-    setDeliveryType(newDeliveryType);
+    setAddress(newDeliveryType);
     // Если выбран "Самовывоз из ПВЗ", устанавливаем "Пункт выдачи" в поле адреса
     if (newDeliveryType === 'pickup') {
       setAddress('');
@@ -207,7 +206,7 @@ function ProfilePage({userId}) {
                   <button
                    className={`button-delivery`}  
                   >
-                  {deliveryType === 'pickup' && (
+                  {address === 'pickup' && (
                     <span className="delivery-type-item-outline">
                   <svg width="135" height="100" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="0.5" y="0.5" width="134" height="99" rx="19.5" stroke="url(#outline_svg__a)"></rect>
@@ -234,6 +233,19 @@ function ProfilePage({userId}) {
                   </button>
                   
                 </div>
+                <div className="profile-select-info">
+                    <div className="profile-select-input">
+                      <label className="profile-select-label">
+                        Адрес доставки
+                      </label>
+                      <input
+                        type="text"
+                        className="profile-search-value"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                      />
+                    </div>
+                  </div>
                 <div className="profile-select-info">
                     <div className="profile-select-input">
                       <label className="profile-select-label">
