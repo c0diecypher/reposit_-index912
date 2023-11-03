@@ -258,7 +258,7 @@
     opacity: 0.6;
   }
 
- .delivery-type-input{
+.delivery-type-input{
     display: flex;
     gap: 5px;
     flex-wrap: nowrap;
@@ -290,6 +290,7 @@
     overflow: hidden;
     width: 100%;
     height: 100%;
+    border-radius: 18px;
     position: relative;
     display: flex;
     align-items: flex-end;
@@ -319,3 +320,22 @@
     height: 100%;
     object-fit: cover;
   }
+
+  .button-delivery:focus {
+    outline: none;
+  }
+  
+  .button-delivery:active {
+    letter-spacing: normal;
+    transform: translateY(4px);
+    box-shadow: none;
+    transform: scale(0.84);
+    transition:  0.08s;
+    
+  }
+
+  .delivery-type-item-outline{
+    position: absolute;
+    inset: 0;
+  }
+
