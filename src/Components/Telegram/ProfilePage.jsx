@@ -350,7 +350,7 @@ function ProfilePage({userId}) {
                 </div>
                 <div className="profile-data-info">
                   <span>Город</span>
-                  <span className="profile-data-text">Не указан</span>
+                  <span className="profile-data-text">{userCity || 'Не указан'}</span>
                 </div>
                 <div className="profile-data-info">
                   <span>Адрес доставки</span>
