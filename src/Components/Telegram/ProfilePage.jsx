@@ -310,7 +310,7 @@ function ProfilePage({userId}) {
                     <div className="profile-avatar">
                     {imageSrc ? (
                         <div className="profile-avatar">
-                          <img src={imageSrc} className="usercard_avatar_img" />
+                          <img src={imageSrc} className="usercard_avatar_img" loading="eager"/>
                         </div>
                       ) : (
                         <div className="profile-avatar">
