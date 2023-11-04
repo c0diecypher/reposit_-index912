@@ -28,6 +28,26 @@ function UserProfile({ userId }) {
     }
   }, [userId]);
 
+  useEffect(() => {
+    if (userId) {
+      fetch(`https://zipperconnect.space/userProfile/${userId}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          // Обработка успешного ответа
+          setUserData(data);
+        })
+        .catch((err) => {
+          // Обработка ошибки
+          setError(err);
+        });
+    }
+  }, [userId]);
+
   return (
     <>
       {imageSrc ? (
