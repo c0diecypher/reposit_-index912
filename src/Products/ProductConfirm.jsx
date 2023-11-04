@@ -32,7 +32,7 @@ function ProductConfirm() {
      
     };
 
-    fetch('https://zipperconnect.space/web-data', {
+    fetch('https://zipperconnect.space/customer/settings/client/buy/offer', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
