@@ -167,7 +167,7 @@ function ProfilePage({userId}) {
           setLoading(false);
         });
     }
-  };
+  },[userId]);;
 
   // Выполняем первоначальный запрос данных при загрузке компонента
   useEffect(() => {
