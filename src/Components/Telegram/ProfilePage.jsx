@@ -17,7 +17,7 @@ function ProfilePage({userId}) {
   const [isEditing, setIsEditing] = useState(false);
   const [fullName, setFullName] = useState(''); // Исходное значение
   const [userPhone, setUserPhone] = useState('');
-  const [userData, setUserData] = useState(null);
+  const [imageSrc, setImageSrc] = useState(null);
   const [error, setError] = useState(null);
   const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
   const [textColor] = useState(
@@ -40,19 +40,19 @@ function ProfilePage({userId}) {
    
   useEffect(() => {
     if (userId) {
-      fetch(`https://zipperconnect.space/userProfile/${userId}`)
+      fetch(`https://zipperconnect.space/photo/${userId}`)
         .then((response) => {
-          if (!response.ok) {
+          if (response.ok) {
+            return response.blob();
+          } else {
             throw new Error('Network response was not ok');
           }
-          return response.json();
         })
-        .then((data) => {
-          // Обработка успешного ответа
-          setUserData(data);
+        .then((imageBlob) => {
+          const imageUrl = URL.createObjectURL(imageBlob);
+          setImageSrc(imageUrl);
         })
         .catch((err) => {
-          // Обработка ошибки
           setError(err);
         });
     }
@@ -308,9 +308,9 @@ function ProfilePage({userId}) {
             <div className="profile-avatar-box">
                 <div className="profile-avatar-transparent">
                     <div className="profile-avatar">
-                    {userData ? (
+                    {imageSrc ? (
                         <div className="profile-avatar">
-                          <img src={userData.photoUrl} className="usercard_avatar_img" />
+                          <img src={imageSrc} className="usercard_avatar_img" />
                         </div>
                       ) : (
                         <div className="profile-avatar">
