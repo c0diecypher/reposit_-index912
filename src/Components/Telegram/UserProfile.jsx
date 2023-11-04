@@ -32,7 +32,7 @@ function UserProfile({ userId }) {
     <>
       {imageSrc ? (
         <div className="usercard_avatar">
-          <img src={imageSrc} className="usercard_avatar_img" alt="User Avatar" />
+          <img src={imageSrc} className="usercard_avatar_img" alt="User Avatar" loading="eager"/>
         </div>
       ) : (
         <div className="usercard_avatar">
