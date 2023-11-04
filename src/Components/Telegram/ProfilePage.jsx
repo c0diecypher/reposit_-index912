@@ -24,32 +24,6 @@ function ProfilePage({userId}) {
     window.Telegram.WebApp.themeParams.button_text_color
   );
 
-  useEffect(() => {
-  if (userId) {
-    fetch(`https://zipperconnect.space/photo/${userId}`)
-      .then((response) => {
-        if (response.ok) {
-          return response.blob();
-        } else {
-          throw new Error('Network response was not ok');
-        }
-      })
-      .then((imageBlob) => {
-        const imageUrl = URL.createObjectURL(imageBlob);
-        setImageSrc(imageUrl);
-      })
-      .catch((err) => {
-        setError(err);
-      });
-  }
-
-  return () => {
-    if (imageSrc) {
-      URL.revokeObjectURL(imageSrc);
-    }
-  };
-}, [userId, imageSrc]);
-
   const handlePhoneNumberInput = (e) => {
     const inputValue = e.target.value;
     // Удалить все символы, кроме цифр
@@ -63,6 +37,26 @@ function ProfilePage({userId}) {
       setUserPhone(digitsOnly);
     }
   };
+   
+  useEffect(() => {
+    if (userId) {
+      fetch(`https://zipperconnect.space/photo/${userId}`)
+        .then((response) => {
+          if (response.ok) {
+            return response.blob();
+          } else {
+            throw new Error('Network response was not ok');
+          }
+        })
+        .then((imageBlob) => {
+          const imageUrl = URL.createObjectURL(imageBlob);
+          setImageSrc(imageUrl);
+        })
+        .catch((err) => {
+          setError(err);
+        });
+    }
+  }, [userId]);
 
   useEffect(() => {
     if (userId) {
