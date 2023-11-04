@@ -9,29 +9,7 @@ import UserProfile from './Telegram/UserProfile';
 function Header({ userId }) {
   const { user } = useTelegram();
   const [userData, setUserData] = useState(null);
-  const [error, setError] = useState(null);
-
-   
-  useEffect(() => {
-    if (userId) {
-      fetch(`https://zipperconnect.space/photo/${userId}`)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then((data) => {
-          // Обработка успешного ответа
-          setUserData(data);
-        })
-        .catch((err) => {
-          // Обработка ошибки
-          setError(err);
-        });
-    }
-  }, [userId]);
-  
+  const [error, setError] = useState(null);  
 
   return (
     <>
