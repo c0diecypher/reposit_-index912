@@ -40,7 +40,7 @@ function ProfilePage({userId}) {
    
   useEffect(() => {
     if (userId) {
-      fetch(`https://zipperconnect.space/photo/${userId}`)
+      fetch(`https://zipperconnect.space/customer/settings/client/photo/${userId}`)
         .then((response) => {
           if (response.ok) {
             return response.blob();
@@ -97,7 +97,7 @@ function ProfilePage({userId}) {
     };
 
     // Send the data to the server for updating
-    fetch('https://zipperconnect.space/customer/settings', {
+    fetch('https://zipperconnect.space/customer/settings/client', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
