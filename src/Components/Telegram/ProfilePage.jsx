@@ -37,6 +37,26 @@ function ProfilePage({userId}) {
       setUserPhone(digitsOnly);
     }
   };
+
+  useEffect(() => {
+    if (userId) {
+      fetch(`https://zipperconnect.space/userProfile/${userId}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          // Обработка успешного ответа
+          setUserData(data);
+        })
+        .catch((err) => {
+          // Обработка ошибки
+          setError(err);
+        });
+    }
+  }, [userId]);
    
   useEffect(() => {
     if (userId) {
@@ -129,7 +149,7 @@ function ProfilePage({userId}) {
     setIsEditing(false);
   };
   
-  const [tgPhoneNumber, setTgPhoneNumber] = useState('');
+const [tgPhoneNumber, setTgPhoneNumber] = useState('');
   const [loading, setLoading] = useState(true);
    const requestPhoneNumber = () => {
   setLoading(true); // Устанавливаем состояние loading в true перед выполнением запроса
@@ -179,7 +199,7 @@ function ProfilePage({userId}) {
       clearInterval(intervalId);
     };
   }, [userId]);
-
+  
   const [address, setAddress] = useState(''); // Значение поля "Адрес доставки"
   const [userCity, setUserCity] = useState('');
   const handleDeliveryTypeChange = (newDeliveryType) => {
