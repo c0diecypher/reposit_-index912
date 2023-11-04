@@ -5,24 +5,24 @@ import "../../css/body.css";
 
 function UserProfile({ userId }) {
   const { tg, user } = useTelegram();
-  const [userData, setUserData] = useState(null);
+  const [imageSrc, setImageSrc] = useState(null);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
+ useEffect(() => {
     if (userId) {
       fetch(`https://zipperconnect.space/photo/${userId}`)
         .then((response) => {
-          if (!response.ok) {
+          if (response.ok) {
+            return response.blob();
+          } else {
             throw new Error('Network response was not ok');
           }
-          return response.json();
         })
-        .then((data) => {
-          // Обработка успешного ответа
-          setUserData(data);
+        .then((imageBlob) => {
+          const imageUrl = URL.createObjectURL(imageBlob);
+          setImageSrc(imageUrl);
         })
         .catch((err) => {
-          // Обработка ошибки
           setError(err);
         });
     }
@@ -30,9 +30,9 @@ function UserProfile({ userId }) {
 
   return (
     <>
-      {userData ? (
+      {imageSrc ? (
         <div className="usercard_avatar">
-          <img src={userData.photoUrl} className="usercard_avatar_img" alt="User Avatar" />
+          <img src={imageSrc} className="usercard_avatar_img" alt="User Avatar" />
         </div>
       ) : (
         <div className="usercard_avatar">
