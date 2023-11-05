@@ -21,7 +21,7 @@ function Header({ userId }) {
           <UserProfile userId={userId} />
           <div className='usercard-info'>
             <div className='usercard-name'>
-              <div className='usercard-navigation-name'>123123 12312312{user?.first_name}</div>
+              <div className='usercard-navigation-name'>{user?.first_name}</div>
               <svg
                 className="user_block_svg"
                 aria-hidden="true"
