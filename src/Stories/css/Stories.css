@@ -2,6 +2,16 @@
 :root {
   --space-4x: 16px;
   --space-6x: 0%;
+  --space-8x: 32px;
+  --input-shaddow-bottom: 0px 0.33px 0px #00000040,0px 0.33px 0px #ffffff40;
+  --button-text-color: var(--tg-theme-button-text-color, #fff);
+  --color: var(--tg-theme-button-color, #393939);
+  --button-color: var(--tg-theme-button-color, #007cff);
+  --accent: #007cff;
+  --tg-bg: var(--tg-theme-bg-color, #f2f4f6);
+  --tg-second: var(--tg-theme-secondary-bg-color, #ededed);
+  --tg-text: var(--tg-theme-text-color, #000);
+  --tg-hint: var(--tg-theme-hint-color, #d0d0d0);
 }
 
 .Stories-box {
@@ -64,7 +74,7 @@
   width: 100%;
   height: 100%;
   position: relative;
-  background: linear-gradient(rgb(124, 255, 58) 0%, rgb(99, 204, 46) 100%);
+  background: linear-gradient(-390deg, var(--tg-text), var(--tg-hint));
   clip-path: path(
     "M 61 0 c 16.0278 0 24.0416 0 29.0208 4.9792 a 17 17 0 0 1 0 0 c 4.9792 4.9792 4.9792 12.9931 4.9792 29.0208 L 95 61 c 0 16.0278 0 24.0416 -4.9792 29.0208 a 17 17 0 0 1 0 0 c -4.9792 4.9792 -12.9931 4.9792 -29.0208 4.9792 L 34 95 c -16.0278 0 -24.0416 0 -29.0208 -4.9792 a 17 17 0 0 1 0 0 c -4.9792 -4.9792 -4.9792 -12.9931 -4.9792 -29.0208 L 0 34 c 0 -16.0278 0 -24.0416 4.9792 -29.0208 a 17 17 0 0 1 0 0 c 4.9792 -4.9792 12.9931 -4.9792 29.0208 -4.9792 Z"
   );
@@ -122,7 +132,7 @@
   font-size: 12px;
   font-family: "Roboto", sans-serif;
   line-height: 110%;
-  color: rgb(0, 0, 0);
+  color: var(--tg-text);
   letter-spacing: -0.05em;
   z-index: 1;
   position: relative;
@@ -137,7 +147,6 @@
 }
 
 .Stories:active {
-  background-color: transparent;
   letter-spacing: normal;
   transform: translateY(4px);
   box-shadow: none;
