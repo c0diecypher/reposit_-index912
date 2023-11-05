@@ -61,7 +61,7 @@ function Header({ userId }) {
           </svg>
           <div>
             @zipper_store
-            <div className="btn_block_title">наш telegram-канал</div>
+            <div className="btn_block_title">наш канал</div>
           </div>
         </button>
       </a>
