@@ -30,13 +30,56 @@ body {
   text-decoration: none;
   color: var(--tg-text);
 }
-.usercard_block span{
+.usercard_block {
+  display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    color: var(--tg-text);
+}
+
+.usercard-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.usercard-name{
+  display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.usercard-navigation-name{
   text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  margin-left: 10px;
-  width: 110px;
-  text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    max-width: 40vw;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 100%;
+    text-align: left;
+    
+}
+
+.usercard-navigation-name::after{
+  content: '...';
+  display: inline;
+}
+
+.usercard-rank{
+  display: flex;
+  align-items: center;
+  padding: 1px 3px;
+  border-radius: 5px;
+  color: var(--tg-bg);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 100%;
+  background: var(--tg-text);
 }
 a{
   text-decoration: none;
