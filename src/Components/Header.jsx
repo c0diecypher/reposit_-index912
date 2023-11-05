@@ -19,23 +19,28 @@ function Header({ userId }) {
       <div className="usercard">
         <div className="usercard_block">
           <UserProfile userId={userId} />
-          <span>{user?.first_name}</span>
-    
-            <svg
-            className="user_block_svg"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 8 14"
-            >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1"
-              />
-          </svg>
+          <div className='usercard-info'>
+            <div className='usercard-name'>
+              <div className='usercard-navigation-name'>123123 12312312{user?.first_name}</div>
+              <svg
+                className="user_block_svg"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 8 14"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1"
+                  />
+              </svg>
+            </div>
+          <div className='usercard-rank'>Starter</div>
+          </div>
+          
           
         </div>
         
