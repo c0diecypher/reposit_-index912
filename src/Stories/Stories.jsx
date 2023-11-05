@@ -51,6 +51,10 @@ function Stories() {
           </span>
           <div
             className="Story-item-content"
+            style={{
+              background:
+                "linear-gradient(rgb(250,92,203) 0%,rgb(	218, 92, 250) 200%)"
+            }}
           >
             <div className="Story-item-image">
               <img
@@ -62,13 +66,13 @@ function Stories() {
                 src="/img/svg/handshop.png"
               />
             </div>
-            <div className="Story-item-title">
+            <div className="Story-item-title" style={{ color: "#fcf0fe" }}>
               Что умеет Zipper Store?
             </div>
           </div>
         </button>
       
-        <button className="Stories" >
+      <button className="Stories" >
         <span className="Stories-item">
           <svg
             width="104"
@@ -100,6 +104,10 @@ function Stories() {
         </span>
         <div
           className="Story-item-content"
+          style={{
+            background:
+              "linear-gradient(rgb(250, 218, 92) 0%, rgb(250, 218, 92) 100%)"
+          }}
         >
           <div className="Story-item-image">
             <img
@@ -147,6 +155,10 @@ function Stories() {
         </span>
         <div
           className="Story-item-content"
+          style={{
+            background:
+              "linear-gradient(rgb(250, 92, 124) 0%, rgb(248,18,64) 100%)"
+          }}
         >
           <div className="Story-item-image">
             <img
@@ -156,7 +168,7 @@ function Stories() {
               src="/img/svg/rocket.png"
             />
           </div>
-          <div className="Story-item-title">
+          <div className="Story-item-title" style={{ color: "#fef0f3" }}>
             Доставка{""}
           </div>
         </div>
