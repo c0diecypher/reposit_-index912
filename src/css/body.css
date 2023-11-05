@@ -30,7 +30,14 @@ body {
   text-decoration: none;
   color: var(--tg-text);
 }
-
+.usercard_block span{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-left: 10px;
+  width: 100%;
+  text-align: left;
+}
 a{
   text-decoration: none;
   color: #000;
