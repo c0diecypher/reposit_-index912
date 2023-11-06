@@ -82,6 +82,7 @@ function App() {
           if (user && user.id) {
             const userId = user.id.toString();
             setUserId(userId);
+            console.log('userid:', userId);
 
             // Попробуйте извлечь photo_url
             if (user.photo_url) {
