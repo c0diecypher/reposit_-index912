@@ -206,6 +206,18 @@ function App() {
           
         </Route>
         <Route
+        path="/products/confirm/offer/:name/:size/:price"
+        element={
+          <div>
+            <BackButton />
+            <ProductPay/>
+              
+          </div>
+        }
+        >
+          
+        </Route>
+        <Route
           path="/search"
           element={
             <>
