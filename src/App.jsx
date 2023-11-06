@@ -132,9 +132,6 @@ function App() {
     }
   }, []);
 
-  fetchUserData();
-}, []);
-
   const [scrollPosition, setScrollPosition] = useState(0);
 
   // Сохраните текущее положение прокрутки при монтировании компонента
