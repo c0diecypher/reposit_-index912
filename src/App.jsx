@@ -18,6 +18,7 @@ import ProfilePage from "./Components/Telegram/ProfilePage";
 import ProductConfirm from "./Products/ProductConfirm";
 import FilterProducts from "./Products/FilterProducts";
 import SettingsProfile from "./Components/Telegram/SettingsProfile"
+import ProductPay from "./Products/ProductPay"
 // React 
 import { Route, Routes } from "react-router-dom";
 import { BackButton } from "@twa-dev/sdk/react" 
