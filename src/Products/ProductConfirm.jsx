@@ -103,7 +103,6 @@ function ProductConfirm({userId}) {
       </div>
       </div>
       <div className="item-order-info">
-        {productData.order_id}
       <div className="confirm-item-price">
          {price}₽
       </div>
