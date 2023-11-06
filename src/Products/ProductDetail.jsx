@@ -187,7 +187,7 @@ typesKeys.sort(customSort)
         </div>
         </div>
         <div className="item-order-info">
-        <p className="full-item-price">{active !== null ? thisProduct.size[active] : ''}</p>
+         {isAuthenticated && <p className="full-item-price">{active !== null ? thisProduct.size[active] : ''}</p>}
 
         <hr/>
         <SizeInfo />
