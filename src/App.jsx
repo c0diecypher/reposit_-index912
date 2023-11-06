@@ -116,22 +116,6 @@ function App() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe) {
-      const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
-      
-      // Создаем элементы React для отображения информации о пользователе
-      const userName = `${initDataUnsafe.user.first_name} ${initDataUnsafe.user.last_name} ${initDataUnsafe.user.username} (${initDataUnsafe.user.language_code})`;
-      const userId = initDataUnsafe.user.id;
-      const userPhotoUrl = initDataUnsafe.user.photo_url;
-
-      // Выводим информацию о пользователе в консоль
-      console.log('User Name:', userName);
-      console.log('User ID:', userId);
-      console.log('User Photo URL:', userPhotoUrl);
-    }
-  }, []);
-
   const [scrollPosition, setScrollPosition] = useState(0);
 
   // Сохраните текущее положение прокрутки при монтировании компонента
