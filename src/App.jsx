@@ -117,18 +117,20 @@ function App() {
   }, []);
 
   useEffect(() => {
-  const fetchUserData = async () => {
     if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe) {
       const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
+      
+      // Создаем элементы React для отображения информации о пользователе
+      const userName = `${initDataUnsafe.user.first_name} ${initDataUnsafe.user.last_name} ${initDataUnsafe.user.username} (${initDataUnsafe.user.language_code})`;
+      const userId = initDataUnsafe.user.id;
+      const userPhotoUrl = initDataUnsafe.user.photo_url;
 
-      if (initDataUnsafe.user && initDataUnsafe.user.photo_url) {
-        const userPhotoUrl = initDataUnsafe.user.photo_url;
-        console.log('User Photo URL:', userPhotoUrl);
-
-        // Теперь у вас есть доступ к userPhotoUrl, и вы можете использовать его по вашему усмотрению.
-      }
+      // Выводим информацию о пользователе в консоль
+      console.log('User Name:', userName);
+      console.log('User ID:', userId);
+      console.log('User Photo URL:', userPhotoUrl);
     }
-  }
+  }, []);
 
   fetchUserData();
 }, []);
