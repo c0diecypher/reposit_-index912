@@ -15,14 +15,6 @@
 }
 
 
-
-body {
-  user-select: none;
-  color: var(--tg-text);
-  font-family: "Roboto", sans-serif;
-  background: var(--tg-second);
-}
-
 body::-webkit-scrollbar {
   display: none;
 }
@@ -186,7 +178,7 @@ hr{
   border-radius: 15px;
 }
 .confirm-item-name{
-  color: var(--tg-text);
+  color: #000;
   font-style: normal;
   font-weight: 900;
   font-size: 30px;
@@ -206,7 +198,7 @@ hr{
     font-size: 30px;
     line-height: 110%;
     transition: all .3s linear;
-    color: #000;
+    color: var(--tg-text);
     text-align: left;
     margin-left: var(--space-4x)
   }
@@ -216,12 +208,13 @@ hr{
     flex-direction: column;
     gap: 14px;
     padding-bottom: 30px;
-    background-color: #fff;
+    background-color: var(--tg-bg);
     border-radius: 20px;
     margin-top: 8px;
   }
 
   .help-title{
+    color: var(--tg-text);
     font-size: 18px;
     font-weight: 800;
     line-height: 130%;
