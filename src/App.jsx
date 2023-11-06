@@ -82,7 +82,12 @@ function App() {
           if (user && user.id) {
             const userId = user.id.toString();
             setUserId(userId);
-            
+
+            // Попробуйте извлечь photo_url
+            if (user.photo_url) {
+              const userPhotoUrl = user.photo_url;
+              console.log('userPhotoUrl:', userPhotoUrl); // Выводим значение в консоль
+            }
           }
         }
         
@@ -110,6 +115,7 @@ function App() {
       } catch (error) {
         //console.error(error);
       }
+      
     };
 
     fetchData();
