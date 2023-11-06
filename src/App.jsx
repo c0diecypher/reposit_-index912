@@ -187,6 +187,7 @@ function App() {
             onDataUpdate={handleDataFromMainButton}
             dataFromMainButton={dataFromMainButton}
             isAuthenticated={isAuthenticated}
+            userId={userId}
               />
               {dataFromMainButton}
           </div>
@@ -199,7 +200,7 @@ function App() {
         element={
           <div>
             <BackButton />
-            <ProductConfirm/>
+            <ProductConfirm userId={userId}/>
               
           </div>
         }
@@ -211,7 +212,7 @@ function App() {
         element={
           <div>
             <BackButton />
-            <ProductPay/>
+            <ProductPay userId={userId}/>
               
           </div>
         }
