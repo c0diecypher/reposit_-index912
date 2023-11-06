@@ -39,14 +39,14 @@ function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMain
 
   useEffect(() => {
   if (thisProduct && thisProduct.size && thisProduct.price) {
-    const priceWithoutCurrency = thisProduct.price.replace(/\D/g, ''); // Извлекаем числовое значение из строки цены
+    const priceWithoutCurrency = thisProduct.price.replace(/\D/g, '');
 
     // Поиск первого размера, который соответствует цене
     for (const [size, sizePrice] of Object.entries(thisProduct.size)) {
       const sizePriceWithoutCurrency = sizePrice.replace(/\D/g, '');
       if (sizePriceWithoutCurrency === priceWithoutCurrency) {
         setActive(size);
-        break; // Прерываем цикл после первого совпадения
+        break; 
       }
     }
   }
@@ -137,8 +137,8 @@ typesKeys.sort(customSort)
 
   const handleSizePriceClick = () => {
     if (isAuthenticated) {
+      window.alert(item[0]);
       window.alert(item[1]);
-      window.alert(active);
     } else {
       window.alert("Не санкционированный вход");
     }
