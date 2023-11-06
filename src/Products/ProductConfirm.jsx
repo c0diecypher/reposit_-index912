@@ -5,7 +5,7 @@ import Stories from "../Stories/Stories"
 import { useTelegram } from "../Components/Hooks/useTelegram"
 import { MainButton } from "@twa-dev/sdk/react"
 
-function ProductConfirm() {
+function ProductConfirm({userId}) {
   useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
   }, []);
@@ -28,25 +28,27 @@ function ProductConfirm() {
       name: productData.name,
       price: productData.price,
       size: productData.size,
-      queryId
+      queryId,
+      userId,
      
     };
 
-    fetch('https://zipperconnect.space/customer/settings/client/buy/offer', {
+    fetch('https://zipperconnect.space/create_payment', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data)
     });
-  }, [name, price, size, queryId]);
+  }, [name, price, size, queryId, userId]);
 
   useEffect(()=>{
+    if(userId){
     window.Telegram.WebApp.onEvent('mainButtonClicked', onSendData)
-    return () => {
+    }return () => {
       window.Telegram.WebApp.offEvent('mainButtonClicked', onSendData)
     }
-  }, [onSendData])
+  }, [onSendData,userId])
 
   return (
     <>
