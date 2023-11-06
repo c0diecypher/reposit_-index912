@@ -25,16 +25,15 @@ function ProductPay() {
   );
   const {queryId} = useTelegram();
   const onSendData = useCallback(() => {
-    
     const data = {
       name: productData.name,
       price: productData.price,
       size: productData.size,
-      queryId,
-      
+      queryId
+     
     };
 
-    fetch('https://zipperconnect.space/web-data', {
+    fetch('https://zipperconnect.space/customer/settings/client/buy/offer', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
