@@ -28,7 +28,7 @@ const BasketItem = ({ cart, onDataUpdate } ) => {
       <>
       <div className="product-container-order">
         <Link
-                    to={`/products/confirm/${product.name}/${product.size}/${product.price}`}
+                    to={`/products/confirm/offer/${product.name}/${product.size}/${product.price}`}
                     state={{ productData: product }}
                     className="item-link">
         
