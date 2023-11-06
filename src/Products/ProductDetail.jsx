@@ -138,8 +138,6 @@ typesKeys.sort(customSort)
       const selectedSize = active;
     const selectedSizePrice = thisProduct.size[selectedSize];
 
-    window.alert(selectedSizePrice);
-    window.alert(active);
     } else {
       window.alert("Не санкционированный вход");
     }
