@@ -108,16 +108,22 @@ typesKeys.sort(customSort)
     
   };
 
+  const generateOrderId = () => {
+    const randomId = Math.floor(0 + Math.random() * 9999999); // Генерируйте случайное шестизначное число
+    return `№${randomId}`;
+  };
+  
   const handlePaymentClick = () => {
+    const uniqueOrderId = generateOrderId();
     if (paymentData && paymentData.size) {
       // Вызываем функцию onDataUpdate, передавая ей данные
       onDataUpdate(paymentData.size, paymentData.price, paymentData);
       navigate(`/products/confirm/${thisProduct.name}/${paymentData.size}/${paymentData.price}`, {
-        state: { productData: paymentData }
+        state: { productData: { ...paymentData, order_id: uniqueOrderId } }
       });
-      sendDataToParent(paymentData); // Передаем данные в родительский компонент
+      sendDataToParent({ ...paymentData, order_id: uniqueOrderId });  // Передаем данные в родительский компонент
       // Добавляем товар в корзину после оплаты
-    addToCart(paymentData);
+     addToCart({ ...paymentData, order_id: uniqueOrderId });
     } else {
       window.Telegram.WebApp.HapticFeedback.notificationOccurred('error');
     }
