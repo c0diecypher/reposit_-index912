@@ -82,13 +82,7 @@ function App() {
           if (user && user.id) {
             const userId = user.id.toString();
             setUserId(userId);
-            console.log('userid:', userId);
-
-            // Попробуйте извлечь photo_url
-            if (user.photo_url) {
-              const userPhotoUrl = user.photo_url;
-              console.log('userPhotoUrl:', userPhotoUrl); // Выводим значение в консоль
-            }
+            
           }
         }
         
@@ -121,6 +115,23 @@ function App() {
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+  const fetchUserData = async () => {
+    if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe) {
+      const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
+
+      if (initDataUnsafe.user && initDataUnsafe.user.photo_url) {
+        const userPhotoUrl = initDataUnsafe.user.photo_url;
+        console.log('User Photo URL:', userPhotoUrl);
+
+        // Теперь у вас есть доступ к userPhotoUrl, и вы можете использовать его по вашему усмотрению.
+      }
+    }
+  }
+
+  fetchUserData();
+}, []);
 
   const [scrollPosition, setScrollPosition] = useState(0);
 
