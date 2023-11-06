@@ -29,12 +29,12 @@ function ProductConfirm({userId}) {
       price: productData.price,
       size: productData.size,
       queryId,
+      order_id: productData.order_id,
       userId,
-      order_id,
      
     };
 
-    fetch('https://zipperconnect.space/create_payment', {
+    fetch('https://zipperconnect.space/customer/settings/client/buy/offer', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -42,6 +42,13 @@ function ProductConfirm({userId}) {
       body: JSON.stringify(data)
     });
   }, [name, price, size, queryId, userId]);
+
+  useEffect(()=>{
+    window.Telegram.WebApp.onEvent('mainButtonClicked', onSendData)
+    return () => {
+      window.Telegram.WebApp.offEvent('mainButtonClicked', onSendData)
+    }
+  }, [onSendData, userId])
 
   useEffect(()=>{
     if(userId){
