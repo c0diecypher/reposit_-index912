@@ -135,8 +135,11 @@ typesKeys.sort(customSort)
 
   const handleSizePriceClick = () => {
     if (isAuthenticated) {
-      window.alert(item[1]);
-      window.alert(active);
+      const selectedSize = active;
+    const selectedSizePrice = thisProduct.size[selectedSize];
+
+    window.alert(selectedSizePrice);
+    window.alert(active);
     } else {
       window.alert("Не санкционированный вход");
     }
