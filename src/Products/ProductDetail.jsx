@@ -37,22 +37,20 @@ const Size = styled.button`
 
 function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMainButton, isAuthenticated }) {
 
-  const setActiveSize = () => {
-    const size41 = thisProduct.size[41]; // Попытка получить размер 41
+  useEffect(() => {
+  if (thisProduct && thisProduct.size && thisProduct.price) {
+    const priceWithoutCurrency = thisProduct.price.replace(/\D/g, ''); // Извлекаем числовое значение из строки цены
 
-useEffect(() => {
-  // Проверим, если размер 41 отсутствует, установим ближайший доступный размер
-  if (!thisProduct.size[41]) {
-    const availableSizes = Object.keys(thisProduct.size).map(Number); // Преобразуем ключи в числа
-    availableSizes.sort((a, b) => Math.abs(a - 41) - Math.abs(b - 41)); // Сортируем по близости к 41
-    const closestSize = availableSizes[0]; // Берем ближайший размер
-
-    if (closestSize) {
-      setActive(thisProduct.size[closestSize]);
+    // Поиск первого размера, который соответствует цене
+    for (const [size, sizePrice] of Object.entries(thisProduct.size)) {
+      const sizePriceWithoutCurrency = sizePrice.replace(/\D/g, '');
+      if (sizePriceWithoutCurrency === priceWithoutCurrency) {
+        setActive(size);
+        break; // Прерываем цикл после первого совпадения
+      }
     }
   }
 }, [thisProduct]);
-  };
 
   
   const { productId } = useParams();
@@ -81,7 +79,7 @@ typesKeys.sort(customSort)
   const navigate = useNavigate();
   // Функция для добавления товара в корзину
   const handleAddToCard = (price, size, name, img) => {
-    setActive(price);
+    setActive(size);
     const productData = {
       size,
       id: thisProduct.id,
@@ -198,7 +196,7 @@ typesKeys.sort(customSort)
             <button className="size_button" key={item[0]}>
               <Size
                 key={item}
-                active={active === item[1]}
+                active={active === item[0]}
                 onClick={() => handleAddToCard(item[1],item[0])} // Отвечает за вывод товара
               >
                 <div className="Story-size-content">
