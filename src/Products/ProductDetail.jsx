@@ -35,24 +35,7 @@ const Size = styled.button`
   `}
 `;
 
-function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMainButton, isAuthenticated }) {
-
-  useEffect(() => {
-  if (thisProduct && thisProduct.size && thisProduct.price) {
-    const priceWithoutCurrency = thisProduct.price.replace(/\D/g, '');
-
-    // Поиск первого размера, который соответствует цене
-    for (const [size, sizePrice] of Object.entries(thisProduct.size)) {
-      const sizePriceWithoutCurrency = sizePrice.replace(/\D/g, '');
-      if (sizePriceWithoutCurrency === priceWithoutCurrency) {
-        setActive(size);
-        break; 
-      }
-    }
-  }
-}, [thisProduct]);
-
-  
+function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMainButton, isAuthenticated }) {  
   const { productId } = useParams();
   const [paymentData, setPaymentData] = useState(null);
   const thisProduct = productsData.find((prod) => prod.id === productId);
@@ -77,7 +60,22 @@ typesKeys.sort(customSort)
   );
   const [text] = useState("Перейти к оплате");
   const navigate = useNavigate();
-  // Функция для добавления товара в корзину
+
+    useEffect(() => {
+  if (thisProduct && thisProduct.size && thisProduct.price) {
+    const priceWithoutCurrency = thisProduct.price.replace(/\D/g, '');
+
+    // Поиск первого размера, который соответствует цене
+    for (const [size, sizePrice] of Object.entries(thisProduct.size)) {
+      const sizePriceWithoutCurrency = sizePrice.replace(/\D/g, '');
+      if (sizePriceWithoutCurrency === priceWithoutCurrency) {
+        setActive(size);
+        break; 
+      }
+    }
+  }
+}, [thisProduct]);
+  
   const handleAddToCard = (price, size, name, img) => {
     setActive(size);
     const productData = {
