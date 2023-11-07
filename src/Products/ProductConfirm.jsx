@@ -35,20 +35,23 @@ function ProductConfirm() {
     };
 
     fetch('https://zipperconnect.space/customer/settings/client/buy/offer/pay', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data)
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        if (result.id && result.link) {
+            // Если платеж успешно создан, открываем ссылку на платежную форму внутри Телеграма
+            Telegram.WebApp.openLink(result.link, { try_instant_view: true });
+        } else {
+            // Обработка ошибки, например, если не удалось создать платеж
+            console.error('Ошибка при создании платежа:', result);
+        }
     });
-  }, [name, price, size, queryId, userId]);
-
-  useEffect(()=>{
-    window.Telegram.WebApp.onEvent('mainButtonClicked', onSendData)
-    return () => {
-      window.Telegram.WebApp.offEvent('mainButtonClicked', onSendData)
-    }
-  }, [onSendData])
+}, [name, price, size, queryId, userId]);
 
   return (
     <>
