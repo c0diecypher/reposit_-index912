@@ -22,6 +22,7 @@ function ProductConfirm() {
   const [textColor] = useState(
     window.Telegram.WebApp.themeParams.button_text_color
   );
+  const [paymentLink, setPaymentLink] = useState(null);
   const {queryId, userId} = useTelegram();
   const onSendData = useCallback(() => {
     const data = {
@@ -34,27 +35,28 @@ function ProductConfirm() {
      
     };
 
-    fetch('https://zipperconnect.space/customer/settings/client/buy/offer/pay', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
+    fetch('https://zipperconnect.space/customer/settings/client/buy/offer', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+       body: JSON.stringify(data)
     })
     .then(response => response.json())
-    .then(result => {
-    // Получаем order_id из ответа или из productData, в зависимости от вашей логики
+    .then(data => {
+      // После получения данных с сервера, установите ссылку в стейте
+      setPaymentLink(data.link);
+    })
+    .catch(error => {
+      console.error('Ошибка отправки данных на сервер:', error);
+    });
+  },, [name, price, size, queryId, userId]);
 
-    // Создаем URL
-    const paymentUrl = `https://p2pkassa.online/payment/${result.id}`;
-    // Переходим по URL
-    window.location.href = paymentUrl;
-  })
-  .catch(error => {
-    // Обработка ошибки
-    console.error(error);
-  });
-}, [name, price, size, queryId, userId]);
+  useEffect(() => {
+    if (paymentLink) {
+        window.open(paymentLink, '_blank');
+    }
+}, [paymentLink]);
 
   return (
     <>
