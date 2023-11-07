@@ -29,6 +29,7 @@ function ProductConfirm() {
       price: productData.price,
       size: productData.size,
       queryId,
+      userId,
       order_id: productData.order_id,
      
     };
@@ -40,7 +41,7 @@ function ProductConfirm() {
       },
       body: JSON.stringify(data)
     });
-  }, [name, price, size, queryId]);
+  }, [name, price, size, queryId, userId]);
 
   useEffect(()=>{
     window.Telegram.WebApp.onEvent('mainButtonClicked', onSendData)
@@ -90,9 +91,6 @@ function ProductConfirm() {
       <div className="bg-full-item-name">
     <div className="confirm-item-name">{productData.name}
         <span className="confirm-item-size" > размер {size} US</span>
-         
-      {userId}
-      {queryId}
       </div>
       </div>
       <div className="item-order-info">
