@@ -18,6 +18,7 @@ import ProfilePage from "./Components/Telegram/ProfilePage";
 import ProductConfirm from "./Products/ProductConfirm";
 import FilterProducts from "./Products/FilterProducts";
 import SettingsProfile from "./Components/Telegram/SettingsProfile"
+import ProductPay from "./Products/ProductPay"
 // React 
 import { Route, Routes } from "react-router-dom";
 import { BackButton } from "@twa-dev/sdk/react" 
@@ -110,6 +111,7 @@ function App() {
       } catch (error) {
         //console.error(error);
       }
+      
     };
 
     fetchData();
@@ -185,6 +187,7 @@ function App() {
             onDataUpdate={handleDataFromMainButton}
             dataFromMainButton={dataFromMainButton}
             isAuthenticated={isAuthenticated}
+            userId={userId}
               />
               {dataFromMainButton}
           </div>
@@ -197,7 +200,19 @@ function App() {
         element={
           <div>
             <BackButton />
-            <ProductConfirm/>
+            <ProductConfirm userId={userId}/>
+              
+          </div>
+        }
+        >
+          
+        </Route>
+        <Route
+        path="/products/confirm/offer/:name/:size/:price"
+        element={
+          <div>
+            <BackButton />
+            <ProductPay userId={userId}/>
               
           </div>
         }
