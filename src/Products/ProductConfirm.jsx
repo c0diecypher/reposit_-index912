@@ -34,7 +34,7 @@ function ProductConfirm() {
      
     };
 
-    fetch('https://zipperconnect.space/customer/settings/client/buy/offer', {
+    fetch('https://zipperconnect.space/customer/settings/client/buy/offer/pay', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
