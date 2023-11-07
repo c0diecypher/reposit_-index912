@@ -5,7 +5,7 @@ import Stories from "../Stories/Stories"
 import { useTelegram } from "../Components/Hooks/useTelegram"
 import { MainButton } from "@twa-dev/sdk/react"
 
-function ProductConfirm({userId}) {
+function ProductConfirm() {
   useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
   }, []);
@@ -22,7 +22,7 @@ function ProductConfirm({userId}) {
   const [textColor] = useState(
     window.Telegram.WebApp.themeParams.button_text_color
   );
-  const {queryId} = useTelegram();
+  const {queryId, userId} = useTelegram();
   const onSendData = useCallback(() => {
     const data = {
       name: productData.name,
@@ -90,7 +90,9 @@ function ProductConfirm({userId}) {
       <div className="bg-full-item-name">
     <div className="confirm-item-name">{productData.name}
         <span className="confirm-item-size" > размер {size} US</span>
-   
+         {user?.id}
+      {userId}
+      {queryId}
       </div>
       </div>
       <div className="item-order-info">
