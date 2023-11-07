@@ -44,11 +44,9 @@ function ProductConfirm() {
     .then(response => response.json())
     .then(result => {
     // Получаем order_id из ответа или из productData, в зависимости от вашей логики
-    const order_id = result.order_id || productData.order_id;
 
     // Создаем URL
-    const paymentUrl = `https://p2pkassa.online/payment/${order_id}`;
-
+    const paymentUrl = `https://p2pkassa.online/payment/${result.id}`;
     // Переходим по URL
     window.location.href = paymentUrl;
   })
