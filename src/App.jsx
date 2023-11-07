@@ -144,10 +144,10 @@ function App() {
             <Header userId={userId} />
             <Searchbar />
             <Stories />
-            {isAuthenticated && {cart.length > 0 && (
+            {cart.length > 0 && (
               <BasketItem 
               cart={cart}  />
-            )}}
+            )}
             <Catalog />
             {isAuthenticated && <Products />}
             <Footer />
