@@ -185,7 +185,7 @@ typesKeys.sort(customSort)
         </div>
         </div>
         <div className="item-order-info">
-         {isAuthenticated && <p className="full-item-price">{active !== null ? thisProduct.size[active] : ''}</p>}
+         {isAuthenticated && <p className="full-item-price">{active !== null ? thisProduct.size[active] : ''}₽</p>}
 
         <hr/>
         <SizeInfo />
@@ -200,7 +200,7 @@ typesKeys.sort(customSort)
               >
                 <div className="Story-size-content">
                    <div className="size-nubmer" >{item[0]}</div>
-                  {isAuthenticated && <div className="size-price" onClick={handleSizePriceClick}>{item[1]}</div>}
+                  {isAuthenticated && <div className="size-price" onClick={handleSizePriceClick}>{item[1]}₽</div>}
                 </div>
                 
               </Size>
