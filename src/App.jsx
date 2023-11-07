@@ -73,9 +73,7 @@ function App() {
         const hashParams = new URLSearchParams(window.location.hash.substring(1));
         const initDataString = hashParams.get('tgWebAppData');
         const initData = new URLSearchParams(hashParams.get('tgWebAppData'));
-        console.log(`tgWebAppData: ${initDataString}`);
-        console.log(`tgWebAppData: ${initData}`);
-         console.log(`tgWebAppData: ${hashParams}`);
+        
         const userMatch = /user=([^&]+)/.exec(initDataString);
           if (userMatch) {
           const userString = userMatch[1];
