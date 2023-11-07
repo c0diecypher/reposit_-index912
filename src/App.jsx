@@ -79,7 +79,7 @@ function App() {
           if (userMatch) {
           const userString = userMatch[1];
           const user = JSON.parse(decodeURIComponent(userString));
-          console.log(`user: ${user}`
+          console.log(`user: ${user}`);
           // Проверяем, что пользователь имеет свойство "id"
           if (user && user.id) {
             const userId = user.id.toString();
@@ -109,9 +109,9 @@ function App() {
         }
 
         const data = await response.json();
-        //console.log(data);
+        console.log(data);
       } catch (error) {
-        //console.error(error);
+        console.error(error);
       }
       
     };
