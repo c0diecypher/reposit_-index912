@@ -43,6 +43,7 @@ function ProductConfirm() {
     })
     .then(response => response.json())
     .then(result => {
+        console.log(result.id); 
         if (result.id && result.link) {
             // Если платеж успешно создан, открываем ссылку на платежную форму внутри Телеграма
           const paymentUrl = `https://p2pkassa.online/payment/${result.id}`;
