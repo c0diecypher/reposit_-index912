@@ -76,46 +76,43 @@ function App() {
         console.log(`data: ${initDataString}`);
         console.log(`data1: ${initData}`);
        
-        const userMatch = /user=([^&]+)/.exec(initDataString);
+         const userMatch = /user=([^&]+)/.exec(initDataString);
           if (userMatch) {
           const userString = userMatch[1];
           const user = JSON.parse(decodeURIComponent(userString));
-          console.log(`user: ${user}`);
+        
           // Проверяем, что пользователь имеет свойство "id"
           if (user && user.id) {
             const userId = user.id.toString();
             setUserId(userId);
-            console.log(`user: ${userId}`);
+            
           }
         }
         
         const headers = new Headers();
           // Преобразуем объект в строку JSON и добавляем в заголовок
           headers.append('Authorization', `twa-init-data ${initDataString}`);
-          console.log(`data: ${initDataString}`);
+      
           // Проверяем, если данные инициализации отсутствуют
         if (!initDataString) {
             throw new Error('Unauthorized');
-          console.log('ERROR ::', Error);
           }
         const requestOptions = {
           method: 'POST',
           headers: headers,
         };
 
-        const response = await fetch('https://zipperconnect.space/validate-initdata', requestOptions);
+        const response = await fetch('https://zipperconnect.space/customers/client/validate-initdata', requestOptions);
          setIsAuthenticated(true);
         if (!response.ok) {
           throw new Error('Network response was not ok');
-          setError(error);
         }
 
         const data = await response.json();
-        console.log(data);
+        //console.log(data);
       } catch (error) {
-        console.error(error);
+        //console.error(error);
       }
-      
     };
 
     fetchData();
