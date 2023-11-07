@@ -90,7 +90,7 @@ function ProductConfirm() {
       <div className="bg-full-item-name">
     <div className="confirm-item-name">{productData.name}
         <span className="confirm-item-size" > размер {size} US</span>
-         {user?.id}
+         
       {userId}
       {queryId}
       </div>
