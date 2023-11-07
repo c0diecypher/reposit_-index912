@@ -39,7 +39,7 @@ const Products = () => {
               <img src={product.img[0]} alt="" />
             </div>
               <div className="item-info">
-              <h4>{product.price}</h4>
+              <h4>{product.price}₽</h4>
               <p>{product.name}</p>
               <button className="add-item">
                 <div className="buy-item">Купить</div>
