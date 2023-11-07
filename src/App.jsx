@@ -26,7 +26,7 @@ import { useState, useEffect, useCallback } from "react"
 
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  
   const handleSendData = useCallback((data) => {
     // Handle the data received from ProductConfirm here
     // console.log("Data received in App.js:", data);
@@ -64,7 +64,7 @@ function App() {
     setDataFromMainButton(data); // Сохраняем данные в состоянии
     // Выполняйте здесь другие действия с данными, если необходимо
   };
-
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userId, setUserId] = useState("");
   useEffect(() => {
     const fetchData = async () => {
@@ -72,13 +72,14 @@ function App() {
         const hashParams = new URLSearchParams(window.location.hash.substring(1));
         const initDataString = hashParams.get('tgWebAppData');
         const initData = new URLSearchParams(hashParams.get('tgWebAppData'));
-         
+        console.log(`data: ${initDataString}`);
+        console.log(`data1: ${initData}`
        
         const userMatch = /user=([^&]+)/.exec(initDataString);
           if (userMatch) {
           const userString = userMatch[1];
           const user = JSON.parse(decodeURIComponent(userString));
-        
+          console.log(`user: ${user}`
           // Проверяем, что пользователь имеет свойство "id"
           if (user && user.id) {
             const userId = user.id.toString();
@@ -90,10 +91,11 @@ function App() {
         const headers = new Headers();
           // Преобразуем объект в строку JSON и добавляем в заголовок
           headers.append('Authorization', `twa-init-data ${initDataString}`);
-      
+          console.log(`data: ${initDataString}`
           // Проверяем, если данные инициализации отсутствуют
         if (!initDataString) {
             throw new Error('Unauthorized');
+          console.log('ERROR ::', Error);
           }
         const requestOptions = {
           method: 'POST',
@@ -142,10 +144,10 @@ function App() {
             <Header userId={userId} />
             <Searchbar />
             <Stories />
-            {cart.length > 0 && (
+            {isAuthenticated && {cart.length > 0 && (
               <BasketItem 
               cart={cart}  />
-            )}
+            )}}
             <Catalog />
             {isAuthenticated && <Products />}
             <Footer />
@@ -159,7 +161,7 @@ function App() {
         element={
           <div>
             <BackButton />
-            <ProfilePage userId={userId} />
+            {isAuthenticated && <ProfilePage userId={userId} />}
           </div>
         }
         >
@@ -170,7 +172,7 @@ function App() {
         element={
           <div>
             <BackButton />
-            <SettingsProfile userId={userId}/>
+            {isAuthenticated && <SettingsProfile userId={userId}/>}
           </div>
         }
         >
@@ -181,14 +183,14 @@ function App() {
         element={
           <div>
             <BackButton />
-            <ProductDetail
+           {isAuthenticated && <ProductDetail
             addToCart={addToCart} 
             sendDataToParent={sendDataToParent}
             onDataUpdate={handleDataFromMainButton}
             dataFromMainButton={dataFromMainButton}
             isAuthenticated={isAuthenticated}
             userId={userId}
-              />
+              />}
               {dataFromMainButton}
           </div>
         }
@@ -200,7 +202,7 @@ function App() {
         element={
           <div>
             <BackButton />
-            <ProductConfirm userId={userId}/>
+            {isAuthenticated && <ProductConfirm userId={userId}/>}
               
           </div>
         }
@@ -212,7 +214,7 @@ function App() {
         element={
           <div>
             <BackButton />
-            <ProductPay userId={userId}/>
+            {isAuthenticated && <ProductPay userId={userId}/>}
               
           </div>
         }
@@ -244,7 +246,7 @@ function App() {
         element={
           <>
           <BackButton />
-          <FilterProducts />
+          {isAuthenticated &&<FilterProducts />}
           </>
         }
         >
