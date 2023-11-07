@@ -49,14 +49,6 @@ function ProductConfirm({userId}) {
     }
   }, [onSendData])
 
-  useEffect(()=>{
-    if(userId){
-    window.Telegram.WebApp.onEvent('mainButtonClicked', onSendData)
-    }return () => {
-      window.Telegram.WebApp.offEvent('mainButtonClicked', onSendData)
-    }
-  }, [onSendData,userId])
-
   return (
     <>
     <div className="confirm-item" key={productId}>
