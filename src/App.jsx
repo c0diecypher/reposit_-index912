@@ -84,7 +84,7 @@ function App() {
           if (user && user.id) {
             const userId = user.id.toString();
             setUserId(userId);
-            
+            console.log(`user: ${userId}`);
           }
         }
         
