@@ -23,13 +23,15 @@ function ProductPay() {
   const [textColor] = useState(
     window.Telegram.WebApp.themeParams.button_text_color
   );
-  const {queryId} = useTelegram();
+  const {queryId, userId} = useTelegram();
   const onSendData = useCallback(() => {
     const data = {
       name: productData.name,
       price: productData.price,
       size: productData.size,
-      queryId
+      queryId,
+      userId,
+      order_id: productData.order_id,
      
     };
 
@@ -40,7 +42,7 @@ function ProductPay() {
       },
       body: JSON.stringify(data)
     });
-  }, [name, price, size, queryId]);
+  }, [name, price, size, queryId, userId]);
 
   useEffect(()=>{
     window.Telegram.WebApp.onEvent('mainButtonClicked', onSendData)
