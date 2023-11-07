@@ -43,19 +43,19 @@ function ProductConfirm() {
     })
     .then(response => response.json())
     .then(result => {
-        console.log(result.id); 
-        console.log(order_id); 
-        if (result.id && result.link) {
-            // Если платеж успешно создан, открываем ссылку на платежную форму внутри Телеграма
-          const paymentUrl = `https://p2pkassa.online/payment/${result.id}`;
+    // Получаем order_id из ответа или из productData, в зависимости от вашей логики
+    const order_id = result.order_id || productData.order_id;
 
-          // Открываем ссылку внутри Telegram
-          Telegram.WebApp.openLink(paymentUrl, { try_instant_view: true });
-        } else {
-            // Обработка ошибки, например, если не удалось создать платеж
-            console.error('Ошибка при создании платежа:', result);
-        }
-    });
+    // Создаем URL
+    const paymentUrl = `https://p2pkassa.online/payment/${order_id}`;
+
+    // Переходим по URL
+    window.location.href = paymentUrl;
+  })
+  .catch(error => {
+    // Обработка ошибки
+    console.error(error);
+  });
 }, [name, price, size, queryId, userId]);
 
   return (
