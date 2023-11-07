@@ -126,7 +126,7 @@ function ProductPay() {
       </div>
       
        <hr/>
-       <div className="order-price">{price}</div>
+       <div className="order-price">{price}₽</div>
       
       </div>
       
