@@ -46,7 +46,7 @@ function ProductConfirm() {
     // Получаем order_id из ответа или из productData, в зависимости от вашей логики
 
     // Создаем URL
-    const paymentUrl = `https://p2pkassa.online/payment/${result.id}`;
+    const paymentUrl = `https://p2pkassa.online/payment/${order_id}`;
     // Переходим по URL
     window.location.href = paymentUrl;
   })
