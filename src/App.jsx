@@ -66,6 +66,7 @@ function App() {
   };
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userId, setUserId] = useState("");
+  const [error, setError] = useState('');
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -106,6 +107,7 @@ function App() {
          setIsAuthenticated(true);
         if (!response.ok) {
           throw new Error('Network response was not ok');
+          setError(error);
         }
 
         const data = await response.json();
