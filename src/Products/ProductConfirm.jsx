@@ -28,7 +28,7 @@ function ProductConfirm({userId}) {
       name: productData.name,
       price: productData.price,
       size: productData.size,
-      queryId: userId,
+      queryId,
       order_id: productData.order_id,
      
     };
@@ -47,7 +47,7 @@ function ProductConfirm({userId}) {
     return () => {
       window.Telegram.WebApp.offEvent('mainButtonClicked', onSendData)
     }
-  }, [onSendData, userId])
+  }, [onSendData])
 
   useEffect(()=>{
     if(userId){
