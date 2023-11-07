@@ -106,7 +106,7 @@ typesKeys.sort(customSort)
 
   const generateOrderId = () => {
     const randomId = Math.floor(0 + Math.random() * 9999999); // Генерируйте случайное шестизначное число
-    return `№${randomId}`;
+    return `${randomId}`;
   };
   
   const handlePaymentClick = () => {
