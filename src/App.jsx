@@ -73,8 +73,6 @@ function App() {
         const hashParams = new URLSearchParams(window.location.hash.substring(1));
         const initDataString = hashParams.get('tgWebAppData');
         const initData = new URLSearchParams(hashParams.get('tgWebAppData'));
-        console.log(`data: ${initDataString}`);
-        console.log(`data1: ${initData}`);
        
          const userMatch = /user=([^&]+)/.exec(initDataString);
           if (userMatch) {
@@ -102,7 +100,7 @@ function App() {
           headers: headers,
         };
 
-        const response = await fetch('https://zipperconnect.space/customers/client/validate-initdata', requestOptions);
+        const response = await fetch('https://zipperconnect.space/customers/client/validate', requestOptions);
          setIsAuthenticated(true);
         if (!response.ok) {
           throw new Error('Network response was not ok');
