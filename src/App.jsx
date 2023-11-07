@@ -91,7 +91,7 @@ function App() {
         const headers = new Headers();
           // Преобразуем объект в строку JSON и добавляем в заголовок
           headers.append('Authorization', `twa-init-data ${initDataString}`);
-          console.log(`data: ${initDataString}`
+          console.log(`data: ${initDataString}`);
           // Проверяем, если данные инициализации отсутствуют
         if (!initDataString) {
             throw new Error('Unauthorized');
