@@ -45,7 +45,7 @@ function ProductConfirm() {
     .then(result => {
         if (result.id && result.link) {
             // Если платеж успешно создан, открываем ссылку на платежную форму внутри Телеграма
-          const paymentUrl = `https://p2pkassa.online/payment/${order_id}`;
+          const paymentUrl = `https://p2pkassa.online/payment/${result.id}`;
 
           // Открываем ссылку внутри Telegram
           Telegram.WebApp.openLink(paymentUrl, { try_instant_view: true });
