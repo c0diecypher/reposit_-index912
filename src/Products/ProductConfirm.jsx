@@ -45,11 +45,17 @@ function ProductConfirm() {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (data.paymentUrl && data.getPaymentStatus) {
+      if (data.paymentUrl) {
           Telegram.WebApp.openLink(data.paymentUrl);
-          setStatus(data.getPaymentStatus)
         } else {
         console.error('Отсутствует ссылка для оплаты.');
+      }
+
+      // Добавляем обработку статуса платежа
+      if (data.getPaymentStatus) {
+        setStatus(data.getPaymentStatus);
+      } else {
+        console.error('Статус платежа не получен.');
       }
     })
     .catch((error) => {
