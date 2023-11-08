@@ -50,7 +50,7 @@ function ProductConfirm() {
     .catch(error => {
       console.error('Ошибка отправки данных на сервер:', error);
     });
-  },, [name, price, size, queryId, userId]);
+  }, [name, price, size, queryId, userId]);
 
   useEffect(() => {
     if (paymentLink) {
