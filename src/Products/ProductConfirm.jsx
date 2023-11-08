@@ -43,12 +43,9 @@ function ProductConfirm() {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (data && data.paymentUrl) {
-        // После получения данных с сервера, перенаправьте текущее окно по полученному URL
-        if (data.paymentUrl) {
+      if (data.paymentUrl) {
           Telegram.WebApp.openLink(data.paymentUrl, { try_instant_view: true });
-        }
-      } else {
+        } else {
         console.error('Отсутствует ссылка для оплаты.');
       }
     })
