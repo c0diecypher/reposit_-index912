@@ -10,11 +10,11 @@ export default[
             "https://cdn.poizon.com/pro-img/origin-img/20230721/335a8ece05664fe8bdeb1056fec5638e.jpg",
             "https://cdn.poizon.com/pro-img/origin-img/20230721/af0d115e74f24dc5af07d3cc6ff47907.jpg"
         ],
-        "price": "7\u00a0601 ",
+        "price": "7601 ",
         "category": "Nike",
         "best_seller": "best_seller",
         "size": {
-            "36": "7\u00a0601 "
+            "36": "7601 "
         }
     },
     {
