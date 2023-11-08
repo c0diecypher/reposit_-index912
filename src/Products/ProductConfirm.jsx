@@ -24,38 +24,37 @@ function ProductConfirm() {
   );
   const [paymentLink, setPaymentLink] = useState(null);
   const {queryId, userId} = useTelegram();
-  const onSendData = useCallback(() => {
-    const data = {
-      name: productData.name,
-      price: productData.price,
-      size: productData.size,
-      queryId,
-      userId,
-      order_id: productData.order_id,
-     
-    };
+  const onSendData = () => {
+  const data = {
+    name: productData.name,
+    price: productData.price,
+    size: productData.size,
+    queryId,
+    userId,
+    order_id: productData.order_id,
+  };
 
-    fetch('https://zipperconnect.space/customer/settings/client/buy/offer', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-       body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
+  fetch('https://zipperconnect.space/customer/settings/client/buy/offer', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .then((data) => {
       // После получения данных с сервера, установите ссылку в стейте
       setPaymentLink(data.link);
     })
-    .catch(error => {
+    .catch((error) => {
       console.error('Ошибка отправки данных на сервер:', error);
     });
-  }, [name, price, size, queryId, userId]);
+};
 
-  useEffect(() => {
-    if (paymentLink) {
-        window.open(paymentLink, '_blank');
-    }
+useEffect(() => {
+  if (paymentLink) {
+    window.open(paymentLink, '_blank');
+  }
 }, [paymentLink]);
 
   return (
