@@ -1,6 +1,6 @@
 import "./css/Product.css";
 import { useState, useEffect, useCallback } from "react"
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import Stories from "../Stories/Stories"
 import { useTelegram } from "../Components/Hooks/useTelegram"
 import { MainButton } from "@twa-dev/sdk/react"
@@ -22,6 +22,7 @@ function ProductConfirm() {
   const [textColor] = useState(
     window.Telegram.WebApp.themeParams.button_text_color
   );
+  const navigate = useNavigate();
   const [paymentLink, setPaymentLink] = useState('');
   const {queryId, userId} = useTelegram();
   const onSendData = () => {
@@ -45,6 +46,8 @@ function ProductConfirm() {
     .then((data) => {
       if (data.paymentUrl) {
           Telegram.WebApp.openLink(data.paymentUrl);
+
+          navigate(`/products/confirm/offer/:name/:size/:price`);
         } else {
         console.error('Отсутствует ссылка для оплаты.');
       }
