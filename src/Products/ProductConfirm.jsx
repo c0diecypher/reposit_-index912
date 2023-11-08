@@ -25,6 +25,7 @@ function ProductConfirm() {
   const navigate = useNavigate();
   const [paymentLink, setPaymentLink] = useState('');
   const {queryId, userId} = useTelegram();
+  const [status, setStatus] = useState('');
   const onSendData = () => {
   const data = {
     name: productData.name,
@@ -44,8 +45,9 @@ function ProductConfirm() {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (data.paymentUrl) {
+      if (data.paymentUrl && data.getPaymentStatus) {
           Telegram.WebApp.openLink(data.paymentUrl);
+          setStatus(data.getPaymentStatus)
         } else {
         console.error('Отсутствует ссылка для оплаты.');
       }
@@ -109,13 +111,14 @@ useEffect(() => {
          {price}₽
       </div>
       <div className="public-oferta">
+        {status && <p>Статус платежа: {status}</p>}
         <p className="public-ofert-text">Оплачивая заказ, вы соглашаетесь <br/>с условиями <a className="public-oferta-link">публичной оферты</a></p>
       </div>
        <hr/>
       </div>
   </div>
   <div className="help-ful">
-    <h2 className="help-title">Полезная инофрмация</h2>
+    <h2 className="help-title">Полезная информация</h2>
     <div className="help-stories">
     <Stories />
     </div>
