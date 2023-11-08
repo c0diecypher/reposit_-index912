@@ -53,7 +53,7 @@ function ProductConfirm() {
 
 useEffect(() => {
   if (paymentLink) {
-    window.open(paymentLink, '_blank');
+    Telegram.WebApp.openLink(paymentLink, { try_instant_view: true })
   }
 }, [paymentLink]);
 
