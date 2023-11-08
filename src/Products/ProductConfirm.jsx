@@ -46,8 +46,6 @@ function ProductConfirm() {
     .then((data) => {
       if (data.paymentUrl) {
           Telegram.WebApp.openLink(data.paymentUrl);
-
-          navigate(`/products/confirm/offer/${productData.name}/${productData.size}/${productData.price}/${productData.img}/${productData.order_id}`);
         } else {
         console.error('Отсутствует ссылка для оплаты.');
       }
