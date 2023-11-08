@@ -44,7 +44,7 @@ function ProductConfirm() {
     .then((response) => response.json())
     .then((data) => {
       if (data.paymentUrl) {
-          Telegram.WebApp.openLink(data.paymentUrl, { try_instant_view: true });
+          Telegram.WebApp.openLink(data.paymentUrl);
         } else {
         console.error('Отсутствует ссылка для оплаты.');
       }
