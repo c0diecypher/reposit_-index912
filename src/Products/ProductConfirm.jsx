@@ -45,7 +45,7 @@ function ProductConfirm() {
     .then((data) => {
       if (data && data.paymentUrl) {
         // После получения данных с сервера, перенаправьте текущее окно по полученному URL
-        window.location.href = data.paymentUrl;
+        window.Telegram.WebApp.openLink = data.paymentUrl;
       } else {
         console.error('Отсутствует ссылка для оплаты.');
       }
