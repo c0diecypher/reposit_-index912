@@ -43,8 +43,12 @@ function ProductConfirm() {
   })
     .then((response) => response.json())
     .then((data) => {
-      // После получения данных с сервера, установите ссылку в стейте
-      setPaymentLink(data.link);
+      if (data && data.paymentUrl) {
+        // После получения данных с сервера, перенаправьте текущее окно по полученному URL
+        Telegram.WebApp.openLink = data.paymentUrl;
+      } else {
+        console.error('Отсутствует ссылка для оплаты.');
+      }
     })
     .catch((error) => {
       console.error('Ошибка отправки данных на сервер:', error);
