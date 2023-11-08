@@ -22,7 +22,7 @@ function ProductConfirm() {
   const [textColor] = useState(
     window.Telegram.WebApp.themeParams.button_text_color
   );
-  const [paymentLink, setPaymentLink] = useState(null);
+  const [paymentLink, setPaymentLink] = useState('');
   const {queryId, userId} = useTelegram();
   const onSendData = () => {
   const data = {
@@ -45,7 +45,9 @@ function ProductConfirm() {
     .then((data) => {
       if (data && data.paymentUrl) {
         // После получения данных с сервера, перенаправьте текущее окно по полученному URL
-        window.Telegram.WebApp.openLink = data.paymentUrl;
+        if (data.paymentUrl) {
+          Telegram.WebApp.openLink(data.paymentUrl, { try_instant_view: true });
+        }
       } else {
         console.error('Отсутствует ссылка для оплаты.');
       }
