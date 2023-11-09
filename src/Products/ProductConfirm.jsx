@@ -70,7 +70,7 @@ function ProductConfirm() {
   .catch((error) => {
     console.error('Ошибка отправки данных на сервер:', error);
   });
-
+};
 useEffect(() => {
   if (paymentLink) {
     Telegram.WebApp.openLink(paymentLink, { try_instant_view: true })
