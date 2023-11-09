@@ -45,9 +45,8 @@ function ProductConfirm() {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (data.paymentUrl && data.getPaymentStatus) {
+      if (data.paymentUrl) {
           Telegram.WebApp.openLink(data.paymentUrl);
-          setStatus(data.getPaymentStatus);
         } else {
         console.error('Отсутствует ссылка для оплаты.');
       }
@@ -62,6 +61,24 @@ useEffect(() => {
     Telegram.WebApp.openLink(paymentLink, { try_instant_view: true })
   }
 }, [paymentLink]);
+
+  useEffect(() => {
+    const eventSource = new EventSource('https://zipperconnect.space/customer/settings/client/buy/offer/pay/status'); // Указывайте правильный URL SSE-соединения
+
+    eventSource.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      setStatus(data.paymentStatus);
+    };
+
+    eventSource.onerror = (error) => {
+      console.error('Ошибка SSE:', error);
+    };
+
+    // Очистка SSE-соединения при размонтировании компонента
+    return () => {
+      eventSource.close();
+    };
+  }, []);
 
   return (
     <>
