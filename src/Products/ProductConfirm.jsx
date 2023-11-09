@@ -26,6 +26,35 @@ function ProductConfirm() {
   const [paymentLink, setPaymentLink] = useState('');
   const {queryId, userId} = useTelegram();
   const [status, setStatus] = useState('');
+   const [dataChannel, setDataChannel] = useState(null);
+
+    useEffect(() => {
+        // Создаем WebRTC Data Channel при монтировании компонента
+        const configuration = { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] };
+        const peerConnection = new RTCPeerConnection(configuration);
+        const newChannel = peerConnection.createDataChannel('paymentChannel');
+
+        newChannel.onopen = (event) => {
+            console.log('WebRTC Data Channel is open');
+            setDataChannel(newChannel); // Устанавливаем dataChannel в состоянии
+        };
+
+        newChannel.onmessage = (event) => {
+            const paymentStatus = event.data;
+            console.log('Payment Status:', paymentStatus);
+            setStatus(paymentStatus); // Устанавливаем статус оплаты в состоянии
+        };
+
+        // Тут также можно настроить сигнализацию и установить соединение
+
+        // Очистка и уничтожение WebRTC Data Channel при размонтировании компонента
+        return () => {
+            if (dataChannel) {
+                dataChannel.close();
+            }
+        };
+    }, []);
+  
   const onSendData = () => {
   const data = {
     name: productData.name,
@@ -45,11 +74,11 @@ function ProductConfirm() {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (data.paymentUrl && data.sendPaymentRequest) {
-          Telegram.WebApp.openLink(data.paymentUrl);
-          setStatus(data.sendPaymentRequest);
-        } else {
-        console.error('Отсутствует ссылка для оплаты.');
+    if (data.paymentUrl) {
+       Telegram.WebApp.openLink(data.paymentUrl);
+     if (dataChannel) {
+       const newPaymentStatus = 'Payment Successful';
+        dataChannel.send(newPaymentStatus); // Отправляем обновление статуса через WebRTC
       }
     })
     .catch((error) => {
