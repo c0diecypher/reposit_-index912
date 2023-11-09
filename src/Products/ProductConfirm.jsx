@@ -38,13 +38,13 @@ function ProductConfirm() {
   };
 
   fetch('https://zipperconnect.space/customer/settings/client/buy/offer/pay', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  })
-     .then((response) => {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+})
+  .then((response) => {
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
