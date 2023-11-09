@@ -45,13 +45,21 @@ function ProductConfirm() {
   })
     .then((response) => response.json())
             .then((data) => {
-                if (data.paymentUrl && data.getPaymentStatus) {
-                    Telegram.WebApp.openLink(data.paymentUrl);
-                    setStatus(data.getPaymentStatus);
-                } else {
-                    console.error('Отсутствует ссылка для оплаты.');
-                }
-            })
+      if (data.paymentUrl) {
+        // Открываем ссылку для оплаты в Telegram
+        Telegram.WebApp.openLink(data.paymentUrl);
+
+        // Если есть статус, обновляем состояние
+        if (data.getPaymentStatus) {
+          // Обновляем состояние с полученным статусом оплаты
+          setStatus(data.getPaymentStatus);
+        } else {
+          console.error('Отсутствует статус оплаты.');
+        }
+      } else {
+        console.error('Отсутствует ссылка для оплаты.');
+      }
+    })
     .catch((error) => {
       console.error('Ошибка отправки данных на сервер:', error);
     });
