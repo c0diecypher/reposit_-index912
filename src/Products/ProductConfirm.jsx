@@ -63,7 +63,7 @@ useEffect(() => {
 }, [paymentLink]);
 
   useEffect(() => {
-    const eventSource = new EventSource('https://zipperconnect.space/customer/settings/client/buy/offer/pay/status'); // Указывайте правильный URL SSE-соединения
+    const eventSource = new EventSource('https://zipperconnect.space/customer/settings/client/buy/offer/pay'); // Указывайте правильный URL SSE-соединения
 
     eventSource.onmessage = (event) => {
       const data = JSON.parse(event.data);
