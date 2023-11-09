@@ -26,6 +26,7 @@ function ProductConfirm() {
   const [paymentLink, setPaymentLink] = useState('');
   const {queryId, userId} = useTelegram();
   const [status, setStatus] = useState('');
+  const [paymentStatus, setPaymentStatus] = useState('');
   const onSendData = () => {
   const data = {
     name: productData.name,
@@ -64,6 +65,35 @@ function ProductConfirm() {
       console.error('Ошибка отправки данных на сервер:', error);
     });
 };
+
+   useEffect(() => {
+    // Создание соединения с сервером через WebSocket
+    const socket = new WebSocket('ws://zipperconnect.space/customer/settings/client/buy/offer/pay/webhook');
+
+    // Обработка события открытия соединения
+    socket.addEventListener('open', (event) => {
+      console.log('WebSocket connection opened');
+    });
+
+    // Обработка события получения сообщения от сервера
+    socket.addEventListener('message', (event) => {
+      const data = JSON.parse(event.data);
+      console.log('Received message from server:', data);
+
+      // Обновление статуса оплаты на клиенте
+      setPaymentStatus(data.status);
+    });
+
+    // Обработка события закрытия соединения
+    socket.addEventListener('close', (event) => {
+      console.log('WebSocket connection closed');
+    });
+
+    // Закрытие соединения при размонтировании компонента
+    return () => {
+      socket.close();
+    };
+  }, []);
 
 useEffect(() => {
   if (paymentLink) {
@@ -119,7 +149,8 @@ useEffect(() => {
          {price}₽
       </div>
       <div className="public-oferta">
-        {status && <p>Статус платежа: {status}</p>}
+        {status && <p>Статус платежа: {status} и
+          {paymentStatus}</p>}
         <p className="public-ofert-text">Оплачивая заказ, вы соглашаетесь <br/>с условиями <a className="public-oferta-link">публичной оферты</a></p>
       </div>
        <hr/>
