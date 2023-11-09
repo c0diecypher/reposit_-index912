@@ -68,7 +68,7 @@ function ProductConfirm() {
 
    useEffect(() => {
     // Создание соединения с сервером через WebSocket
-    const socket = new WebSocket('ws://zipperconnect.space/customer/settings/client/buy/offer/pay/webhook');
+    const socket = new WebSocket('wss://zipperconnect.space/customer/settings/client/buy/offer/pay/webhook');
 
     // Обработка события открытия соединения
     socket.addEventListener('open', (event) => {
