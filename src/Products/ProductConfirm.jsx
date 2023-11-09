@@ -44,56 +44,32 @@ function ProductConfirm() {
     },
     body: JSON.stringify(data),
   })
-    .then((response) => response.json())
-            .then((data) => {
-      if (data.paymentUrl) {
-        // Открываем ссылку для оплаты в Telegram
-        Telegram.WebApp.openLink(data.paymentUrl);
+     .then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((responseData) => {
+    if (responseData.message === 'OK') {
+      if (responseData.paymentUrl) {
+        Telegram.WebApp.openLink(responseData.paymentUrl);
 
-        // Если есть статус, обновляем состояние
-        if (data.getPaymentStatus) {
-          // Обновляем состояние с полученным статусом оплаты
-          setStatus(data.getPaymentStatus);
+        if (responseData.getPaymentStatus) {
+          setStatus(responseData.getPaymentStatus);
         } else {
           console.error('Отсутствует статус оплаты.');
         }
       } else {
         console.error('Отсутствует ссылка для оплаты.');
       }
-    })
-    .catch((error) => {
-      console.error('Ошибка отправки данных на сервер:', error);
-    });
-};
-
-   useEffect(() => {
-    // Создание соединения с сервером через WebSocket
-    const socket = new WebSocket('wss://zipperconnect.space/customer/settings/client/buy/offer/pay/webhook');
-
-    // Обработка события открытия соединения
-    socket.addEventListener('open', (event) => {
-      console.log('WebSocket connection opened');
-    });
-
-    // Обработка события получения сообщения от сервера
-    socket.addEventListener('message', (event) => {
-      const data = JSON.parse(event.data);
-      console.log('Received message from server:', data);
-
-      // Обновление статуса оплаты на клиенте
-      setPaymentStatus(data.status);
-    });
-
-    // Обработка события закрытия соединения
-    socket.addEventListener('close', (event) => {
-      console.log('WebSocket connection closed');
-    });
-
-    // Закрытие соединения при размонтировании компонента
-    return () => {
-      socket.close();
-    };
-  }, []);
+    } else {
+      console.error(`Ошибка сервера: ${responseData.error}`);
+    }
+  })
+  .catch((error) => {
+    console.error('Ошибка отправки данных на сервер:', error);
+  });
 
 useEffect(() => {
   if (paymentLink) {
