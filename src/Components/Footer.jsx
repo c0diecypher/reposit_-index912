@@ -6,7 +6,7 @@ function Header() {
 
   return (
     <>
-      <footer>made a zipper store</footer>
+      <footer></footer>
     </>
   )
 }
