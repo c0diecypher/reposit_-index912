@@ -10,7 +10,7 @@ function UserProfile({ userId }) {
 
  useEffect(() => {
     if (userId) {
-      fetch(`https://zipperconnect.space/customer/settings/client/photo/${userId}`)
+      fetch(`https://cdn.zipperconnect.space/customer/settings/client/photo/${userId}`)
         .then((response) => {
           if (response.ok) {
             return response.blob();
