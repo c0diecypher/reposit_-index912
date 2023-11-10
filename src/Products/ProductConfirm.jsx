@@ -26,9 +26,6 @@ function ProductConfirm() {
   const [paymentLink, setPaymentLink] = useState('');
   const {queryId, userId} = useTelegram();
   const [status, setStatus] = useState('');
-  const [paymentStatus, setPaymentStatus] = useState('');
-
-  const [status, setStatus] = useState('');
   const onSendData = () => {
   const data = {
     name: productData.name,
