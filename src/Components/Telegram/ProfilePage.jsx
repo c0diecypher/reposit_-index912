@@ -40,7 +40,7 @@ function ProfilePage({userId}) {
 
   useEffect(() => {
     if (userId) {
-      fetch(`https://zipperconnect.space/userProfile/${userId}`)
+      fetch(`https://cdn.zipperconnect.space/userProfile/${userId}`)
         .then((response) => {
           if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -60,7 +60,7 @@ function ProfilePage({userId}) {
    
   useEffect(() => {
     if (userId) {
-      fetch(`https://zipperconnect.space/customer/settings/client/photo/${userId}`)
+      fetch(`https://cdn.zipperconnect.space/customer/settings/client/photo/${userId}`)
         .then((response) => {
           if (response.ok) {
             return response.blob();
