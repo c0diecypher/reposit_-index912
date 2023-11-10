@@ -100,7 +100,7 @@ function App() {
           headers: headers,
         };
 
-        const response = await fetch('https://zipperconnect.space/validate-initdata', requestOptions);
+        const response = await fetch('https://cdn.zipperconnect.space/validate-initdata', requestOptions);
          setIsAuthenticated(true);
         if (!response.ok) {
           throw new Error('Network response was not ok');
