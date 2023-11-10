@@ -387,8 +387,9 @@ const [tgPhoneNumber, setTgPhoneNumber] = useState('');
                     <span style={{marginLeft: '5px'}}>✍🏻</span>
                 </div>
                 <div className="profile-data-info">
-                <span style={{marginLeft: '5px'}}>📝</span>
+                <span style={{marginLeft: '5px'}}>📝
                   <span style={{textAlign:'left'}}>Напиши, что улучшить и получи бонус!</span>
+                  </span>
                 </div>
 
                 <button className="btn-profile-data-info btn-profile-data">
