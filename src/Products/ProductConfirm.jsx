@@ -27,55 +27,76 @@ function ProductConfirm() {
   const {queryId, userId} = useTelegram();
   const [status, setStatus] = useState('');
   const [paymentStatus, setPaymentStatus] = useState('');
-  const onSendData = () => {
-  const data = {
-    name: productData.name,
-    price: productData.price,
-    size: productData.size,
-    queryId,
-    userId,
-    order_id: productData.order_id,
-  };
 
-  fetch('https://zipperconnect.space/customer/settings/client/buy/offer/pay', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(data),
-})
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then((responseData) => {
-    if (responseData.message === 'OK') {
-      if (responseData.paymentUrl) {
-        Telegram.WebApp.openLink(responseData.paymentUrl);
+  useEffect(() => {
+    // Функция для обновления статуса оплаты
+    const updatePaymentStatus = async () => {
+      try {
+        const response = await fetch('https://zipperconnect.space/customer/settings/client/buy/offer/pay/webhook', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
 
-        if (responseData.getPaymentStatus) {
-          setStatus(responseData.getPaymentStatus);
-        } else {
-          console.error('Отсутствует статус оплаты.');
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
         }
-      } else {
-        console.error('Отсутствует ссылка для оплаты.');
+
+        const responseData = await response.json();
+        if (responseData.getPaymentStatus) {
+          setPaymentStatus(responseData.getPaymentStatus);
+        }
+      } catch (error) {
+        console.error('Ошибка обновления статуса оплаты:', error);
       }
-    } else {
-      console.error(`Ошибка сервера: ${responseData.error}`);
-    }
-  })
-  .catch((error) => {
-    console.error('Ошибка отправки данных на сервер:', error);
-  });
-};
-useEffect(() => {
-  if (paymentLink) {
-    Telegram.WebApp.openLink(paymentLink, { try_instant_view: true })
-  }
-}, [paymentLink]);
+    };
+
+    // Вызываем функцию для обновления статуса каждые, например, 5 секунд
+    const intervalId = setInterval(updatePaymentStatus, 5000);
+
+    // Останавливаем интервал при размонтировании компонента
+    return () => clearInterval(intervalId);
+  }, []); // Пустой массив зависимостей гарантирует, что эффект запустится только после монтирования
+
+  const onSendData = () => {
+    const data = {
+      name: productData.name,
+      price: productData.price,
+      size: productData.size,
+      queryId,
+      userId,
+      order_id: productData.order_id,
+    };
+
+    fetch('https://zipperconnect.space/customer/settings/client/buy/offer/pay', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((responseData) => {
+        if (responseData.message === 'OK') {
+          if (responseData.paymentUrl) {
+            Telegram.WebApp.openLink(responseData.paymentUrl);
+          } else {
+            console.error('Отсутствует ссылка для оплаты.');
+          }
+        } else {
+          console.error(`Ошибка сервера: ${responseData.error}`);
+        }
+      })
+      .catch((error) => {
+        console.error('Ошибка отправки данных на сервер:', error);
+      });
+  };
 
   return (
     <>
@@ -125,8 +146,8 @@ useEffect(() => {
          {price}₽
       </div>
       <div className="public-oferta">
-        {status && <p>Статус платежа: {status} и
-          {paymentStatus}</p>}
+        {status && <p>Текущий статус: {status}</p>}
+        <p>Статус оплаты: {paymentStatus}</p>
         <p className="public-ofert-text">Оплачивая заказ, вы соглашаетесь <br/>с условиями <a className="public-oferta-link">публичной оферты</a></p>
       </div>
        <hr/>
