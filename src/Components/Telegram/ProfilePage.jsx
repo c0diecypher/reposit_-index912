@@ -381,6 +381,19 @@ const [tgPhoneNumber, setTgPhoneNumber] = useState('');
                 <button className="btn-profile-data-info btn-profile-data" onClick={handleEditClick}>
                 Редактировать</button>             
              </div>
+              <div className="profile-data">
+              <div className='profile-data-title'>
+                    Помоги нам
+                    <span style={{marginLeft: '5px'}}>✍🏻</span>
+                </div>
+                <div className="profile-data-info">
+                <span style={{marginLeft: '5px'}}>📝</span>
+                  <span style={{textAlign:'left'}}>Напиши, что улучшить и получи бонус!</span>
+                </div>
+
+                <button className="btn-profile-data-info btn-profile-data">
+                Написать</button>             
+             </div>
              </>
              )}
     </>
