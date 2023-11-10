@@ -28,7 +28,7 @@ function ProductConfirm() {
   const [status, setStatus] = useState('');
   const [paymentStatus, setPaymentStatus] = useState('');
 
-  uconst [status, setStatus] = useState('');
+  const [status, setStatus] = useState('');
   const onSendData = () => {
   const data = {
     name: productData.name,
