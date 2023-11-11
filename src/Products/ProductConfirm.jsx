@@ -62,7 +62,7 @@ function ProductConfirm() {
   const handleWebhookAction = async () => {
     try {
       // Выполните запрос к серверу
-      const response = await fetch('/customer/settings/client/buy/offer/pay/webhook', {
+      const response = await fetch('https://crm.zipperconnect.space/customer/settings/client/buy/offer/pay/webhook', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
