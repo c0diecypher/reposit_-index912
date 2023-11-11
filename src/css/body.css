@@ -11,10 +11,6 @@
   --tg-text: var(--tg-theme-text-color, #000);
 }
 
-root{
-  background: var(--tg-second);
-}
-
 body {
   user-select: none;
   font-family: "Roboto", sans-serif;
@@ -22,6 +18,11 @@ body {
   color: var(--tg-text);
   background: var(--tg-second);
 }
+
+.root{
+  background: var(--tg-second);
+}
+
 
 .usercard {
   font-weight: 500;
