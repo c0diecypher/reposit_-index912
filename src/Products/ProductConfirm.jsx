@@ -17,7 +17,7 @@ function ProductConfirm() {
   const { productData } = location.state || {};
 
   // Отображаем информацию о товаре
-  const [paymentStatus, setPaymentStatus] = useState('');
+  const [paymentStatus, setPaymentStatus] = useState('Ожидается оплата');
   const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
   const [textColor] = useState(
     window.Telegram.WebApp.themeParams.button_text_color
@@ -48,7 +48,8 @@ function ProductConfirm() {
       if (data.paymentUrl && data.getPaymentStatus) {
           Telegram.WebApp.openLink(data.paymentUrl);
           setPaymentStatus('Ожидается оплата');
-        
+
+          checkPaymentStatus();
         } else {
         console.error('Отсутствует ссылка для оплаты.');
       }
@@ -59,36 +60,30 @@ function ProductConfirm() {
 };
 
   
+const checkPaymentStatus = async () => {
+  try {
+    // Здесь отправляете запрос на сервер для проверки статуса платежа
+    const response = await fetch('https://crm.zipperconnect.space/customer/client/pay/status', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(/* Здесь передайте необходимые данные для проверки статуса, например, id и apikey */),
+    });
 
-  const checkPaymentStatus = async () => {
-    try {
-      // Здесь отправляете запрос на сервер для проверки статуса платежа
-      const response = await fetch('https://crm.zipperconnect.space/customer/client/pay/status', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(/* Здесь передайте необходимые данные для проверки статуса, например, id и apikey */),
-      });
-
-      if (response.ok) {
-        // Если статус успешен, обновите состояние
-        setPaymentStatus('Оплачен');
-      } else {
-        // Если статус не успешен, обновите состояние, например, на "Отменен"
-        setPaymentStatus('Отменен');
-      }
-    } catch (error) {
-      console.error('Ошибка при проверке статуса платежа', error);
-      // Обработка ошибки, например, обновление состояния на "Ошибка"
-      setPaymentStatus('Ошибка');
+    if (response.ok) {
+      // Если статус успешен, обновите состояние
+      setPaymentStatus('Оплачен');
+    } else {
+      // Если статус не успешен, обновите состояние, например, на "Отменен"
+      setPaymentStatus('Отменен');
     }
-  };
-
-  useEffect(() => {
-    // Проверьте статус платежа при монтировании компонента
-    checkPaymentStatus();
-  }, []); // Пустой массив зависимостей гарантирует, что эффект запустится только один раз при монтировании
+  } catch (error) {
+    console.error('Ошибка при проверке статуса платежа', error);
+    // Обработка ошибки, например, обновление состояния на "Ошибка"
+    setPaymentStatus('Ошибка');
+  }
+};
 
   return (
     <>
@@ -139,7 +134,6 @@ function ProductConfirm() {
       </div>
       <div className="public-oferta">
         {paymentStatus && <p>Текущий статус: {paymentStatus}</p>}
-        <p>Статус оплаты: {paymentStatus}</p>
         <p className="public-ofert-text">Оплачивая заказ, вы соглашаетесь <br/>с условиями <a className="public-oferta-link">публичной оферты</a></p>
       </div>
        <hr/>
