@@ -135,7 +135,7 @@ function App() {
         exact
         path="/"
         element={
-          <div>
+          <div clasaName="root">
             {tg.expand()}
             {tg.enableClosingConfirmation()}
             <Header userId={userId} />
