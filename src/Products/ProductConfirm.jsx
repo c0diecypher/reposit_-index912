@@ -6,9 +6,6 @@ import { useTelegram } from "../Components/Hooks/useTelegram"
 import { MainButton } from "@twa-dev/sdk/react"
 
 function ProductConfirm() {
-  useEffect(() => {
-    window.scrollTo(0, 0); // Прокрутка вверх при загрузке страницы
-  }, []);
   const { productId, size, price, name, img } = useParams();
   const location = useLocation();
   
