@@ -11,6 +11,10 @@
   --tg-text: var(--tg-theme-text-color, #000);
 }
 
+root{
+  background: var(--tg-second);
+}
+
 body {
   user-select: none;
   font-family: "Roboto", sans-serif;
