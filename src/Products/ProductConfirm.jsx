@@ -57,6 +57,34 @@ function ProductConfirm() {
     });
 };
 
+  onst [webhookStatus, setWebhookStatus] = useState(null);
+
+  const handleWebhookAction = async () => {
+    try {
+      // Выполните запрос к серверу
+      const response = await fetch('/customer/settings/client/buy/offer/pay/webhook', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        // Данные, которые могут быть отправлены на сервер
+        body: JSON.stringify(/* ваш запрос, если необходимо */),
+      });
+
+      if (response.ok) {
+        // Установка успешного статуса
+        setWebhookStatus('Успешно обработан');
+      } else {
+        // Установка статуса ошибки
+        setWebhookStatus('Ошибка обработки');
+      }
+    } catch (error) {
+      console.error(error);
+      // Установка статуса ошибки запроса
+      setWebhookStatus('Ошибка при выполнении запроса');
+    }
+  };
+
   return (
     <>
     <div className="confirm-item" key={productId}>
@@ -106,6 +134,8 @@ function ProductConfirm() {
       </div>
       <div className="public-oferta">
         {status && <p>Текущий статус: {status}</p>}
+        <button onClick={handleWebhookAction}>Вызвать вебхук</button>
+        {webhookStatus && <p>{webhookStatus}</p>}
         <p className="public-ofert-text">Оплачивая заказ, вы соглашаетесь <br/>с условиями <a className="public-oferta-link">публичной оферты</a></p>
       </div>
        <hr/>
