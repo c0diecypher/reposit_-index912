@@ -84,6 +84,12 @@ const checkPaymentStatus = async () => {
   }
 };
 
+  const [dataOpen, setDataOpen] = useState(false);
+  const handleEditClick = () => {
+    setDataOpen(!dataOpen);
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
+  };
+
   return (
     <>
     <div className="confirm-item" key={productId}>
@@ -143,6 +149,35 @@ const checkPaymentStatus = async () => {
     <div className="help-stories">
     <Stories />
     </div>
+  </div>
+      div className="profile-data" onClick={handleEditClick}>
+    <div className='order-card-box'>
+    {dataOpen ? (
+      <>
+      <div className="order-card-title">Доставка</div>
+      <div className="order-card-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="tabler-icon tabler-icon-chevron-down"><path d="M6 9l6 6l6 -6"></path></svg>
+      </div>
+      </>):(
+        <>
+        <div className="order-card-title">Доставка</div>
+      <div className="order-card-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="tabler-icon tabler-icon-chevron-up"><path d="M6 15l6 -6l6 6"></path></svg>
+      </div>
+        </>
+      )}
+                    
+                    <span style={{marginLeft: '5px'}}></span>
+                </div>
+  {dataOpen ? (<div>
+            
+          
+             </div>):(<><div className="order-card-text">
+                <span style={{marginTop: '12px', textAlign:'left'}}>Среднее время доставки 16-20 дней. <br/> 
+                После оплаты вы сможете отслеживать статусы доставки и получать уведомления об их изменении.<br/> 
+                </span>
+              </div>
+              </>)}
   </div>
   <MainButton 
     onClick={() => {
