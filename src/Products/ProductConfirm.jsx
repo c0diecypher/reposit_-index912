@@ -62,7 +62,7 @@ function ProductConfirm() {
   const handleWebhookAction = async () => {
     try {
       // Выполните запрос к серверу
-      const response = await fetch('https://zipperconnect.space/', {
+      const response = await fetch('/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
