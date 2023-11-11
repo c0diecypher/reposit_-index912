@@ -57,7 +57,7 @@ function ProductConfirm() {
     });
 };
 
-  onst [webhookStatus, setWebhookStatus] = useState(null);
+  const [webhookStatus, setWebhookStatus] = useState(null);
 
   const handleWebhookAction = async () => {
     try {
