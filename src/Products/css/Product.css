@@ -366,3 +366,37 @@ hr{
     padding-left: 4%;
     margin: var(--space-4x) 0 var(--space-4x);
   }
+
+.order-card-box{
+    display: flex;
+  }
+
+  .order-card-title{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 130%;
+    letter-spacing: -.01em;
+    margin-left: var(--space-4x);
+  }
+
+  .order-card-icon{
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  .order-card-icon svg{
+    stroke-width: 2.2px;
+}
+  
+.order-card-text{
+  text-align: left;
+  margin-top: 10px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 140%;
+  margin-left: var(--space-4x);
+}
