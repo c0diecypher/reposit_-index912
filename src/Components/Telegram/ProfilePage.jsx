@@ -80,7 +80,7 @@ function ProfilePage({userId}) {
 
   useEffect(() => {
     if (userId) {
-    fetch(`https://zipperconnect.space/customer/settings/client/${userId}`)
+    fetch(`https://crm.zipperconnect.space/customer/settings/client/${userId}`)
       .then((response) => response.json())
       .then((data) => {
         if (data && data.phoneNumber && data.userFio && data.userAdress && data.userCity) {
@@ -117,7 +117,7 @@ function ProfilePage({userId}) {
     };
 
     // Send the data to the server for updating
-    fetch('https://zipperconnect.space/customer/settings/client', {
+    fetch('https://crm.zipperconnect.space/customer/settings/client', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -169,7 +169,7 @@ const [tgPhoneNumber, setTgPhoneNumber] = useState('');
     if (userId) {
       setLoading(true);
 
-      fetch(`https://zipperconnect.space/customer/settings/client/get/${userId}`)
+      fetch(`https://crm.zipperconnect.space/customer/settings/client/get/${userId}`)
         .then((response) => response.json())
         .then((data) => {
           if (data && data.tgPhoneNumber) {
