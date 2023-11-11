@@ -49,7 +49,6 @@ function ProductConfirm() {
           Telegram.WebApp.openLink(data.paymentUrl);
           setPaymentStatus('Ожидается оплата');
 
-          checkPaymentStatus();
         } else {
         console.error('Отсутствует ссылка для оплаты.');
       }
