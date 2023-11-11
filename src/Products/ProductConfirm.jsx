@@ -150,7 +150,7 @@ const checkPaymentStatus = async () => {
     <Stories />
     </div>
   </div>
-      div className="profile-data" onClick={handleEditClick}>
+  <div className="profile-data" onClick={handleEditClick}>
     <div className='order-card-box'>
     {dataOpen ? (
       <>
