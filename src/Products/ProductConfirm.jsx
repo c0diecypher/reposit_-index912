@@ -60,7 +60,7 @@ const checkPaymentStatus = async () => {
   try {
     // Здесь отправляете запрос на сервер для проверки статуса платежа
     const response = await fetch('https://crm.zipperconnect.space/customer/client/pay/status', {
-      method: 'POST',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
