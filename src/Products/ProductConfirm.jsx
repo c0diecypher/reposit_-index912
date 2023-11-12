@@ -56,42 +56,38 @@ function ProductConfirm() {
 };
 
   
-const checkPaymentStatus = async () => {
-  try {
-    // Здесь отправляете запрос на сервер для проверки статуса платежа
-    const response = await fetch('https://crm.zipperconnect.space/customer/client/pay/status', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        id: id ? id : null,
-        apikey: apikey ? apikey : null,
-        order_id: order_id ? order_id : null,
-        project_id: project_id ? project_id : null,
-        amount: amount ? amount : null,
-        createDateTime: createDateTime ? createDateTime : null,
-      }),
-    });
+useEffect(() => {
+  const checkPaymentStatus = async () => {
+    try {
+      const response = await fetch('https://crm.zipperconnect.space/customer/client/pay/status', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: id ? id : null,
+          apikey: apikey ? apikey : null,
+          order_id: order_id ? order_id : null,
+          project_id: project_id ? project_id : null,
+          amount: amount ? amount : null,
+          createDateTime: createDateTime ? createDateTime : null,
+        }),
+      });
 
-    if (response.ok) {
-      // Если статус успешен и пришли все данные, обновите состояние
-      setPaymentStatus('Оплачен');
-    } else {
-      // Если статус не успешен или данные не пришли, обновите состояние, например, на "Отменен" или "Ожидается оплата"
-      setPaymentStatus('Отменен');
+      if (response.ok) {
+        setPaymentStatus('Оплачен');
+      } else {
+        setPaymentStatus('Отменен');
+      }
+    } catch (error) {
+      console.error('Ошибка при проверке статуса платежа', error);
+      setPaymentStatus('Ошибка');
     }
-  } catch (error) {
-    console.error('Ошибка при проверке статуса платежа', error);
-    // Обработка ошибки, например, обновление состояния на "Ошибка"
-    setPaymentStatus('Ошибка');
-  }
-};
+  };
 
-  useEffect(() => {
-  // Вызывайте checkPaymentStatus при изменении значений зависимостей (id, apikey, order_id и т.д.)
+  // Вызываем функцию для проверки статуса платежа
   checkPaymentStatus();
-}, []);
+}, [id, apikey, order_id, project_id, amount, createDateTime]); // Зависимости, которые следует отслеживать
 
   const [dataOpen, setDataOpen] = useState(false);
   const handleEditClick = () => {
