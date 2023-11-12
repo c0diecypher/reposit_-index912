@@ -401,12 +401,10 @@ hr{
   margin-left: var(--space-4x);
 }
 
-.paid {
-  color: #31b545;
-}
-.paid {
-  color: var(--tg-theme-hint-color);
-}
-.cancelled{
-  color: #b54531;
-}
+.profile-data{
+  margin-top: 8px;
+  background: var(--tg-bg);
+  padding: 20px 15px;
+  border-radius: 20px;
+  margin-bottom: var(--space-4x);
+  }
