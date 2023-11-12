@@ -70,7 +70,6 @@ typesKeys.sort(customSort)
       const sizePriceWithoutCurrency = sizePrice.replace(/\D/g, '');
       if (sizePriceWithoutCurrency === priceWithoutCurrency) {
         setActive(size);
-        break; 
       }
     }
   }
