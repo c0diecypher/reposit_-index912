@@ -273,16 +273,15 @@ const checkPaymentStatus = async () => {
                 После оплаты вы сможете отслеживать статусы доставки и получать уведомления об их изменении.<br/> 
                 </span>
               </div>
-               <MainButton 
+              </>)}
+  </div>
+  <MainButton 
                         onClick={checkPaymentStatus}
                         color={color}
                         textColor={textColor}
                         text={`Проверить оплату`}
                         progress={progress}
                         />
-              </>)}
-  </div>
-  
   </>
   );
 }
