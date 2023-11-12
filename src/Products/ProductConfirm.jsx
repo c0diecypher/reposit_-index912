@@ -91,7 +91,7 @@ const checkPaymentStatus = async () => {
   useEffect(() => {
   // Вызывайте checkPaymentStatus при изменении значений зависимостей (id, apikey, order_id и т.д.)
   checkPaymentStatus();
-}, [id, apikey, order_id, project_id, amount, createDateTime]);
+}, []);
 
   const [dataOpen, setDataOpen] = useState(false);
   const handleEditClick = () => {
