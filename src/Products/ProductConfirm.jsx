@@ -58,6 +58,7 @@ const [buttonVisible, setButtonVisible] = useState(true);
   
 const checkPaymentStatus = async () => {
   setProgress(true);
+  setButtonVisible(true);
   try {
     // Здесь отправляете запрос на сервер для проверки статуса платежа
     const response = await fetch('https://crm.zipperconnect.space/customer/client/pay/status', {
@@ -273,9 +274,7 @@ const checkPaymentStatus = async () => {
                 </span>
               </div>
                <MainButton 
-    onClick={() => {
-    checkPaymentStatus();
-  }}
+                        onClick={checkPaymentStatus}
                         color={color}
                         textColor={textColor}
                         text={`Проверить оплату`}
