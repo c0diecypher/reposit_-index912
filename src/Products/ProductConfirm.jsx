@@ -32,7 +32,7 @@ function ProductConfirm() {
     userId,
     order_id: productData.order_id,
   };
-
+  setProgress(!progress);
   fetch('https://crm.zipperconnect.space/customer/settings/client/buy/offer/pay', {
     method: 'POST',
     headers: {
@@ -225,8 +225,6 @@ const checkPaymentStatus = async () => {
     onClick={() => {
     onSendData();
   }}
-    checked={progress}
-    onChange={(e) => setProgress(e.target.checked)}
                         color={color}
                         textColor={textColor}
                         text={`Купить за ${price}`}
