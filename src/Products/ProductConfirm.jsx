@@ -70,7 +70,7 @@ const checkPaymentStatus = async () => {
     if (response.ok) {
       const data = await response.json();
       console.log('Успешный ответ от сервера:', data);
-      setPaymentStatus('Оплачен');
+      sendPaymentStatusRequest();
     } else {
       // Если статус не успешен или данные не пришли, обновите состояние, например, на "Отменен" или "Ожидается оплата"
       setPaymentStatus('Отменен');
@@ -87,6 +87,42 @@ const checkPaymentStatus = async () => {
     setDataOpen(!dataOpen);
     window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
   };
+
+  const sendPaymentStatusRequest = async () => {
+  try {
+    const response = await fetch('/customer/client/pay/status/data', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      // В случае необходимости передайте данные
+      // body: JSON.stringify({ /* ваш объект данных */ }),
+    });
+
+    // Проверка успешности HTTP-статуса
+    if (response.ok) {
+      const responseData = await response.json();
+
+      // Обработайте ответ от сервера
+      console.log('Ответ от сервера:', responseData);
+
+      // Проверка наличия данных в ответе
+      if (responseData.data) {
+        // Установите статус "Оплачено", так как данные получены
+        setPaymentStatus('Оплачено');
+      } else {
+        // Если данных нет, вы можете установить другой статус или выполнить другие действия
+        setPaymentStatus('Отменено');
+      }
+    } else {
+      console.error('Ошибка HTTP:', response.status);
+      // Обработка ошибки HTTP-статуса
+    }
+  } catch (error) {
+    console.error('Ошибка при отправке запроса на сервер:', error);
+    // Обработка ошибки
+  }
+};
 
   return (
     <>
