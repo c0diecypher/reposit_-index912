@@ -38,11 +38,11 @@ function ProductConfirm() {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(dataInfo),
   })
     .then((response) => response.json())
-    .then((data) => {
-      if (data.paymentUrl && data.getPaymentStatus) {
+    .then((dataInfo) => {
+      if (dataInfo.paymentUrl) {
           Telegram.WebApp.openLink(data.paymentUrl);
           setPaymentStatus('Ожидается оплата');
 
@@ -54,7 +54,7 @@ function ProductConfirm() {
       console.error('Ошибка отправки данных на сервер:', error);
     });
 };
-  
+
 const checkPaymentStatus = async () => {
   setProgress(true);
   try {
