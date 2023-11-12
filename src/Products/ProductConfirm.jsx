@@ -54,53 +54,37 @@ function ProductConfirm() {
       console.error('Ошибка отправки данных на сервер:', error);
     });
 };
-
+const [buttonVisible, setButtonVisible] = useState(true);
   
-const [webhookData, setWebhookData] = useState(null);
+const checkPaymentStatus = async () => {
+  setProgress(true);
+  try {
+    // Здесь отправляете запрос на сервер для проверки статуса платежа
+    const response = await fetch('https://crm.zipperconnect.space/customer/client/pay/status', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(/* Здесь передайте необходимые данные для проверки статуса, например, id и apikey */),
+    });
 
-  const checkPaymentStatus = async () => {
-    try {
-      if (!webhookData) {
-        // Если webhookData пуст, то выход из функции
-        return;
-      }
-
-      // Здесь отправляете запрос на сервер для проверки статуса платежа
-      const response = await fetch('https://crm.zipperconnect.space/customer/client/pay/status', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          // Передайте данные из webhookData
-          id: webhookData.id,
-          apikey: webhookData.apikey,
-          order_id: webhookData.order_id,
-          project_id: webhookData.project_id,
-          amount: webhookData.amount,
-          createDateTime: webhookData.createDateTime,
-        }),
-      });
-
-      if (response.ok) {
-        // Если статус успешен и пришли все данные, обновите состояние
-        const data = await response.json();
-        setPaymentStatus('Оплачен'); // предположим, что сервер возвращает статус платежа
-      } else {
-        // Если статус не успешен или данные не пришли, обновите состояние, например, на "Отменен" или "Ожидается оплата"
-        setPaymentStatus('Отменен');
-      }
-    } catch (error) {
-      console.error('Ошибка при проверке статуса платежа', error);
-      // Обработка ошибки, например, обновление состояния на "Ошибка"
-      setPaymentStatus('Ошибка');
+    if (response.ok) {
+      // Если статус успешен и пришли все данные, обновите состояние
+      setPaymentStatus('Оплачен');
+    } else {
+      // Если статус не успешен или данные не пришли, обновите состояние, например, на "Отменен" или "Ожидается оплата"
+      setPaymentStatus('Отменен');
     }
-  };
-
-  // Вызовите функцию проверки статуса при изменении webhookData
-  useEffect(() => {
-    checkPaymentStatus();
-  }, [webhookData]);
+  } catch (error) {
+    console.error('Ошибка при проверке статуса платежа', error);
+    // Обработка ошибки, например, обновление состояния на "Ошибка"
+    setPaymentStatus('Ошибка');
+  }
+  setTimeout(() => {
+      setProgress(false);
+      setButtonVisible(false);
+    }, 2000);
+};
 
   const [dataOpen, setDataOpen] = useState(false);
   const handleEditClick = () => {
@@ -250,6 +234,7 @@ const [webhookData, setWebhookData] = useState(null);
                         textColor={textColor}
                         text={`Купить за ${price}`}
                         progress={progress}
+        
                         />
     </>
     )}
@@ -287,6 +272,15 @@ const [webhookData, setWebhookData] = useState(null);
                 После оплаты вы сможете отслеживать статусы доставки и получать уведомления об их изменении.<br/> 
                 </span>
               </div>
+               <MainButton 
+    onClick={() => {
+    checkPaymentStatus();
+  }}
+                        color={color}
+                        textColor={textColor}
+                        text={`Проверить оплату`}
+                        progress={progress}
+                        />
               </>)}
   </div>
   
