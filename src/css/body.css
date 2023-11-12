@@ -16,14 +16,7 @@ body {
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   color: var(--tg-text);
-  background: var(--tg-second);
 }
-
-.root{
-  background: var(--tg-second);
-}
-
-
 .usercard {
   font-weight: 500;
   
