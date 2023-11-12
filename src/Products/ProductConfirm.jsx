@@ -135,7 +135,7 @@ const checkPaymentStatus = async () => {
          {price}₽
       </div>
       <div className="public-oferta">
-        {paymentStatus && <p>Текущий статус: {paymentStatus}</p>}
+        { paymentStatus ? 'Статус платежа: ' + paymentStatus : ''}
         <p className="public-ofert-text">Оплачивая заказ, вы соглашаетесь <br/>с условиями <a className="public-oferta-link">публичной оферты</a></p>
       </div>
        <hr/>
