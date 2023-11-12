@@ -404,3 +404,6 @@ hr{
 .paid {
   color: #31b545;
 }
+.paid {
+  color: var(--tg-theme-hint-color);
+}
