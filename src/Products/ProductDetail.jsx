@@ -208,7 +208,7 @@ typesKeys.sort(customSort)
 
         <div className="size_box">
           {typesKeys.map((item) => (
-            <button className={`size_button ${active === item[0] ? 'active' : ''}`} key={item[0]}>
+            <button className="size_button" key={item[0]}>
               <Size
                 key={item}
                 active={active === item[0]}
