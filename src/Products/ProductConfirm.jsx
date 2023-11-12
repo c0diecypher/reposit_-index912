@@ -138,12 +138,10 @@ const checkPaymentStatus = async () => {
             <div className="status-selection-step-inner" style={{ 
                 сolor: paymentStatus === 'Отмена' ? '#b54531' :
                        paymentStatus === 'Оплачен' ? '#31b545' :
-                       paymentStatus === 'Ожидается оплата' ? 'var(--tg-theme-hint-color)' :
-                       'initial',
+                       paymentStatus === 'Ожидается оплата' ? 'var(--tg-theme-hint-color)',
                 border: paymentStatus === 'Отмена' ? '1px solid #b54531' :
                         paymentStatus === 'Оплачен' ? '1px solid #31b545' :
-                        paymentStatus === 'Ожидается оплата' ? '1px solid var(--tg-theme-hint-color)' :
-                        '1px solid initial'
+                        paymentStatus === 'Ожидается оплата' ? '1px solid var(--tg-theme-hint-color)'
               }}>
               <svg viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m4.917 10 4.166 4.166 8.334-8.333" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path></svg>
             </div>
