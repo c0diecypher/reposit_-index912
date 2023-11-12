@@ -135,7 +135,7 @@ const checkPaymentStatus = async () => {
     <div className="item-order-info">
       <div className="status-selection-steps-box">
         <div className="status-selection-step">
-            <div className="status-selection-step-inner" style={{ backgroundColor: 
+            <div className="status-selection-step-inner" style={{ color: 
                 paymentStatus === 'Отмена' ? '#b54531' :
                 paymentStatus === 'Оплачен' ? '#31b545' :
                 paymentStatus === 'Ожидается оплата' ? 'var(--tg-theme-hint-color)' :
