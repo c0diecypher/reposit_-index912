@@ -407,3 +407,6 @@ hr{
 .paid {
   color: var(--tg-theme-hint-color);
 }
+.cancelled{
+  color: #b54531;
+}
