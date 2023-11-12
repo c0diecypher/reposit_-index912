@@ -85,7 +85,7 @@ const [webhookData, setWebhookData] = useState(null);
       if (response.ok) {
         // Если статус успешен и пришли все данные, обновите состояние
         const data = await response.json();
-        setPaymentStatus(data.paymentStatus); // предположим, что сервер возвращает статус платежа
+        setPaymentStatus('Оплачен'); // предположим, что сервер возвращает статус платежа
       } else {
         // Если статус не успешен или данные не пришли, обновите состояние, например, на "Отменен" или "Ожидается оплата"
         setPaymentStatus('Отменен');
