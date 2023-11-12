@@ -38,12 +38,12 @@ function ProductConfirm() {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(dataInfo),
+    body: JSON.stringify(data),
   })
     .then((response) => response.json())
-    .then((dataInfo) => {
-      if (dataInfo.paymentUrl) {
-          Telegram.WebApp.openLink(dataInfo.paymentUrl);
+    .then((data) => {
+      if (data.paymentUrl) {
+          Telegram.WebApp.openLink(data.paymentUrl);
           setPaymentStatus('Ожидается оплата');
 
         } else {
