@@ -400,3 +400,7 @@ hr{
   line-height: 140%;
   margin-left: var(--space-4x);
 }
+
+.paid {
+  color: #31b545;
+}
