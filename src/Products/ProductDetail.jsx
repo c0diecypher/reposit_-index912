@@ -61,36 +61,27 @@ typesKeys.sort(customSort)
   const [text] = useState("Перейти к оплате");
   const navigate = useNavigate();
 
-    useEffect(() => {
+ useEffect(() => {
   if (thisProduct && thisProduct.size && thisProduct.price) {
     const priceWithoutCurrency = thisProduct.price.replace(/\D/g, '');
 
-    // Поиск первого размера, который соответствует цене
-    for (const [size, sizePrice] of Object.entries(thisProduct.size)) {
-      const sizePriceWithoutCurrency = sizePrice.replace(/\D/g, '');
-      if (sizePriceWithoutCurrency === priceWithoutCurrency) {
-        setActive(size);
-        setPaymentData({
-          size,
-          name: thisProduct.name,
-          img: thisProduct.img,
-          price: thisProduct.size[size],
-        });
-        break;
-      }
-    }
-  // Если paymentData не установлен, установим его первым размером
-    if (!paymentData) {
-      const firstSize = Object.keys(thisProduct.size)[0];
+    // Найдем размер, соответствующий цене
+    const matchingSize = Object.keys(thisProduct.size).find((size) => {
+      const sizePriceWithoutCurrency = thisProduct.size[size].replace(/\D/g, '');
+      return sizePriceWithoutCurrency === priceWithoutCurrency;
+    });
+
+    if (matchingSize) {
+      setActive(matchingSize);
       setPaymentData({
-        size: firstSize,
+        size: matchingSize,
         name: thisProduct.name,
         img: thisProduct.img,
-        price: thisProduct.size[firstSize],
+        price: thisProduct.size[matchingSize],
       });
     }
   }
-}, [thisProduct, paymentData]);
+}, [thisProduct]);
   
   const handleAddToCard = (price, size, name, img) => {
     setActive(size);
@@ -237,7 +228,7 @@ typesKeys.sort(customSort)
       </div>
     </div>
     <div className="help-ful">
-    <h2 className="help-title">Полезная инофрмация</h2>
+    <h2 className="help-title">Полезная информация</h2>
     <div className="help-stories">
     <Stories />
     </div>
