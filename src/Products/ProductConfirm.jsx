@@ -135,11 +135,11 @@ const checkPaymentStatus = async () => {
     <div className="item-order-info">
       <div className="status-selection-steps-box">
         <div className="status-selection-step">
-            <div className="status-selection-step-inner" style={{ 
-                сolor: paymentStatus === 'Отмена' ? '#b54531' :
-                       paymentStatus === 'Оплачен' ? '#31b545' :
-                       paymentStatus === 'Ожидается оплата' ? 'var(--tg-theme-hint-color)' :
-                       'var(-tg-text)'
+            <div className="status-selection-step-inner" style={{ color: 
+                paymentStatus === 'Отмена' ? '#b54531' :
+                paymentStatus === 'Оплачен' ? '#31b545' :
+                paymentStatus === 'Ожидается оплата' ? 'var(--tg-theme-hint-color)' :
+                'initial' /* или любой другой цвет по умолчанию */
               }}>
               <svg viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m4.917 10 4.166 4.166 8.334-8.333" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path></svg>
             </div>
