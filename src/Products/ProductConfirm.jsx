@@ -54,11 +54,9 @@ function ProductConfirm() {
       console.error('Ошибка отправки данных на сервер:', error);
     });
 };
-const [buttonVisible, setButtonVisible] = useState(true);
   
 const checkPaymentStatus = async () => {
   setProgress(true);
-  setButtonVisible(true);
   try {
     // Здесь отправляете запрос на сервер для проверки статуса платежа
     const response = await fetch('https://crm.zipperconnect.space/customer/client/pay/status', {
@@ -70,7 +68,8 @@ const checkPaymentStatus = async () => {
     });
 
     if (response.ok) {
-      // Если статус успешен и пришли все данные, обновите состояние
+      const data = await response.json();
+      console.log('Успешный ответ от сервера:', data);
       setPaymentStatus('Оплачен');
     } else {
       // Если статус не успешен или данные не пришли, обновите состояние, например, на "Отменен" или "Ожидается оплата"
@@ -81,10 +80,6 @@ const checkPaymentStatus = async () => {
     // Обработка ошибки, например, обновление состояния на "Ошибка"
     setPaymentStatus('Ошибка');
   }
-  setTimeout(() => {
-      setProgress(false);
-      setButtonVisible(false);
-    }, 2000);
 };
 
   const [dataOpen, setDataOpen] = useState(false);
@@ -275,13 +270,6 @@ const checkPaymentStatus = async () => {
               </div>
               </>)}
   </div>
-  <MainButton 
-                        onClick={checkPaymentStatus}
-                        color={color}
-                        textColor={textColor}
-                        text={`Проверить оплату`}
-                        progress={progress}
-                        />
   </>
   );
 }
