@@ -43,7 +43,7 @@ function ProductConfirm() {
     .then((response) => response.json())
     .then((dataInfo) => {
       if (dataInfo.paymentUrl) {
-          Telegram.WebApp.openLink(data.paymentUrl);
+          Telegram.WebApp.openLink(dataInfo.paymentUrl);
           setPaymentStatus('Ожидается оплата');
 
         } else {
