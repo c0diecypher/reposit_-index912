@@ -225,6 +225,7 @@ const checkPaymentStatus = async () => {
     onClick={() => {
     onSendData();
   }}
+    checked={progress}
     onChange={(e) => setProgress(e.target.checked)}
                         color={color}
                         textColor={textColor}
