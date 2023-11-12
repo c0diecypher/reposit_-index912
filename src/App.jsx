@@ -136,6 +136,7 @@ function App() {
         path="/"
         element={
           <>
+            {Telegram.WebApp.themeParams.secondary_bg_color}
             {tg.expand()}
             {tg.enableClosingConfirmation()}
             <Header userId={userId} />
