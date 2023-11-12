@@ -14,7 +14,7 @@ function ProductConfirm() {
   const { productData } = location.state || {};
 
   // Отображаем информацию о товаре
-  const [paymentStatus, setPaymentStatus] = useState('Ожидается оплата');
+  const [paymentStatus, setPaymentStatus] = useState('');
   const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
   const [textColor] = useState(
     window.Telegram.WebApp.themeParams.button_text_color
@@ -68,10 +68,10 @@ const checkPaymentStatus = async () => {
     });
 
     if (response.ok) {
-      // Если статус успешен, обновите состояние
+      // Если статус успешен и пришли все данные, обновите состояние
       setPaymentStatus('Оплачен');
     } else {
-      // Если статус не успешен, обновите состояние, например, на "Отменен"
+      // Если статус не успешен или данные не пришли, обновите состояние, например, на "Отменен" или "Ожидается оплата"
       setPaymentStatus('Отменен');
     }
   } catch (error) {
