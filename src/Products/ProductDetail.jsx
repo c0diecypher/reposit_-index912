@@ -73,8 +73,18 @@ typesKeys.sort(customSort)
         break;
       }
     }
+  // Если paymentData не установлен, установим его первым размером
+    if (!paymentData) {
+      const firstSize = Object.keys(thisProduct.size)[0];
+      setPaymentData({
+        size: firstSize,
+        name: thisProduct.name,
+        img: thisProduct.img,
+        price: thisProduct.size[firstSize],
+      });
+    }
   }
-}, [thisProduct]);
+}, [thisProduct, paymentData]);
   
   const handleAddToCard = (price, size, name, img) => {
     setActive(size);
