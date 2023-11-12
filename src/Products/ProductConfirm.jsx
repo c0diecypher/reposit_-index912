@@ -64,7 +64,14 @@ const checkPaymentStatus = async () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(/* Здесь передайте необходимые данные для проверки статуса, например, id и apikey */),
+      body: JSON.stringify({
+        id: id ? id : null,
+        apikey: apikey ? apikey : null,
+        order_id: order_id ? order_id : null,
+        project_id: project_id ? project_id : null,
+        amount: amount ? amount : null,
+        createDateTime: createDateTime ? createDateTime : null,
+      }),
     });
 
     if (response.ok) {
