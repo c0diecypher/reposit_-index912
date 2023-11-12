@@ -56,38 +56,51 @@ function ProductConfirm() {
 };
 
   
-useEffect(() => {
+const [webhookData, setWebhookData] = useState(null);
+
   const checkPaymentStatus = async () => {
     try {
+      if (!webhookData) {
+        // Если webhookData пуст, то выход из функции
+        return;
+      }
+
+      // Здесь отправляете запрос на сервер для проверки статуса платежа
       const response = await fetch('https://crm.zipperconnect.space/customer/client/pay/status', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          id: id ? id : null,
-          apikey: apikey ? apikey : null,
-          order_id: order_id ? order_id : null,
-          project_id: project_id ? project_id : null,
-          amount: amount ? amount : null,
-          createDateTime: createDateTime ? createDateTime : null,
+          // Передайте данные из webhookData
+          id: webhookData.id,
+          apikey: webhookData.apikey,
+          order_id: webhookData.order_id,
+          project_id: webhookData.project_id,
+          amount: webhookData.amount,
+          createDateTime: webhookData.createDateTime,
         }),
       });
 
       if (response.ok) {
-        setPaymentStatus('Оплачен');
+        // Если статус успешен и пришли все данные, обновите состояние
+        const data = await response.json();
+        setPaymentStatus(data.paymentStatus); // предположим, что сервер возвращает статус платежа
       } else {
+        // Если статус не успешен или данные не пришли, обновите состояние, например, на "Отменен" или "Ожидается оплата"
         setPaymentStatus('Отменен');
       }
     } catch (error) {
       console.error('Ошибка при проверке статуса платежа', error);
+      // Обработка ошибки, например, обновление состояния на "Ошибка"
       setPaymentStatus('Ошибка');
     }
   };
 
-  // Вызываем функцию для проверки статуса платежа
-  checkPaymentStatus();
-}, [id, apikey, order_id, project_id, amount, createDateTime]); // Зависимости, которые следует отслеживать
+  // Вызовите функцию проверки статуса при изменении webhookData
+  useEffect(() => {
+    checkPaymentStatus();
+  }, [webhookData]);
 
   const [dataOpen, setDataOpen] = useState(false);
   const handleEditClick = () => {
