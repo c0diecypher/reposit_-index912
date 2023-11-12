@@ -8,7 +8,7 @@ import { MainButton } from "@twa-dev/sdk/react"
 function ProductConfirm() {
   const { productId, size, price, name, img } = useParams();
   const location = useLocation();
-  
+  const [progress, setProgress] = useState(false);
 
   // Декодируйте JSON-строку и преобразуйте ее в объект с данными о товаре
   const { productData } = location.state || {};
@@ -221,6 +221,16 @@ const checkPaymentStatus = async () => {
           <hr/>
           </div>
       </div>
+      <MainButton 
+    onClick={() => {
+    onSendData();
+  }}
+    onChange={(e) => setProgress(e.target.checked)}
+                        color={color}
+                        textColor={textColor}
+                        text={`Купить за ${price}`}
+                        progress={progress}
+                        />
     </>
     )}
     
@@ -259,14 +269,7 @@ const checkPaymentStatus = async () => {
               </div>
               </>)}
   </div>
-  <MainButton 
-    onClick={() => {
-    onSendData();
-  }}
-                        color={color}
-                        textColor={textColor}
-                        text={`Купить за ${price}`}
-                        />
+  
   </>
   );
 }
