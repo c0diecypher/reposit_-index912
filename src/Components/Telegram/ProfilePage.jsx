@@ -345,7 +345,7 @@ const [tgPhoneNumber, setTgPhoneNumber] = useState(null);
                   <span>Телефон</span>
                   <span className="profile-data-text">{loading ? 'Загрузка...' : (tgPhoneNumber || 'Не указан')}</span>
                 </div>
-                {!loading && (
+                {!loading && !tgPhoneNumber && (
                   <button className="btn-profile-data-info btn-profile-data" onClick={requestPhoneNumber}>
                     Привязать
                   </button>
