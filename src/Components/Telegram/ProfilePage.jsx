@@ -164,32 +164,33 @@ const [tgPhoneNumber, setTgPhoneNumber] = useState(null);
   });
 };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (userId) {
-        setLoading(true);
+useEffect(() => {
+  const fetchData = async () => {
+    if (userId) {
+      setLoading(true);
 
-        try {
-          const response = await axios.get(`https://crm.zipperconnect.space/customer/settings/client/get/${userId}`);
-          const data = response.data;
+      try {
+        const response = await axios.get(`https://crm.zipperconnect.space/customer/settings/client/get/${userId}`);
+        const data = response.data;
 
-          if (data && data.tgPhoneNumber) {
-            setTgPhoneNumber(data.tgPhoneNumber);
-          } else {
-            console.error('Данные не были получены');
-          }
-        } catch (error) {
-          console.error('Ошибка при запросе данных:', error);
-        } finally {
-          setLoading(false);
+        if (data && data.tgPhoneNumber) {
+          setTgPhoneNumber(data.tgPhoneNumber);
+        } else {
+          console.error('Данные не были получены');
         }
+      } catch (error) {
+        console.error('Ошибка при запросе данных:', error);
+      } finally {
+        setLoading(false);
       }
-    };
-    const intervalId = setInterval(fetchData, 5000); // Запрашивать обновления каждые 5 секунд (настройте по своему усмотрению)
-    console.log(intervalId);
-    // Очистка интервала при размонтировании компонента
-    return () => clearInterval(intervalId);
-  }, []); // Пустой массив зависимостей означает, что useEffect выполняется только при монтировании компонента
+    }
+  };
+
+  const intervalId = setInterval(fetchData, 5000);
+
+  // Очистка интервала при размонтировании компонента
+  return () => clearInterval(intervalId);
+}, [userId, tgPhoneNumber]); // Теперь зависимости включают userId и tgPhoneNumber
   
   const [address, setAddress] = useState(''); // Значение поля "Адрес доставки"
   const [userCity, setUserCity] = useState('');
@@ -333,6 +334,7 @@ const [tgPhoneNumber, setTgPhoneNumber] = useState(null);
                 </div>
             </div> 
         </div>
+          
             <div className="profile-data">
               <div className='profile-data-title'>
                   Телефон {loading ? 'загрузка...' : (tgPhoneNumber ? 'привязан' : 'не привязан')}
@@ -340,7 +342,7 @@ const [tgPhoneNumber, setTgPhoneNumber] = useState(null);
               </div>
                 <div className="profile-data-info">
                   <span>Телефон</span>
-                  <span className="profile-data-text">{loading ? 'Загрузка...' : (tgPhoneNumber.tgPhoneNumber || 'Не указан')}</span>
+                  <span className="profile-data-text">{loading ? 'Загрузка...' : (tgPhoneNumber || 'Не указан')}</span>
                 </div>
                 {!loading && !tgPhoneNumber && (
                   <button className="btn-profile-data-info btn-profile-data" onClick={requestPhoneNumber}>
@@ -348,6 +350,7 @@ const [tgPhoneNumber, setTgPhoneNumber] = useState(null);
                   </button>
                 )}
              </div>
+          
              <div className="profile-data">
               <div className='profile-data-title'>
                     Данные доставки
