@@ -68,7 +68,7 @@ const checkPaymentStatus = async () => {
         const data = response.data;
         console.log('Успешный ответ от сервера:', data);
         setResponseData(data); // Сохраняем данные из ответа
-        setPaymentStatus('Успешная оплата');
+        setPaymentStatus('Оплачен');
       } else {
         // Если статус не успешен или данные не пришли, обновите состояние, например, на "Отменен" или "Ожидается оплата"
         setPaymentStatus('Отменен');
@@ -88,10 +88,9 @@ const checkPaymentStatus = async () => {
   }, [paymentStatus]); // Зависимость useEffect
 
   useEffect(() => {
-    // Второй useEffect срабатывает при обновлении responseData
-    if (responseData) {
-      // Ваш код, который сработает при получении/обновлении данных от сервера
+    if (responseData !== undefined && responseData !== null) {
       console.log('Данные от сервера обновлены:', responseData);
+      // Ваш код, который срабатывает при получении/обновлении данных от сервера
     }
   }, [responseData]);
 
