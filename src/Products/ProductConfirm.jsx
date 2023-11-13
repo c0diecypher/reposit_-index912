@@ -60,8 +60,8 @@ function ProductConfirm() {
 const [responseData, setResponseData] = useState(null);
 
 const checkPaymentStatus = useCallback(async () => {
+  setProgress(!progress);
     try {
-      setProgress(!progress);
       const response = await axios.post('https://crm.zipperconnect.space/customer/client/pay/status', {
         /* Здесь передайте необходимые данные для проверки статуса, например, id и apikey */
       });
