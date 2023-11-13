@@ -33,7 +33,6 @@ function ProductConfirm() {
     userId,
     order_id: productData.order_id,
   };
-  setProgress(!progress);
   fetch('https://crm.zipperconnect.space/customer/settings/client/buy/offer/pay', {
     method: 'POST',
     headers: {
@@ -58,7 +57,6 @@ function ProductConfirm() {
 const [responseData, setResponseData] = useState(null);
 
 const checkPaymentStatus = useCallback(async () => {
-  setProgress(!progress);
     try {
       const response = await axios.post('https://crm.zipperconnect.space/customer/client/pay/status', {
         /* Здесь передайте необходимые данные для проверки статуса, например, id и apikey */
@@ -69,10 +67,8 @@ const checkPaymentStatus = useCallback(async () => {
         console.log('Успешный ответ от сервера:', data);
         setResponseData(data); // Сохраняем данные из ответа
         setPaymentStatus('Оплачен');
-        setProgress(false);
       } else {
         setPaymentStatus('Отменен');
-        setProgress(false);
       }
     } catch (error) {
       console.error('Ошибка при проверке статуса платежа', error);
