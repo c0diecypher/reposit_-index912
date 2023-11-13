@@ -56,43 +56,43 @@ function ProductConfirm() {
     });
 };
 const [responseData, setResponseData] = useState(null);
+
 const checkPaymentStatus = async () => {
-    setProgress(true);
-    try {
-      // Здесь отправляете запрос на сервер для проверки статуса платежа
-      const response = await axios.post('https://crm.zipperconnect.space/customer/client/pay/status', {
-        /* Здесь передайте необходимые данные для проверки статуса, например, id и apikey */
-      });
+  setProgress(true);
+  try {
+    const response = await axios.post('https://crm.zipperconnect.space/customer/client/pay/status', {
+      /* Здесь передайте необходимые данные для проверки статуса, например, id и apikey */
+    });
 
-      if (response.status === 200) {
-        const data = response.data;
-        console.log('Успешный ответ от сервера:', data);
-        setResponseData(data); // Сохраняем данные из ответа
-        setPaymentStatus('Оплачен');
-      } else {
-        // Если статус не успешен или данные не пришли, обновите состояние, например, на "Отменен" или "Ожидается оплата"
-        setPaymentStatus('Отменен');
-      }
-    } catch (error) {
-      console.error('Ошибка при проверке статуса платежа', error);
-      // Обработка ошибки, например, обновление состояния на "Ошибка"
-      setPaymentStatus('Ошибка');
-    } finally {
-      setProgress(false);
+    if (response.status === 200 && response.data.status === 'Оплачено') {
+      const data = response.data;
+      console.log('Успешный ответ от сервера:', data);
+      setResponseData(data); // Сохраняем данные из ответа
+      setPaymentStatus('Оплачен');
+    } else {
+      // Если статус не успешен или данные не пришли, обновите состояние, например, на "Отменен" или "Ожидается оплата"
+      setPaymentStatus('Отменен');
     }
-  };
+  } catch (error) {
+    console.error('Ошибка при проверке статуса платежа', error);
+    // Обработка ошибки, например, обновление состояния на "Ошибка"
+    setPaymentStatus('Ошибка');
+  } finally {
+    setProgress(false);
+  }
+};
 
-  useEffect(() => {
-    // Вызываем функцию проверки статуса при монтировании и каждый раз, когда обновляется paymentStatus
-    checkPaymentStatus();
-  }, [paymentStatus]); // Зависимость useEffect
+useEffect(() => {
+  // Вызываем функцию проверки статуса при монтировании и каждый раз, когда обновляется paymentStatus
+  checkPaymentStatus();
+}, [setPaymentStatus]); // Зависимость useEffect
 
-  useEffect(() => {
-    if (responseData !== undefined && responseData !== null) {
-      console.log('Данные от сервера обновлены:', responseData);
-      // Ваш код, который срабатывает при получении/обновлении данных от сервера
-    }
-  }, [responseData]);
+useEffect(() => {
+  if (responseData !== undefined && responseData !== null) {
+    console.log('Данные от сервера обновлены:', responseData);
+    // Ваш код, который срабатывает при получении/обновлении данных от сервера
+  }
+}, [responseData]);
 
   const [dataOpen, setDataOpen] = useState(false);
   const handleEditClick = () => {
