@@ -81,15 +81,16 @@ const checkPaymentStatus = useCallback(async () => {
   }, []);
 
   useEffect(() => {
-    checkPaymentStatus();
-  }, [checkPaymentStatus]);
-
-  useEffect(() => {
     if (responseData !== undefined && responseData !== null) {
       console.log('Данные от сервера обновлены:', responseData);
       // Ваш код, который срабатывает при получении/обновлении данных от сервера
     }
   }, [responseData]);
+
+   const handleCheckStatus = () => {
+    // Вызываем функцию проверки статуса
+    checkPaymentStatus();
+  };
 
   const [dataOpen, setDataOpen] = useState(false);
   const handleEditClick = () => {
@@ -178,6 +179,14 @@ const checkPaymentStatus = useCallback(async () => {
        <div className="order-price">{price}₽</div>
       </div>
     </div>
+<MainButton 
+            onClick={handleCheckStatus}
+            color={color}
+            textColor={textColor}
+            text={`Проверить платеж`}
+            progress={progress}
+          />
+      
     </>):(
     <>
       <div className="confirm-item" key={productId}>
