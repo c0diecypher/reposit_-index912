@@ -56,21 +56,21 @@ function ProductConfirm() {
 };
 const [axiosResponse, setAxiosResponse] = useState(null);
 
-useEffect(() => {
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post('https://zipperconnect.space/customer/client/pay/status');
         setAxiosResponse(response.data);
-        setPaymentStatus('Оплачен);
       } catch (error) {
         console.error('Error fetching data:', error.message);
       }
     };
-
     const intervalId = setInterval(fetchData, 5000);
     // Очистка интервала при размонтировании компонента
     return () => clearInterval(intervalId);
-  }, [paymentStatus]); 
+
+  }, [  paymentStatus]);
 
    const handleCheckStatus = () => {
     // Вызываем функцию проверки статуса
