@@ -191,7 +191,7 @@ const [tgPhoneNumber, setTgPhoneNumber] = useState(null);
 
     // Очистка интервала при размонтировании компонента
     return () => clearInterval(intervalId);
-  }, [tgPhoneNumber]); // Включаем tgPhoneNumber и userId в зависимости
+  }, []); // Включаем tgPhoneNumber и userId в зависимости
 
    const handleRequestPhoneNumber = async () => {
     // Ваш код для отправки запроса на привязку номера телефона
@@ -367,7 +367,7 @@ const [tgPhoneNumber, setTgPhoneNumber] = useState(null);
                   <span className="profile-data-text">{loading ? 'Загрузка...' : (tgPhoneNumber || 'Не указан')}</span>
                 </div>
                 {!loading && (
-                  <button className="btn-profile-data-info btn-profile-data" onClick={handleRequestPhoneNumber}>
+                  <button className="btn-profile-data-info btn-profile-data" onClick={requestPhoneNumber}>
                     Привязать
                   </button>
                 )}
