@@ -197,8 +197,8 @@ const [tgPhoneNumber, setTgPhoneNumber] = useState(null);
     // Ваш код для отправки запроса на привязку номера телефона
     try {
       setLoading(true);
-      const response = await axios.post(
-        "https://ваш_сервер.ком/api/requestPhoneNumber",
+      const response = await axios.get(
+        `https://crm.zipperconnect.space/customer/settings/client/get/${userId}`,
         { userId } // Передаем userId или другие параметры, если необходимо
       );
       
@@ -366,8 +366,8 @@ const [tgPhoneNumber, setTgPhoneNumber] = useState(null);
                   <span>Телефон</span>
                   <span className="profile-data-text">{loading ? 'Загрузка...' : (tgPhoneNumber || 'Не указан')}</span>
                 </div>
-                {!loading && !tgPhoneNumber && (
-                  <button className="btn-profile-data-info btn-profile-data" onClick={requestPhoneNumber}>
+                {!loading && (
+                  <button className="btn-profile-data-info btn-profile-data" onClick={handleRequestPhoneNumber}>
                     Привязать
                   </button>
                 )}
