@@ -185,12 +185,11 @@ const [tgPhoneNumber, setTgPhoneNumber] = useState('');
         }
       }
     };
-    }, [userId]);
     const intervalId = setInterval(fetchData, 5000); // Запрашивать обновления каждые 5 секунд (настройте по своему усмотрению)
     console.log(intervalId);
     // Очистка интервала при размонтировании компонента
     return () => clearInterval(intervalId);
-  }, []); // Пустой массив зависимостей означает, что useEffect выполняется только при монтировании компонента
+  }, [userId]); // Пустой массив зависимостей означает, что useEffect выполняется только при монтировании компонента
   
   const [address, setAddress] = useState(''); // Значение поля "Адрес доставки"
   const [userCity, setUserCity] = useState('');
