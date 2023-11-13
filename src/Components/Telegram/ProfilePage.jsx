@@ -167,33 +167,52 @@ const [tgPhoneNumber, setTgPhoneNumber] = useState(null);
 
    useEffect(() => {
     const fetchData = async () => {
-      // Проверка наличия tgPhoneNumber и его непустоты перед выполнением запроса
+      // Проверка наличия tgPhoneNumber перед выполнением запроса
       if (!tgPhoneNumber) {
-        console.log("tgPhoneNumber не установлен. Пропускаем запрос.");
-        return;
-      }
+        try {
+          setLoading(true);
+          const response = await axios.get(
+            `https://crm.zipperconnect.space/customer/settings/client/get/${userId}`
+          ); // Замените на свой адрес сервера
 
-      try {
-        setLoading(true);
-        const response = await axios.post(
-          `https://crm.zipperconnect.space/customer/settings/client/get/${userId}`
-        ); // Замените на свой адрес сервера
-
-        // Проверка наличия tgPhoneNumber перед обновлением состояния
-        if (response.data && response.data.tgPhoneNumber && tgPhoneNumber !== response.data.tgPhoneNumber) {
-          setTgPhoneNumber(response.data.tgPhoneNumber);
+          // Проверка наличия tgPhoneNumber перед обновлением состояния
+          if (response.data && response.data.tgPhoneNumber && tgPhoneNumber !== response.data.tgPhoneNumber) {
+            setTgPhoneNumber(response.data.tgPhoneNumber);
+          }
+        } catch (error) {
+          console.error("Error fetching updates:", error);
+        } finally {
+          setLoading(false);
         }
-      } catch (error) {
-        console.error("Error fetching updates:", error);
-      } finally {
-        setLoading(false);
       }
     };
 
     const intervalId = setInterval(fetchData, 5000);
+
     // Очистка интервала при размонтировании компонента
     return () => clearInterval(intervalId);
-  }, [tgPhoneNumber]); // Включаем tgPhoneNumber в зависимости
+  }, [tgPhoneNumber]); // Включаем tgPhoneNumber и userId в зависимости
+
+   const handleRequestPhoneNumber = async () => {
+    // Ваш код для отправки запроса на привязку номера телефона
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        "https://ваш_сервер.ком/api/requestPhoneNumber",
+        { userId } // Передаем userId или другие параметры, если необходимо
+      );
+      
+      if (response.data && response.data.tgPhoneNumber) {
+        setTgPhoneNumber(response.data.tgPhoneNumber);
+      } else {
+        console.error("Данные не были получены");
+      }
+    } catch (error) {
+      console.error("Ошибка при запросе данных:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
   
   const [address, setAddress] = useState(''); // Значение поля "Адрес доставки"
   const [userCity, setUserCity] = useState('');
