@@ -53,8 +53,6 @@ function ProductConfirm() {
     })
     .catch((error) => {
       console.error('Ошибка отправки данных на сервер:', error);
-    } finally {
-      setProgress(false);
     });
 };
 const [responseData, setResponseData] = useState(null);
