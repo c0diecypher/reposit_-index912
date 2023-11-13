@@ -25,7 +25,6 @@ function ProductConfirm() {
   const {queryId, userId} = useTelegram();
   const [status, setStatus] = useState('');
   const onSendData = () => {
-    setProgress(true);
   const data = {
     name: productData.name,
     price: productData.price,
@@ -54,13 +53,15 @@ function ProductConfirm() {
     })
     .catch((error) => {
       console.error('Ошибка отправки данных на сервер:', error);
+    }  finally {
+      setProgress(false);
     });
 };
 const [responseData, setResponseData] = useState(null);
 
 const checkPaymentStatus = useCallback(async () => {
-    setProgress(false);
     try {
+      setProgress(!progress);
       const response = await axios.post('https://crm.zipperconnect.space/customer/client/pay/status', {
         /* Здесь передайте необходимые данные для проверки статуса, например, id и apikey */
       });
