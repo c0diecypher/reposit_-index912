@@ -191,28 +191,7 @@ const [tgPhoneNumber, setTgPhoneNumber] = useState(null);
 
     // Очистка интервала при размонтировании компонента
     return () => clearInterval(intervalId);
-  }, []); // Включаем tgPhoneNumber и userId в зависимости
-
-   const handleRequestPhoneNumber = async () => {
-    // Ваш код для отправки запроса на привязку номера телефона
-    try {
-      setLoading(true);
-      const response = await axios.get(
-        `https://crm.zipperconnect.space/customer/settings/client/get/${userId}`,
-        { userId } // Передаем userId или другие параметры, если необходимо
-      );
-      
-      if (response.data && response.data.tgPhoneNumber) {
-        setTgPhoneNumber(response.data.tgPhoneNumber);
-      } else {
-        console.error("Данные не были получены");
-      }
-    } catch (error) {
-      console.error("Ошибка при запросе данных:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [tgPhoneNumber, userId]); // Включаем tgPhoneNumber и userId в зависимости
   
   const [address, setAddress] = useState(''); // Значение поля "Адрес доставки"
   const [userCity, setUserCity] = useState('');
