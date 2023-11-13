@@ -189,7 +189,7 @@ const [tgPhoneNumber, setTgPhoneNumber] = useState(null);
     console.log(intervalId);
     // Очистка интервала при размонтировании компонента
     return () => clearInterval(intervalId);
-  }, [userId]); // Пустой массив зависимостей означает, что useEffect выполняется только при монтировании компонента
+  }, []); // Пустой массив зависимостей означает, что useEffect выполняется только при монтировании компонента
   
   const [address, setAddress] = useState(''); // Значение поля "Адрес доставки"
   const [userCity, setUserCity] = useState('');
