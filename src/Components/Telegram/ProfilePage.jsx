@@ -340,7 +340,7 @@ const [tgPhoneNumber, setTgPhoneNumber] = useState(null);
               </div>
                 <div className="profile-data-info">
                   <span>Телефон</span>
-                  <span className="profile-data-text">{loading ? 'Загрузка...' : (tgPhoneNumber || 'Не указан')}</span>
+                  <span className="profile-data-text">{loading ? 'Загрузка...' : (tgPhoneNumber.tgPhoneNumber || 'Не указан')}</span>
                 </div>
                 {!loading && !tgPhoneNumber && (
                   <button className="btn-profile-data-info btn-profile-data" onClick={requestPhoneNumber}>
