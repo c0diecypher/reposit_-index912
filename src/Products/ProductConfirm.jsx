@@ -54,75 +54,51 @@ function ProductConfirm() {
       console.error('Ошибка отправки данных на сервер:', error);
     });
 };
-
+const [responseData, setResponseData] = useState(null);
 const checkPaymentStatus = async () => {
-  setProgress(true);
-  try {
-    // Здесь отправляете запрос на сервер для проверки статуса платежа
-    const response = await fetch('https://crm.zipperconnect.space/customer/client/pay/status', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(/* Здесь передайте необходимые данные для проверки статуса, например, id и apikey */),
-    });
+    setProgress(true);
+    try {
+      // Здесь отправляете запрос на сервер для проверки статуса платежа
+      const response = await axios.post('https://crm.zipperconnect.space/customer/client/pay/status', {
+        /* Здесь передайте необходимые данные для проверки статуса, например, id и apikey */
+      });
 
-    if (response.ok) {
-      const data = await response.json();
-      console.log('Успешный ответ от сервера:', data);
-      sendPaymentStatusRequest();
-    } else {
-      // Если статус не успешен или данные не пришли, обновите состояние, например, на "Отменен" или "Ожидается оплата"
-      setPaymentStatus('Отменен');
+      if (response.status === 200) {
+        const data = response.data;
+        console.log('Успешный ответ от сервера:', data);
+        setResponseData(data); // Сохраняем данные из ответа
+        setPaymentStatus('Успешная оплата');
+      } else {
+        // Если статус не успешен или данные не пришли, обновите состояние, например, на "Отменен" или "Ожидается оплата"
+        setPaymentStatus('Отменен');
+      }
+    } catch (error) {
+      console.error('Ошибка при проверке статуса платежа', error);
+      // Обработка ошибки, например, обновление состояния на "Ошибка"
+      setPaymentStatus('Ошибка');
+    } finally {
+      setProgress(false);
     }
-  } catch (error) {
-    console.error('Ошибка при проверке статуса платежа', error);
-    // Обработка ошибки, например, обновление состояния на "Ошибка"
-    setPaymentStatus('Ошибка');
-  }
-};
+  };
+
+  useEffect(() => {
+    // Вызываем функцию проверки статуса при монтировании и каждый раз, когда обновляется paymentStatus
+    checkPaymentStatus();
+  }, [paymentStatus]); // Зависимость useEffect
+
+  useEffect(() => {
+    // Второй useEffect срабатывает при обновлении responseData
+    if (responseData) {
+      // Ваш код, который сработает при получении/обновлении данных от сервера
+      console.log('Данные от сервера обновлены:', responseData);
+    }
+  }, [responseData]);
 
   const [dataOpen, setDataOpen] = useState(false);
   const handleEditClick = () => {
     setDataOpen(!dataOpen);
     window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
   };
-
-  const sendPaymentStatusRequest = async () => {
-  try {
-    const response = await fetch('/customer/client/pay/status/data', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      // В случае необходимости передайте данные
-      // body: JSON.stringify({ /* ваш объект данных */ }),
-    });
-
-    // Проверка успешности HTTP-статуса
-    if (response.ok) {
-      const responseData = await response.json();
-
-      // Обработайте ответ от сервера
-      console.log('Ответ от сервера:', responseData);
-
-      // Проверка наличия данных в ответе
-      if (responseData.data) {
-        // Установите статус "Оплачено", так как данные получены
-        setPaymentStatus('Оплачено');
-      } else {
-        // Если данных нет, вы можете установить другой статус или выполнить другие действия
-        setPaymentStatus('Отменено');
-      }
-    } else {
-      console.error('Ошибка HTTP:', response.status);
-      // Обработка ошибки HTTP-статуса
-    }
-  } catch (error) {
-    console.error('Ошибка при отправке запроса на сервер:', error);
-    // Обработка ошибки
-  }
-};
 
   return (
     <>
