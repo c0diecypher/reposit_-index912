@@ -170,7 +170,7 @@ useEffect(() => {
       if (!tgPhoneNumber) {
         try {
           setLoading(true);
-          const response = await axios.post(
+          const response = await axios.get(
             `https://crm.zipperconnect.space/customer/settings/client/get/${userId}`
           ); // Замените на свой адрес сервера
 
@@ -185,6 +185,10 @@ useEffect(() => {
         }
       }
     };
+  const intervalId = setInterval(fetchData, 5000);
+    // Очистка интервала при размонтировании компонента
+    return () => clearInterval(intervalId);
+  }, [tgPhoneNumber]); // Включаем tgPhoneNumber в зависимости
   
   const [address, setAddress] = useState(''); // Значение поля "Адрес доставки"
   const [userCity, setUserCity] = useState('');
