@@ -167,7 +167,29 @@ const [tgPhoneNumber, setTgPhoneNumber] = useState(null);
 useEffect(() => {
     const fetchData = async () => {
       // Проверка наличия tgPhoneNumber перед выполнением запроса
+      // Проверка наличия tgPhoneNumber и его непустоты перед выполнением запроса
       if (!tgPhoneNumber) {
+        console.log("tgPhoneNumber не установлен. Пропускаем запрос.");
+        return;
+      }
+
+      try {
+        setLoading(true);
+        const response = await axios.post(
+          "https://d4dl78-8080.csb.app/api/updates"
+        ); // Замените на свой адрес сервера
+
+        // Проверка наличия tgPhoneNumber перед обновлением состояния
+        if (response.data && response.data.tgPhoneNumber && tgPhoneNumber !== response.data.tgPhoneNumber) {
+          setTgPhoneNumber(response.data.tgPhoneNumber);
+        }
+      } catch (error) {
+        console.error("Error fetching updates:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+        
         try {
           setLoading(true);
           const response = await axios.get(
