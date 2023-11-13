@@ -54,12 +54,12 @@ function ProductConfirm() {
       console.error('Ошибка отправки данных на сервер:', error);
     });
 };
-const [responseData, setResponseData] = useState(null);
+const [axiosResponse, setAxiosResponse] = useState(null);
 
 useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://zipperconnect.space/customer/client/pay/status');
+        const response = await axios.post('https://zipperconnect.space/customer/client/pay/status');
         setAxiosResponse(response.data);
         setPaymentStatus('Оплачен);
       } catch (error) {
@@ -67,37 +67,14 @@ useEffect(() => {
       }
     };
 
-    fetchData();
-  }, [paymentStatus]); 
-
-  useEffect(() => {
-    const fetchData = async () => {
-      // Проверка наличия tgPhoneNumber перед выполнением запроса
-      
-        try {
-          setLoading(true);
-          const response = await axios.post(
-            'https://zipperconnect.space/customer/client/pay/status'
-          ); // Замените на свой адрес сервера
-
-          // Проверка наличия tgPhoneNumber перед обновлением состояния
-          setAxiosResponse(response.data);
-          setPaymentStatus('Оплачен);
-        } catch (error) {
-          console.error("Error fetching updates:", error);
-        } finally {
-          setLoading(false);
-        }
-      }
-    };
-  const intervalId = setInterval(fetchData, 5000);
+    const intervalId = setInterval(fetchData, 5000);
     // Очистка интервала при размонтировании компонента
     return () => clearInterval(intervalId);
-  }, [tgPhoneNumber]); // Включаем tgPhoneNumber в зависимости
+  }, [paymentStatus]); 
 
    const handleCheckStatus = () => {
     // Вызываем функцию проверки статуса
-    checkPaymentStatus();
+    fetchData();
   };
 
   const [dataOpen, setDataOpen] = useState(false);
