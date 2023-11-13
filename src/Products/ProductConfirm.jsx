@@ -85,7 +85,7 @@ const checkPaymentStatus = async () => {
 useEffect(() => {
   // Вызываем функцию проверки статуса при монтировании и каждый раз, когда обновляется paymentStatus
   checkPaymentStatus();
-}, [setPaymentStatus]); // Зависимость useEffect
+}, [paymentStatus]); // Зависимость useEffect
 
 useEffect(() => {
   if (responseData !== undefined && responseData !== null) {
