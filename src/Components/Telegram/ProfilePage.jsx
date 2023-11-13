@@ -149,7 +149,7 @@ function ProfilePage({userId}) {
     setIsEditing(false);
   };
   
-const [tgPhoneNumber, setTgPhoneNumber] = useState('');
+const [tgPhoneNumber, setTgPhoneNumber] = useState(null);
   const [loading, setLoading] = useState(true);
    const requestPhoneNumber = () => {
   setLoading(true); // Устанавливаем состояние loading в true перед выполнением запроса
