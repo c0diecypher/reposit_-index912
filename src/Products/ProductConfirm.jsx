@@ -53,7 +53,7 @@ function ProductConfirm() {
     })
     .catch((error) => {
       console.error('Ошибка отправки данных на сервер:', error);
-    }  finally {
+    } finally {
       setProgress(false);
     });
 };
