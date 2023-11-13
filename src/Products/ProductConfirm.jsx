@@ -56,32 +56,44 @@ function ProductConfirm() {
 };
 const [responseData, setResponseData] = useState(null);
 
-const checkPaymentStatus = useCallback(async () => {
-    try {
-      const response = await axios.post('https://crm.zipperconnect.space/customer/client/pay/status', {
-        /* Здесь передайте необходимые данные для проверки статуса, например, id и apikey */
-      });
-
-      if (response.status === 200 && response.data.status === 'Оплачено') {
-        const data = response.data;
-        console.log('Успешный ответ от сервера:', data);
-        setResponseData(data); // Сохраняем данные из ответа
-        setPaymentStatus('Оплачен');
-      } else {
-        setPaymentStatus('Отменен');
+useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://zipperconnect.space/customer/client/pay/status');
+        setAxiosResponse(response.data);
+        setPaymentStatus('Оплачен);
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
       }
-    } catch (error) {
-      console.error('Ошибка при проверке статуса платежа', error);
-      setPaymentStatus('Ошибка');
-    }
-  }, []);
+    };
+
+    fetchData();
+  }, [paymentStatus]); 
 
   useEffect(() => {
-    if (responseData !== undefined && responseData !== null) {
-      console.log('Данные от сервера обновлены:', responseData);
-      // Ваш код, который срабатывает при получении/обновлении данных от сервера
-    }
-  }, [responseData]);
+    const fetchData = async () => {
+      // Проверка наличия tgPhoneNumber перед выполнением запроса
+      
+        try {
+          setLoading(true);
+          const response = await axios.post(
+            'https://zipperconnect.space/customer/client/pay/status'
+          ); // Замените на свой адрес сервера
+
+          // Проверка наличия tgPhoneNumber перед обновлением состояния
+          setAxiosResponse(response.data);
+          setPaymentStatus('Оплачен);
+        } catch (error) {
+          console.error("Error fetching updates:", error);
+        } finally {
+          setLoading(false);
+        }
+      }
+    };
+  const intervalId = setInterval(fetchData, 5000);
+    // Очистка интервала при размонтировании компонента
+    return () => clearInterval(intervalId);
+  }, [tgPhoneNumber]); // Включаем tgPhoneNumber в зависимости
 
    const handleCheckStatus = () => {
     // Вызываем функцию проверки статуса
@@ -169,6 +181,7 @@ const checkPaymentStatus = useCallback(async () => {
       </div>
       <div className="product-offer-status">
       { paymentStatus ? paymentStatus : ''}
+        {axiosResponse && <p>{axiosResponse.status}</p>}
       </div>
       
        <hr/>
