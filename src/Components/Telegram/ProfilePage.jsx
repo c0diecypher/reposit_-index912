@@ -7,7 +7,7 @@ import CloudStorage from './CloudStorage';
 import UserProfile from './UserProfile';
 import { Link } from 'react-router-dom';
 import { MainButton } from "@twa-dev/sdk/react"
-
+import axios from 'axios';
 
 function ProfilePage({userId}) {
   const { user } = useTelegram();
@@ -164,41 +164,33 @@ const [tgPhoneNumber, setTgPhoneNumber] = useState('');
   });
 };
 
-    // Функция для выполнения запроса данных
-  const fetchData = () => {
-    if (userId) {
-      setLoading(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      if (userId) {
+        setLoading(true);
 
-      fetch(`https://crm.zipperconnect.space/customer/settings/client/get/${userId}`)
-        .then((response) => response.json())
-        .then((data) => {
+        try {
+          const response = await axios.get(`https://crm.zipperconnect.space/customer/settings/client/get/${userId}`);
+          const data = await response.json();
+
           if (data && data.tgPhoneNumber) {
             setTgPhoneNumber(data.tgPhoneNumber);
           } else {
             console.error('Данные не были получены');
           }
-        })
-        .catch((error) => {
+        } catch (error) {
           console.error('Ошибка при запросе данных:', error);
-        })
-        .finally(() => {
+        } finally {
           setLoading(false);
-        });
-    }
-  };
-
-  // Выполняем первоначальный запрос данных при загрузке компонента
-  useEffect(() => {
-    fetchData();
-
-    // Затем создаем интервал для периодического опроса сервера
-    const intervalId = setInterval(fetchData, 5000); // Запрос каждую минуту (подстройте под свои потребности)
-
-    // Очистка интервала при размонтировании компонента
-    return () => {
-      clearInterval(intervalId);
+        }
+      }
     };
-  }, [userId]);
+    }, [userId]);
+    const intervalId = setInterval(fetchData, 5000); // Запрашивать обновления каждые 5 секунд (настройте по своему усмотрению)
+    console.log(intervalId);
+    // Очистка интервала при размонтировании компонента
+    return () => clearInterval(intervalId);
+  }, []); // Пустой массив зависимостей означает, что useEffect выполняется только при монтировании компонента
   
   const [address, setAddress] = useState(''); // Значение поля "Адрес доставки"
   const [userCity, setUserCity] = useState('');
