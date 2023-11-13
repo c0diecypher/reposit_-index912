@@ -165,32 +165,26 @@ const [tgPhoneNumber, setTgPhoneNumber] = useState(null);
 };
 
 useEffect(() => {
-  const fetchData = async () => {
-    if (userId) {
-      setLoading(true);
+    const fetchData = async () => {
+      // Проверка наличия tgPhoneNumber перед выполнением запроса
+      if (!tgPhoneNumber) {
+        try {
+          setLoading(true);
+          const response = await axios.post(
+            `https://crm.zipperconnect.space/customer/settings/client/get/${userId}`
+          ); // Замените на свой адрес сервера
 
-      try {
-        const response = await axios.get(`https://crm.zipperconnect.space/customer/settings/client/get/${userId}`);
-        const data = response.data;
-
-        if (data && data.tgPhoneNumber) {
-          setTgPhoneNumber(data.tgPhoneNumber);
-        } else {
-          console.error('Данные не были получены');
+          // Проверка наличия tgPhoneNumber перед обновлением состояния
+          if (response.data && response.data.tgPhoneNumber && tgPhoneNumber !== response.data.tgPhoneNumber) {
+            setTgPhoneNumber(response.data.tgPhoneNumber);
+          }
+        } catch (error) {
+          console.error("Error fetching updates:", error);
+        } finally {
+          setLoading(false);
         }
-      } catch (error) {
-        console.error('Ошибка при запросе данных:', error);
-      } finally {
-        setLoading(false);
       }
-    }
-  };
-
-  const intervalId = setInterval(fetchData, 5000);
-
-  // Очистка интервала при размонтировании компонента
-  return () => clearInterval(intervalId);
-}, [userId, tgPhoneNumber]); // Теперь зависимости включают userId и tgPhoneNumber
+    };
   
   const [address, setAddress] = useState(''); // Значение поля "Адрес доставки"
   const [userCity, setUserCity] = useState('');
