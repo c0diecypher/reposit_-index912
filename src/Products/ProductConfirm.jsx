@@ -71,14 +71,14 @@ const checkPaymentStatus = useCallback(async () => {
         console.log('Успешный ответ от сервера:', data);
         setResponseData(data); // Сохраняем данные из ответа
         setPaymentStatus('Оплачен');
+        setProgress(false);
       } else {
         setPaymentStatus('Отменен');
+        setProgress(false);
       }
     } catch (error) {
       console.error('Ошибка при проверке статуса платежа', error);
       setPaymentStatus('Ошибка');
-    } finally {
-      setProgress(false);
     }
   }, []);
 
