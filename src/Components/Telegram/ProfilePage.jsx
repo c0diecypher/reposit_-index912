@@ -171,7 +171,7 @@ const [tgPhoneNumber, setTgPhoneNumber] = useState('');
 
         try {
           const response = await axios.get(`https://crm.zipperconnect.space/customer/settings/client/get/${userId}`);
-          const data = await response.json();
+          const data = response.data;
 
           if (data && data.tgPhoneNumber) {
             setTgPhoneNumber(data.tgPhoneNumber);
