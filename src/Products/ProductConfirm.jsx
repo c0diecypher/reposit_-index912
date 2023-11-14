@@ -66,9 +66,6 @@ const [axiosResponse, setAxiosResponse] = useState(null);
         console.error('Error fetching data:', error.message);
       }
     };
-    const intervalId = setInterval(fetchData, 5000);
-    // Очистка интервала при размонтировании компонента
-    return () => clearInterval(intervalId);
 
   }, [  paymentStatus]);
 
