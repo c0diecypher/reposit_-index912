@@ -26,6 +26,7 @@ function ProductConfirm() {
   const {queryId, userId} = useTelegram();
   const [status, setStatus] = useState('');
   const onSendData = () => {
+    setProgress(true);
   const data = {
     name: productData.name,
     price: productData.price,
@@ -180,15 +181,7 @@ function ProductConfirm() {
        <hr/>
        <div className="order-price">{price}₽</div>
       </div>
-    </div>
-<MainButton 
-            onClick={handleCheckStatus}
-            color={color}
-            textColor={textColor}
-            text={`Проверить платеж`}
-            progress={progress}
-          />
-      
+    </div> 
     </>):(
     <>
       <div className="confirm-item" key={productId}>
