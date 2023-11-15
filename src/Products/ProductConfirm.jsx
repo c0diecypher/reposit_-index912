@@ -46,7 +46,6 @@ function ProductConfirm() {
     .then((data) => {
       if (data.paymentUrl) {
           Telegram.WebApp.openLink(data.paymentUrl);
-          handleUpdatePayment();
 
         } else {
         console.error('Отсутствует ссылка для оплаты.');
@@ -55,11 +54,12 @@ function ProductConfirm() {
     .catch((error) => {
       console.error('Ошибка отправки данных на сервер:', error);
     });
+    handleUpdatePayment();
 };
 
   const fetchPaymentData = async () => {
     try {
-      const response = await axios.post("https://8j6jhj-8080.csb.app/payment");
+      const response = await axios.post("https://crm.zipperconnect.space/get/payment");
       setPaymentData(response.data);
     } catch (error) {
       console.error("Error fetching payment data:", error);
@@ -80,7 +80,7 @@ function ProductConfirm() {
   const handleUpdatePayment = async () => {
     // Отправка данных на сервер и обновление состояния после получения ответа
     try {
-      const response = await axios.post("https://8j6jhj-8080.csb.app/payment", {
+      const response = await axios.post("https://crm.zipperconnect.space/get/payment", {
         // Ваши данные об оплате
       });
       setPaymentData(response.data);
