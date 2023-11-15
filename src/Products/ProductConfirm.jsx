@@ -16,6 +16,7 @@ function ProductConfirm() {
 
   // Отображаем информацию о товаре
   const [paymentStatus, setPaymentStatus] = useState('');
+  const [paymentData, setPaymentData] = useState(null);
   const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
   const [textColor] = useState(
     window.Telegram.WebApp.themeParams.button_text_color
@@ -44,7 +45,7 @@ function ProductConfirm() {
     .then((data) => {
       if (data.paymentUrl) {
           Telegram.WebApp.openLink(data.paymentUrl);
-          setPaymentStatus('Ожидается оплата');
+          handleUpdatePayment();
 
         } else {
         console.error('Отсутствует ссылка для оплаты.');
@@ -54,24 +55,37 @@ function ProductConfirm() {
       console.error('Ошибка отправки данных на сервер:', error);
     });
 };
-const [axiosResponse, setAxiosResponse] = useState(null);
 
+  const fetchPaymentData = async () => {
+    try {
+      const response = await axios.post("https://8j6jhj-8080.csb.app/payment");
+      setPaymentData(response.data);
+    } catch (error) {
+      console.error("Error fetching payment data:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post('https://zipperconnect.space/customer/client/pay/status');
-        setAxiosResponse(response.data);
-      } catch (error) {
-        console.error('Error fetching data:', error.message);
-      }
+    const fetchDataInterval = setInterval(fetchPaymentData, 5000); // Интервал опроса сервера
+    console.log(fetchDataInterval);
+    // Инициализация данных при загрузке компонента
+    fetchPaymentData();
+
+    return () => {
+      clearInterval(fetchDataInterval); // Очистка интервала при размонтировании компонента
     };
+  }, []);
 
-  }, [  paymentStatus]);
-
-   const handleCheckStatus = () => {
-    // Вызываем функцию проверки статуса
-    fetchData();
+  const handleUpdatePayment = async () => {
+    // Отправка данных на сервер и обновление состояния после получения ответа
+    try {
+      const response = await axios.post("https://8j6jhj-8080.csb.app/payment", {
+        // Ваши данные об оплате
+      });
+      setPaymentData(response.data);
+    } catch (error) {
+      console.error("Error updating payment data:", error);
+    }
   };
 
   const [dataOpen, setDataOpen] = useState(false);
@@ -154,8 +168,13 @@ const [axiosResponse, setAxiosResponse] = useState(null);
        Заказ {productData.order_id}
       </div>
       <div className="product-offer-status">
-      { paymentStatus ? paymentStatus : ''}
-        {axiosResponse && <p>{axiosResponse.status}</p>}
+      {paymentData === "WAIT" ? (
+            <p>Ожидается оплата</p>
+          ) : paymentData === "PAID" ? (
+            <p>Оплачено</p>
+          ) : (
+            <p>Unknown status</p>
+          )}
       </div>
       
        <hr/>
