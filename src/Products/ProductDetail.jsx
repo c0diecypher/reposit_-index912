@@ -90,7 +90,8 @@ typesKeys.sort(customSort)
       id: thisProduct.id,
       name: thisProduct.name,
       img: thisProduct.img,
-      price
+      price,
+      id: thistPoduct.id
     };
 
 
@@ -98,7 +99,8 @@ typesKeys.sort(customSort)
       size,
       name: thisProduct.name,
       img: thisProduct.img,
-      price
+      price,
+      id: thistPoduct.id
     });
 
     if (size) {
