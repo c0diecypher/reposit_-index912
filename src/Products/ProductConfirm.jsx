@@ -7,7 +7,7 @@ import { MainButton } from "@twa-dev/sdk/react"
 import axios from 'axios';
 
 function ProductConfirm() {
-  const { productId, size, price, name, img } = useParams();
+  const { productId, size, price, name, img, id } = useParams();
   const location = useLocation();
   const [progress, setProgress] = useState(false);
 
@@ -35,6 +35,7 @@ function ProductConfirm() {
     queryId,
     userId,
     order_id: productData.order_id,
+    productId: productData.id,
   };
 
   try {
