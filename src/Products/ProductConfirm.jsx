@@ -35,6 +35,7 @@ function ProductConfirm() {
     queryId,
     userId,
     order_id: productData.order_id,
+    productId: productData.id
   };
 
   try {
