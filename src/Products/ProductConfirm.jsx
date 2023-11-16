@@ -17,6 +17,7 @@ function ProductConfirm() {
   // Отображаем информацию о товаре
   const [paymentStatus, setPaymentStatus] = useState('');
   const [paymentData, setPaymentData] = useState(null);
+  const [showConfirmation, setShowConfirmation] = useState(true);
   const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
   const [textColor] = useState(
     window.Telegram.WebApp.themeParams.button_text_color
@@ -101,7 +102,7 @@ function ProductConfirm() {
 
   return (
     <>
-    { paymentData ? (
+    { showConfirmation ? (
     <>
     <div className="confirm-item" key={productId}>
       <div className="images-slider-wrapper">
@@ -178,7 +179,7 @@ function ProductConfirm() {
           ) : paymentData === "PAID" ? (
             <p>Оплачено</p>
           ) : (
-            <p>Unknown status</p>
+            <p>Загрузка...</p>
           )}
       </div>
       
@@ -242,6 +243,7 @@ function ProductConfirm() {
       <MainButton 
     onClick={() => {
     onSendData();
+    setShowConfirmation(false);
   }}
                         color={color}
                         textColor={textColor}
