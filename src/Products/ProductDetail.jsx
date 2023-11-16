@@ -78,7 +78,7 @@ typesKeys.sort(customSort)
         name: thisProduct.name,
         img: thisProduct.img,
         price: thisProduct.size[matchingSize],
-        id: thisPoduct.id
+        id: thisProduct.id
       });
     }
   }
@@ -92,7 +92,7 @@ typesKeys.sort(customSort)
       name: thisProduct.name,
       img: thisProduct.img,
       price,
-      id: thisPoduct.id
+      id: thisProduct.id
     };
 
 
