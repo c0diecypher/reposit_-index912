@@ -29,13 +29,13 @@ function ProductConfirm() {
   const onSendData = async () => {
   setProgress(true);
   const data = {
-    productId: productData.id,
     name: productData.name,
     price: productData.price,
     size: productData.size,
     queryId,
     userId,
     order_id: productData.order_id,
+    productId: productData.id
   };
 
   try {
