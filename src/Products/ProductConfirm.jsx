@@ -7,7 +7,7 @@ import { MainButton } from "@twa-dev/sdk/react"
 import axios from 'axios';
 
 function ProductConfirm() {
-  const { productId, size, price, name, img, id } = useParams();
+  const { productId, size, price, name, img } = useParams();
   const location = useLocation();
   const [progress, setProgress] = useState(false);
 
@@ -29,7 +29,6 @@ function ProductConfirm() {
   const onSendData = async () => {
   setProgress(true);
   const data = {
-    productId: productData.id,
     name: productData.name,
     price: productData.price,
     size: productData.size,
@@ -78,7 +77,7 @@ function ProductConfirm() {
 
     return () => {
       clearInterval(fetchDataInterval); // Очистка интервала при размонтировании компонента
-    }
+    };
   }, []);
 
   const handleUpdatePayment = async () => {
