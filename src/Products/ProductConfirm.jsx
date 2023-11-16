@@ -87,6 +87,7 @@ function ProductConfirm() {
         // Ваши данные об оплате
       });
       setPaymentData(response.data.status);
+      console.log(setPaymentData);
     } catch (error) {
       console.error("Error updating payment data:", error);
     }
