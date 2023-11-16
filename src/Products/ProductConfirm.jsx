@@ -27,7 +27,6 @@ function ProductConfirm() {
   const {queryId, userId} = useTelegram();
   const [status, setStatus] = useState('');
   const onSendData = async () => {
-  setProgress(true);
 
   const data = {
     name: productData.name,
@@ -101,6 +100,7 @@ function ProductConfirm() {
   };
 
   const UpdateStatusPayment = async () => {
+    setProgress(true);
     try {
       const response = await axios.get("https://crm.zipperconnect.space/get/pay");
       setPaymentData(response.status);
@@ -257,7 +257,7 @@ function ProductConfirm() {
                         color={color}
                         textColor={textColor}
                         text={`Купить за ${price}`}
-                        progress={progress}
+                        
         
                         />
     </>
@@ -283,6 +283,16 @@ function ProductConfirm() {
       <div className="order-card-icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="tabler-icon tabler-icon-chevron-up"><path d="M6 15l6 -6l6 6"></path></svg>
       </div>
+          <MainButton 
+    onClick={() => {
+    UpdateStatusPayment();
+  }}
+                        color={color}
+                        textColor={textColor}
+                        text={`Проверить оплату`}
+                        progress={progress}
+        
+                        />
         </>
       )}
                     
