@@ -100,6 +100,15 @@ function ProductConfirm() {
     window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
   };
 
+  const UpdateStatusPayment = async () => {
+    try {
+      const response = await axios.get("https://crm.zipperconnect.space/get/pay");
+      setPaymentData(response.status);
+    } catch (error) {
+      console.error("Error fetching payment data:", error);
+    }
+  };
+
   return (
     <>
     { showConfirmation ? (
