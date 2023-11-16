@@ -152,7 +152,7 @@ function ProductConfirm() {
                 paymentData === 'PAID' ? '#b54531' :
                 paymentData === 'CANCEL' ? '#31b545' :
                 paymentData === 'WAIT' ? 'var(--tg-theme-hint-color)' :
-                'initial' /* или любой другой цвет по умолчанию */
+                'var(--tg-theme-hint-color)' /* или любой другой цвет по умолчанию */
               }}>
               <svg viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m4.917 10 4.166 4.166 8.334-8.333" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path></svg>
             </div>
@@ -175,11 +175,11 @@ function ProductConfirm() {
       </div>
       <div className="product-offer-status">
       {paymentData === "WAIT" ? (
-            <p>Ожидается оплата</p>
+            <>Ожидается оплата</>
           ) : paymentData === "PAID" ? (
-            <p>Оплачено</p>
+            <>Оплачено</>
           ) : (
-            <p>Загрузка...</p>
+            <>Загрузка...</>
           )}
       </div>
       
