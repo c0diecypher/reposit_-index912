@@ -70,7 +70,7 @@
 }
 .story-bg{
   background: linear-gradient(180deg, var(--tg-bg), var(--tg-hint));
-    opacity: 0.6;
+    opacity: 0.2;
     width: 100%;
     height: 100%;
     position: absolute;
