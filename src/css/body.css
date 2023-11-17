@@ -187,3 +187,8 @@ a{
     justify-content: center;
     text-align: center;
 }
+
+.usercard_avatar_logo svg{
+  width: 70%;
+  height: 70%;
+}
