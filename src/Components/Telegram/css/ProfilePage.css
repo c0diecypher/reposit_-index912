@@ -76,6 +76,11 @@
   justify-content: center;
   text-align: center;
 }
+
+.profile-avatar-logo svg{
+  width: 70%;
+  height: 70%;
+}
 .profile-name{
   font-style: normal;
   font-weight: 900;
