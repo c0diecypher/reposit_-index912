@@ -84,6 +84,13 @@
   inset: 0;
   z-index: 0;
 }
+.Story-item-image svg{
+  margin-top:50px;
+  width: 40%;
+  height: 40%;
+  object-fit: cover;
+  margin-left: 10px;
+}
 
 .Story-item-image img {
   object-fit: cover;
