@@ -72,7 +72,7 @@ function ProductConfirm() {
     productId: productData.id,
   };
     try {
-      const response = await axios.get("https://crm.zipperconnect.space/get/payment");
+      const response = await axios.get("https://crm.zipperconnect.space/get/payment",data);
       setPaymentData(response.data.status);
     } catch (error) {
       console.error("Error fetching payment data:", error);
@@ -91,11 +91,17 @@ function ProductConfirm() {
   }, []);
 
   const handleUpdatePayment = async () => {
-    // Отправка данных на сервер и обновление состояния после получения ответа
+      const data = {
+    name: productData.name,
+    price: productData.price,
+    size: productData.size,
+    queryId,
+    userId,
+    order_id: productData.order_id,
+    productId: productData.id,
+  };
     try {
-      const response = await axios.post("https://crm.zipperconnect.space/get/payment", {
-        // Ваши данные об оплате
-      });
+      const response = await axios.post("https://crm.zipperconnect.space/get/payment", data);
       setPaymentData(response.data.status);
       console.log(setPaymentData);
     } catch (error) {
