@@ -101,7 +101,7 @@ typesKeys.sort(customSort)
       name: thisProduct.name,
       img: thisProduct.img,
       price,
-      id: thistPoduct.id
+      id: thisProduct.id
     });
 
     if (size) {
