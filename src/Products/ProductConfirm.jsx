@@ -62,6 +62,15 @@ function ProductConfirm() {
 };
 
   const fetchPaymentData = async () => {
+    const data = {
+    name: productData.name,
+    price: productData.price,
+    size: productData.size,
+    queryId,
+    userId,
+    order_id: productData.order_id,
+    productId: productData.id,
+  };
     try {
       const response = await axios.get("https://crm.zipperconnect.space/get/payment");
       setPaymentData(response.data.status);
