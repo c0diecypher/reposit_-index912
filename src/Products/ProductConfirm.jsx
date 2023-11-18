@@ -91,7 +91,7 @@ function ProductConfirm() {
     order_id: productData.order_id,
   };
     try {
-      const response = await axios.post("https://crm.zipperconnect.space/get/payment", data);
+      const response = await axios.post("https://crm.zipperconnect.space/update/payment", data);
       setPaymentData(response.data.status);
       console.log(setPaymentData);
     } catch (error) {
