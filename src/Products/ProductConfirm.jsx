@@ -62,8 +62,12 @@ function ProductConfirm() {
 };
 
   const fetchPaymentData = async () => {
+    const data = {
+    userId,
+    order_id: productData.order_id,
+  };
     try {
-      const response = await axios.post("https://crm.zipperconnect.space/get/payment");
+      const response = await axios.post("https://crm.zipperconnect.space/get/payment",data);
       setPaymentData(response.data.status);
     } catch (error) {
       console.error("Error fetching payment data:", error);
