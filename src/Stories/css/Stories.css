@@ -92,6 +92,15 @@
   margin-left: 10px;
 }
 
+.Story-svg{
+  margin-top: -4px;
+  margin-left: 12px;
+}
+.Story-svg svg{
+  width: 60%;
+  height: 60%;
+}
+
 .Story-item-image img {
   object-fit: cover;
 }
