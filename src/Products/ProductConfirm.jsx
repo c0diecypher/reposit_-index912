@@ -86,9 +86,12 @@ function ProductConfirm() {
   }, []);
 
   const handleUpdatePayment = async () => {
-    // Отправка данных на сервер и обновление состояния после получения ответа
+    const data = {
+    userId,
+    order_id: productData.order_id,
+  };
     try {
-      const response = await axios.post("https://crm.zipperconnect.space/get/payment", {
+      const response = await axios.post("https://crm.zipperconnect.space/get/payment", data {
         // Ваши данные об оплате
       });
       setPaymentData(response.data.status);
