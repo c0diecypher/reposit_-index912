@@ -28,7 +28,7 @@ function Stories() {
           >
             <div className="story-bg" style={{
             background:
-              "linear-gradient(rgb(83,185, 242) 5%, rgb(13,154,253) 100%)"
+              "linear-gradient(rgb(83,185, 242) 5%, rgb(13,154,253) 100%)", opacity: '1'
           }}></div>
             <div className="Story-item-image">
             <div className="Story-svg">
@@ -37,7 +37,7 @@ function Stories() {
           </svg>
           </div>
             </div>
-            <div className="Story-item-title" style={{ color: "#fcf0fe" }}>
+            <div className="Story-item-title" style={{ color: "var(--tg-text)" }}>
               Что умеет Zipper Store?
             </div>
           </div>
