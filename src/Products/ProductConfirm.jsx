@@ -63,7 +63,7 @@ function ProductConfirm() {
 
   const fetchPaymentData = async () => {
     try {
-      const response = await axios.post("https://crm.zipperconnect.space/get/payment/status");
+      const response = await axios.post("https://crm.zipperconnect.space/get/payment");
       setPaymentData(response.data.status);
     } catch (error) {
       console.error("Error fetching payment data:", error);
@@ -150,8 +150,8 @@ function ProductConfirm() {
       <div className="status-selection-steps-box">
         <div className="status-selection-step">
             <div className="status-selection-step-inner" style={{ color: 
-                paymentData === 'PAID' ? '#b54531' :
-                paymentData === 'CANCEL' ? '#31b545' :
+                paymentData === 'PAID' ? '#31b545' :
+                paymentData === 'CANCEL' ? '#b54531' :
                 paymentData === 'WAIT' ? 'var(--tg-theme-hint-color)' :
                 'var(--tg-theme-hint-color)' /* или любой другой цвет по умолчанию */
               }}>
