@@ -81,6 +81,13 @@ function ProductConfirm() {
       } else {
         console.error('Отсутствует ссылка для оплаты.');
       }
+       // Дождитесь обновления статуса через SSE
+    const eventSourceUpdate = new EventSource('https://crm.zipperconnect.space/sse');
+    eventSourceUpdate.onmessage = async (event) => {
+      const eventData = JSON.parse(event.data);
+      setPaymentData(eventData.status);
+      eventSourceUpdate.close();
+    };
     } catch (error) {
       console.error('Ошибка отправки данных на сервер:', error);
     }
