@@ -53,18 +53,15 @@ function ProductConfirm() {
 
     if (responseData.paymentUrl) {
       Telegram.WebApp.openLink(responseData.paymentUrl);
-        const fetchPaymentData = async () => {
-          const data = {
-          userId,
-          order_id: productData.order_id,
-        };
-          try {
-            const response = await axios.post("https://crm.zipperconnect.space/get/payment",data);
-            setPaymentData(response.data.status);
-          } catch (error) {
-            console.error("Error fetching payment data:", error);
-          }
-        };
+        const statusResponse = await fetch('https://crm.zipperconnect.space/get/payment', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userId,
+            order_id: productData.order_id,
+          }),
     } else {
       console.error('Отсутствует ссылка для оплаты.');
     }
