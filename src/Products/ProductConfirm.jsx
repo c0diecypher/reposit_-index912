@@ -53,28 +53,27 @@ function ProductConfirm() {
 
     if (responseData.paymentUrl) {
       Telegram.WebApp.openLink(responseData.paymentUrl);
+        const fetchPaymentData = async () => {
+          const data = {
+          userId,
+          order_id: productData.order_id,
+        };
+          try {
+            const response = await axios.post("https://crm.zipperconnect.space/get/payment",data);
+            setPaymentData(response.data.status);
+          } catch (error) {
+            console.error("Error fetching payment data:", error);
+          }
+        };
     } else {
       console.error('Отсутствует ссылка для оплаты.');
     }
   } catch (error) {
     console.error('Ошибка отправки данных на сервер:', error);
   }
-
   handleUpdatePayment();
+  setProgress(false);
 };
-
-  const fetchPaymentData = async () => {
-    const data = {
-    userId,
-    order_id: productData.order_id,
-  };
-    try {
-      const response = await axios.post("https://crm.zipperconnect.space/get/payment",data);
-      setPaymentData(response.data.status);
-    } catch (error) {
-      console.error("Error fetching payment data:", error);
-    }
-  };
 
   useEffect(() => {
     const fetchDataInterval = setInterval(fetchPaymentData, 5000); // Интервал опроса сервера
