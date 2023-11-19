@@ -29,7 +29,7 @@ function ProductConfirm() {
 
   useEffect(() => {
     const eventSource = new EventSource('https://crm.zipperconnect.space/sse'); // Используйте свой URL SSE endpoint
-
+    
     eventSource.onmessage = (event) => {
       const eventData = JSON.parse(event.data);
       setPaymentData(eventData.status);
@@ -64,7 +64,19 @@ function ProductConfirm() {
 
       if (responseData.paymentUrl) {
         Telegram.WebApp.openLink(responseData.paymentUrl);
-        // Теперь дожидаемся обновления статуса через SSE
+        const statusResponse = await fetch('https://crm.zipperconnect.space/get/payment', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userId,
+            order_id: productData.order_id,
+          }),
+        });
+
+        const statusData = await statusResponse.json();
+        setPaymentData(statusData.status);
         
       } else {
         console.error('Отсутствует ссылка для оплаты.');
