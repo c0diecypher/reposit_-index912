@@ -27,7 +27,7 @@ function ProductConfirm() {
   const {queryId, userId} = useTelegram();
   const [status, setStatus] = useState('');
 
-  useEffect(() => {
+ useEffect(() => {
     const setupSSE = () => {
         const eventSource = new EventSource('https://crm.zipperconnect.space/sse');
 
@@ -54,6 +54,7 @@ function ProductConfirm() {
 
     setupSSE();
 }, []);
+
 
   const onSendData = async () => {
     const data = {
