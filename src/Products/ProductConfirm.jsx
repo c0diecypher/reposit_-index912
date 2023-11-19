@@ -77,10 +77,10 @@ function ProductConfirm() {
 };
 
   useEffect(() => {
-    const fetchDataInterval = setInterval(fetchPaymentData, 5000); // Интервал опроса сервера
+    const fetchDataInterval = setInterval(statusResponse, 5000); // Интервал опроса сервера
     console.log(fetchDataInterval);
     // Инициализация данных при загрузке компонента
-    fetchPaymentData();
+    statusResponse();
 
     return () => {
       clearInterval(fetchDataInterval); // Очистка интервала при размонтировании компонента
