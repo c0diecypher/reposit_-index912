@@ -65,7 +65,7 @@ function ProductConfirm() {
       if (responseData.paymentUrl) {
         Telegram.WebApp.openLink(responseData.paymentUrl);
         // Теперь дожидаемся обновления статуса через SSE
-        const statusResponse = await fetch('https://crm.zipperconnect.space/get/payment', {
+        const statusResponse = await fetch('https://crm.zipperconnect.space/update/payment', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
