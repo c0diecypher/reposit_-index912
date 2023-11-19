@@ -28,79 +28,54 @@ function ProductConfirm() {
   const [status, setStatus] = useState('');
 
  useEffect(() => {
-    const setupSSE = () => {
-        const eventSource = new EventSource('https://crm.zipperconnect.space/sse');
+    const eventSource = new EventSource('https://crm.zipperconnect.space/sse');
 
-        eventSource.onmessage = (event) => {
-            const eventData = JSON.parse(event.data);
-            console.log('Получено обновление от сервера:', eventData);
-            setPaymentData(eventData.status);
-            // Пересоздание EventSource после каждого полученного события
-            eventSource.close();
-            setupSSE();
-        };
-        
-        eventSource.onerror = (error) => {
-            console.error('Ошибка SSE:', error);
-            // Пересоздание EventSource после ошибки
-            eventSource.close();
-            setupSSE();
-        };
-
-        return () => {
-            eventSource.close();
-        };
+    eventSource.onmessage = (event) => {
+        const eventData = JSON.parse(event.data);
+        console.log('Получено обновление от сервера:', eventData);
+        setPaymentData(eventData.status);
     };
 
-    setupSSE();
+    eventSource.onerror = (error) => {
+        console.error('Ошибка SSE:', error);
+    };
+
+    return () => {
+        eventSource.close();
+    };
 }, []);
 
-
-  const onSendData = async () => {
+const onSendData = async () => {
     const data = {
-      name: productData.name,
-      price: productData.price,
-      size: productData.size,
-      queryId,
-      userId,
-      order_id: productData.order_id,
-      productId: productData.id,
+        name: productData.name,
+        price: productData.price,
+        size: productData.size,
+        queryId,
+        userId,
+        order_id: productData.order_id,
+        productId: productData.id,
     };
 
     try {
-      const response = await fetch('https://crm.zipperconnect.space/customer/settings/client/buy/offer/pay', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      const responseData = await response.json();
-
-      if (responseData.paymentUrl) {
-        Telegram.WebApp.openLink(responseData.paymentUrl);
-        const statusResponse = await fetch('https://crm.zipperconnect.space/get/payment', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            userId,
-            order_id: productData.order_id,
-          }),
+        const response = await fetch('https://crm.zipperconnect.space/customer/settings/client/buy/offer/pay', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
         });
 
-        const statusData = await statusResponse.json();
-        setPaymentData(statusData.status);
-        
-      } else {
-        console.error('Отсутствует ссылка для оплаты.');
-      }
+        const responseData = await response.json();
+
+        if (responseData.paymentUrl) {
+            Telegram.WebApp.openLink(responseData.paymentUrl);
+        } else {
+            console.error('Отсутствует ссылка для оплаты.');
+        }
     } catch (error) {
-      console.error('Ошибка отправки данных на сервер:', error);
+        console.error('Ошибка отправки данных на сервер:', error);
     }
-  };
+};
 
 
   const [dataOpen, setDataOpen] = useState(false);
