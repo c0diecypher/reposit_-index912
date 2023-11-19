@@ -27,8 +27,7 @@ function ProductConfirm() {
   const {queryId, userId} = useTelegram();
   const [status, setStatus] = useState('');
 
-
-   const onSendData = async () => {
+ const onSendData = async () => {
   setProgress(true);
   const data = {
     name: productData.name,
@@ -63,6 +62,30 @@ function ProductConfirm() {
   handleUpdatePayment();
 };
 
+  const fetchPaymentData = async () => {
+    const data = {
+    userId,
+    order_id: productData.order_id,
+  };
+    try {
+      const response = await axios.post("https://crm.zipperconnect.space/get/payment",data);
+      setPaymentData(response.data.status);
+    } catch (error) {
+      console.error("Error fetching payment data:", error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchDataInterval = setInterval(fetchPaymentData, 5000); // Интервал опроса сервера
+    console.log(fetchDataInterval);
+    // Инициализация данных при загрузке компонента
+    fetchPaymentData();
+
+    return () => {
+      clearInterval(fetchDataInterval); // Очистка интервала при размонтировании компонента
+    };
+  }, []);
+
   const handleUpdatePayment = async () => {
     const data = {
     userId,
@@ -76,7 +99,6 @@ function ProductConfirm() {
       console.error("Error updating payment data:", error);
     }
   };
-
   const [dataOpen, setDataOpen] = useState(false);
   const handleEditClick = () => {
     setDataOpen(!dataOpen);
