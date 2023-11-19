@@ -62,6 +62,10 @@ function ProductConfirm() {
             userId,
             order_id: productData.order_id,
           }),
+        });
+
+        const statusData = await statusResponse.json();
+        setPaymentData(statusData.status);
     } else {
       console.error('Отсутствует ссылка для оплаты.');
     }
