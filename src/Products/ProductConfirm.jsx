@@ -29,24 +29,13 @@ function ProductConfirm() {
 
   const eventSource = new EventSource('https://crm.zipperconnect.space/sse'); // Поменяйте URL на ваш SSE endpoint
 
-  useEffect(() => {
+    useEffect(() => {
+    const eventSource = new EventSource('https://crm.zipperconnect.space/sse'); // Используйте свой URL SSE endpoint
+
     eventSource.onmessage = (event) => {
       const eventData = JSON.parse(event.data);
       setPaymentData(eventData.status);
     };
-
-    return () => {
-      eventSource.close(); // Закрыть соединение при размонтировании компонента
-    };
-  }, []);
-  
-  useEffect(() => {
-    const eventSource = new EventSource('https://crm.zipperconnect.space/get/payment'); // Используйте свой URL SSE endpoint
-
-    eventSource.addEventListener('paymentUpdate', (event) => {
-      const eventData = JSON.parse(event.data);
-      setPaymentData(eventData.status);
-    });
 
     return () => {
       eventSource.close(); // Закрыть соединение при размонтировании компонента
