@@ -28,6 +28,19 @@ function ProductConfirm() {
   const [status, setStatus] = useState('');
 
 
+  useEffect(() => {
+    const eventSource = new EventSource('https://crm.zipperconnect.space/sse'); // Используйте свой URL SSE endpoint
+
+    eventSource.onmessage = (event) => {
+      const eventData = JSON.parse(event.data);
+      setPaymentData(eventData.status);
+    };
+
+    return () => {
+      eventSource.close(); // Закрыть соединение при размонтировании компонента
+    };
+  }, []);
+
   const onSendData = async () => {
     const data = {
       name: productData.name,
@@ -52,23 +65,20 @@ function ProductConfirm() {
 
       if (responseData.paymentUrl) {
         Telegram.WebApp.openLink(responseData.paymentUrl);
-        const eventSource = new EventSource('https://crm.zipperconnect.space/sse');
-  
-        eventSource.onmessage = (event) => {
-          const eventData = JSON.parse(event.data);
-          console.log(event.data);
-          setPaymentData(eventData.status);
-        };
-      
-        eventSource.onerror = (error) => {
-          console.error('Ошибка соединения SSE:', error);
-          eventSource.close();
-        };
-      
-        return () => {
-          eventSource.close();
-        };
-        
+        // Теперь дожидаемся обновления статуса через SSE
+        const statusResponse = await fetch('https://crm.zipperconnect.space/get/payment', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userId,
+            order_id: productData.order_id,
+          }),
+        });
+
+        const statusData = await statusResponse.json();
+        setPaymentData(statusData.status);
       } else {
         console.error('Отсутствует ссылка для оплаты.');
       }
