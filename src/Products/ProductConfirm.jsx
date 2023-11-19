@@ -27,35 +27,7 @@ function ProductConfirm() {
   const {queryId, userId} = useTelegram();
   const [status, setStatus] = useState('');
 
-  const onSendData = async () => {
-  const data = {
-    name: productData.name,
-    price: productData.price,
-    size: productData.size,
-    queryId,
-    userId,
-    order_id: productData.order_id,
-    productId: productData.id,
-  };
-
-  try {
-    const response = await fetch('https://crm.zipperconnect.space/customer/settings/client/buy/offer/pay', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-
-    const responseData = await response.json();
-
-    if (responseData.paymentUrl) {
-      Telegram.WebApp.openLink(responseData.paymentUrl);
-    } else {
-      console.error('Отсутствует ссылка для оплаты.');
-    }
-
-    // Пересоздаем EventSource для SSE
+  useEffect(() => {
     const eventSource = new EventSource('https://crm.zipperconnect.space/sse');
 
     eventSource.onmessage = (event) => {
@@ -68,11 +40,43 @@ function ProductConfirm() {
       console.error('Ошибка SSE:', error);
       eventSource.close();
     };
-  } catch (error) {
-    console.error('Ошибка отправки данных на сервер:', error);
-  }
-};
 
+    return () => {
+      eventSource.close();
+    };
+  }, []); // Пустой массив зависимостей гарантирует выполнение эффекта только при монтировании и размонтировании
+
+  const onSendData = async () => {
+    const data = {
+      name: productData.name,
+      price: productData.price,
+      size: productData.size,
+      queryId,
+      userId,
+      order_id: productData.order_id,
+      productId: productData.id,
+    };
+
+    try {
+      const response = await fetch('https://crm.zipperconnect.space/customer/settings/client/buy/offer/pay', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const responseData = await response.json();
+
+      if (responseData.paymentUrl) {
+        Telegram.WebApp.openLink(responseData.paymentUrl);
+      } else {
+        console.error('Отсутствует ссылка для оплаты.');
+      }
+    } catch (error) {
+      console.error('Ошибка отправки данных на сервер:', error);
+    }
+  };
 
 
 
