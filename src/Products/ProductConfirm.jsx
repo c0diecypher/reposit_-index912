@@ -32,6 +32,7 @@ function ProductConfirm() {
 
   eventSource.onmessage = (event) => {
     const eventData = JSON.parse(event.data);
+    console.log('eventData', eventData);
     setPaymentData(eventData.status);
   };
 
@@ -68,7 +69,7 @@ const onSendData = async () => {
       // Не создавайте новый EventSource здесь, используйте тот, который был создан при монтировании компонента
 
       // Дождитесь обновления статуса через SSE
-      const eventSourceUpdate = new EventSource('https://crm.zipperconnect.space/sse');
+      const eventSourceUpdate = new EventSource('https://crm.zipperconnect.space/get/payment');
       eventSourceUpdate.onmessage = async (event) => {
         const eventData = JSON.parse(event.data);
         setPaymentData(eventData.status);
