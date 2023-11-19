@@ -28,7 +28,7 @@ function ProductConfirm() {
   const [status, setStatus] = useState('');
 
 
-  const onSendData = async () => {
+   const onSendData = async () => {
   setProgress(true);
   const data = {
     name: productData.name,
@@ -53,39 +53,15 @@ function ProductConfirm() {
 
     if (responseData.paymentUrl) {
       Telegram.WebApp.openLink(responseData.paymentUrl);
-        const statusResponse = await fetch('https://crm.zipperconnect.space/get/payment', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            userId,
-            order_id: productData.order_id,
-          }),
-        });
-
-        const statusData = await statusResponse.json();
-        setPaymentData(statusData.status);
     } else {
       console.error('Отсутствует ссылка для оплаты.');
     }
   } catch (error) {
     console.error('Ошибка отправки данных на сервер:', error);
   }
+
   handleUpdatePayment();
-  setProgress(false);
 };
-
-  useEffect(() => {
-    const fetchDataInterval = setInterval(statusResponse, 5000); // Интервал опроса сервера
-    console.log(fetchDataInterval);
-    // Инициализация данных при загрузке компонента
-    statusResponse();
-
-    return () => {
-      clearInterval(fetchDataInterval); // Очистка интервала при размонтировании компонента
-    };
-  }, []);
 
   const handleUpdatePayment = async () => {
     const data = {
