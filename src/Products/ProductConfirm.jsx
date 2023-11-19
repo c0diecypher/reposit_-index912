@@ -32,6 +32,7 @@ function ProductConfirm() {
     
     eventSource.onmessage = (event) => {
       const eventData = JSON.parse(event.data);
+      console.log('Получено обновление от сервера:', eventData);
       setPaymentData(eventData.status);
     };
 
