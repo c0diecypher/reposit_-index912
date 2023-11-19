@@ -26,78 +26,65 @@ function ProductConfirm() {
   const [paymentLink, setPaymentLink] = useState('');
   const {queryId, userId} = useTelegram();
   const [status, setStatus] = useState('');
-  const onSendData = async () => {
-  setProgress(true);
-  const data = {
-    name: productData.name,
-    price: productData.price,
-    size: productData.size,
-    queryId,
-    userId,
-    order_id: productData.order_id,
-    productId: productData.id,
-  };
 
-  try {
-    const response = await fetch('https://crm.zipperconnect.space/customer/settings/client/buy/offer/pay', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-
-    const responseData = await response.json();
-
-    if (responseData.paymentUrl) {
-      Telegram.WebApp.openLink(responseData.paymentUrl);
-    } else {
-      console.error('Отсутствует ссылка для оплаты.');
-    }
-  } catch (error) {
-    console.error('Ошибка отправки данных на сервер:', error);
-  }
-
-  handleUpdatePayment();
-};
-
-  const fetchPaymentData = async () => {
-    const data = {
-    userId,
-    order_id: productData.order_id,
-  };
-    try {
-      const response = await axios.post("https://crm.zipperconnect.space/get/payment",data);
-      setPaymentData(response.data.status);
-    } catch (error) {
-      console.error("Error fetching payment data:", error);
-    }
-  };
+  const eventSource = new EventSource('https://crm.zipperconnect.space/sse'); // Поменяйте URL на ваш SSE endpoint
 
   useEffect(() => {
-    const fetchDataInterval = setInterval(fetchPaymentData, 5000); // Интервал опроса сервера
-    console.log(fetchDataInterval);
-    // Инициализация данных при загрузке компонента
-    fetchPaymentData();
+    eventSource.onmessage = (event) => {
+      const eventData = JSON.parse(event.data);
+      setPaymentData(eventData.status);
+    };
 
     return () => {
-      clearInterval(fetchDataInterval); // Очистка интервала при размонтировании компонента
+      eventSource.close(); // Закрыть соединение при размонтировании компонента
+    };
+  }, []);
+  
+  useEffect(() => {
+    const eventSource = new EventSource('https://crm.zipperconnect.space/get/payment'); // Используйте свой URL SSE endpoint
+
+    eventSource.addEventListener('paymentUpdate', (event) => {
+      const eventData = JSON.parse(event.data);
+      setPaymentData(eventData.status);
+    });
+
+    return () => {
+      eventSource.close(); // Закрыть соединение при размонтировании компонента
     };
   }, []);
 
-  const handleUpdatePayment = async () => {
+  const onSendData = async () => {
     const data = {
-    userId,
-    order_id: productData.order_id,
-  };
+      name: productData.name,
+      price: productData.price,
+      size: productData.size,
+      queryId,
+      userId,
+      order_id: productData.order_id,
+      productId: productData.id,
+    };
+
     try {
-      const response = await axios.post("https://crm.zipperconnect.space/update/payment", data);
-      setPaymentData(response.data.status);
-      console.log(setPaymentData);
+      const response = await fetch('https://crm.zipperconnect.space/customer/settings/client/buy/offer/pay', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const responseData = await response.json();
+
+      if (responseData.paymentUrl) {
+        Telegram.WebApp.openLink(responseData.paymentUrl);
+      } else {
+        console.error('Отсутствует ссылка для оплаты.');
+      }
     } catch (error) {
-      console.error("Error updating payment data:", error);
+      console.error('Ошибка отправки данных на сервер:', error);
     }
   };
+
 
   const [dataOpen, setDataOpen] = useState(false);
   const handleEditClick = () => {
