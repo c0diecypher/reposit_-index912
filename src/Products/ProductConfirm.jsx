@@ -28,18 +28,32 @@ function ProductConfirm() {
   const [status, setStatus] = useState('');
 
   useEffect(() => {
-    const eventSource = new EventSource('https://crm.zipperconnect.space/sse'); // Используйте свой URL SSE endpoint
-    
-    eventSource.onmessage = (event) => {
-      const eventData = JSON.parse(event.data);
-      console.log('Получено обновление от сервера:', eventData);
-      setPaymentData(eventData.status);
+    const setupSSE = () => {
+        const eventSource = new EventSource('https://crm.zipperconnect.space/sse');
+
+        eventSource.onmessage = (event) => {
+            const eventData = JSON.parse(event.data);
+            console.log('Получено обновление от сервера:', eventData);
+            setPaymentData(eventData.status);
+            // Пересоздание EventSource после каждого полученного события
+            eventSource.close();
+            setupSSE();
+        };
+        
+        eventSource.onerror = (error) => {
+            console.error('Ошибка SSE:', error);
+            // Пересоздание EventSource после ошибки
+            eventSource.close();
+            setupSSE();
+        };
+
+        return () => {
+            eventSource.close();
+        };
     };
 
-    return () => {
-      eventSource.close(); // Закрыть соединение при размонтировании компонента
-    };
-  }, []);
+    setupSSE();
+}, []);
 
   const onSendData = async () => {
     const data = {
