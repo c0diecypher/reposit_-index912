@@ -146,7 +146,7 @@ function App() {
             <Stories />
            
               {isAuthenticated && <BasketItem userId={userId} />}
-              {isAuthenticated && <BasketPaid userId={userId} />}
+              
             <Catalog />
             {isAuthenticated && <Products />}
             <Footer />
