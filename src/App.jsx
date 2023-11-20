@@ -145,7 +145,7 @@ function App() {
             <Searchbar />
             <Stories />
               {isAuthenticated && <BasketItem userId={userId} />}
-              <></>
+              <div></div>
               {isAuthenticated && <BasketPaid userId={userId} />}
             <Catalog />
             {isAuthenticated && <Products />}
