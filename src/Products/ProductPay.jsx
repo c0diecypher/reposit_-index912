@@ -240,7 +240,7 @@ function ProductPay() {
         ) : paymentData === "SENT" ? (
           <>Готовится к отправке</>
         ) : paymentData === "TRANSITCN" ? (
-          <>Доставк из Китая в пути</>
+          <>Доставка из Китая в пути</>
         ) : paymentData === "TRANSITRU" ? (
           <>В пути по России</>
         ) : paymentData === "DELIVERED" ? (
