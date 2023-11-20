@@ -27,7 +27,6 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
 
       const responseData = await response.json();
       setBasketData(responseData);
-      console.log('Ответ сервера:', responseData);
     } catch (error) {
       console.error('Ошибка при выполнении запроса:', error);
     }
@@ -35,7 +34,6 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
 
   // Вызываем функцию fetchData при монтировании компонента
    const fetchDataInterval = setInterval(fetchData, 5000); // Интервал опроса сервера
-    console.log(fetchDataInterval);
     // Инициализация данных при загрузке компонента
     fetchData();
 
