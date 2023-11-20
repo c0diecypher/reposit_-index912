@@ -70,7 +70,7 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
               <div className="product-image-inner">
               
                    
-              <img src={productsData[product.id]?.img[0]} alt="фото" className="product-image-inner-row" />
+              <img src={productsData.find(item => item.id === product.id)?.img[0]} alt="фото" className="product-image-inner-row" />
                        
     
               </div>
