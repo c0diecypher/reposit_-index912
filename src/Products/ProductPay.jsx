@@ -63,17 +63,20 @@ function ProductPay() {
       clearInterval(fetchDataInterval); // Очистка интервала при размонтировании компонента
     };
 }, [userId]); 
+  
  const onSendData = async () => {
   setProgress(true);
+  const selectedItem = payData; // You should select the appropriate item based on your logic
+
   const data = {
-    name: payData.name,
-    price: payData.price,
-    size: payData.size,
+    name: selectedItem.name,
+    price: selectedItem.price,
+    size: selectedItem.size,
     queryId,
     userId,
-    order_id: payData.order_id,
-    productId: payData.id,
-    time: payData.time,
+    order_id: selectedItem.order_id,
+    productId: selectedItem.id,
+    time: selectedItem.time,
   };
 
   try {
