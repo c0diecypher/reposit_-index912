@@ -51,11 +51,12 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
 
   return (
     <>
+    {basketData.length > 0 && (
     <div className="product-block-order">
   <div className="product-order">Оплачивается</div>
       
   <div className="product-container">
-  {basketData.length > 0 && basketData.map((product) => (
+  {basketData.map((product) => (
       <>
         
       <div key={product.id} className="product-container-order" >
@@ -101,7 +102,7 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
     
   </div>
 </div>
-  
+  )}
     </>
   );
 };
