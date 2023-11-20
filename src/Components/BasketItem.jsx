@@ -58,7 +58,7 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
   {basketData.length > 0 && basketData.map((product) => (
       <>
         
-      <div className="product-container-order">
+      <div key={product.id} className="product-container-order" >
         <Link
                     to={`/products/confirm/offer/${product.name}/${product.size}/${product.price}`}
                     state={{ productData: product }}
@@ -70,9 +70,7 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
               <div className="product-image-inner">
               
                     {product.id && productsData[product.id] && productsData[product.id].img && productsData[product.id].img[0] ? (
-                      console.log("Product ID:", product.id);
-                      console.log("Product Data:", productData[product.id]);
-                          <img src={productsData[product.id].img[0]} alt="фото" className="product-image-inner-row" />
+                          <img src={productsData[product.id]?.img[0]} alt="фото" className="product-image-inner-row" />
                         ) : (
                           <div className="placeholder-image">Изображение отсутствует</div>
                         )}
