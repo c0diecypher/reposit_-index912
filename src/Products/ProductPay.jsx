@@ -104,9 +104,10 @@ function ProductPay() {
 };
 
   const fetchPaymentData = async () => {
+    const selectedItem = payData; // You should select the appropriate item based on your logic
     const data = {
     userId,
-    order_id: payData.order_id,
+    order_id: selectedItem.order_id,
   };
     try {
       const response = await axios.post("https://crm.zipperconnect.space/get/payment",data);
@@ -128,9 +129,10 @@ function ProductPay() {
   }, []);
 
   const handleUpdatePayment = async () => {
+    const selectedItem = payData; // You should select the appropriate item based on your logic
     const data = {
     userId,
-    order_id: payData.order_id,
+    order_id: selectedItem.order_id,
   };
     try {
       const response = await axios.post("https://crm.zipperconnect.space/update/payment", data);
