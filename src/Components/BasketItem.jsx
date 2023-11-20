@@ -2,7 +2,7 @@ import "./css/Basket.css";
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
-
+import productsData from "./productsData";
 const BasketItem = ({ cart, onDataUpdate, userId } ) => {
   const [paymentDate] = useState(new Date()); // Создаем объект Date с текущей датой
   const options = { month: 'short', day: 'numeric' };
@@ -68,8 +68,8 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
             <div className="product-image-card">
               <div className="product-image-inner">
               
-                    {product.id && productData[product.id] && productData[product.id].img && productData[product.id].img[0] ? (
-                          <img src={productData[product.id].img[0]} alt="фото" className="product-image-inner-row" />
+                    {product.id && productsData[product.id] && productsData[product.id].img && productsData[product.id].img[0] ? (
+                          <img src={productsData[product.id].img[0]} alt="фото" className="product-image-inner-row" />
                         ) : (
                           <div className="placeholder-image">Изображение отсутствует</div>
                         )}
