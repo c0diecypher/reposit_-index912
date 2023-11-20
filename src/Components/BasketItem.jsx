@@ -42,7 +42,7 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
     return () => {
       clearInterval(fetchDataInterval); // Очистка интервала при размонтировании компонента
     };
-}, []); 
+}, [userId]); 
   
   BasketItem.propTypes = {
     cart: PropTypes.array.isRequired,
