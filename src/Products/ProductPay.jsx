@@ -4,7 +4,6 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import Stories from "../Stories/Stories"
 import { useTelegram } from "../Components/Hooks/useTelegram"
 import { MainButton } from "@twa-dev/sdk/react"
-import productsData from "../Products/productsData";
 import axios from 'axios';
 
 function ProductPay() {
@@ -12,9 +11,7 @@ function ProductPay() {
   const location = useLocation();
   const [progress, setProgress] = useState(false);
   const [payData,setPayData] = useState([]);
-  const selectedItem = payData[0];
-  const selectedProduct = productsData.find(item => item.id === selectedItem?.id);
-  console.log(selectedItem);
+  const { productData } = location.state || {};
   const [paymentDate] = useState(new Date()); // Создаем объект Date с текущей датой
   const options = { month: 'short', day: 'numeric' };
   // Декодируйте JSON-строку и преобразуйте ее в объект с данными о товаре
@@ -66,24 +63,21 @@ function ProductPay() {
       clearInterval(fetchDataInterval); // Очистка интервала при размонтировании компонента
     };
 }, [userId]); 
-  
  const onSendData = async () => {
   setProgress(true);
-  const selectedItem = payData[0]; // You should select the appropriate item based on your logic
-
   const data = {
-    name: selectedItem.name,
-    price: selectedItem.price,
-    size: selectedItem.size,
+    name: payData.name,
+    price: payData.price,
+    size: payData.size,
     queryId,
     userId,
-    order_id: selectedItem.order_id,
-    productId: selectedItem.id,
-    time: selectedItem.time,
+    order_id: payData.order_id,
+    productId: payData.id,
+    time: payData.time,
   };
 
   try {
-    const response = await fetch('https://crm.zipperconnect.space/customer/settings/client/buy/offer/pay/basket', {
+    const response = await fetch('https://crm.zipperconnect.space/customer/settings/client/buy/offer/pay', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -107,10 +101,9 @@ function ProductPay() {
 };
 
   const fetchPaymentData = async () => {
-    const selectedItem = payData[0]; // You should select the appropriate item based on your logic
     const data = {
     userId,
-    order_id: selectedItem.order_id,
+    order_id: payData.order_id,
   };
     try {
       const response = await axios.post("https://crm.zipperconnect.space/get/payment",data);
@@ -132,10 +125,9 @@ function ProductPay() {
   }, []);
 
   const handleUpdatePayment = async () => {
-    const selectedItem = payData[0]; // You should select the appropriate item based on your logic
     const data = {
     userId,
-    order_id: selectedItem.order_id,
+    order_id: payData.order_id,
   };
     try {
       const response = await axios.post("https://crm.zipperconnect.space/update/payment", data);
@@ -154,23 +146,46 @@ function ProductPay() {
   return (
     <>
     { showConfirmation ? (
-    <>
-    <div className="confirm-item" key={selectedItem.id}>
+
+    <div className="confirm-item" key={productData.id}>
       <div className="images-slider-wrapper">
         <div className="images-slider-images">
-          {[0, 1, 2, 3, 4, 5].map(index => (
-              <div className="images-slider-image-item" key={index}>
-                <div className="image-item-wrapper">
-                  <img src={selectedProduct.img[index]} alt={`photo ${index + 1}`} />
-                </div>
-              </div>
-            ))}
+          <div className="images-slider-image-item">
+            <div className="image-item-wrapper">
+              <img src={productsData.find(item => item.id === productData.id)?.img[0]} alt="photo" />
+            </div>
+          </div>
+          <div className="images-slider-image-item">
+            <div className="image-item-wrapper">
+              <img src={productsData.find(item => item.id === productData.id)?.img[1]} alt="photo" />
+            </div>
+          </div>
+          <div className="images-slider-image-item">
+            <div className="image-item-wrapper">
+              <img src={productsData.find(item => item.id === productData.id)?.img[2]} alt="photo" />
+            </div>
+          </div>
+          <div className="images-slider-image-item">
+            <div className="image-item-wrapper">
+              <img src={productsData.find(item => item.id === productData.id)?.img[3]} alt="photo" />
+            </div>
+          </div>
+          <div className="images-slider-image-item">
+            <div className="image-item-wrapper">
+              <img src={productsData.find(item => item.id === productData.id)?.img[4]} alt="photo" />
+            </div>
+          </div>
+          <div className="images-slider-image-item">
+            <div className="image-item-wrapper">
+              <img src={productsData.find(item => item.id === productData.id)?.img[5]} alt="photo" />
+            </div>
+          </div>
       </div>
     </div>
       
     <div className="bg-full-item-name">
-      <div className="confirm-item-name">{payData.name}
-        <span className="confirm-item-size" > размер {payData.name} EU</span>
+      <div className="confirm-item-name">{productData.name}
+        <span className="confirm-item-size" > размер {productData.size} EU</span>
       </div>
     </div>
     <div className="item-order-info">
@@ -214,7 +229,7 @@ function ProductPay() {
         </div>
       </div>
       <div className="product-offer-id">
-       Заказ {selectedItem.order_id}
+       Заказ {productData.order_id}
       </div>
       <div className="product-offer-status">
       {paymentData === "WAIT" ? (
@@ -235,56 +250,57 @@ function ProductPay() {
       </div>
       
        <hr/>
-       <div className="order-price">{payData.name}₽</div>
+       <div className="order-price">{productData.price}₽</div>
       </div>
     </div> 
+
     </>):(
       
     <>
-     <div className="confirm-item" key={payData.name}>
+       <div className="confirm-item" key={productData.id}>
       <div className="images-slider-wrapper">
         <div className="images-slider-images">
           <div className="images-slider-image-item">
             <div className="image-item-wrapper">
-              <img src={selectedProduct?.img[0]} alt="photo" />
+              <img src={productsData.find(item => item.id === productData.id)?.img[0]} alt="photo" />
             </div>
           </div>
           <div className="images-slider-image-item">
             <div className="image-item-wrapper">
-              <img src={selectedProduct?.img[1]} alt="photo" />
+              <img src={productsData.find(item => item.id === productData.id)?.img[1]} alt="photo" />
             </div>
           </div>
           <div className="images-slider-image-item">
             <div className="image-item-wrapper">
-             <img src={selectedProduct?.img[2]} alt="photo" />
+              <img src={productsData.find(item => item.id === productData.id)?.img[2]} alt="photo" />
             </div>
           </div>
           <div className="images-slider-image-item">
             <div className="image-item-wrapper">
-              <img src={selectedProduct?.img[3]} alt="photo" />
+              <img src={productsData.find(item => item.id === productData.id)?.img[3]} alt="photo" />
             </div>
           </div>
           <div className="images-slider-image-item">
             <div className="image-item-wrapper">
-              <img src={selectedProduct?.img[4]} alt="photo" />
+              <img src={productsData.find(item => item.id === productData.id)?.img[4]} alt="photo" />
             </div>
           </div>
           <div className="images-slider-image-item">
             <div className="image-item-wrapper">
-              <img src={selectedProduct?.img[5]} alt="photo" />
+              <img src={productsData.find(item => item.id === productData.id)?.img[5]} alt="photo" />
             </div>
           </div>
       </div>
     </div>
         
         <div className="bg-full-item-name">
-          <div className="confirm-item-name">{selectedItem.name}
-          <span className="confirm-item-size" > размер {selectedItem.size} US</span>
+          <div className="confirm-item-name">{productData.name}
+          <span className="confirm-item-size" > размер {productData.size} US</span>
         </div>
         </div>
           <div className="item-order-info">
             <div className="confirm-item-price">
-              {selectedItem.price}₽
+              {productData.price}₽
             </div>
             <div className="public-oferta">
               <p className="public-ofert-text">Оплачивая заказ, вы соглашаетесь <br/>с условиями <a className="public-oferta-link">публичной оферты</a></p>
@@ -300,9 +316,9 @@ function ProductPay() {
         }}
                             color={color}
                             textColor={textColor}
-                            text={`Купить за ${selectedItem.price}`}
+                            text={`Купить за ${productData.price}₽`}
                             progress={progress}
-      />   
+      />
         </>
       )}
     
