@@ -3,24 +3,24 @@ import "./App.css"
 import "bootstrap/dist/css/bootstrap.css";
 
 // Components
-import Header from "./Components/Header"
-import Footer from "./Components/Footer"
-import Products from './Products/Products'
-import ProductDetail from "./Products/ProductDetail"
-import Searchbar from "./Search/Search-bar"
-import Search from "./Search/Search"
-import Stories from "./Stories/Stories"
-import Catalog from "./Search/Catalog"
-import SizeInfoDetails from "./Products/SizeInfo/SizeInfoDetails"
-import BasketItem from "./Components/BasketItem"
-import BasketPaid from "./Components/BasketPaid"
-import { useTelegram } from "./Components/Hooks/useTelegram"
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
+import Products from './Products/Products';
+import ProductDetail from "./Products/ProductDetail";
+import Searchbar from "./Search/Search-bar";
+import Search from "./Search/Search";
+import Stories from "./Stories/Stories";
+import Catalog from "./Search/Catalog";
+import SizeInfoDetails from "./Products/SizeInfo/SizeInfoDetails";
+import BasketItem from "./Components/BasketItem";
+import { useTelegram } from "./Components/Hooks/useTelegram";
 import ProfilePage from "./Components/Telegram/ProfilePage";
 import ProductConfirm from "./Products/ProductConfirm";
 import FilterProducts from "./Products/FilterProducts";
-import SettingsProfile from "./Components/Telegram/SettingsProfile"
-import ProductPay from "./Products/ProductPay"
-import ProductPaid from "./Products/ProductPaid"
+import SettingsProfile from "./Components/Telegram/SettingsProfile";
+import ProductPay from "./Products/ProductPay";
+import ProductPaid from "./Products/ProductPaid";
+import BasketPaid from "./Components/BasketPaid";
 // React 
 import { Route, Routes } from "react-router-dom";
 import { BackButton } from "@twa-dev/sdk/react" 
