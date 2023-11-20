@@ -66,14 +66,14 @@ function ProductPay() {
  const onSendData = async () => {
   setProgress(true);
   const data = {
-    name: payData.name,
-    price: payData.price,
-    size: payData.size,
+    name: productData.name,
+    price: productData.price,
+    size: productData.size,
     queryId,
     userId,
-    order_id: payData.order_id,
-    productId: payData.id,
-    time: payData.time,
+    order_id: productData.order_id,
+    productId: productData.id,
+    time: productData.time,
   };
 
   try {
@@ -103,7 +103,7 @@ function ProductPay() {
   const fetchPaymentData = async () => {
     const data = {
     userId,
-    order_id: payData.order_id,
+    order_id: productData.order_id,
   };
     try {
       const response = await axios.post("https://crm.zipperconnect.space/get/payment",data);
@@ -127,7 +127,7 @@ function ProductPay() {
   const handleUpdatePayment = async () => {
     const data = {
     userId,
-    order_id: payData.order_id,
+    order_id: productData.order_id,
   };
     try {
       const response = await axios.post("https://crm.zipperconnect.space/update/payment", data);
@@ -230,7 +230,7 @@ function ProductPay() {
         </div>
       </div>
       <div className="product-offer-id">
-       Заказ {product.order_id}
+       Заказ {productData.order_id}
       </div>
       <div className="product-offer-status">
       {paymentData === "WAIT" ? (
