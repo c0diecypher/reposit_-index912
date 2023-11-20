@@ -4,6 +4,7 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import Stories from "../Stories/Stories"
 import { useTelegram } from "../Components/Hooks/useTelegram"
 import { MainButton } from "@twa-dev/sdk/react"
+import productsData from "../Products/productsData";
 import axios from 'axios';
 
 function ProductPay() {
