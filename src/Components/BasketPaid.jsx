@@ -46,7 +46,7 @@ const BasketPaid = ({ cart, onDataUpdate, userId } ) => {
     };
 }, [userId]); 
   
-  BasketItem.propTypes = {
+  BasketPaid.propTypes = {
     cart: PropTypes.array.isRequired,
     removeFromCart: PropTypes.func.isRequired,
   };
