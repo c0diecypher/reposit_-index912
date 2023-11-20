@@ -13,7 +13,7 @@ function ProductPay() {
   const [progress, setProgress] = useState(false);
   const [payData,setPayData] = useState([]);
   const selectedItem = payData[0];
-  const selectedProduct = productsData.find(item => item.id === selectedItem.id);
+  const selectedProduct = productsData.find(item => item.id === payData.id);
   const [paymentDate] = useState(new Date()); // Создаем объект Date с текущей датой
   const options = { month: 'short', day: 'numeric' };
   // Декодируйте JSON-строку и преобразуйте ее в объект с данными о товаре
