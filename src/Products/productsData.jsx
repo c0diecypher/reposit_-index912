@@ -14,7 +14,7 @@ export default[
         "category": "Nike",
         "best_seller": "best_seller",
         "size": {
-            "36": "7601 "
+            "36": "7\u00a0601 "
         }
     },
     {
