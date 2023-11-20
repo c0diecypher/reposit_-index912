@@ -66,7 +66,7 @@ function ProductPay() {
   
  const onSendData = async () => {
   setProgress(true);
-  const selectedItem = payData; // You should select the appropriate item based on your logic
+  const selectedItem = payData[0]; // You should select the appropriate item based on your logic
 
   const data = {
     name: selectedItem.name,
@@ -104,7 +104,7 @@ function ProductPay() {
 };
 
   const fetchPaymentData = async () => {
-    const selectedItem = payData; // You should select the appropriate item based on your logic
+    const selectedItem = payData[0]; // You should select the appropriate item based on your logic
     const data = {
     userId,
     order_id: selectedItem.order_id,
@@ -129,7 +129,7 @@ function ProductPay() {
   }, []);
 
   const handleUpdatePayment = async () => {
-    const selectedItem = payData; // You should select the appropriate item based on your logic
+    const selectedItem = payData[0]; // You should select the appropriate item based on your logic
     const data = {
     userId,
     order_id: selectedItem.order_id,
