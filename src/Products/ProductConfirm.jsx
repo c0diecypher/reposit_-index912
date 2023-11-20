@@ -203,9 +203,9 @@ function ProductConfirm() {
         ) : paymentData === "SENT" ? (
           <>Отправлено</>
         ) : paymentData === "TRANSITCN" ? (
-          <>Едет по Китаю</>
+          <>Доставка из Китая в пути</>
         ) : paymentData === "TRANSITRU" ? (
-          <>Едет по России</>
+          <>В пути по России</>
         ) : paymentData === "DELIVERED" ? (
           <>Доставлен в пункт выдачи</>
         ) : (
