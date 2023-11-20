@@ -13,12 +13,14 @@ import Stories from "./Stories/Stories"
 import Catalog from "./Search/Catalog"
 import SizeInfoDetails from "./Products/SizeInfo/SizeInfoDetails"
 import BasketItem from "./Components/BasketItem"
+import BasketPaid from "./Components/BasketPaid"
 import { useTelegram } from "./Components/Hooks/useTelegram"
 import ProfilePage from "./Components/Telegram/ProfilePage";
 import ProductConfirm from "./Products/ProductConfirm";
 import FilterProducts from "./Products/FilterProducts";
 import SettingsProfile from "./Components/Telegram/SettingsProfile"
 import ProductPay from "./Products/ProductPay"
+import ProductPaid from "./Products/ProductPaid"
 // React 
 import { Route, Routes } from "react-router-dom";
 import { BackButton } from "@twa-dev/sdk/react" 
@@ -144,7 +146,7 @@ function App() {
             <Stories />
            
               {isAuthenticated && <BasketItem userId={userId} />}
-            
+              {isAuthenticated && <BasketPaid userId={userId} />}
             <Catalog />
             {isAuthenticated && <Products />}
             <Footer />
