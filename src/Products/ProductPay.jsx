@@ -145,6 +145,7 @@ function ProductPay() {
   return (
     <>
     { showConfirmation ? (
+    <>
 
     <div className="confirm-item" key={productData.id}>
       <div className="images-slider-wrapper">
@@ -228,7 +229,7 @@ function ProductPay() {
         </div>
       </div>
       <div className="product-offer-id">
-       Заказ {productData.order_id}
+       Заказ {product.order_id}
       </div>
       <div className="product-offer-status">
       {paymentData === "WAIT" ? (
@@ -256,6 +257,7 @@ function ProductPay() {
     </>):(
       
     <>
+
        <div className="confirm-item" key={productData.id}>
       <div className="images-slider-wrapper">
         <div className="images-slider-images">
@@ -315,10 +317,11 @@ function ProductPay() {
         }}
                             color={color}
                             textColor={textColor}
-                            text={`Купить за ${productData.price}₽`}
+                            text={`Купить за ${productData.price}`}
                             progress={progress}
       />
-        </>
+      </>
+
       )}
     
   <div className="help-ful">
