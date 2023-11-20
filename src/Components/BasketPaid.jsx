@@ -9,7 +9,7 @@ const BasketPaid = ({ cart, onDataUpdate, userId } ) => {
   const [paymentDate] = useState(new Date()); // Создаем объект Date с текущей датой
   const options = { month: 'short', day: 'numeric' };
   const [totalPrice, setTotalPrice] = useState(0);
-  const [basketData, setBasketData] = useState([]);
+  const [paidData, setPaidData] = useState([]);
   // Обновляем общую стоимость при изменении корзины
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const BasketPaid = ({ cart, onDataUpdate, userId } ) => {
       });
 
       const responseData = await response.json();
-      setBasketData(responseData);
+      setPaidData(responseData);
       console.log('Ответ сервера:', responseData);
     } catch (error) {
       console.error('Ошибка при выполнении запроса:', error);
@@ -53,12 +53,12 @@ const BasketPaid = ({ cart, onDataUpdate, userId } ) => {
 
   return (
     <>
-    {basketData.length > 0 && (
+    {paidData.length > 0 && (
     <div className="product-block-order">
   <div className="product-order">Оплачено</div>
       
   <div className="product-container">
-  {basketData.map((product) => (
+  {paidData.map((product) => (
       <>
         
       <div key={product.id} className="product-container-order" >
