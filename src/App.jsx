@@ -142,12 +142,9 @@ function App() {
             <Header userId={userId} />
             <Searchbar />
             <Stories />
-            {cart.length > 0 && (
-              <BasketItem 
-              cart={cart}
-              userId={userId}
-                />
-            )}
+            
+              <BasketItem userId={userId} />
+            
             <Catalog />
             {isAuthenticated && <Products />}
             <Footer />
