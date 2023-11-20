@@ -3,17 +3,51 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 
-const BasketItem = ({ cart, onDataUpdate } ) => {
+const BasketItem = ({ cart, onDataUpdate, userId } ) => {
   const [paymentDate] = useState(new Date()); // Создаем объект Date с текущей датой
   const options = { month: 'short', day: 'numeric' };
   const [totalPrice, setTotalPrice] = useState(0);
+  const [basketData, setBasketData] = useState([]);
   // Обновляем общую стоимость при изменении корзины
     useEffect(() => {
   // Считаем общую стоимость всех товаров в корзине
       const newTotalPrice = cart.reduce((total, product) => total + product.price * product.quantity, 0);
       setTotalPrice(newTotalPrice);
     }, [cart]);
-  
+
+  useEffect(() => {
+  const data = {
+    userId
+  };
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch('https://crm.zipperconnect.space/load/basket', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const responseData = await response.json();
+      setBasketData(responseData);
+      console.log('Ответ сервера:', responseData);
+    } catch (error) {
+      console.error('Ошибка при выполнении запроса:', error);
+    }
+  };
+
+  // Вызываем функцию fetchData при монтировании компонента
+   const fetchDataInterval = setInterval(fetchData, 5000); // Интервал опроса сервера
+    console.log(fetchDataInterval);
+    // Инициализация данных при загрузке компонента
+    fetchData();
+
+    return () => {
+      clearInterval(fetchDataInterval); // Очистка интервала при размонтировании компонента
+    };
+}, []); 
   
   BasketItem.propTypes = {
     cart: PropTypes.array.isRequired,
@@ -24,7 +58,7 @@ const BasketItem = ({ cart, onDataUpdate } ) => {
     <div className="product-block-order">
   <div className="product-order">Оплачивается</div>
   <div className="product-container">
-    {cart.map((product) => (
+    {BasketData.map((product) => (
       <>
       <div className="product-container-order">
         <Link
