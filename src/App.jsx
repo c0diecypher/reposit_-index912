@@ -219,6 +219,18 @@ function App() {
           
         </Route>
         <Route
+        path="/products/confirm/offer/paid/:name/:size/:price"
+        element={
+          <div>
+            <BackButton />
+            {isAuthenticated && <ProductPaid userId={userId}/>}
+              
+          </div>
+        }
+        >
+          
+        </Route>
+        <Route
           path="/search"
           element={
             <>
