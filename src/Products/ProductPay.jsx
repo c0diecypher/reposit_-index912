@@ -14,6 +14,7 @@ function ProductPay() {
   const [payData,setPayData] = useState([]);
   const selectedItem = payData[0];
   const selectedProduct = productsData.find(item => item.id === selectedItem?.id);
+  console.log(selectedItem);
   const [paymentDate] = useState(new Date()); // Создаем объект Date с текущей датой
   const options = { month: 'short', day: 'numeric' };
   // Декодируйте JSON-строку и преобразуйте ее в объект с данными о товаре
@@ -168,8 +169,8 @@ function ProductPay() {
     </div>
       
     <div className="bg-full-item-name">
-      <div className="confirm-item-name">{selectedItem.name}
-        <span className="confirm-item-size" > размер {selectedItem.size} EU</span>
+      <div className="confirm-item-name">{payData.name}
+        <span className="confirm-item-size" > размер {payData.name} EU</span>
       </div>
     </div>
     <div className="item-order-info">
@@ -234,13 +235,13 @@ function ProductPay() {
       </div>
       
        <hr/>
-       <div className="order-price">{selectedItem.price}₽</div>
+       <div className="order-price">{payData.name}₽</div>
       </div>
     </div> 
     </>):(
       
     <>
-     <div className="confirm-item" key={selectedItem.id}>
+     <div className="confirm-item" key={payData.name}>
       <div className="images-slider-wrapper">
         <div className="images-slider-images">
           <div className="images-slider-image-item">
