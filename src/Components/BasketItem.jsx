@@ -66,11 +66,9 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
           <div className="product-image-container">
             <div className="product-image-card">
               <div className="product-image-inner">
-              {product.img && product.img[0] ? (
-                    <img src={product.img[0]} alt="фото" className="product-image-inner-row" />
-                  ) : (
-                    <div className="placeholder-image">Изображение отсутствует</div>
-                  )}
+              
+                    <img  alt="фото" className="product-image-inner-row" />
+    
               </div>
             </div>
           </div>
