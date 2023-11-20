@@ -301,9 +301,14 @@ function ProductPay() {
         </div>
         </div>
           <div className="item-order-info">
-            <div className="confirm-item-price">
-              {productData.price}₽
-            </div>
+            <div className="product-offer-id">
+       Заказ {productData.order_id}
+      </div>
+      
+       <hr/>
+       <div className="order-price">{productData.price}₽</div>
+      </div>
+    </div> 
             <div className="public-oferta">
               <p className="public-ofert-text">Оплачивая заказ, вы соглашаетесь <br/>с условиями <a className="public-oferta-link">публичной оферты</a></p>
             </div>
