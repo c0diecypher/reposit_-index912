@@ -58,7 +58,7 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
     <div className="product-block-order">
   <div className="product-order">Оплачивается</div>
   <div className="product-container">
-    {BasketData.map((product) => (
+    {basketData.map((product) => (
       <>
       <div className="product-container-order">
         <Link
