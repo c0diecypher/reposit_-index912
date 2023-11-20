@@ -152,46 +152,45 @@ function ProductPay() {
     <>
     { showConfirmation ? (
     <>
-    {payData.map((product) => (
-    <div className="confirm-item" key={product.id}>
+    <div className="confirm-item" key={payData.id}>
       <div className="images-slider-wrapper">
         <div className="images-slider-images">
           <div className="images-slider-image-item">
             <div className="image-item-wrapper">
-              <img src={productsData.find(item => item.id === product.id)?.img[0]} alt="photo" />
+              <img src={productsData.find(item => item.id === payData.id)?.img[0]} alt="photo" />
             </div>
           </div>
           <div className="images-slider-image-item">
             <div className="image-item-wrapper">
-              <img src={productsData.find(item => item.id === product.id)?.img[1]} alt="photo" />
+              <img src={productsData.find(item => item.id === payData.id)?.img[1]} alt="photo" />
             </div>
           </div>
           <div className="images-slider-image-item">
             <div className="image-item-wrapper">
-              <img src={productsData.find(item => item.id === product.id)?.img[2]} alt="photo" />
+              <img src={productsData.find(item => item.id === payData.id)?.img[2]} alt="photo" />
             </div>
           </div>
           <div className="images-slider-image-item">
             <div className="image-item-wrapper">
-              <img src={productsData.find(item => item.id === product.id)?.img[3]} alt="photo" />
+              <img src={productsData.find(item => item.id === payData.id)?.img[3]} alt="photo" />
             </div>
           </div>
           <div className="images-slider-image-item">
             <div className="image-item-wrapper">
-              <img src={productsData.find(item => item.id === product.id)?.img[4]} alt="photo" />
+              <img src={productsData.find(item => item.id === payData.id)?.img[4]} alt="photo" />
             </div>
           </div>
           <div className="images-slider-image-item">
             <div className="image-item-wrapper">
-              <img src={productsData.find(item => item.id === product.id)?.img[5]} alt="photo" />
+              <img src={productsData.find(item => item.id === payData.id)?.img[5]} alt="photo" />
             </div>
           </div>
       </div>
     </div>
       
     <div className="bg-full-item-name">
-      <div className="confirm-item-name">{product.name}
-        <span className="confirm-item-size" > размер {product.size} EU</span>
+      <div className="confirm-item-name">{payData.name}
+        <span className="confirm-item-size" > размер {payData.size} EU</span>
       </div>
     </div>
     <div className="item-order-info">
@@ -235,7 +234,7 @@ function ProductPay() {
         </div>
       </div>
       <div className="product-offer-id">
-       Заказ {product.order_id}
+       Заказ {payData.order_id}
       </div>
       <div className="product-offer-status">
       {paymentData === "WAIT" ? (
@@ -256,59 +255,56 @@ function ProductPay() {
       </div>
       
        <hr/>
-       <div className="order-price">{product.price}₽</div>
+       <div className="order-price">{payData.price}₽</div>
       </div>
     </div> 
-    ))}
     </>):(
       
     <>
-      {payData.map((product) => (
-      <>
-       <div className="confirm-item" key={product.id}>
+       <div className="confirm-item" key={payData.id}>
       <div className="images-slider-wrapper">
         <div className="images-slider-images">
           <div className="images-slider-image-item">
             <div className="image-item-wrapper">
-              <img src={productsData.find(item => item.id === product.id)?.img[0]} alt="photo" />
+              <img src={productsData.find(item => item.id === payData.id)?.img[0]} alt="photo" />
             </div>
           </div>
           <div className="images-slider-image-item">
             <div className="image-item-wrapper">
-              <img src={productsData.find(item => item.id === product.id)?.img[1]} alt="photo" />
+              <img src={productsData.find(item => item.id === payData.id)?.img[1]} alt="photo" />
             </div>
           </div>
           <div className="images-slider-image-item">
             <div className="image-item-wrapper">
-              <img src={productsData.find(item => item.id === product.id)?.img[2]} alt="photo" />
+              <img src={productsData.find(item => item.id === payData.id)?.img[2]} alt="photo" />
             </div>
           </div>
           <div className="images-slider-image-item">
             <div className="image-item-wrapper">
-              <img src={productsData.find(item => item.id === product.id)?.img[3]} alt="photo" />
+              <img src={productsData.find(item => item.id === payData.id)?.img[3]} alt="photo" />
             </div>
           </div>
           <div className="images-slider-image-item">
             <div className="image-item-wrapper">
-              <img src={productsData.find(item => item.id === product.id)?.img[4]} alt="photo" />
+              <img src={productsData.find(item => item.id === payData.id)?.img[4]} alt="photo" />
             </div>
           </div>
           <div className="images-slider-image-item">
             <div className="image-item-wrapper">
-              <img src={productsData.find(item => item.id === product.id)?.img[5]} alt="photo" />
+              <img src={productsData.find(item => item.id === payData.id)?.img[5]} alt="photo" />
             </div>
           </div>
       </div>
     </div>
         
         <div className="bg-full-item-name">
-          <div className="confirm-item-name">{product.name}
-          <span className="confirm-item-size" > размер {product.size} US</span>
+          <div className="confirm-item-name">{payData.name}
+          <span className="confirm-item-size" > размер {payData.size} US</span>
         </div>
         </div>
           <div className="item-order-info">
             <div className="confirm-item-price">
-              {price}₽
+              {payData.price}₽
             </div>
             <div className="public-oferta">
               <p className="public-ofert-text">Оплачивая заказ, вы соглашаетесь <br/>с условиями <a className="public-oferta-link">публичной оферты</a></p>
@@ -324,12 +320,9 @@ function ProductPay() {
         }}
                             color={color}
                             textColor={textColor}
-                            text={`Купить за ${product.price}`}
+                            text={`Купить за ${payData.price}`}
                             progress={progress}
-      />
-      </>
-      ))}
-      
+      />   
         </>
       )}
     
