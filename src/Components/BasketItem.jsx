@@ -2,7 +2,7 @@ import "./css/Basket.css";
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
-import productsData from "./productsData";
+import productsData from "../Products/productsData";
 const BasketItem = ({ cart, onDataUpdate, userId } ) => {
   const [paymentDate] = useState(new Date()); // Создаем объект Date с текущей датой
   const options = { month: 'short', day: 'numeric' };
