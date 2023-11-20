@@ -55,11 +55,12 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
   };
 
   return (
+    <>
+      {basketData.length > 0 && basketData.map((product) => (
+      <>
     <div className="product-block-order">
   <div className="product-order">Оплачивается</div>
   <div className="product-container">
-    {basketData.map((product) => (
-      <>
       <div className="product-container-order">
         <Link
                     to={`/products/confirm/offer/${product.name}/${product.size}/${product.price}`}
@@ -94,10 +95,13 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
           
   </Link>
   </div>
-      </>
-    ))}
+      
+    
   </div>
 </div>
+  </>
+  ))}
+    </>
   );
 };
 
