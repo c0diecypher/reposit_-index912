@@ -201,7 +201,7 @@ function ProductConfirm() {
         ) : paymentData === "PAID" ? (
           <>Оплачено</>
         ) : paymentData === "SENT" ? (
-          <>Отправлено</>
+          <>Готовится к отправке</>
         ) : paymentData === "TRANSITCN" ? (
           <>Доставка из Китая в пути</>
         ) : paymentData === "TRANSITRU" ? (
