@@ -10,7 +10,8 @@ function ProductConfirm() {
   const { productId, size, price, name, img, id } = useParams();
   const location = useLocation();
   const [progress, setProgress] = useState(false);
-
+  const [paymentDate] = useState(new Date()); // Создаем объект Date с текущей датой
+  const options = { month: 'short', day: 'numeric' };
   // Декодируйте JSON-строку и преобразуйте ее в объект с данными о товаре
   const { productData } = location.state || {};
 
@@ -26,7 +27,6 @@ function ProductConfirm() {
   const [paymentLink, setPaymentLink] = useState('');
   const {queryId, userId} = useTelegram();
   const [status, setStatus] = useState('');
-
  const onSendData = async () => {
   setProgress(true);
   const data = {
@@ -37,6 +37,7 @@ function ProductConfirm() {
     userId,
     order_id: productData.order_id,
     productId: productData.id,
+    time: paymentDate.toLocaleDateString("ru-RU", options),
   };
 
   try {
