@@ -82,7 +82,7 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
           <div className="product-price-and-datecreated">
             <div className="product-price-and-date">
             <span className="product-price">{product.price}</span>
-            <span className="product-created">Создан: {paymentDate.toLocaleDateString("ru-RU", options)}</span>
+            <span className="product-created">Создан: {product.time}</span>
             </div>
           </div>
           <div className="product-name">{product.name.toUpperCase()}</div>
