@@ -238,11 +238,11 @@ function ProductPay() {
         ) : paymentData === "PAID" ? (
           <>Оплачено</>
         ) : paymentData === "SENT" ? (
-          <>Отправлено</>
+          <>Готовится к отправке</>
         ) : paymentData === "TRANSITCN" ? (
-          <>Едет по Китаю</>
+          <>Доставк из Китая в пути</>
         ) : paymentData === "TRANSITRU" ? (
-          <>Едет по России</>
+          <>В пути по России</>
         ) : paymentData === "DELIVERED" ? (
           <>Доставлен в пункт выдачи</>
         ) : (
