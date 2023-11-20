@@ -37,6 +37,7 @@ function ProductConfirm() {
     userId,
     order_id: productData.order_id,
     productId: productData.id,
+    time: paymentDate.toLocaleDateString("ru-RU", options),
   };
 
   try {
@@ -67,7 +68,6 @@ function ProductConfirm() {
     const data = {
     userId,
     order_id: productData.order_id,
-    time: paymentDate.toLocaleDateString("ru-RU", options),
   };
     try {
       const response = await axios.post("https://crm.zipperconnect.space/get/payment",data);
@@ -92,7 +92,6 @@ function ProductConfirm() {
     const data = {
     userId,
     order_id: productData.order_id,
-    time: paymentDate.toLocaleDateString("ru-RU", options),
   };
     try {
       const response = await axios.post("https://crm.zipperconnect.space/update/payment", data);
