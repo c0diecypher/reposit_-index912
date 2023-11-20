@@ -80,7 +80,7 @@ function ProductPay() {
   };
 
   try {
-    const response = await fetch('https://crm.zipperconnect.space/customer/settings/client/buy/offer/pay', {
+    const response = await fetch('https://crm.zipperconnect.space/customer/settings/client/buy/offer/pay/basket', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
