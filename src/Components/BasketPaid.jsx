@@ -27,6 +27,10 @@ const BasketPaid = ({ cart, onDataUpdate, userId } ) => {
         body: JSON.stringify(data),
       });
 
+      if (!response.ok) {
+      throw new Error(`Запрос завершился со статусом ${response.status}`);
+    }
+
       const responseData = await response.json();
       setPaidData(responseData);
       console.log('Ответ сервера:', responseData);
