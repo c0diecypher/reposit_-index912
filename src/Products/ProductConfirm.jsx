@@ -173,8 +173,8 @@ function ProductConfirm() {
             </div>
             <span className="status-selection-line"></span>
             <div className="status-selection-step-inner" style={{ color: 
-                paymentData === 'TRANSIT' ? '#31b545' :
-                paymentData === 'CANCEL' ? '#b54531' :
+                paymentData === 'TRANSITCN' ? '#31b545' :
+                paymentData === 'TRANSITRU' ? '#31b545' :
                 paymentData === 'WAIT' ? 'var(--tg-theme-hint-color)' :
                 'var(--tg-theme-hint-color)' /* или любой другой цвет по умолчанию */
               }}>
@@ -196,12 +196,20 @@ function ProductConfirm() {
       </div>
       <div className="product-offer-status">
       {paymentData === "WAIT" ? (
-            <>Ожидается оплата</>
-          ) : paymentData === "PAID" ? (
-            <>Оплачено</>
-          ) : (
-            <>Загрузка...</>
-          )}
+          <>Ожидается оплата</>
+        ) : paymentData === "PAID" ? (
+          <>Оплачено</>
+        ) : paymentData === "SENT" ? (
+          <>Отправлено</>
+        ) : paymentData === "TRANSITCN" ? (
+          <>Едет по Китаю</>
+        ) : paymentData === "TRANSITRU" ? (
+          <>Едет по России</>
+        ) : paymentData === "DELIVERED" ? (
+          <>Доставлен в пункт выдачи</>
+        ) : (
+          <>Загрузка...</>
+        )}
       </div>
       
        <hr/>
