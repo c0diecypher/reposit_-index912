@@ -9,11 +9,6 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [basketData, setBasketData] = useState([]);
   // Обновляем общую стоимость при изменении корзины
-    useEffect(() => {
-  // Считаем общую стоимость всех товаров в корзине
-      const newTotalPrice = cart.reduce((total, product) => total + product.price * product.quantity, 0);
-      setTotalPrice(newTotalPrice);
-    }, [cart]);
 
   useEffect(() => {
   const data = {
