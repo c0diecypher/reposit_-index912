@@ -13,7 +13,7 @@ function ProductPay() {
   const [progress, setProgress] = useState(false);
   const [payData,setPayData] = useState([]);
   const selectedItem = payData[0];
-  const selectedProduct = productsData.find(item => item.id === payData.id);
+  const selectedProduct = productsData.find(item => item.id === selectedItem?.id);
   const [paymentDate] = useState(new Date()); // Создаем объект Date с текущей датой
   const options = { month: 'short', day: 'numeric' };
   // Декодируйте JSON-строку и преобразуйте ее в объект с данными о товаре
@@ -157,36 +157,13 @@ function ProductPay() {
     <div className="confirm-item" key={selectedItem.id}>
       <div className="images-slider-wrapper">
         <div className="images-slider-images">
-          <div className="images-slider-image-item">
-            <div className="image-item-wrapper">
-              <img src={selectedProduct?.img[0]} alt="photo" />
-            </div>
-          </div>
-          <div className="images-slider-image-item">
-            <div className="image-item-wrapper">
-              <img src={selectedProduct?.img[1]} alt="photo" />
-            </div>
-          </div>
-          <div className="images-slider-image-item">
-            <div className="image-item-wrapper">
-             <img src={selectedProduct?.img[2]} alt="photo" />
-            </div>
-          </div>
-          <div className="images-slider-image-item">
-            <div className="image-item-wrapper">
-              <img src={selectedProduct?.img[3]} alt="photo" />
-            </div>
-          </div>
-          <div className="images-slider-image-item">
-            <div className="image-item-wrapper">
-              <img src={selectedProduct?.img[4]} alt="photo" />
-            </div>
-          </div>
-          <div className="images-slider-image-item">
-            <div className="image-item-wrapper">
-              <img src={selectedProduct?.img[5]} alt="photo" />
-            </div>
-          </div>
+          {[0, 1, 2, 3, 4, 5].map(index => (
+              <div className="images-slider-image-item" key={index}>
+                <div className="image-item-wrapper">
+                  <img src={selectedProduct.img[index]} alt={`photo ${index + 1}`} />
+                </div>
+              </div>
+            ))}
       </div>
     </div>
       
