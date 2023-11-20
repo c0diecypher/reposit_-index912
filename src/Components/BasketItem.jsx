@@ -57,6 +57,8 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
   <div className="product-container">
   {basketData.length > 0 && basketData.map((product) => (
       <>
+        console.log("Product ID:", product.id);
+        console.log("Product Data:", productData[product.id]);
       <div className="product-container-order">
         <Link
                     to={`/products/confirm/offer/${product.name}/${product.size}/${product.price}`}
