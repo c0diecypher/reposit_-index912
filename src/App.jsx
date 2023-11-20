@@ -144,7 +144,9 @@ function App() {
             <Stories />
             {cart.length > 0 && (
               <BasketItem 
-              cart={cart}  />
+              cart={cart}
+              userId={userId}
+                />
             )}
             <Catalog />
             {isAuthenticated && <Products />}
