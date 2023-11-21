@@ -77,7 +77,7 @@ function ProductConfirm() {
   };
   useEffect( () => {
     updataStatus()
-  },[])
+  },[onSendData])
 
   const [dataOpen, setDataOpen] = useState(false);
   const handleEditClick = () => {
