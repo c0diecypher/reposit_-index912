@@ -60,34 +60,21 @@ function ProductConfirm() {
   } catch (error) {
     console.error('Ошибка отправки данных на сервер:', error);
   }
-   loadStatus();
    updateStatus();
 };
   
-  const updateStatus = async () => {
+   const updateStatus = async () => {
     const data = {
       userId,
       order_id: productData.order_id,
     };
     console.log(data);
-    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/payment`);
+    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/payment?data=${JSON.stringify({ data })}&_=${Date.now()}`);
     console.log(eventSource);
-    eventSource.onmessage = function (event){
+    eventSource.onmessage = function(event){
       const status = JSON.parse(event.data);
-      setPaymentData(status);
-      console.log('status',status);
+      setPaymentData(prev => [status, ...prev]);
     }
-  };
-  useEffect( () => {
-    updateStatus()
-  },[onSendData])
-
-  const loadStatus = async () => {
-    const data = {
-      userId,
-      order_id: productData.order_id,
-    }
-    await axios.post('https://crm.zipperconnect.space/connect/payment/post',data)
   };
 
   const [dataOpen, setDataOpen] = useState(false);
