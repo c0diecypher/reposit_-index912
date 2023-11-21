@@ -59,9 +59,9 @@ function ProductConfirm() {
   } catch (error) {
     console.error('Ошибка отправки данных на сервер:', error);
   }
-updataStatus();
+   updataStatus();
 };
-
+  
   const updataStatus = async () => {
     const data = {
       userId,
@@ -71,9 +71,13 @@ updataStatus();
     const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/payment?data=${JSON.stringify({data})}`)
     console.log(eventSource);
     eventSource.onmessage = function(event){
-      setPaymentData(response.data.status);
+      const status = JSON.parse(event.data.status);
+      setPaymentData(status);
     }
   };
+  useEffect( () => {
+    updataStatus()
+  },[])
 
   const [dataOpen, setDataOpen] = useState(false);
   const handleEditClick = () => {
