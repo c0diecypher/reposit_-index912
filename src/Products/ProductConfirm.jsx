@@ -67,8 +67,10 @@ updataStatus();
       userId,
       order_id: productData.order_id,
     };
+    console.log(data);
     const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/payment?data=${JSON.stringify({data})}`)
-    eventSource.onmessage = function (event){
+    console.log(eventSource);
+    eventSource.onmessage = function(event){
       setPaymentData(response.data.status);
     }
   };
