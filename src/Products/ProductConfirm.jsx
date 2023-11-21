@@ -53,13 +53,14 @@ function ProductConfirm() {
 
     if (responseData.paymentUrl) {
       Telegram.WebApp.openLink(responseData.paymentUrl);
-      loadStatus();
+      
     } else {
       console.error('Отсутствует ссылка для оплаты.');
     }
   } catch (error) {
     console.error('Ошибка отправки данных на сервер:', error);
   }
+   loadStatus();
    updateStatus();
 };
   
