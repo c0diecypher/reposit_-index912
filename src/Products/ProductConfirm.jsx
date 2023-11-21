@@ -71,11 +71,17 @@ function ProductConfirm() {
     console.log(data);
     const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/payment?data=${JSON.stringify({ data })}&_=${Date.now()}`);
     console.log(eventSource);
+    eventSource.onopen = (event) => {
+      console.log('Соединение установлено:', event);
+    };
     eventSource.onmessage = (event) => {
       const status = JSON.parse(event.data);
       console.log('status',status);
       setPaymentData(status);
-    }
+    };
+    eventSource.onerror = (event) => {
+      console.error('Ошибка соединения:', event);
+    };
   };
 
   const [dataOpen, setDataOpen] = useState(false);
