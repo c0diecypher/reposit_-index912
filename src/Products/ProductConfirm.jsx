@@ -48,36 +48,45 @@ function ProductConfirm() {
       },
       body: JSON.stringify(data),
     });
-
+    
     const responseData = await response.json();
 
     if (responseData.paymentUrl) {
       Telegram.WebApp.openLink(responseData.paymentUrl);
+      loadStatus();
     } else {
       console.error('Отсутствует ссылка для оплаты.');
     }
   } catch (error) {
     console.error('Ошибка отправки данных на сервер:', error);
   }
-   updataStatus();
+   updateStatus();
 };
   
-  const updataStatus = async () => {
+  const updateStatus = async () => {
     const data = {
       userId,
       order_id: productData.order_id,
     };
     console.log(data);
-    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/payment?data=${JSON.stringify({ data })}&_=${Date.now()}`);
+    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/payment`);
     console.log(eventSource);
-    eventSource.onmessage = function(event){
+    eventSource.onmessage = function (event){
       const status = JSON.parse(event.data);
-      setPaymentData(prev => [status, ...prev]);
+      setPaymentData(status);
     }
   };
   useEffect( () => {
-    updataStatus()
+    updateStatus()
   },[onSendData])
+
+  const loadStatus = async () => {
+    const data = {
+      userId,
+      order_id: productData.order_id,
+    }
+    await axios.post('https://crm.zipperconnect.space/connect/payment/post',data)
+  };
 
   const [dataOpen, setDataOpen] = useState(false);
   const handleEditClick = () => {
