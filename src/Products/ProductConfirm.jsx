@@ -63,20 +63,7 @@ function ProductConfirm() {
 
   handleUpdatePayment();
 };
-
-  const fetchPaymentData = async () => {
-    const data = {
-    userId,
-    order_id: productData.order_id,
-  };
-    try {
-      const response = await axios.post("https://crm.zipperconnect.space/get/payment",data);
-      setPaymentData(response.data.status);
-    } catch (error) {
-      console.error("Error fetching payment data:", error);
-    }
-  };
-
+  
   useEffect(() => {
     const fetchDataInterval = setInterval(fetchPaymentData, 5000); // Интервал опроса сервера
     console.log(fetchDataInterval);
@@ -87,20 +74,18 @@ function ProductConfirm() {
       clearInterval(fetchDataInterval); // Очистка интервала при размонтировании компонента
     };
   }, []);
-
-  const handleUpdatePayment = async () => {
+  
+  const updataStatus = async () => {
     const data = {
     userId,
     order_id: productData.order_id,
   };
-    try {
-      const response = await axios.post("https://crm.zipperconnect.space/update/payment", data);
+    const eventSource = new EventSource('https://crm.zipperconnect.space/connect/payment',data)
+    eventSource.onmessage = function (event){
       setPaymentData(response.data.status);
-      console.log(setPaymentData);
-    } catch (error) {
-      console.error("Error updating payment data:", error);
     }
   };
+
   const [dataOpen, setDataOpen] = useState(false);
   const handleEditClick = () => {
     setDataOpen(!dataOpen);
