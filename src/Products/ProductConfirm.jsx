@@ -64,11 +64,12 @@ function ProductConfirm() {
 };
 
   const updataStatus = async () => {
-    
-    const userId = userId;
-    const order_id = productData.order_id;
-
-    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/payment?userId=${userId}&order_id=${order_id}`)
+    const data = {
+      userId,
+      order_id: productData.order_id,
+    };
+    const params = new URLSearchParams(data);
+    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/payment?${params}`)
     eventSource.onmessage = function (event){
       setPaymentData(response.data.status);
     }
