@@ -71,7 +71,7 @@ function ProductConfirm() {
     console.log(data);
     const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/payment?data=${JSON.stringify({ data })}&_=${Date.now()}`);
     console.log(eventSource);
-    eventSource.onmessage = function(event){
+    eventSource.onmessage = function(event) => {
       const status = JSON.parse(event.data);
       console.log('status',status);
       setPaymentData(status);
