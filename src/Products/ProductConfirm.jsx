@@ -74,7 +74,7 @@ function ProductConfirm() {
        try {
       const status = JSON.parse(event.data).status;
       console.log('status',status);
-      setPaymentData(status);
+      setPaymentData([status]);
         } catch (error) {
           console.error('Ошибка при парсинге статуса:', error);
         }
