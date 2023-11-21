@@ -73,7 +73,8 @@ function ProductConfirm() {
     console.log(eventSource);
     eventSource.onmessage = function(event){
       const status = JSON.parse(event.data);
-      setPaymentData(prev => [status, ...prev]);
+      console.log('status',status);
+      setPaymentData(status);
     }
   };
 
