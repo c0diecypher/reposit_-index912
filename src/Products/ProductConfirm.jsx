@@ -68,7 +68,7 @@ function ProductConfirm() {
     const userId = userId;
     const order_id = productData.order_id;
 
-    const eventSource = new EventSource('https://crm.zipperconnect.space/connect/payment?userId=${userId}&order_id=${order_id}')
+    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/payment?userId=${userId}&order_id=${order_id}`)
     eventSource.onmessage = function (event){
       setPaymentData(response.data.status);
     }
