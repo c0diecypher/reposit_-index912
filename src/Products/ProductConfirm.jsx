@@ -68,8 +68,7 @@ function ProductConfirm() {
       userId,
       order_id: productData.order_id,
     };
-    const params = new URLSearchParams(data);
-    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/payment?${params}`)
+    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/payment?data=${JSON.stringify(data)}`)
     eventSource.onmessage = function (event){
       setPaymentData(response.data.status);
     }
