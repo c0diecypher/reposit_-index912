@@ -85,7 +85,7 @@ function ProductConfirm() {
       userId,
       order_id: productData.order_id,
     }
-    await axios.get(`https://crm.zipperconnect.space/connect/payment/post`,data)
+    await axios.post(`https://crm.zipperconnect.space/connect/payment/post`,data)
   };
 
   const [dataOpen, setDataOpen] = useState(false);
