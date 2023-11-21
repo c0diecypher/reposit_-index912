@@ -74,7 +74,7 @@ function ProductConfirm() {
     eventSource.onmessage = function (event){
       const status = JSON.parse(event.data);
       setPaymentData(status);
-      console.log(status);
+      console.log('status',status);
     }
   };
   useEffect( () => {
@@ -86,7 +86,7 @@ function ProductConfirm() {
       userId,
       order_id: productData.order_id,
     }
-    await axios.post(`https://crm.zipperconnect.space/connect/payment/post`,data)
+    await axios.post('https://crm.zipperconnect.space/connect/payment/post',data)
   };
 
   const [dataOpen, setDataOpen] = useState(false);
