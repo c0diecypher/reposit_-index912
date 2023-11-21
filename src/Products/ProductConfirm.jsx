@@ -69,7 +69,7 @@ function ProductConfirm() {
       order_id: productData.order_id,
     };
     console.log(data);
-    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/payment?data={JSON.stringify({data})}`);
+    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/payment`);
     console.log(eventSource);
     eventSource.onmessage = function (event){
       const status = JSON.parse(event.data);
@@ -85,7 +85,7 @@ function ProductConfirm() {
       userId,
       order_id: productData.order_id,
     }
-    await axios.post(`https://crm.zipperconnect.space/connect/payment/post?data={JSON.stringify({data})}`,data)
+    await axios.post(`https://crm.zipperconnect.space/connect/payment/post`,data)
   };
 
   const [dataOpen, setDataOpen] = useState(false);
