@@ -53,7 +53,7 @@ function ProductConfirm() {
 
     if (responseData.paymentUrl) {
       Telegram.WebApp.openLink(responseData.paymentUrl);
-      fetchPaymentData();
+      updataStatus();
     } else {
       console.error('Отсутствует ссылка для оплаты.');
     }
@@ -61,20 +61,8 @@ function ProductConfirm() {
     console.error('Ошибка отправки данных на сервер:', error);
   }
 
-  handleUpdatePayment();
 };
-  
-  useEffect(() => {
-    const fetchDataInterval = setInterval(fetchPaymentData, 5000); // Интервал опроса сервера
-    console.log(fetchDataInterval);
-    // Инициализация данных при загрузке компонента
-    fetchPaymentData();
 
-    return () => {
-      clearInterval(fetchDataInterval); // Очистка интервала при размонтировании компонента
-    };
-  }, []);
-  
   const updataStatus = async () => {
     const data = {
     userId,
