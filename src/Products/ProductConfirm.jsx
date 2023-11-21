@@ -74,6 +74,7 @@ function ProductConfirm() {
     eventSource.onmessage = function (event){
       const status = JSON.parse(event.data);
       setPaymentData(status);
+      console.log(status);
     }
   };
   useEffect( () => {
