@@ -71,13 +71,9 @@ function ProductConfirm() {
     const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/payment?data=${JSON.stringify({ data })}&_=${Date.now()}`);
     console.log(eventSource);
     eventSource.onmessage = function(event){
-       try {
-      const status = JSON.parse(event.data.status);
+      const status = JSON.parse(event.data);
       console.log('Status',status);
       setPaymentData(status);
-        } catch (error) {
-          console.error('Ошибка при парсинге статуса:', error);
-        }
     }
   };
   useEffect( () => {
