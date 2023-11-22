@@ -48,42 +48,59 @@ function ProductConfirm() {
       },
       body: JSON.stringify(data),
     });
-    
+
     const responseData = await response.json();
 
     if (responseData.paymentUrl) {
       Telegram.WebApp.openLink(responseData.paymentUrl);
-      
+      fetchPaymentData();
     } else {
       console.error('Отсутствует ссылка для оплаты.');
     }
   } catch (error) {
     console.error('Ошибка отправки данных на сервер:', error);
   }
-   updateStatus();
+
+  handleUpdatePayment();
 };
-  
-   const updateStatus = async () => {
+
+  const fetchPaymentData = async () => {
     const data = {
-      userId,
-      order_id: productData.order_id,
-    };
-    console.log(data);
-    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/payment?data=${JSON.stringify({ data })}&_=${Date.now()}`);
-    console.log(eventSource);
-    eventSource.onopen = (event) => {
-      console.log('Соединение установлено:', event);
-    };
-    eventSource.onmessage = (event) => {
-      const status = JSON.parse(event.data);
-      console.log('status',status);
-      setPaymentData(status);
-    };
-    eventSource.onerror = (event) => {
-      console.error('Ошибка соединения:', event);
-    };
+    userId,
+    order_id: productData.order_id,
+  };
+    try {
+      const response = await axios.post("https://crm.zipperconnect.space/get/payment",data);
+      setPaymentData(response.data.status);
+    } catch (error) {
+      console.error("Error fetching payment data:", error);
+    }
   };
 
+  useEffect(() => {
+    const fetchDataInterval = setInterval(fetchPaymentData, 5000); // Интервал опроса сервера
+    console.log(fetchDataInterval);
+    // Инициализация данных при загрузке компонента
+    fetchPaymentData();
+
+    return () => {
+      clearInterval(fetchDataInterval); // Очистка интервала при размонтировании компонента
+    };
+  }, []);
+
+  const handleUpdatePayment = async () => {
+    const data = {
+    userId,
+    order_id: productData.order_id,
+  };
+    try {
+      const response = await axios.post("https://crm.zipperconnect.space/update/payment", data);
+      setPaymentData(response.data.status);
+      console.log(setPaymentData);
+    } catch (error) {
+      console.error("Error updating payment data:", error);
+    }
+  };
   const [dataOpen, setDataOpen] = useState(false);
   const handleEditClick = () => {
     setDataOpen(!dataOpen);
