@@ -77,10 +77,8 @@ body {
     animation-play-state: running;
     filter:blur(21px);
     opacity: .7;
-  }
-  .action-card::after {
     outline: none;
-}
+  }
 .action-card-bg{
     background: var(--tg-bg);
     border-radius: 20px;
