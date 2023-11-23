@@ -6,9 +6,10 @@ function ButtonBonus() {
 
   return (
     <>
-      <Link to={`/bonus/`}>
+      
       <div className='action-buttons'>
         <div className='action-card'>
+          <Link to={`/bonus/`}>
             <div className='action-card-QWE13S'>
                 <div className='action-card-QWE13B'></div>
                 <div className='action-card-bg'>
@@ -23,7 +24,7 @@ function ButtonBonus() {
                     </div>
                 </div>
             </div>
-            
+           </Link> 
         </div>
             <div className="action-card-IQWEA2">
                 <div className='action-card-QWE13A'>
@@ -40,7 +41,6 @@ function ButtonBonus() {
                 </div>
             </div>
       </div>
-      </Link>
     </>
   )
 }
