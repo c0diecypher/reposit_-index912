@@ -1,15 +1,16 @@
 
 import "./css/Buttons.css";
-
+import { Link } from "react-router-dom";
 function ButtonBonus() {
   
 
   return (
     <>
+      <Link to={`/bonus/`}>
       <div className='action-buttons'>
         <div className='action-card'>
             <div className='action-card-QWE13S'>
-              <div className='action-card-QWE13B'></div>
+                <div className='action-card-QWE13B'></div>
                 <div className='action-card-bg'>
                     <div className="action-inner">
                         <div className="action-head">
@@ -39,6 +40,7 @@ function ButtonBonus() {
                 </div>
             </div>
       </div>
+      </Link>
     </>
   )
 }
