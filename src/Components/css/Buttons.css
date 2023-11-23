@@ -52,7 +52,7 @@ body {
 }
 
 
-.action-card-QWE13S::before {
+.action-card-bg::before {
     content: '';
     position: absolute;
     top: calc(-1 * var(--borderWidth));
@@ -64,8 +64,8 @@ body {
     z-index: -1;
     animation: animatedgradient 3s ease alternate infinite;
     background-size: 300% 300%;
-    filter: blur(7px);
-    opacity: .4;
+    filter: blur(21px);
+    opacity: .7;
   }
   
   
