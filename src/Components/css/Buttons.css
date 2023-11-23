@@ -37,6 +37,8 @@ body {
     z-index: 0;
 
 }
+
+
 .action-card-IQWEA2{
     
     
@@ -76,7 +78,9 @@ body {
     filter:blur(21px);
     opacity: .7;
   }
- 
+  .action-card::after {
+    outline: none;
+}
 .action-card-bg{
     background: var(--tg-bg);
     border-radius: 20px;
