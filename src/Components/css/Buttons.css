@@ -48,6 +48,7 @@ body {
 }
 .action-card-QWE13S{
     background: #0000;
+    box-shadow: none; /* Убрана тень */
     border-radius: 9999px;
 }
 .action-card-QWE13S::before {
