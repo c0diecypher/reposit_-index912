@@ -48,29 +48,38 @@ body {
 }
 .action-card-QWE13S{
     background: #0000;
-    box-shadow: none; /* Убрана тень */
     border-radius: 9999px;
 }
-.action-card-QWE13S::before {
-    content: '';
+.action-card-QWE13S::after {
+    content: "";
     position: absolute;
-    top: 0px;
-    left: -2px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
     height: 100%;
-    width: calc(100% + 4px);
-    border-radius: 20px;
-    z-index: -1;
-    opacity: 0.4;
-    background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b);
-    background-size: 300% 300%;
+    opacity: .7;
     filter: blur(21px);
-    box-shadow: none; /* Убрана тень */
-    transition: background-position 1s ease; /* Плавный переход для свойства background-position */
-  }
+    border-radius: 99999px;
+    z-index: -2;
+    background: radial-gradient(84.29% 136.58% at 6.86% 83.96%,#eb9c00 0,#ff4769 27.08%,#3d50ff 66.38%,#00b3ff 100%);
+    animation: actions_gradientAnim__Cd_YF 5s linear infinite alternate;
+}
   
-  .action-card-QWE13S:hover::before {
-    background-position: 100% 50%;
-  }
+  @keyframes actions_gradientAnim__Cd_YF {
+    0% {
+        transform: scaleX(1) rotate(0deg) translateX(0)
+    }
+
+    50% {
+        transform: scaleX(.9) rotate(25deg) translateX(-5%)
+    }
+
+    to {
+        transform: scaleX(.9) rotate(-15deg) translateX(5%)
+    }
+}
 
 .action-card-bg{
     background: var(--tg-bg);
