@@ -24,7 +24,7 @@ function ButtonBonus() {
             
         </div>
             <div className="action-card-IQWEA2">
-                <div className='action-card-QWE13S'>
+                <div className='action-card-QWE13A'>
                         <div className='action-card-bg'>
                             <div className="action-inner">
                                 <div className="action-head" >
