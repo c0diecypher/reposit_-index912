@@ -37,8 +37,6 @@ body {
     z-index: 0;
 
 }
-
-
 .action-card-IQWEA2{
     
     
@@ -60,6 +58,26 @@ body {
     100% {
         background-position: 0%;
     }
+}
+
+@media only screen and (max-width: 767px) {
+    .action-card::after{
+        content:'';
+        position: absolute;
+        z-index: -1;
+        top: -.125em;
+        left: -.125em;
+        width: calc(100% + .25em);
+        height: calc(100% + .25em);
+        border-radius: .25em;
+        background-image: linear-gradient(45deg,#f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad);
+        background-size: 200%;
+        animation: animateborder 3s ease infinite paused;
+        animation-play-state: running;
+        filter:blur(21px);
+        opacity: .7;
+        outline: none;
+      }
 }
 
 .action-card::after{
