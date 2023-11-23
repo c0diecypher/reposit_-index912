@@ -9,6 +9,7 @@ function ButtonBonus() {
       <div className='action-buttons'>
         <div className='action-card'>
             <div className='action-card-QWE13S'>
+              <div className='action-card-QWE13B'></div>
                 <div className='action-card-bg'>
                     <div className="action-inner">
                         <div className="action-head">
