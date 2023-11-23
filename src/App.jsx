@@ -21,6 +21,7 @@ import SettingsProfile from "./Components/Telegram/SettingsProfile";
 import ProductPay from "./Products/ProductPay";
 import ProductPaid from "./Products/ProductPaid";
 import BasketPaid from "./Components/BasketPaid";
+import ButtonBonus from "./Components/ButtonBonus";
 // React 
 import { Route, Routes } from "react-router-dom";
 import { BackButton } from "@twa-dev/sdk/react" 
@@ -144,6 +145,7 @@ function App() {
             <Header userId={userId} />
             <Searchbar />
             <Stories />
+            <ButtonBonus />
               {isAuthenticated && <BasketItem userId={userId} />}
               <div></div>
               {isAuthenticated && <BasketPaid userId={userId} />}
