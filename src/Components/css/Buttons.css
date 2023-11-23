@@ -170,3 +170,15 @@ body {
     font-weight: 500;
     width: calc(var(--font-size, 20px) + var(--font-size, 20px)/5);
 }
+
+.action-card-QWE13S:focus {
+    outline: none;
+  }
+  
+  .action-card-QWE13S:active {
+    letter-spacing: normal;
+    transform: translateY(4px);
+    box-shadow: none;
+    transform: scale(0.94);
+    transition: .1s linear;
+  }
