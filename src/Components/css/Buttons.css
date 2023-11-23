@@ -39,8 +39,8 @@ body {
     overflow: visible;
     border-radius: 999999px;
 }
-.action-card-IQWEA2{
-    background: #0000;
+.action-card-QWE13S .action-card-IQWEA2{
+    background: var(--tg-bg);
     border-radius: 9999px;
     gap: 8px;
     position: relative;
@@ -49,10 +49,6 @@ body {
 .action-card-QWE13S{
     background: #0000;
     border-radius: 9999px;
-}
-.action-card-QWE13S svg{
-width: 20%;
-height: 20%;
 }
 .action-card-QWE13S::before {
     content: '';
