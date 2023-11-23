@@ -1,0 +1,137 @@
+:root {
+    --space-4x: 16px;
+    --space-6x: 0%;
+    --space-8x: 32px;
+    --button-text-color: var(--tg-theme-button-text-color, #fff);
+    --color: var(--tg-theme-button-color, #393939);
+    --button-color: var(--tg-theme-button-color, #007cff);
+    --accent: #007cff;
+    --tg-bg: var(--tg-theme-bg-color, #f2f4f6);
+    --tg-second: var(--tg-theme-secondary-bg-color, #ededed);
+    --tg-text: var(--tg-theme-text-color, #000);
+    --tg-button-text: var(--tg-theme-button-text-color, #fff);
+    --tg-hint: var(--tg-theme-hint-color, #393939);
+    --font-size: 20px;
+    --font-family: "SF Pro Display",-apple-system,BlinkMacSystemFont,Roboto,sans-serif;
+    --borderWidth: 3px;
+  }
+
+  .refer-friend-section{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 15px 20px;
+    gap: 10px;
+    isolation: isolate;
+    background: var(--tg-bg);
+    border-radius: 0 0 20px 20px;
+    margin-bottom: 8px;
+}
+
+.refer-friend-image{
+    display: flex;
+    width: 100%;
+
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.refer-friend-emoji:nth-child{
+    border-radius: 9999px;
+    background: #eaffc8;
+    animation: refer-friend-image-emoji .8s both;
+    z-index: 99;
+    width: 60%;
+}
+
+.refer-friend-emoji{
+    border-radius: 9999px;
+    background: #ffc8c8;
+    animation: refer-friend-image-emoji .8s both;
+    z-index: 99;
+    width: 60%;
+}
+
+@keyframes refer-friend-image-emoji {
+    0% {
+        transform: scale(.1);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(.7);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(.5);
+    }
+}
+
+.refer-friend-emoji img{
+    width: 100%;
+
+    color: transparent;
+}
+
+.refer-friend-title{
+    text-align: left;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 110%;
+    letter-spacing: -.02em;
+    display: block;
+}
+
+.refer-friend-title-gradient{
+    display: inline;
+    background: radial-gradient(266.38% 477.63% at -77.59% 78.26%,#f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #0000;
+}
+
+.refer-friend-selection-box{
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    border-radius: 20px;
+    background: var(--tg-second);
+}
+
+.refer-friend-selection-box p{
+    text-align: left;
+    margin: 0;
+}
+
+.link-refer-friends{
+    border-radius: 20px;
+    background-color: var(--tg-bg);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 15px;
+}
+
+.link-refer-friends-title{
+    text-align: left;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 130%;
+    letter-spacing: -.01em;
+}
+
+.link-refer-friends-linkuser{
+    text-align: left;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 140%;
+    color: var(--button-color);
+    cursor: pointer;
+}
