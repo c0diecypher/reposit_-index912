@@ -8,7 +8,7 @@ function BonusPage() {
         <div className="refer-friend-section">
             <div className="refer-friend-image">
                 <div className="refer-friend-emoji">
-                    <img src="/public/img/img/emojisky.com-11765234.png" alt="" />
+                    <img src="../../img/img/emojisky.com-11765234.png" alt="" />
                 </div>
                 
                 
