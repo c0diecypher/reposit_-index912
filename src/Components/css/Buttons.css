@@ -14,6 +14,7 @@
     --tg-hint: var(--tg-theme-hint-color, #393939);
     --font-size: 20px;
     --font-family: "SF Pro Display",-apple-system,BlinkMacSystemFont,Roboto,sans-serif;
+    --borderWidth: 3px;
   }
 
 body {
@@ -39,8 +40,8 @@ body {
     border-radius: 999999px;
 }
 .action-card-IQWEA2{
-    
-    
+    background: #0000;
+    border-radius: 9999px;
     gap: 8px;
     position: relative;
     z-index: 0;
@@ -50,37 +51,43 @@ body {
     border-radius: 9999px;
 }
 
-@keyframes animateborder {
-    0% {
-        background-position: 0%;
-    }
-    50% {
-        background-position: 100%;
-    }
-    100% {
-        background-position: 0%;
-    }
+
+.action-card::after {
+    content: '';
+    position: absolute;
+    top: calc(-1 * var(--borderWidth));
+    left: calc(-1 * var(--borderWidth));
+    height: calc(100% + var(--borderWidth) * 2);
+    width: calc(100% + var(--borderWidth) * 2);
+    background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b);
+    border-radius: calc(2 * var(--borderWidth));
+    z-index: -1;
+    animation: animatedgradient 3s ease alternate infinite;
+    background-size: 300% 300%;
+    filter:blur(21px);
+    opacity: .7;
+  }
+  
+  @keyframes animatedgradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
-.action-card::after{
-    content:'';
-        position: absolute;
-        z-index: -1;
-        top: 0px;
-        left: 0px;
-        width: 100%;
-        height: calc(93% + 4px);
-        border-radius: 999999px;
-        background-image: linear-gradient(45deg,#f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b );
-        background-size: 200%;
-        animation: animateborder 3s linear infinite;
-        animation-play-state: running;
-        filter:blur(21px);
-        opacity: .9;
-        outline: none;
-        border: none;
-        box-shadow: none; 
-  }
+
+
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
 .action-card-bg{
     background: var(--tg-bg);
     border-radius: 20px;
