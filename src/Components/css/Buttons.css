@@ -52,7 +52,7 @@ body {
 }
 
 
-.action-card::after {
+.action-card-QWE13S::after {
     content: '';
     position: absolute;
     top: calc(-1 * var(--borderWidth));
