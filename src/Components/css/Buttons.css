@@ -77,6 +77,8 @@ body {
         filter:blur(21px);
         opacity: .7;
         outline: none;
+        border: none;
+        box-shadow: none; 
       }
 }
 
@@ -96,6 +98,8 @@ body {
     filter:blur(21px);
     opacity: .7;
     outline: none;
+    border: none;
+    box-shadow: none; 
   }
 .action-card-bg{
     background: var(--tg-bg);
