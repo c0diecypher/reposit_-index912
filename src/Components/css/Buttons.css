@@ -39,7 +39,7 @@ body {
     overflow: visible;
     border-radius: 999999px;
 }
-.action-card-QWE13S .action-card-IQWEA2{
+.action-card-IQWEA2{
     background: var(--tg-bg);
     border-radius: 9999px;
     gap: 8px;
@@ -50,7 +50,7 @@ body {
     background: #0000;
     border-radius: 9999px;
 }
-.action-card-QWE13S::before{
+.action-card-QWE13S::before {
     content: '';
     position: absolute;
     top: 0px;
@@ -61,13 +61,24 @@ body {
     z-index: -1;
     opacity: 0.4;
     background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b);
-    animation: animatedgradient 3s ease alternate infinite;
     background-size: 300% 300%;
-    filter:blur(21px);
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0)
+    filter: blur(21px);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0);
+    transition: background-position 5s linear; /* Плавный переход для свойства background-position */
+    animation: gradientMovement 5s linear infinite; /* Анимация с использованием keyframes */
   }
   
-
+  @keyframes gradientMovement {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 
 .action-card-bg{
     background: var(--tg-bg);
