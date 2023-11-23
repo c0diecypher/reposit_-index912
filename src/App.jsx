@@ -22,6 +22,7 @@ import ProductPay from "./Products/ProductPay";
 import ProductPaid from "./Products/ProductPaid";
 import BasketPaid from "./Components/BasketPaid";
 import ButtonBonus from "./Components/ButtonBonus";
+import BonusPage from "./Components/BonusPage";
 // React 
 import { Route, Routes } from "react-router-dom";
 import { BackButton } from "@twa-dev/sdk/react" 
@@ -156,6 +157,17 @@ function App() {
         }
         >
 
+        </Route>
+        <Route
+        path="/bonus/"
+        element={
+          <div>
+            <BackButton />
+            <BonusPage />
+          </div>
+        }
+        >
+          
         </Route>
         <Route
         path="/profile/"
