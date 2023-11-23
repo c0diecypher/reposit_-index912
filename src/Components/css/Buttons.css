@@ -50,7 +50,7 @@ body {
     background: #0000;
     border-radius: 9999px;
 }
-.action-card-QWE13S::before {
+.action-card-QWE13S::before{
     content: '';
     position: absolute;
     top: 0px;
@@ -61,14 +61,13 @@ body {
     z-index: -1;
     opacity: 0.4;
     background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b);
+    transition: background-position 1s ease;
     background-size: 300% 300%;
-    filter: blur(21px);
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0);
-    transition: background-position 5s linear; /* Плавный переход для свойства background-position */
-    animation: gradientMovement 5s linear infinite; /* Анимация с использованием keyframes */
+    filter:blur(21px);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0)
   }
   
-  @keyframes gradientMovement {
+    @-webkit-keyframes animatedgradient {
     0% {
       background-position: 0% 50%;
     }
@@ -78,6 +77,19 @@ body {
     100% {
       background-position: 0% 50%;
     }
+
+  }
+  @keyframes animatedgradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+
   }
 
 .action-card-bg{
