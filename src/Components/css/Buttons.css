@@ -72,33 +72,20 @@ body {
     left: 0;
     height: 100%;
     width: 100%;
-    background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad);
+    background: linear-gradient(25deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad);
     border-radius: 20px;
     z-index: -1;
-    animation: animatedgradient 10s ease alternate infinite;
+    animation: animatedgradient 5s linear infinite;
     background-size: 300% 300%;
   }
   
   @keyframes animatedgradient {
     0% {
-      background-position: 0% 50%;
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
-    25% {
-        background-position: 100% 75%;
-        transform: rotate(90deg);
-      }
-    50% {
-      background-position: 100% 50%;
-      transform: rotate(180deg);
-    }
-    75% {
-        background-position: 150% 75%;
-        transform: rotate(260deg);
-      }
     100% {
-      background-position: 200% 150%;
-      transform: rotate(360deg);
+
+        transform: rotate(360deg);
     }
   }
 
