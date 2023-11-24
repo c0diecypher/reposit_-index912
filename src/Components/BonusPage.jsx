@@ -26,6 +26,7 @@ function BonusPage({userId}) {
         <div className="link-refer-friends">
             <div className="link-refer-friends-title">Твоя ссылка на приглашение</div>
             <div className="link-refer-friends-linkuser">https://t.me/zipperstore_bot?start={userId}</div>
+            <div className="link-button-copy">Скопировать <span className="light"></span></div> 
         </div>
     </>
   )
