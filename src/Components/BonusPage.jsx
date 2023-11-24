@@ -1,19 +1,19 @@
 
 import "./css/Refer.css";
-import ClipboardJS from 'clipboard';
 import { useState } from "react";
 
 function BonusPage({userId}) {
   
   const [isCopied, setIsCopied] = useState(false);
-    const handleCopyClick = () => {
-        const clipboard = new ClipboardJS('.link-button-copy');
-        clipboard.on('success', (e) => {
-          // Успешное копирование
-          e.clearSelection();
-          setIsCopied(true);
-        });
-      };
+
+    const handleCopyClick = async () => {
+      try {
+        await navigator.clipboard.writeText(`https://t.me/zipperstore_bot?start=${userId}`);
+        setIsCopied(true);
+      } catch (err) {
+        console.error('Ошибка при копировании ссылки', err);
+      }
+    };
 
   return (
     <>
@@ -38,7 +38,12 @@ function BonusPage({userId}) {
         <div className="link-refer-friends">
             <div className="link-refer-friends-title">Твоя ссылка на приглашение</div>
             <div className="link-refer-friends-linkuser">https://t.me/zipperstore_bot?start={userId}</div>
-            <div className="link-button-copy" data-clipboard-text={`https://t.me/zipperstore_bot?start=${userId}`} onClick={handleCopyClick}>{isCopied ? 'Скопировано ✅' : 'Скопировать'} <span className="light"></span></div>  
+            <div
+            className='link-button-copy'
+            onClick={handleCopyClick}
+            >
+          {isCopied ? 'Скопировано ✅' : 'Скопировать'} <span className="light"></span>
+        </div>
         </div>
     </>
   )
