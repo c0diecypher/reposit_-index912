@@ -11,7 +11,7 @@ function ButtonBonus({userId}) {
     }
     const fetchUserBonus = async () => {
       try {
-        const response = await fetch("/api/get/bonus", {
+        const response = await fetch("https://crm.zipperconnect.space/api/get/bonus", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
