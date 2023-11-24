@@ -1,6 +1,6 @@
 
 import "./css/Refer.css";
-function BonusPage() {
+function BonusPage({userId}) {
   
 
   return (
@@ -14,7 +14,7 @@ function BonusPage() {
                 
             </div>
             <div className="refer-friend-title">Зови друзей!
-            Подарим <br/>
+            Подарим по
                     <div className="refer-friend-title-gradient"> 1000 рублей </div>
                      каждому!
             </div>
@@ -25,7 +25,7 @@ function BonusPage() {
         </div>
         <div className="link-refer-friends">
             <div className="link-refer-friends-title">Твоя ссылка на приглашение</div>
-            <div className="link-refer-friends-linkuser">https://t.me/zipperstore_bot?start=</div>
+            <div className="link-refer-friends-linkuser">https://t.me/zipperstore_bot?start={userId}</div>
         </div>
     </>
   )
