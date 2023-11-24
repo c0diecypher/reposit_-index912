@@ -25,7 +25,7 @@ function BonusPage({userId}) {
                 
                 
             </div>
-            <div className="refer-friend-title">Зови друзей!
+            <div className="refer-friend-title">Зови друзей! <br/>
             Подарим по
                     <div className="refer-friend-title-gradient"> 1000 рублей </div>
                      каждому!
