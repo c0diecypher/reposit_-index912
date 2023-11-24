@@ -6,9 +6,9 @@ function ButtonBonus({userId}) {
   const [userBonus, setUserBonus] = useState(0);
 
   useEffect(() => {
-    const dataUser = {
-      userId: userId,
-    }
+      const data = {
+      userId
+    };
     const fetchUserBonus = async () => {
       try {
         const response = await fetch("https://crm.zipperconnect.space/api/get/bonus", {
@@ -16,19 +16,18 @@ function ButtonBonus({userId}) {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(dataUser),
+          body: JSON.stringify(data),
         });
 
-        if (response.ok) {
-          const data = await response.json();
-          setUserBonus(data.userBonus);
-        } else {
-          console.error("Ошибка при запросе бонусов");
+        if (!response.ok) {
+          throw new Error(`Запрос завершился со статусом ${response.status}`);
         }
-      } catch (error) {
-        console.error("Произошла ошибка при выполнении запроса", error);
-      }
-    };
+          const responseData = await response.json();
+          setUserBonus(responseData.userBonus);
+        } catch (error) {
+      console.error('Ошибка при выполнении запроса:', error);
+    }
+  };
 
     fetchUserBonus();
   }, [userId]);
