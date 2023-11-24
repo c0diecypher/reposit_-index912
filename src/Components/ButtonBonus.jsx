@@ -1,8 +1,34 @@
-
+import { useState, useEffect } from "react";
 import "./css/Buttons.css";
 import { Link } from "react-router-dom";
-function ButtonBonus() {
-  
+
+function ButtonBonus({userId}) {
+  const [userBonus, setUserBonus] = useState(0);
+
+  useEffect(() => {
+    const fetchUserBonus = async () => {
+      try {
+        const response = await fetch("/api/get/bonus", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userId }),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setUserBonus(data.userBonus);
+        } else {
+          console.error("Ошибка при запросе бонусов");
+        }
+      } catch (error) {
+        console.error("Произошла ошибка при выполнении запроса", error);
+      }
+    };
+
+    fetchUserBonus();
+  }, [userId]);
 
   return (
     <>
@@ -19,7 +45,7 @@ function ButtonBonus() {
                         </div>
                         <div className="action-footer">
                             <div className="action-poinst-title">₽</div>
-                            <div className="action-poinst-icon">0</div>
+                            <div className="action-poinst-icon">{userBonus}</div>
                         </div>
                     </div>
                 </div>
