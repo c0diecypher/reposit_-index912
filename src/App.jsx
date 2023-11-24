@@ -146,7 +146,7 @@ function App() {
             <Header userId={userId} />
             <Searchbar />
             <Stories />
-            <ButtonBonus />
+              {isAuthenticated && <ButtonBonus />}
               {isAuthenticated && <BasketItem userId={userId} />}
               <div></div>
               {isAuthenticated && <BasketPaid userId={userId} />}
@@ -163,7 +163,7 @@ function App() {
         element={
           <div>
             <BackButton />
-            <BonusPage />
+            <BonusPage userId={userId} />
           </div>
         }
         >
