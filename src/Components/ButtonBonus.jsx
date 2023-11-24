@@ -6,6 +6,9 @@ function ButtonBonus({userId}) {
   const [userBonus, setUserBonus] = useState(0);
 
   useEffect(() => {
+    const dataUser = {
+      userId: userId,
+    }
     const fetchUserBonus = async () => {
       try {
         const response = await fetch("/api/get/bonus", {
@@ -13,7 +16,7 @@ function ButtonBonus({userId}) {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ userId }),
+          body: JSON.stringify(dataUser),
         });
 
         if (response.ok) {
