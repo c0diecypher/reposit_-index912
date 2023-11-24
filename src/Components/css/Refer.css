@@ -135,3 +135,58 @@
     color: var(--button-color);
     cursor: pointer;
 }
+
+.link-button-copy {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 28px;
+    gap: 10px;
+    cursor: pointer;
+    transition: all .15s linear;
+    background-color: var(--button-color);
+    border-radius: 12px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    color: var(--button-text-color);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 140%;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.link-button-copy .light {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 60%;
+    transform: skewX(0);
+    animation: flareAnimation;
+    left: -150%;
+    filter: blur(21px);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.4));
+    animation: flareAnimation 1.4s infinite;
+}
+
+@keyframes flareAnimation {
+    0% {
+        left: -150%;
+    }
+    100% {
+        left: 150%;
+    }
+}
+
+.link-button-copy:focus {
+    outline: none;
+  }
+  
+  .link-button-copy:active {
+    letter-spacing: normal;
+    transform: translateY(4px);
+    box-shadow: none;
+    transform: scale(0.94);
+    transition: .1s linear;
+  }
