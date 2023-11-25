@@ -66,7 +66,7 @@ const Products = ({userId}) => {
                     {product.price && (
                       <>
                         {`${Number(product.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - 500}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
-                        <del style={{ fontSize: '12px', color: 'var(--tg-hint)' }}>{`${product.price}₽`}</del>{" "}
+                        <del style={{ marginLeft:'4px', fontWeight:'400', fontSize: '12px', color: 'var(--tg-hint)' }}>{`${product.price}₽`}</del>{" "}
                       </>
                     )}
                   </>
