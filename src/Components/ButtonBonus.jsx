@@ -13,7 +13,7 @@ function ButtonBonus({userId}) {
     };
 
     try {
-      const response = await fetch('https://crm.zipperconnect.space/load/basket/paid', {
+      const response = await fetch('https://crm.zipperconnect.space/get/bonus', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
