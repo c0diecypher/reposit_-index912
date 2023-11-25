@@ -44,8 +44,6 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
       
   <div className="product-container">
   {basketData.map((product) => (
-      <>
-        
       <div key={product.id} className="product-container-order" >
         <Link
                     to={`/products/confirm/offer/${product.name}/${product.size}/${product.price}`}
@@ -84,7 +82,6 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
           
   </Link>
   </div>
-     </>
   ))} 
     
   </div>
