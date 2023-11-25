@@ -63,7 +63,8 @@ const Products = ({userId}) => {
               <h4>
                 {discount.includes(product.id) && (
                     <>
-                      <del>{`${product.price}₽`}</del> {`${product.price - 500}₽`}
+                      <del>{`${Number(product.price)}₽`}</del>{" "}
+                      {`${Number(product.price) - 500}₽`}
                     </>
                   )}
                   {!discount.includes(product.id) && `${product.price}₽`}
