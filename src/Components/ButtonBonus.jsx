@@ -23,7 +23,26 @@ function ButtonBonus({userId}) {
     const data = {
       userId,
     }
-    await axios.post('https://crm.zipperconnect.space/get/bonus',data)
+     try {
+      const response = await fetch('https://crm.zipperconnect.space/get/bonus', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+    .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Успешный ответ:', data);
+  })
+  .catch(error => {
+    console.error('Ошибка:', error);
+  });
   };
 
   return (
