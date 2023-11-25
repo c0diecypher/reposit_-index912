@@ -150,8 +150,8 @@ function App() {
               {isAuthenticated && <BasketItem userId={userId} />}
               <div></div>
               {isAuthenticated && <BasketPaid userId={userId} />}
-            <Catalog />
-            {isAuthenticated && <Products />}
+            <Catalog  userId={userId} />
+            {isAuthenticated && <Products  userId={userId} />}
             <Footer />
           </>
         }
