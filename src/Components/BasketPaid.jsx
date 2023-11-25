@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import productsData from "../Products/productsData";
-
+import axios from 'axios';
 
 const BasketPaid = ({ cart, onDataUpdate, userId } ) => {
   const [paymentDate] = useState(new Date()); // Создаем объект Date с текущей датой
