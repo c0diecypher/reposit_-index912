@@ -11,36 +11,23 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
   // Обновляем общую стоимость при изменении корзины
 
   useEffect(() => {
-  const data = {
-    userId
-  };
-
-  const fetchData = async () => {
-    try {
-      const response = await fetch('https://crm.zipperconnect.space/load/basket', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      const responseData = await response.json();
-      setBasketData(responseData);
-    } catch (error) {
-      console.error('Ошибка при выполнении запроса:', error);
+    reloadBasket();
+    SendBasket();
+  },[])
+  
+  const reloadBasket = async () => {
+    const eventSource = new EventSource('https://crm.zipperconnect.space/connect/basket')
+    eventSource.onmessage = function (event){
+      const basket = JSON.parse(event.data);
+      setBasketData(prev => [basket, ...prev]);
     }
   };
-
-  // Вызываем функцию fetchData при монтировании компонента
-   const fetchDataInterval = setInterval(fetchData, 5000); // Интервал опроса сервера
-    // Инициализация данных при загрузке компонента
-    fetchData();
-
-    return () => {
-      clearInterval(fetchDataInterval); // Очистка интервала при размонтировании компонента
-    };
-}, [userId]); 
+  
+  const SendBasket = async () => {
+    await axios.post('https://crm.zipperconnect.space/get/basket',{
+      userId: userId,
+    })
+  };
   
   BasketItem.propTypes = {
     cart: PropTypes.array.isRequired,
