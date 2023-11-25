@@ -17,7 +17,7 @@ function ButtonBonus({userId}) {
     
     eventSource.onmessage = (event) => {
       const bonusData = JSON.parse(event.data);
-      setUserBonus(bonusData);
+      setUserBonus(prev => [bonusData]);
       console.log(bonusData);
     }
   }
