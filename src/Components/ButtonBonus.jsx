@@ -18,31 +18,26 @@ function ButtonBonus({userId}) {
       setUserBonus(bonusData.userBonus);
     }
   }
-
+    
    const loadBonus = async () => {
     const data = {
       userId,
     }
-     try {
-      const response = await fetch('https://crm.zipperconnect.space/get/bonus', {
+    try {
+      const response = await fetch('https://crm.zipperconnect.space/load/basket/paid', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       });
-    .then(response => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+
+      if (!response.ok) {
+      throw new Error(`Запрос завершился со статусом ${response.status}`);
     }
-    return response.json();
-  })
-  .then(data => {
-    console.log('Успешный ответ:', data);
-  })
-  .catch(error => {
-    console.error('Ошибка:', error);
-  });
+    } catch (error) {
+      console.error('Ошибка при выполнении запроса:', error);
+    }
   };
 
   return (
