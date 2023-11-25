@@ -3,6 +3,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import "./css/item.css";
 import productsData from "./productsData";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 const Products = ({userId}) => {
   const [items, setItems] = useState([]);
