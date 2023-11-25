@@ -9,13 +9,15 @@ function ButtonBonus({userId}) {
     reloadBonus();
     SendData();
   },[])
+  
   const reloadBonus = async () => {
     const eventSource = new EventSource('https://crm.zipperconnect.space/connect/bonus')
     eventSource.onmessage = function (event){
       const bonus = JSON.parse(event.data);
       setUserBonus(prev => [bonus]);
     }
-  }
+  };
+  
   const SendData = async () => {
     data={
       userId,
@@ -23,27 +25,7 @@ function ButtonBonus({userId}) {
     await axios.post('https://crm.zipperconnect.space/get/bonus',{
       userId: userId,
     })
-  }
-
-const reloadBonus = async () => {
-  // Load bonus data (if needed)
-  const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/bonus`);
-
-  // Attach the onmessage event handler
-  eventSource.onmessage = (event) => {
-    console.log('Received message:', event.data);
-    const bonusData = JSON.parse(event.data);
-
-    // Update user bonus using the previous state
-    setUserBonus(prev => [bonusData]);
-    console.log(bonusData);
   };
-
-  // Clean up the EventSource when the component unmounts
-  return () => {
-    eventSource.close();
-  };
-};
 
     
 
