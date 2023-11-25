@@ -73,7 +73,7 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
             <span className="product-created">Создан: {product.time}</span>
             </div>
           </div>
-          <div className="product-name">{product.name.toUpperCase()}</div>
+          <div className="product-name">{product.name}</div>
           <span className="product-size">Размер: <b>{product.size}</b></span>
           
           
