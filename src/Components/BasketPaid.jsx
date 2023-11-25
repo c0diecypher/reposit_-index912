@@ -13,40 +13,23 @@ const BasketPaid = ({ cart, onDataUpdate, userId } ) => {
   // Обновляем общую стоимость при изменении корзины
 
   useEffect(() => {
-  const data = {
-    userId
-  };
-
-  const fetchData = async () => {
-    try {
-      const response = await fetch('https://crm.zipperconnect.space/load/basket/paid', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-      throw new Error(`Запрос завершился со статусом ${response.status}`);
-    }
-
-      const responseData = await response.json();
-      setPaidData(responseData);
-    } catch (error) {
-      console.error('Ошибка при выполнении запроса:', error);
+    reloadBasketPaid();
+    SendBasketPaid();
+  },[])
+  
+  const reloadBasketPaid = async () => {
+    const eventSource = new EventSource('https://crm.zipperconnect.space/connect/basketpaid')
+    eventSource.onmessage = function (event){
+      const basketpaid = JSON.parse(event.data);
+      setPaidData(basketpaid);
     }
   };
-
-  // Вызываем функцию fetchData при монтировании компонента
-   const fetchDataInterval = setInterval(fetchData, 5000); // Интервал опроса сервера
-    // Инициализация данных при загрузке компонента
-    fetchData();
-
-    return () => {
-      clearInterval(fetchDataInterval); // Очистка интервала при размонтировании компонента
-    };
-}, [userId]); 
+  
+  const SendBasketPaid = async () => {
+    await axios.post('https://crm.zipperconnect.space/get/basketpaid',{
+      userId: userId,
+    })
+  };
   
   BasketPaid.propTypes = {
     cart: PropTypes.array.isRequired,
