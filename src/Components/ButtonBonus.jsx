@@ -4,33 +4,25 @@ import { Link } from "react-router-dom";
 
 function ButtonBonus({userId}) {
   const [userBonus, setUserBonus] = useState(0);
-
+  
   useEffect(() => {
-      const data = {
-      userId
-    };
-    const fetchUserBonus = async () => {
-      try {
-        const response = await fetch("https://crm.zipperconnect.space/get/bonus", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
-
-        if (!response.ok) {
-          throw new Error(`Запрос завершился со статусом ${response.status}`);
-        }
-          const responseData = await response.json();
-          setUserBonus(responseData.userBonus);
-        } catch (error) {
-      console.error('Ошибка при выполнении запроса:', error);
+      loadBonus();
+    },[]);
+  
+  const reloadBonus = async () => {
+    const eventSource = new EventSource(`https://crm.zipperconnect.space/get/bonus`)
+    eventSource.onmessage = function (event){
+      const bonus = JSON.parse(event.data);
+      setUserBonus(bonus);
     }
-  };
+  }
 
-    fetchUserBonus();
-  }, [userId]);
+   const loadBonus = async () => {
+    const data = {
+      userId,
+    }
+    await axios.post('https://crm.zipperconnect.space/get/bonus',data)
+  };
 
   return (
     <>
