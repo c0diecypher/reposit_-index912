@@ -7,6 +7,7 @@ function ButtonBonus({userId}) {
   const [userBonus, setUserBonus] = useState('');
 
   useEffect(() => {
+    loadBonus();
   const reloadBonus = async () => {
     // Create a new EventSource
     const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/bonus`);
@@ -15,7 +16,6 @@ function ButtonBonus({userId}) {
     console.log(eventSource);
 
     // Load bonus data (if needed)
-    loadBonus();
 
     // Attach the onmessage event handler
     eventSource.onmessage = (event) => {
