@@ -62,12 +62,16 @@ const Products = ({userId}) => {
               <div className="item-info">
               <h4>
                 {discount.includes(product.id) && (
-                    <>
-                      <del>{`${Number(product.price)}₽`}</del>{" "}
-                      {`${Number(product.price) - 500}₽`}
-                    </>
-                  )}
-                  {!discount.includes(product.id) && `${product.price}₽`}
+                  <>
+                    {product.price && (
+                      <>
+                        <del>{`${product.price}₽`}</del>{" "}
+                        {`${Number(JSON.parse(product.price)) - 500}₽`}
+                      </>
+                    )}
+                  </>
+                )}
+                {!discount.includes(product.id) && `${product.price}₽`}
               </h4>
               <p>{product.name}</p>
               <button className="add-item">
