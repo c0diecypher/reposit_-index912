@@ -11,7 +11,7 @@ function ProductPaid() {
   const { productId, size, price, name, img, id } = useParams();
   const location = useLocation();
   const [progress, setProgress] = useState(false);
-  const [payData,setPayData] = useState([]);
+  const [paymentData, setPaymentData] = useState(null);
   const [paymentDate] = useState(new Date()); // Создаем объект Date с текущей датой
   const options = { month: 'short', day: 'numeric' };
   // Декодируйте JSON-строку и преобразуйте ее в объект с данными о товаре
