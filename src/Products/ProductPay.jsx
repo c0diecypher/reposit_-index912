@@ -30,39 +30,25 @@ function ProductPay() {
   const {queryId, userId} = useTelegram();
   const [status, setStatus] = useState('');
 
-   useEffect(() => {
-  const data = {
-    userId
-  };
-
-  const fetchData = async () => {
-    try {
-      const response = await fetch('https://crm.zipperconnect.space/load/basket', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      const responseData = await response.json();
-      setPayData(responseData);
-      console.log('Ответ сервера:', responseData);
-    } catch (error) {
-      console.error('Ошибка при выполнении запроса:', error);
+  useEffect(() => {
+    reloadBasket();
+    SendBasket();
+  },[])
+  
+  const reloadBasket = async () => {
+    const eventSource = new EventSource('https://crm.zipperconnect.space/connect/basket')
+    eventSource.onmessage = function (event){
+      const basket = JSON.parse(event.data);
+      setPayData(basket);
     }
   };
-
-  // Вызываем функцию fetchData при монтировании компонента
-   const fetchDataInterval = setInterval(fetchData, 5000); // Интервал опроса сервера
-    console.log(fetchDataInterval);
-    // Инициализация данных при загрузке компонента
-    fetchData();
-
-    return () => {
-      clearInterval(fetchDataInterval); // Очистка интервала при размонтировании компонента
-    };
-}, [userId]); 
+  
+  const SendBasket = async () => {
+    await axios.post('https://crm.zipperconnect.space/get/basket',{
+      userId: userId,
+    })
+  };
+   
  const onSendData = async () => {
   setProgress(true);
   const data = {
