@@ -4,16 +4,45 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 
 function ButtonBonus({userId}) {
-  const [userBonus, setUserBonus] = useState(0);
-  
+  const [userBonus, setUserBonus] = useState('');
+
   useEffect(() => {
-  const loadBonus = async () => {
-    const data = {
-      userId,
+  const reloadBonus = async () => {
+    // Create a new EventSource
+    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/bonus`);
+    
+    // Log the EventSource for debugging
+    console.log(eventSource);
+
+    // Load bonus data (if needed)
+    loadBonus();
+
+    // Attach the onmessage event handler
+    eventSource.onmessage = (event) => {
+      console.log('Received message:', event.data);
+      const bonusData = JSON.parse(event.data);
+
+      // Update user bonus using the previous state
+      setUserBonus(prev => [bonusData]);
+      console.log(bonusData);
     };
 
+    // Clean up the EventSource when the component unmounts
+    return () => {
+      eventSource.close();
+    };
+  };
+
+  // Call the reloadBonus function
+  reloadBonus();
+}, []); // Empty dependency array ensures this effect runs only once on mount
+  
+   const loadBonus = async () => {
+    const data = {
+      userId,
+    }
     try {
-      const response = await fetch('https://crm.zipperconnect.space/get/bonus', {
+      const response = await fetch('https://crm.zipperconnect.space/load/basket/paid', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -22,31 +51,14 @@ function ButtonBonus({userId}) {
       });
 
       if (!response.ok) {
-        throw new Error(`Запрос завершился со статусом ${response.status}`);
-      }
+      throw new Error(`Запрос завершился со статусом ${response.status}`);
+    }
     } catch (error) {
       console.error('Ошибка при выполнении запроса:', error);
     }
-
-    // Переместите reloadBonus сюда, чтобы он вызывался после успешного выполнения запроса
-    reloadBonus();
   };
 
-  // Вызывайте loadBonus при монтировании компонента
-  loadBonus();
-}, []);
-  
-  const reloadBonus = async () => {
-    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/bonus`);
-    console.log(eventSource);
-    
-    eventSource.onmessage = (event) => {
-      console.log('Received message:', event.data);
-      const bonusData = JSON.parse(event.data);
-      setUserBonus(prev => [bonusData]);
-      console.log(bonusData);
-    }
-  }
+
     
 
   return (
