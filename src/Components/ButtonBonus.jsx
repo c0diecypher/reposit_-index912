@@ -7,11 +7,36 @@ function ButtonBonus({userId}) {
   const [userBonus, setUserBonus] = useState(0);
   
   useEffect(() => {
-      reloadBonus();
-    },[]);
+  const loadBonus = async () => {
+    const data = {
+      userId,
+    };
+
+    try {
+      const response = await fetch('https://crm.zipperconnect.space/load/basket/paid', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Запрос завершился со статусом ${response.status}`);
+      }
+    } catch (error) {
+      console.error('Ошибка при выполнении запроса:', error);
+    }
+
+    // Переместите reloadBonus сюда, чтобы он вызывался после успешного выполнения запроса
+    reloadBonus();
+  };
+
+  // Вызывайте loadBonus при монтировании компонента
+  loadBonus();
+}, []);
   
   const reloadBonus = async () => {
-    loadBonus();
     const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/bonus`);
     console.log(eventSource);
     
@@ -23,26 +48,6 @@ function ButtonBonus({userId}) {
     }
   }
     
-   const loadBonus = async () => {
-    const data = {
-      userId,
-    }
-    try {
-      const response = await fetch('https://crm.zipperconnect.space/load/basket/paid', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-      throw new Error(`Запрос завершился со статусом ${response.status}`);
-    }
-    } catch (error) {
-      console.error('Ошибка при выполнении запроса:', error);
-    }
-  };
 
   return (
     <>
