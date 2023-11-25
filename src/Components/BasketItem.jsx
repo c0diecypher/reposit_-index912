@@ -21,7 +21,7 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
     const eventSource = new EventSource('https://crm.zipperconnect.space/connect/basket')
     eventSource.onmessage = function (event){
       const basket = JSON.parse(event.data);
-      setBasketData(prev => [basket, ...prev]);
+      setBasketData(basket);
     }
   };
   
