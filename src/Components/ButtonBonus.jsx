@@ -7,11 +7,12 @@ function ButtonBonus({userId}) {
   const [userBonus, setUserBonus] = useState(0);
   
   useEffect(() => {
-      loadBonus();
+      reloadBonus();
     },[]);
   
   const reloadBonus = async () => {
-    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/bonus`)
+    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/bonus`);
+    loadBonus();
     eventSource.onmessage = function (event){
       const bonusData = JSON.parse(event.data);
       setUserBonus(bonusData.userBonus);
