@@ -5,44 +5,25 @@ import axios from 'axios';
 
 function ButtonBonus({userId}) {
   const [userBonus, setUserBonus] = useState('');
-
   useEffect(() => {
-  // Attach the onmessage event handler
-  const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/bonus`);
-  
-  // Log the EventSource for debugging
-  console.log(eventSource);
-
-  // Clean up the EventSource when the component unmounts
-  return () => {
-    eventSource.close();
-  };
-}, []); // Empty dependency array ensures this effect runs only once on mount
-
-const loadBonus = async () => {
-  const data = {
-    userId,
-  };
-
-  try {
-    const response = await fetch('https://crm.zipperconnect.space/get/bonus', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Запрос завершился со статусом ${response.status}`);
-    }
-
-    // Call reloadBonus only after the successful response
     reloadBonus();
-  } catch (error) {
-    console.error('Ошибка при выполнении запроса:', error);
+    SendData();
+  },[])
+  const reloadBonus = async () => {
+    const eventSource = new EventSource('https://crm.zipperconnect.space/connect/bonus')
+    eventSource.onmessage = function (event){
+      const bonus = JSON.parse(event.data);
+      setUserBonus(prev => [bonus]);
+    }
   }
-};
+  const SendData = async () => {
+    data={
+      userId,
+    }
+    await axios.post('https://crm.zipperconnect.space/get/bonus',{
+      userId: userId,
+    })
+  }
 
 const reloadBonus = async () => {
   // Load bonus data (if needed)
