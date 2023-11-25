@@ -66,7 +66,7 @@ const Products = ({userId}) => {
                     {product.price && (
                       <>
                         <del>{`${product.price}₽`}</del>{" "}
-                        {`${Number(JSON.parse(product.price).price) - 500}₽`}
+                        {`${Number(product.price.replace(/[\u00a0₽ ]/g, '')) - 500}₽`}
                       </>
                     )}
                   </>
