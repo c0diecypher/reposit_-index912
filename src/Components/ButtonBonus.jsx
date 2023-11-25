@@ -19,9 +19,6 @@ function ButtonBonus({userId}) {
   };
   
   const SendData = async () => {
-    data={
-      userId,
-    }
     await axios.post('https://crm.zipperconnect.space/get/bonus',{
       userId: userId,
     })
