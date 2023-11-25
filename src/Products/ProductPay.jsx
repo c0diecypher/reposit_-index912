@@ -11,7 +11,6 @@ function ProductPay() {
   const { productId, size, price, name, img, id } = useParams();
   const location = useLocation();
   const [progress, setProgress] = useState(false);
-  const [payData,setPayData] = useState([]);
   const [paymentDate] = useState(new Date()); // Создаем объект Date с текущей датой
   const options = { month: 'short', day: 'numeric' };
   // Декодируйте JSON-строку и преобразуйте ее в объект с данными о товаре
@@ -29,25 +28,6 @@ function ProductPay() {
   const [paymentLink, setPaymentLink] = useState('');
   const {queryId, userId} = useTelegram();
   const [status, setStatus] = useState('');
-
-  useEffect(() => {
-    reloadBasket();
-    SendBasket();
-  },[])
-  
-  const reloadBasket = async () => {
-    const eventSource = new EventSource('https://crm.zipperconnect.space/connect/basket')
-    eventSource.onmessage = function (event){
-      const basket = JSON.parse(event.data);
-      setPayData(basket);
-    }
-  };
-  
-  const SendBasket = async () => {
-    await axios.post('https://crm.zipperconnect.space/get/basket',{
-      userId: userId,
-    })
-  };
    
  const onSendData = async () => {
   setProgress(true);
