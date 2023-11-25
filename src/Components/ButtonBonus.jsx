@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 
 function ButtonBonus({userId}) {
-  const [userBonus, setUserBonus] = useState('');
+  const [userBonus, setUserBonus] = useState(0);
   useEffect(() => {
     reloadBonus();
     SendData();
