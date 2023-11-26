@@ -1,7 +1,7 @@
 
 import "./css/Refer.css";
-import { useState } from "react";
 import axios from 'axios';
+import { useState, useEffect } from "react";
 
 function BonusPage({userId}) {
   
