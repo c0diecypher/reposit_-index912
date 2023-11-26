@@ -235,17 +235,17 @@ function ProductConfirm() {
       
        <hr/>
        <div className="order-price">
-         {discount.includes(product.id) && (
+         {discount.includes(productData.id) && (
                   <>
-                    {product.price && (
+                    {productData.price && (
                       <>
-                        {`${Number(product.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - 500}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
-                        <del style={{ marginLeft:'4px', fontSize: '24px', color: 'var(--tg-hint)' }}>{`${product.price}₽`}</del>{" "}
+                        {`${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - 500}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
+                        <del style={{ marginLeft:'4px', fontSize: '24px', color: 'var(--tg-hint)' }}>{`${productData.price}₽`}</del>{" "}
                       </>
                     )}
                   </>
                 )}
-                {!discount.includes(product.id) && `${product.price}₽`}
+                {!discount.includes(productData.id) && `${productData.price}₽`}
        </div>
       </div>
     </div> 
@@ -294,17 +294,17 @@ function ProductConfirm() {
         </div>
           <div className="item-order-info">
             <div className="confirm-item-price">
-              {discount.includes(product.id) && (
+              {discount.includes(productData.id) && (
                   <>
-                    {product.price && (
+                    {productData.price && (
                       <>
-                        {`${Number(product.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - 500}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
-                        <del style={{ marginLeft:'4px', fontSize: '24px', color: 'var(--tg-hint)' }}>{`${product.price}₽`}</del>{" "}
+                        {`${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - 500}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
+                        <del style={{ marginLeft:'4px', fontSize: '24px', color: 'var(--tg-hint)' }}>{`${productData.price}₽`}</del>{" "}
                       </>
                     )}
                   </>
                 )}
-                {!discount.includes(product.id) && `${product.price}₽`}
+                {!discount.includes(productData.id) && `${productData.price}₽`}
             </div>
             <div className="public-oferta">
               <p className="public-ofert-text">Оплачивая заказ, вы соглашаетесь <br/>с условиями <a className="public-oferta-link">публичной оферты</a></p>
@@ -319,7 +319,7 @@ function ProductConfirm() {
   }}
                         color={color}
                         textColor={textColor}
-                        text={`Купить за ${price}`}
+                        text={`Купить за ${Number(product.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - 500}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')`}
                         progress={progress}
         
                         />
