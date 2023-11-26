@@ -28,29 +28,80 @@
     margin-bottom: 8px;
 }
 
-.refer-friend-image{
-    display: flex;
+.refer-friend-box-selection{
+    position: relative;
     width: 100%;
+}
+.refer-friend-box-radius{
+    
+    border-radius: 20px;
+    background: radial-gradient(266.38% 477.63% at -77.59% 78.26%,#f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad);
+    width: 100%;
+    animation: refer-friend-image-emoji .8s both;
+}
 
+.refer-friend-box{
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    height: 125px;
+    width: 100%;
+}
+
+
+.refer-friend-title-text{
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    color: #fff;
+}
+
+.refer-friend-text{
+    font-weight: 500;
+    font-size: 60px;
+    line-height: 100%;
+    text-align: left;
+    letter-spacing: -.02em;
+}
+.refer-friend-bonus{
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 130%;
+    text-align: left;
+    letter-spacing: -.02em;
+}
+
+.refer-friend-rub{
+    flex-shrink: 0;
+    font-weight: 500;
+    font-size: 55px;
+    line-height: 140%;
+    color: #a166ab;
+    height: 83px;
+    width: 83px;
+    display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
+    background: #fff;
+    border-radius: 99999px;
 }
 
-.refer-friend-emoji:nth-child{
-    border-radius: 9999px;
-    background: #eaffc8;
-    animation: refer-friend-image-emoji .8s both;
-    z-index: 99;
-    width: 60%;
-}
-
-.refer-friend-emoji{
-    border-radius: 9999px;
-    background: #ffc8c8;
-    animation: refer-friend-image-emoji .8s both;
-    z-index: 99;
-    width: 60%;
+.refer-friend-box::after{
+    content: "";
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    z-index: -1;
+    width: 100%;
+    height: 80%;
+    background: radial-gradient(266.38% 477.63% at -77.59% 78.26%,#f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad);
+    opacity: 0.7;
+    filter: blur(21px);
+    border-radius: 99999px;
 }
 
 @keyframes refer-friend-image-emoji {
@@ -58,12 +109,12 @@
         transform: scale(.1);
         opacity: 0;
     }
-    60% {
-        transform: scale(.7);
+    50% {
+        transform: scale(1.05);
         opacity: 1;
     }
     100% {
-        transform: scale(.5);
+        transform: scale(1);
     }
 }
 
