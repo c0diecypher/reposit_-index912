@@ -221,17 +221,13 @@ typesKeys.sort(customSort)
          {active !== null && thisProduct.size[active] !== undefined ? (
           <>
             <span>
-              <del style={{ fontSize: '12px', color: 'var(--tg-hint)' }}>
+              {`${Number(thisProduct.size[active].replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - 500}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
+            </span>
+            <span>
+              <del style={{ fontSize: '24px', color: 'var(--tg-hint)' }}>
                 {`${thisProduct.size[active]}₽`}
               </del>
             </span>{" "}
-            <span>
-              {`${Number(
-                thisProduct.size[active]
-                  .replace(/[\u00a0₽ ]/g, '')
-                  .replace('&nbsp', '')
-              ) - 500}₽`}
-            </span>
           </>
         ) : (
           ''
