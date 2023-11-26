@@ -319,7 +319,9 @@ function ProductConfirm() {
   }}
                         color={color}
                         textColor={textColor}
-                        text={`Купить за ${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - 500}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')`}
+                        text={`Купить за ${discount.includes(productData.id) ? 
+  `${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - 500}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ') : 
+  `${productData.price}₽`}`}
                         progress={progress}
         
                         />
