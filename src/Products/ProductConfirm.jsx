@@ -18,6 +18,7 @@ function ProductConfirm() {
   // Отображаем информацию о товаре
   const [paymentStatus, setPaymentStatus] = useState('');
   const [paymentData, setPaymentData] = useState(null);
+  const [discount, setDiscount] = useState([]);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
   const [textColor] = useState(
@@ -105,6 +106,25 @@ function ProductConfirm() {
   const handleEditClick = () => {
     setDataOpen(!dataOpen);
     window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
+  };
+
+   useEffect(() => {
+    reloadDiscount();
+    SendDiscount();
+  },[])
+  
+  const reloadDiscount = async () => {
+    const eventSource = new EventSource('https://crm.zipperconnect.space/connect/discount')
+    eventSource.onmessage = function (event){
+      const discount = JSON.parse(event.data);
+      setDiscount(discount);
+    }
+  };
+  
+  const SendDiscount = async () => {
+    await axios.post('https://crm.zipperconnect.space/get/discount',{
+      userId: userId,
+    })
   };
 
   return (
@@ -214,7 +234,19 @@ function ProductConfirm() {
       </div>
       
        <hr/>
-       <div className="order-price">{price}₽</div>
+       <div className="order-price">
+         {discount.includes(product.id) && (
+                  <>
+                    {product.price && (
+                      <>
+                        {`${Number(product.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - 500}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
+                        <del style={{ marginLeft:'4px', fontWeight:'400', fontSize: '12px', color: 'var(--tg-hint)' }}>{`${product.price}₽`}</del>{" "}
+                      </>
+                    )}
+                  </>
+                )}
+                {!discount.includes(product.id) && `${product.price}₽`}
+       </div>
       </div>
     </div> 
     </>):(
