@@ -224,7 +224,7 @@ typesKeys.sort(customSort)
               {`${Number(thisProduct.size[active].replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - 500}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
             </span>
             <span>
-              <del style={{ fontSize: '24px', color: 'var(--tg-hint)' }}>
+              <del style={{ fontSize: '24px', color: 'var(--tg-hint)', marginLeft:'4px', fontWeight:'400'}}>
                 {`${thisProduct.size[active]}₽`}
               </del>
             </span>{" "}
