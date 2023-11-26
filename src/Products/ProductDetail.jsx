@@ -41,6 +41,7 @@ const Size = styled.button`
 function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMainButton, isAuthenticated, userId }) {  
   const { productId } = useParams();
   const [paymentData, setPaymentData] = useState(null);
+  const [discount, setDiscount] = useState([]);
   const thisProduct = productsData.find((prod) => prod.id === productId);
   const [active, setActive] = useState(paymentData || thisProduct.size[41]);
   const typesKeys = Object.entries(thisProduct.size);
@@ -217,24 +218,47 @@ typesKeys.sort(customSort)
         </div>
         </div>
         <div className="item-order-info">
-         {isAuthenticated && <p className="full-item-price">
-         {active !== null && thisProduct.size[active] !== undefined ? (
-          <>
-            <span>
-              {`${Number(thisProduct.size[active].replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - 500}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
-            </span>
-            <span>
-              <del style={{ fontSize: '24px', color: 'var(--tg-hint)', marginLeft:'4px', fontWeight:'400'}}>
-                {`${thisProduct.size[active]}₽`}
-              </del>
-            </span>{" "}
-          </>
-        ) : (
-          ''
-        )}
-         </p>}
-
-        <hr/>
+         {isAuthenticated && (
+    <>
+      {/* Проверяем, есть ли скидка */}
+      {discount.length > 0 && (
+        <p className="full-item-price">
+          {active !== null && thisProduct.size[active] !== undefined ? (
+            <>
+              {/* Если активный размер определен, применяем скидку */}
+              <span>
+                {`${Number(thisProduct.size[active].replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - 500}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
+              </span>
+              {/* Отображаем старую цену с зачеркиванием */}
+              <span>
+                <del style={{ fontSize: '24px', color: 'var(--tg-hint)', marginLeft: '4px', fontWeight: '400' }}>
+                  {`${thisProduct.size[active]}₽`}
+                </del>
+              </span>{" "}
+            </>
+          ) : (
+            ''
+          )}
+        </p>
+      )}
+      {/* Если нет скидки, отображаем обычную цену */}
+      {discount.length === 0 && (
+        <p className="full-item-price">
+          {active !== null && thisProduct.size[active] !== undefined ? (
+            // Ваш текущий код, не связанный с скидкой
+            <>
+              <span>
+                {`${Number(thisProduct.size[active].replace(/[\u00a0₽ ]/g, '').replace(',', '.'))}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
+              </span>{" "}
+            </>
+          ) : (
+            ''
+          )}
+        </p>
+      )}
+      <hr />
+    </>
+  )}
         <SizeInfo />
 
         <div className="size_box">
