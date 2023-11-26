@@ -218,7 +218,7 @@ typesKeys.sort(customSort)
         </div>
         <div className="item-order-info">
          {isAuthenticated && <p className="full-item-price">
-         {active !== null ? (
+         {active !== null && thisProduct.size[active] !== undefined ? (
           <>
             <span>
               <del style={{ fontSize: '12px', color: 'var(--tg-hint)' }}>
