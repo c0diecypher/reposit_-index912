@@ -240,7 +240,7 @@ function ProductConfirm() {
                     {product.price && (
                       <>
                         {`${Number(product.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - 500}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
-                        <del style={{ marginLeft:'4px', fontWeight:'400', fontSize: '12px', color: 'var(--tg-hint)' }}>{`${product.price}₽`}</del>{" "}
+                        <del style={{ marginLeft:'4px', fontSize: '24px', color: 'var(--tg-hint)' }}>{`${product.price}₽`}</del>{" "}
                       </>
                     )}
                   </>
@@ -294,7 +294,17 @@ function ProductConfirm() {
         </div>
           <div className="item-order-info">
             <div className="confirm-item-price">
-              {price}₽
+              {discount.includes(product.id) && (
+                  <>
+                    {product.price && (
+                      <>
+                        {`${Number(product.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - 500}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
+                        <del style={{ marginLeft:'4px', fontSize: '24px', color: 'var(--tg-hint)' }}>{`${product.price}₽`}</del>{" "}
+                      </>
+                    )}
+                  </>
+                )}
+                {!discount.includes(product.id) && `${product.price}₽`}
             </div>
             <div className="public-oferta">
               <p className="public-ofert-text">Оплачивая заказ, вы соглашаетесь <br/>с условиями <a className="public-oferta-link">публичной оферты</a></p>
