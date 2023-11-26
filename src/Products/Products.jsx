@@ -32,18 +32,39 @@ const Products = ({userId}) => {
   },[])
   
   const reloadDiscount = async () => {
-    const eventSource = new EventSource('https://crm.zipperconnect.space/connect/discount')
+  try {
+    const eventSource = new EventSource('https://crm.zipperconnect.space/connect/discount');
     eventSource.onmessage = function (event){
       const discount = JSON.parse(event.data);
-      setDiscount(discount);
-    }
-  };
-  
-  const SendDiscount = async () => {
-    await axios.post('https://crm.zipperconnect.space/get/discount',{
+      // Проверка наличия данных перед установкой
+      if (discount) {
+        setDiscount(discount);
+      } else {
+        console.warn('Discount data is empty or invalid.');
+      }
+    };
+  } catch (error) {
+    console.error('Error connecting to discount event source:', error);
+  }
+};
+
+const SendDiscount = async () => {
+  try {
+    const response = await axios.post('https://crm.zipperconnect.space/get/discount', {
       userId: userId,
-    })
-  };
+    });
+
+    const discountData = response.data;
+    // Проверка наличия данных перед использованием
+    if (discountData) {
+      // Handle discount data as needed
+    } else {
+      console.warn('Discount data is empty or invalid.');
+    }
+  } catch (error) {
+    console.error('Error fetching discount data:', error);
+  }
+};
 
   return (
     <InfiniteScroll
