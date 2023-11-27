@@ -408,3 +408,149 @@ hr{
   border-radius: 20px;
   margin-bottom: var(--space-4x);
   }
+
+ .item-toggle-box{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: var(--space-4x);
+  }
+
+  .item-toggle-box-title{
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 130%;
+    background: radial-gradient(69.01% 448.79% at .64% 71.74%,#ef4e7b 0,#a166ab 54.69%,#1098ad 100%);
+    
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #0000;
+    background-clip: text;
+    text-fill-color: #0000;
+    text-align: left;
+  }
+
+  .item-switcher-box{
+    background: var(--tg-second);
+    border-radius: 15px;
+    height: 48px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px;
+    position: relative;
+  }
+
+  .item-switcher-active{
+    color: var(--tg-text);
+    transition: all .3s linear;
+    width: 50%;
+    height: 100%;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: all .3s linear;
+    position: relative;
+    z-index: 1;
+  }
+
+  .item-switcher-point{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2.5px;
+  }
+
+  .item-switcher-rouble{
+    background: radial-gradient(69.01% 448.79% at .64% 71.74%,#ef4e7b 0,#a166ab 200%);
+    transition: all .3s linear;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: 500;
+    font-size: 14px;
+    width: 18px;
+    height: 18px;
+    background: #979797;
+    transition: all .3s linear;
+  }
+
+  .item-switcher-num{
+    background: radial-gradient(266.38% 477.63% at -77.59% 78.26%,#f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #0000;
+    background-clip: text;
+    text-fill-color: #0000;
+    transition: all .3s linear;
+    
+  }
+
+  .item-switcher-box::after{
+    content: "";
+    position: absolute;
+    display: block;
+    width: 50%;
+    height: calc(100% - 4px);
+    top: 2px;
+    left: 2px;
+    z-index: 0;
+    box-shadow: 0 2px 13px #00000021;
+    background: var(--tg-bg);
+    border-radius: 14px;
+    transition: all .2s linear;
+
+  }
+
+  .item-switcher-box.credited::after {
+    left: calc(50% + 2px); /* Значение при активации */
+  }
+
+  .item-switcher-rouble.debited {
+    background: #9c1a1a;
+  }
+
+  .item-switcher-active.active{
+    color: var(--tg-text);
+  }
+
+  .item-switcher-active.passive{
+    color: var(--tg-text);
+    opacity: .5;
+  }
+
+  .item-switcher-rouble.active{
+    background: radial-gradient(69.01% 448.79% at .64% 71.74%,#ef4e7b 0,#a166ab 200%);
+    transition: all .3s linear;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: 500;
+    font-size: 14px;
+    width: 18px;
+    height: 18px;
+    transition: all .3s linear;
+  }
+
+  .item-switcher-rouble.passive{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: 500;
+    font-size: 14px;
+    width: 18px;
+    height: 18px;
+    background: #979797;
+    transition: all .3s linear;
+  }
