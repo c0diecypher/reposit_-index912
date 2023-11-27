@@ -271,7 +271,10 @@ function ProductConfirm() {
                   <>
                     {productData.price && (
                       <>
-                      {`${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - userBonus}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
+                      {isCredited 
+            ? `${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - userBonus}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')
+            : `${productData.price}₽`
+          }
                       <del style={{ marginLeft:'4px', fontSize: '24px', color: 'var(--tg-hint)' }}>{`${productData.price}₽`}</del>{" "}
                     </>
                     )}
@@ -330,7 +333,10 @@ function ProductConfirm() {
                   <>
                     {productData.price && (
                       <>
-                      {`${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - userBonus}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
+                      {isCredited 
+            ? `${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - userBonus}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')
+            : `${productData.price}₽`
+          }
                       <del style={{ marginLeft:'4px', fontSize: '24px', color: 'var(--tg-hint)' }}>{`${productData.price}₽`}</del>{" "}
                     </>
                     )}
@@ -373,9 +379,10 @@ function ProductConfirm() {
   }}
                         color={color}
                         textColor={textColor}
-                        text={`Купить за ${discount.includes(productData.id) ? 
-  `${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - 500}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ') : 
-  `${productData.price}₽`}`}
+                        text={`Купить за ${isCredited 
+            ? `${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - userBonus}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')
+            : `${productData.price}₽`
+          }`}
                         progress={progress}
         
                         />
