@@ -43,7 +43,7 @@ function ProductConfirm() {
   const data = {
     name: productData.name,
     price: discount.includes(productData.id) ?
-      `${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - 500}`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ') :
+      `${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - {userBonus}}`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ') :
       productData.price,
     size: productData.size,
     queryId,
