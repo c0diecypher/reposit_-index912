@@ -328,20 +328,18 @@ function ProductConfirm() {
         </div>
           <div className="item-order-info">
             <div className="confirm-item-price">
-              {discount.includes(productData.id) && (
-                  <>
-                    {productData.price && (
+              {productData.price && (
                       <>
-                      {isCredited 
-            ? `${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - userBonus}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')
-            : `${productData.price}₽`
-          }
-                      <del style={{ marginLeft:'4px', fontSize: '24px', color: 'var(--tg-hint)' }}>{`${productData.price}₽`}</del>{" "}
+                      {isCredited ? (
+                          <>
+                            {`${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - userBonus}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
+                            <del style={{ marginLeft:'4px', fontSize: '24px', color: 'var(--tg-hint)' }}>{`${productData.price}₽`}</del>{" "}
+                          </>
+                        ) : (
+                          `${productData.price}₽`
+                        )}
                     </>
                     )}
-                  </>
-                )}
-                {!discount.includes(productData.id) && `${productData.price}₽`}
             </div>
             <div className="public-oferta">
               <p className="public-ofert-text">Оплачивая заказ, вы соглашаетесь <br/>с условиями <a className="public-oferta-link">публичной оферты</a></p>
