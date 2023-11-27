@@ -20,9 +20,9 @@ function ProductConfirm() {
     // Выполнять переключение только если userBonus больше или равен 0
     if (userBonus > 0) {
       setCredited(!isCredited);
-      window.Telegram.WebApp.HapticFeedback.notificationOccurred('error');
-    }else{
       window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
+    }else{
+      window.Telegram.WebApp.HapticFeedback.notificationOccurred('error');
     }
   };
   // Отображаем информацию о товаре
