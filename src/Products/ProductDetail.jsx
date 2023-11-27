@@ -10,9 +10,6 @@ import PropTypes from 'prop-types';
 import { MainButton } from "@twa-dev/sdk/react" 
 import { useLocation } from 'react-router-dom';
 import Stories from "../Stories/Stories"
-import axios from 'axios';
-
-
 const Size = styled.button`
   display: flex;
   flex-direction: column;
@@ -38,10 +35,9 @@ const Size = styled.button`
   `}
 `;
 
-function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMainButton, isAuthenticated, userId }) {  
+function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMainButton, isAuthenticated }) {  
   const { productId } = useParams();
   const [paymentData, setPaymentData] = useState(null);
-  const [discount, setDiscount] = useState([]);
   const thisProduct = productsData.find((prod) => prod.id === productId);
   const [active, setActive] = useState(paymentData || thisProduct.size[41]);
   const typesKeys = Object.entries(thisProduct.size);
@@ -157,25 +153,6 @@ typesKeys.sort(customSort)
     }
   }
 
-  useEffect(() => {
-    reloadDiscount();
-    SendDiscount();
-  },[])
-  
-  const reloadDiscount = async () => {
-    const eventSource = new EventSource('https://crm.zipperconnect.space/connect/discount')
-    eventSource.onmessage = function (event){
-      const discount = JSON.parse(event.data);
-      setDiscount(discount);
-    }
-  };
-  
-  const SendDiscount = async () => {
-    await axios.post('https://crm.zipperconnect.space/get/discount',{
-      userId: userId,
-    })
-  };
-
   return (
     <>
     <div className="full-item">
@@ -219,9 +196,8 @@ typesKeys.sort(customSort)
         </div>
         <div className="item-order-info">
          {isAuthenticated && <p className="full-item-price">{active !== null ? thisProduct.size[active] : ''}₽</p>}
-      <hr />
-    </>
-  )}
+
+        <hr/>
         <SizeInfo />
 
         <div className="size_box">
