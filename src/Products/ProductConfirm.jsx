@@ -20,6 +20,7 @@ function ProductConfirm() {
     // Выполнять переключение только если userBonus больше или равен 0
     if (userBonus > 0) {
       setCredited(!isCredited);
+      const adjustedPrice = Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - userBonus;
       window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
     }else{
       window.Telegram.WebApp.HapticFeedback.notificationOccurred('error');
