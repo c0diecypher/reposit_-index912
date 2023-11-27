@@ -312,6 +312,26 @@ function ProductConfirm() {
               <p className="public-ofert-text">Оплачивая заказ, вы соглашаетесь <br/>с условиями <a className="public-oferta-link">публичной оферты</a></p>
             </div>
           <hr/>
+             <div className="item-toggle-box">
+              <div className="item-toggle-box-title">Бонусы Zipperapp</div>
+              <div className={`item-switcher-box ${isCredited ? 'credited' : 'debited'}`}
+              onClick={handleToggle}>
+                <div className={`item-switcher-active ${isCredited ? 'passive' : 'active'}`}>
+                  Начислить
+                  <div className="item-switcher-point">
+                    <span className={`item-switcher-rouble ${isCredited ? 'passive' : 'active'}`}>₽</span>
+                    <span className="item-switcher-num">50</span>
+                  </div>
+                </div>
+                <div className={`item-switcher-active ${isCredited ? 'active' : 'passive'}`}>
+                  Списать
+                  <div className="item-switcher-point">
+                    <span className={`item-switcher-rouble ${isCredited ? 'active' : 'passive'}`}>₽</span>
+                    <span className="item-switcher-num">0</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
       </div>
       <MainButton 
