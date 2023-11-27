@@ -510,8 +510,8 @@ hr{
   }
 
   .item-switcher-box.credited::after {
-    transform: translateX(100%); /* Значение при активации */
-    margin-left: -4px;
+    left: 50%;
+  margin-left: -2px; 
   }
 
   .item-switcher-rouble.debited {
