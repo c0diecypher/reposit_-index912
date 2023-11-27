@@ -510,7 +510,7 @@ hr{
   }
 
   .item-switcher-box.credited::after {
-    left: calc(50% + 2px); /* Значение при активации */
+    left: calc(50% - 2px); /* Значение при активации */
   }
 
   .item-switcher-rouble.debited {
