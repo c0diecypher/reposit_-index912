@@ -43,9 +43,7 @@ function ProductConfirm() {
   setProgress(true);
   const data = {
     name: productData.name,
-    price: discount.includes(productData.id) ?
-      `${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - {userBonus}}`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ') :
-      productData.price,
+    price: isCredited ? ${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - userBonus}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ') : productData.price,
     size: productData.size,
     queryId,
     userId,
@@ -276,11 +274,12 @@ function ProductConfirm() {
             : `${productData.price}₽`
           }
                       <del style={{ marginLeft:'4px', fontSize: '24px', color: 'var(--tg-hint)' }}>{`${productData.price}₽`}</del>{" "}
+                      
                     </>
                     )}
                   </>
                 )}
-                {!discount.includes(productData.id) && `${productData.price}₽`}
+
        </div>
       </div>
     </div> 
