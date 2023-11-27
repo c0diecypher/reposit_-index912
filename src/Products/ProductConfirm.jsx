@@ -10,12 +10,11 @@ function ProductConfirm() {
   const { productId, size, price, name, img, id } = useParams();
   const location = useLocation();
   const [progress, setProgress] = useState(false);
-  const [isCreatedDisabled, setIsCreatedDisabled] = useState(false);
   const [paymentDate] = useState(new Date()); // Создаем объект Date с текущей датой
   const options = { month: 'short', day: 'numeric' };
   // Декодируйте JSON-строку и преобразуйте ее в объект с данными о товаре
   const { productData } = location.state || {};
-  const [isCredited, setCredited] = useState(true);
+  const [isCredited, setCredited] = useState(false);
   const [userBonus, setUserBonus] = useState(0);
   const handleToggle = () => {
     // Выполнять переключение только если userBonus больше или равен 0
