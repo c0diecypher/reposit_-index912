@@ -218,44 +218,7 @@ typesKeys.sort(customSort)
         </div>
         </div>
         <div className="item-order-info">
-         {isAuthenticated && (
-    <>
-      {/* Проверяем, есть ли скидка */}
-      {discount.length > 0 && (
-        <p className="full-item-price">
-          {active !== null && thisProduct.size[active] !== undefined ? (
-            <>
-              {/* Если активный размер определен, применяем скидку */}
-              <span>
-                {`${Number(thisProduct.size[active].replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - 500}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
-              </span>
-              {/* Отображаем старую цену с зачеркиванием */}
-              <span>
-                <del style={{ fontSize: '24px', color: 'var(--tg-hint)', marginLeft: '4px', fontWeight: '400' }}>
-                  {`${thisProduct.size[active]}₽`}
-                </del>
-              </span>{" "}
-            </>
-          ) : (
-            ''
-          )}
-        </p>
-      )}
-      {/* Если нет скидки, отображаем обычную цену */}
-      {discount.length === 0 && (
-        <p className="full-item-price">
-          {active !== null && thisProduct.size[active] !== undefined ? (
-            // Ваш текущий код, не связанный с скидкой
-            <>
-              <span>
-                {`${Number(thisProduct.size[active].replace(/[\u00a0₽ ]/g, '').replace(',', '.'))}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
-              </span>{" "}
-            </>
-          ) : (
-            ''
-          )}
-        </p>
-      )}
+         {isAuthenticated && <p className="full-item-price">{active !== null ? thisProduct.size[active] : ''}₽</p>}
       <hr />
     </>
   )}
