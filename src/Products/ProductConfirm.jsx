@@ -14,7 +14,10 @@ function ProductConfirm() {
   const options = { month: 'short', day: 'numeric' };
   // Декодируйте JSON-строку и преобразуйте ее в объект с данными о товаре
   const { productData } = location.state || {};
-
+  const [isCredited, setCredited] = useState(true);
+  const handleToggle = () => {
+    setCredited(!isCredited);
+  };
   // Отображаем информацию о товаре
   const [paymentStatus, setPaymentStatus] = useState('');
   const [paymentData, setPaymentData] = useState(null);
