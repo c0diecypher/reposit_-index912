@@ -10,6 +10,7 @@ function ProductConfirm() {
   const { productId, size, price, name, img, id } = useParams();
   const location = useLocation();
   const [progress, setProgress] = useState(false);
+  const [isCreatedDisabled, setIsCreatedDisabled] = useState(false);
   const [paymentDate] = useState(new Date()); // Создаем объект Date с текущей датой
   const options = { month: 'short', day: 'numeric' };
   // Декодируйте JSON-строку и преобразуйте ее в объект с данными о товаре
@@ -17,7 +18,10 @@ function ProductConfirm() {
   const [isCredited, setCredited] = useState(true);
   const [userBonus, setUserBonus] = useState(0);
   const handleToggle = () => {
-    setCredited(!isCredited);
+    // Выполнять переключение только если userBonus больше или равен 0
+    if (userBonus > 0) {
+      setCredited(!isCredited);
+    }
   };
   // Отображаем информацию о товаре
   const [paymentStatus, setPaymentStatus] = useState('');
@@ -142,7 +146,7 @@ function ProductConfirm() {
     const eventSource = new EventSource('https://crm.zipperconnect.space/connect/bonus')
     eventSource.onmessage = function (event){
       const bonus = JSON.parse(event.data);
-      setUserBonus(prev => [bonus]);
+      setUserBonus(bonus);
     }
   };
   
@@ -338,7 +342,9 @@ function ProductConfirm() {
              <div className="item-toggle-box">
               <div className="item-toggle-box-title">Бонусы Zipperapp</div>
               <div className={`item-switcher-box ${isCredited ? 'credited' : 'debited'}`}
-              onClick={handleToggle}>
+              onClick={handleToggle}
+                disabled={userBonus < 0}
+                >
                 <div className={`item-switcher-active ${isCredited ? 'passive' : 'active'}`}>
                   Начислить
                   <div className="item-switcher-point">
