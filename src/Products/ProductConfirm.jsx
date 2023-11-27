@@ -267,8 +267,7 @@ function ProductConfirm() {
       
        <hr/>
        <div className="order-price">
-         {discount.includes(productData.id) && (
-                  <>
+         
                     {productData.price && (
                       <>
                       {isCredited 
@@ -278,9 +277,6 @@ function ProductConfirm() {
                       <del style={{ marginLeft:'4px', fontSize: '24px', color: 'var(--tg-hint)' }}>{`${productData.price}₽`}</del>{" "}
                     </>
                     )}
-                  </>
-                )}
-                {!discount.includes(productData.id) && `${productData.price}₽`}
        </div>
       </div>
     </div> 
