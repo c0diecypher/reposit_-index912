@@ -15,6 +15,7 @@ function ProductConfirm() {
   // Декодируйте JSON-строку и преобразуйте ее в объект с данными о товаре
   const { productData } = location.state || {};
   const [isCredited, setCredited] = useState(true);
+  const [userBonus, setUserBonus] = useState(0);
   const handleToggle = () => {
     setCredited(!isCredited);
   };
@@ -128,6 +129,25 @@ function ProductConfirm() {
   
   const SendDiscount = async () => {
     await axios.post('https://crm.zipperconnect.space/get/discount',{
+      userId: userId,
+    })
+  };
+
+  useEffect(() => {
+    reloadBonus();
+    SendData();
+  },[])
+  
+  const reloadBonus = async () => {
+    const eventSource = new EventSource('https://crm.zipperconnect.space/connect/bonus')
+    eventSource.onmessage = function (event){
+      const bonus = JSON.parse(event.data);
+      setUserBonus(prev => [bonus]);
+    }
+  };
+  
+  const SendData = async () => {
+    await axios.post('https://crm.zipperconnect.space/get/bonus',{
       userId: userId,
     })
   };
@@ -330,7 +350,7 @@ function ProductConfirm() {
                   Списать
                   <div className="item-switcher-point">
                     <span className={`item-switcher-rouble ${isCredited ? 'active' : 'passive'}`}>₽</span>
-                    <span className="item-switcher-num">0</span>
+                    <span className="item-switcher-num">{userBonus}</span>
                   </div>
                 </div>
               </div>
