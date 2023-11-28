@@ -20,7 +20,8 @@ function ProductConfirm() {
     // Выполнять переключение только если userBonus больше или равен 0
     if (userBonus > 0) {
       setCredited(!isCredited);
-      const adjustedPrice = Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - userBonus;
+      let adjustedPrice = Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - userBonus;
+      adjustedPrice = Math.max(adjustedPrice, 5990); // Убедитесь, что цена не будет ниже 5990
       window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
     }else{
       window.Telegram.WebApp.HapticFeedback.notificationOccurred('error');
@@ -269,17 +270,17 @@ function ProductConfirm() {
        <div className="order-price">
          
                     {productData.price && (
-                      <>
+                    <>
                       {isCredited ? (
-                          <>
-                            {`${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - userBonus}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
-                            <del style={{ marginLeft:'4px', fontSize: '24px', color: 'var(--tg-hint)' }}>{`${productData.price}₽`}</del>{" "}
-                          </>
-                        ) : (
-                          `${productData.price}₽`
-                        )}
+                        <>
+                          {`${adjustedPrice}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
+                          <del style={{ marginLeft: '4px', fontSize: '24px', color: 'var(--tg-hint)' }}>{`${productData.price}₽`}</del>{" "}
+                        </>
+                      ) : (
+                        `${productData.price}₽`
+                      )}
                     </>
-                    )}
+                )}
        </div>
       </div>
     </div> 
@@ -329,17 +330,17 @@ function ProductConfirm() {
           <div className="item-order-info">
             <div className="confirm-item-price">
               {productData.price && (
+                  <>
+                    {isCredited ? (
                       <>
-                      {isCredited ? (
-                          <>
-                            {`${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - userBonus}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
-                            <del style={{ marginLeft:'4px', fontSize: '24px', color: 'var(--tg-hint)' }}>{`${productData.price}₽`}</del>{" "}
-                          </>
-                        ) : (
-                          `${productData.price}₽`
-                        )}
-                    </>
+                        {`${adjustedPrice}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
+                        <del style={{ marginLeft: '4px', fontSize: '24px', color: 'var(--tg-hint)' }}>{`${productData.price}₽`}</del>{" "}
+                      </>
+                    ) : (
+                      `${productData.price}₽`
                     )}
+                  </>
+                )}
             </div>
             <div className="public-oferta">
               <p className="public-ofert-text">Оплачивая заказ, вы соглашаетесь <br/>с условиями <a className="public-oferta-link">публичной оферты</a></p>
@@ -395,10 +396,10 @@ function ProductConfirm() {
   }}
                         color={color}
                         textColor={textColor}
-                        text={`Купить за ${isCredited 
-            ? `${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - userBonus}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')
-            : `${productData.price}₽`
-          }`}
+                        text={`Купить за ${isCredited
+              ? `${adjustedPrice}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')
+              : `${productData.price}₽`
+              }`}
                         progress={progress}
         
                         />
