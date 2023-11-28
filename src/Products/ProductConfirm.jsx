@@ -17,15 +17,17 @@ function ProductConfirm() {
   const [isCredited, setCredited] = useState(false);
   const [userBonus, setUserBonus] = useState(0);
   const handleToggle = () => {
-    // Выполнять переключение только если userBonus больше или равен 0
-    if (userBonus > 0) {
-      setCredited(!isCredited);
-      const adjustedPrice = Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - userBonus;
-      window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
-    }else{
-      window.Telegram.WebApp.HapticFeedback.notificationOccurred('error');
-    }
-  };
+  if (userBonus > 0) {
+    const currentPrice = Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.'));
+    const deductible = Math.min(userBonus, currentPrice - 5990);
+    const adjustedPrice = currentPrice - deductible;
+    
+    setCredited(!isCredited);
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
+  } else {
+    window.Telegram.WebApp.HapticFeedback.notificationOccurred('error');
+  }
+};
   // Отображаем информацию о товаре
   const [paymentStatus, setPaymentStatus] = useState('');
   const [paymentData, setPaymentData] = useState(null);
@@ -272,7 +274,7 @@ function ProductConfirm() {
                       <>
                       {isCredited ? (
                           <>
-                            {`${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - userBonus}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
+                            {`${adjustedPrice}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
                             <del style={{ marginLeft:'4px', fontSize: '24px', color: 'var(--tg-hint)' }}>{`${productData.price}₽`}</del>{" "}
                           </>
                         ) : (
@@ -332,7 +334,7 @@ function ProductConfirm() {
                       <>
                       {isCredited ? (
                           <>
-                            {`${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - userBonus}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
+                            {`${adjustedPrice}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
                             <del style={{ marginLeft:'4px', fontSize: '24px', color: 'var(--tg-hint)' }}>{`${productData.price}₽`}</del>{" "}
                           </>
                         ) : (
@@ -396,7 +398,7 @@ function ProductConfirm() {
                         color={color}
                         textColor={textColor}
                         text={`Купить за ${isCredited 
-            ? `${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - userBonus}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')
+            ? `${adjustedPrice}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')
             : `${productData.price}₽`
           }`}
                         progress={progress}
