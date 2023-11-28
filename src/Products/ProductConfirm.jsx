@@ -270,7 +270,7 @@ function ProductConfirm() {
        <hr/>
        <div className="order-price">
          
-                    {productData.price && (
+                    {adjustedPrice && (
                       <>
                       {isCredited ? (
                           <>
@@ -330,7 +330,7 @@ function ProductConfirm() {
         </div>
           <div className="item-order-info">
             <div className="confirm-item-price">
-              {productData.price && (
+              {adjustedPrice && (
                       <>
                       {isCredited ? (
                           <>
