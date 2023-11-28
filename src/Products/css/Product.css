@@ -542,6 +542,21 @@ hr{
     transition: all .3s linear;
   }
 
+  .rouble-icon{
+      background: radial-gradient(69.01% 448.79% at .64% 71.74%,#ef4e7b 0,#a166ab 200%);
+      color: #ffffff;
+      border-radius: 50%;
+      font-weight: 500;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      white-space: nowrap; /* Предотвращение переноса текста */
+      transition: all .3s linear;
+      height: 18px;
+      width: 18px; /* Фиксированная ширина */
+      display: inline-block; /* Добавлено для корректного расположения */
+    }
+
   .item-switcher-rouble.passive{
     color: #fff;
     display: flex;
