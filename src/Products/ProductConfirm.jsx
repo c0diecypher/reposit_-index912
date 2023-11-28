@@ -373,9 +373,10 @@ function ProductConfirm() {
                               <div className="warning-bonus-selection-box">
                                   <p>Конечная сумма к оплате <strong>не может быть меньше</strong> 5990 рублей.</p>
                                   <p>При покупке, указав «<strong>Списать <span className="rouble-icon"style={{margin:'0px',padding:'0px'}}>₽</span> <div className="refer-friend-title-gradient">{userBonus}</div></strong>»
-                                     <br/> 
+                                     <br/>
                                     в автоматическом порядке списываются все<strong> доступные <div className="refer-friend-title-gradient">бонусы</div></strong>.
                                   </p>
+                                <p><strong>Осталось <span className="rouble-icon"style={{margin:'0px',padding:'0px'}}>₽</span> <div className="refer-friend-title-gradient">{Math.max(0, userBonus - adjustedPrice)}</div></strong></p>
                               </div>
                           </div>
                             <hr style={{marginTop:'0px'}}/>
