@@ -367,6 +367,25 @@ function ProductConfirm() {
                 </div>
               </div>
             </div>
+            {isCredited ? (
+                          <>
+                            <hr/>
+                            <div className="refer-friend-section">
+                              <div className="refer-friend-selection-box">
+                                  <p>Конечная сумма к оплате <strong>не может быть меньше</strong> 5990 рублей.</p>
+                                  <p>При покупке, указав «<strong>Списать <span className="rouble-icon"style={{margin:'0px',padding:'0px'}}>₽</span> <div className="refer-friend-title-gradient">{userBonus}</div></strong>»
+                                     <br/> 
+                                    в автоматическом порядке списываются все<strong> доступные <div className="refer-friend-title-gradient">бонусы</div></strong>.
+                                  </p>
+                              </div>
+                          </div>
+                            <hr style={{marginTop:'0px'}}/>
+                          </>
+                        ) : (
+                          <>
+                          {" "}
+                          </>
+                        )}
           </div>
       </div>
       <MainButton 
