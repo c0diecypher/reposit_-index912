@@ -376,7 +376,7 @@ function ProductConfirm() {
                                      <br/>
                                     в автоматическом порядке списываются все<strong> доступные <div className="refer-friend-title-gradient">бонусы</div></strong>.
                                   </p>
-                                <p><strong>При списании бонусов, останется: <span className="rouble-icon"style={{margin:'0px',padding:'0px'}}>₽</span> <div className="refer-friend-title-gradient">{Math.max(0, userBonus - adjustedPrice)}</div></strong></p>
+                                <p><strong>При списании бонусов у вас останется: <span className="rouble-icon"style={{margin:'0px',padding:'0px'}}>₽</span> <div className="refer-friend-title-gradient">{Math.max(0, userBonus - (productData.price - adjustedPrice))}</div></strong></p>
                               </div>
                           </div>
                             <hr style={{marginTop:'0px'}}/>
