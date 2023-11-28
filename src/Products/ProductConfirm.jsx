@@ -42,11 +42,11 @@ function ProductConfirm() {
   const [status, setStatus] = useState('');
  const onSendData = async () => {
   setProgress(true);
+   let adjustedPrice = Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - userBonus;
+    adjustedPrice = Math.max(adjustedPrice, 5990);
   const data = {
     name: productData.name,
-    price: isCredited  ?
-      `${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - userBonus}`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ') :
-      productData.price,
+    price: isCredited ? `${adjustedPrice}`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ') : productData.price,
     size: productData.size,
     queryId,
     userId,
