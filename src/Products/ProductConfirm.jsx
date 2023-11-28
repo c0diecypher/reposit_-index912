@@ -10,7 +10,6 @@ function ProductConfirm() {
   const { productId, size, price, name, img, id } = useParams();
   const location = useLocation();
   const [progress, setProgress] = useState(false);
-  const [adjustedPrice, setAdjustedPrice] = useState(productData.price);
   const [paymentDate] = useState(new Date()); // Создаем объект Date с текущей датой
   const options = { month: 'short', day: 'numeric' };
   // Декодируйте JSON-строку и преобразуйте ее в объект с данными о товаре
@@ -18,18 +17,15 @@ function ProductConfirm() {
   const [isCredited, setCredited] = useState(false);
   const [userBonus, setUserBonus] = useState(0);
   const handleToggle = () => {
-  if (userBonus > 0) {
-    const currentPrice = Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.'));
-    const deductible = Math.min(userBonus, currentPrice - 5990);
-    const newAdjustedPrice = currentPrice - deductible;
-
-    setAdjustedPrice(newAdjustedPrice);
-    setCredited(!isCredited);
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
-  } else {
-    window.Telegram.WebApp.HapticFeedback.notificationOccurred('error');
-  }
-};
+    // Выполнять переключение только если userBonus больше или равен 0
+    if (userBonus > 0) {
+      setCredited(!isCredited);
+      const adjustedPrice = Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - userBonus;
+      window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
+    }else{
+      window.Telegram.WebApp.HapticFeedback.notificationOccurred('error');
+    }
+  };
   // Отображаем информацию о товаре
   const [paymentStatus, setPaymentStatus] = useState('');
   const [paymentData, setPaymentData] = useState(null);
@@ -272,11 +268,11 @@ function ProductConfirm() {
        <hr/>
        <div className="order-price">
          
-                    {adjustedPrice && (
+                    {productData.price && (
                       <>
                       {isCredited ? (
                           <>
-                            {`${adjustedPrice}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
+                            {`${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - userBonus}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
                             <del style={{ marginLeft:'4px', fontSize: '24px', color: 'var(--tg-hint)' }}>{`${productData.price}₽`}</del>{" "}
                           </>
                         ) : (
@@ -332,11 +328,11 @@ function ProductConfirm() {
         </div>
           <div className="item-order-info">
             <div className="confirm-item-price">
-              {adjustedPrice && (
+              {productData.price && (
                       <>
                       {isCredited ? (
                           <>
-                            {`${adjustedPrice}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
+                            {`${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - userBonus}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}
                             <del style={{ marginLeft:'4px', fontSize: '24px', color: 'var(--tg-hint)' }}>{`${productData.price}₽`}</del>{" "}
                           </>
                         ) : (
@@ -400,7 +396,7 @@ function ProductConfirm() {
                         color={color}
                         textColor={textColor}
                         text={`Купить за ${isCredited 
-            ? `${adjustedPrice}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')
+            ? `${Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - userBonus}₽`.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')
             : `${productData.price}₽`
           }`}
                         progress={progress}
