@@ -21,8 +21,9 @@ function ProductConfirm() {
   if (userBonus > 0) {
     const currentPrice = Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.'));
     const deductible = Math.min(userBonus, currentPrice - 5990);
-    const adjustedPrice = currentPrice - deductible;
-    
+    const newAdjustedPrice = currentPrice - deductible;
+
+    setAdjustedPrice(newAdjustedPrice);
     setCredited(!isCredited);
     window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
   } else {
