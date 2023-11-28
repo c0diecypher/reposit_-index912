@@ -10,6 +10,7 @@ function ProductConfirm() {
   const { productId, size, price, name, img, id } = useParams();
   const location = useLocation();
   const [progress, setProgress] = useState(false);
+  const [adjustedPrice, setAdjustedPrice] = useState(productData.price);
   const [paymentDate] = useState(new Date()); // Создаем объект Date с текущей датой
   const options = { month: 'short', day: 'numeric' };
   // Декодируйте JSON-строку и преобразуйте ее в объект с данными о товаре
