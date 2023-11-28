@@ -570,3 +570,25 @@ hr{
     background: #979797;
     transition: all .3s linear;
   }
+
+ .warning-bonus-selection{
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    border-radius: 20px;
+    background: var(--tg-second);
+    margin: var(--space-4x)
+  }
+
+  .warning-bonus-selection-box{
+    width: 100%;
+  }
+  .warning-bonus-selection-box p{
+    text-align: left;
+    margin: 0;
+  }
