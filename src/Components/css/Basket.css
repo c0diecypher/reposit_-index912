@@ -22,7 +22,6 @@
 .product-container {
   -webkit-user-select: none;
   user-select: none;
-  transition: transform .15s linear;
 }
 
 .product-order {
@@ -51,7 +50,7 @@
 .product-container a{
   display: flex;
   gap: 10px;
-  transition: transform .15s linear;
+  transition: transform .15s ease-out;
   position: relative;
   overflow: hidden;
 }
