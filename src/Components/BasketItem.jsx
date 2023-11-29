@@ -10,6 +10,11 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
   const options = { month: 'short', day: 'numeric' };
   const [totalPrice, setTotalPrice] = useState(0);
   const [basketData, setBasketData] = useState([]);
+  const [swipeStartIndex, setSwipeStartIndex] = useState(null);
+  const [showDelete, setShowDelete] = useState(false);
+  const [touchStartX, setTouchStartX] = useState(null);
+  const [showDeleteIcon, setShowDeleteIcon] = useState(false);
+  const [swipeDirection, setSwipeDirection] = useState(null);
   // Обновляем общую стоимость при изменении корзины
 
   useEffect(() => {
@@ -30,6 +35,72 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
       userId: userId,
     })
   };
+
+  const handleTouchStart = (index, event) => {
+    setSwipeStartIndex(index);
+    setTouchStartX(event.touches[0].clientX);
+  };
+
+  const handleTouchMove = (event) => {
+    if (swipeStartIndex !== null) {
+      const touchMoveX = event.touches[0].clientX;
+      const deltaX = touchMoveX - touchStartX;
+  
+      if (deltaX < 0) {
+        setSwipeDirection('left'); // Set swipe direction to left
+        const productContainers = document.querySelectorAll('.product-container a');
+  
+        productContainers.forEach((container, index) => {
+          if (index === swipeStartIndex) {
+            container.style.transform = `translateX(${deltaX}px)`;
+          } else {
+            container.style.transform = '';
+          }
+        });
+  
+        setShowDeleteIcon(true); // Show delete icon on left swipe
+        setShowDelete(false);
+      } else {
+        setSwipeDirection(null); // Reset swipe direction
+        setShowDeleteIcon(false);
+        setShowDelete(false);
+      }
+    }
+  };
+
+  const handleTouchEnd = (event) => {
+    if (swipeStartIndex !== null) {
+      // Reset transforms
+      const productContainers = document.querySelectorAll('.product-container a');
+      productContainers.forEach((container) => {
+        container.style.transform = '';
+      });
+
+      // Handle delete if swipe exceeds a threshold
+      const touchEndX = event.changedTouches[0].clientX;
+      const deltaX = touchEndX - touchStartX;
+      const swipeThreshold = window.innerWidth * 0.1; // Adjust the threshold as needed
+
+      if (deltaX < -swipeThreshold) {
+        handleDelete(swipeStartIndex);
+      }
+
+      // Reset state
+      setSwipeStartIndex(null);
+      setTouchStartX(null);
+      setShowDelete(false);
+      setShowDeleteIcon(false);
+    }
+  };
+
+  const handleDelete = (index) => {
+    // Implement your logic to delete item from the basket
+    const updatedBasket = [...basketData];
+    updatedBasket.splice(index, 1);
+    setBasketData(updatedBasket);
+    // Update the server or perform other necessary actions
+    onDataUpdate(updatedBasket);
+  };
   
   BasketItem.propTypes = {
     cart: PropTypes.array.isRequired,
@@ -46,9 +117,13 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
   {basketData.map((product) => (
       <div key={product.id} className="product-container-order" >
         <Link
-                    to={`/products/confirm/offer/${product.name}/${product.size}/${product.price}`}
-                    state={{ productData: product }}
-                    className="item-link">
+          to={`/products/confirm/offer/${product.name}/${product.size}/${product.price}`}
+          state={{ productData: product }}
+          className={`item-link ${showDelete && index === swipeStartIndex ? 'swipe-animation' : ''}`}
+          onTouchStart={(event) => handleTouchStart(index, event)}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          >
         
         <div className="product-image-component">
           <div className="product-image-container">
