@@ -79,7 +79,7 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
       // Handle delete if swipe exceeds a threshold
       const touchEndX = event.changedTouches[0].clientX;
       const deltaX = touchEndX - touchStartX;
-      const swipeThreshold = window.innerWidth * 0.1; // Adjust the threshold as needed
+      const swipeThreshold = window.innerWidth; // Adjust the threshold as needed
 
       if (deltaX < -swipeThreshold) {
         handleDelete(swipeStartIndex);
