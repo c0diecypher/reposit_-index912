@@ -18,6 +18,7 @@ function ProductConfirm() {
   const [userBonus, setUserBonus] = useState(0);
   const [adjustedPrice, setAdjustedPrice] = useState(0); 
   const remainingBonus = Math.max(0, userBonus - (Number(productData.price.replace(/[\u00a0₽ ]/g, '').replace(',', '.')) - adjustedPrice));
+  const deductedAmount = Math.max(0, userBonus - remainingBonus);
   const handleToggle = () => {
     if (userBonus > 0) {
       setCredited(!isCredited);
@@ -378,7 +379,7 @@ function ProductConfirm() {
                                      <br/>
                                     в автоматическом порядке списываются все<strong> доступные <div className="refer-friend-title-gradient">бонусы</div></strong>.
                                   </p>
-                                <p><strong> <div className="refer-friend-title-gradient">Бонусов</div> останется: <span className="rouble-icon"style={{margin:'0px',padding:'0px'}}>₽</span> <div className="refer-friend-title-gradient">{remainingBonus}</div></strong></p>
+                                <p><strong> <div className="refer-friend-title-gradient">Бонусов</div> останется: <span className="rouble-icon"style={{margin:'0px',padding:'0px'}}>₽</span> <div className="refer-friend-title-gradient">{remainingBonus} или {deductedAmount}</div></strong></p>
                               </div>
                           </div>
                             <hr style={{marginTop:'0px'}}/>
