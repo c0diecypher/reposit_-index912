@@ -35,22 +35,21 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
     cart: PropTypes.array.isRequired,
     removeFromCart: PropTypes.func.isRequired,
   };
-  const handleDelete = async (order_id) => 
-    setBasketData(prevBasketData => prevBasketData.filter(item => item.order_id !== order_id));
-    try {
-      // Отправляем запрос на удаление элемента с заданным productId
-      await axios.post('https://crm.zipperconnect.space/customers/user/basket/delete/item', {
-        userId: userId,
-        productId: productId,
-        order_id: order_id,
-      });
+  const handleDelete = async (order_id) => {
+  try {
+    // Отправляем запрос на удаление элемента с заданным order_id
+    await axios.post('https://crm.zipperconnect.space/customers/user/basket/delete/item', {
+      userId: userId,
+      order_id: order_id,
+    });
 
-      // Обновляем локальный стейт basketData, удаляя элемент с заданным productId
-    } catch (error) {
-      console.error('Ошибка при удалении товара:', error);
-      // Обрабатываем ошибку по необходимости
-    }
-  };
+    // Обновляем локальный стейт basketData, удаляя элемент с заданным order_id
+    setBasketData(prevBasketData => prevBasketData.filter(item => item.order_id !== order_id));
+  } catch (error) {
+    console.error('Ошибка при удалении товара:', error);
+    // Обрабатываем ошибку по необходимости
+  }
+};
 
   return (
     <>
