@@ -47,6 +47,7 @@ const BasketPaid = ({ cart, onDataUpdate, userId } ) => {
       <>
         
       <div key={product.id} className="product-container-order" >
+        <div className="product-swiper">
         <Link
                     to={`/products/confirm/offer/paid/${product.name}/${product.size}/${product.price}`}
                     state={{ productData: product }}
@@ -80,6 +81,7 @@ const BasketPaid = ({ cart, onDataUpdate, userId } ) => {
           </div>
           
   </Link>
+   </div>
   </div>
      </>
   ))} 
