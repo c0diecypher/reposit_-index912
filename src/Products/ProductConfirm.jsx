@@ -54,7 +54,7 @@ function ProductConfirm() {
     productId: productData.id,
     time: paymentDate.toLocaleDateString("ru-RU", options),
     remainingBonus: remainingBonus,
-    saveBonus: deductedAmount,
+    saveBonus: isCredited ? deductedAmount : 50,
   };
 
   try {
