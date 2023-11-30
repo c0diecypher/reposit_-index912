@@ -54,7 +54,7 @@ function ProductConfirm() {
     productId: productData.id,
     time: paymentDate.toLocaleDateString("ru-RU", options),
     remainingBonus: remainingBonus,
-    saveBonus: isCredited ? deductedAmount : 0,
+    saveBonus: deductedAmount,
     newBonus: !isCredited ? 50 : 0, // Отправляем newBonus: 50 только если isCredited равно false
   };
 
