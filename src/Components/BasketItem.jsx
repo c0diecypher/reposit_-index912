@@ -35,7 +35,7 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
     cart: PropTypes.array.isRequired,
     removeFromCart: PropTypes.func.isRequired,
   };
-  const order_id = product.order_id;
+  const order_id = basketData.order_id;
   const handleDelete = async (productId, order_id) => {
     setBasketData(prevBasketData => prevBasketData.filter(item => item.order_id !== order_id));
     try {
