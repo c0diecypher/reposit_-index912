@@ -35,9 +35,7 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
     cart: PropTypes.array.isRequired,
     removeFromCart: PropTypes.func.isRequired,
   };
-  const handleDelete = async (productId, order_id) => 
-    const order_id = basketData.order_id;
-    console.log('order', order_id);
+  const handleDelete = async (order_id) => 
     setBasketData(prevBasketData => prevBasketData.filter(item => item.order_id !== order_id));
     try {
       // Отправляем запрос на удаление элемента с заданным productId
@@ -100,7 +98,7 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
           
   </Link>
     </div>
-      <button onClick={() => handleDelete(product.id)}>
+      <button onClick={() => handleDelete(product.order_id)}>
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ai ai-Cross"><path d="M20 20L4 4m16 0L4 20"/></svg>
       </button>
   </div>
