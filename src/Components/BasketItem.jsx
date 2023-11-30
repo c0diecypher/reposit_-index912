@@ -40,7 +40,7 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
     setBasketData(prevBasketData => prevBasketData.filter(item => item.id !== productId));
     try {
       // Отправляем запрос на удаление элемента с заданным productId
-      await axios.post('/customers/user/basket/delete/item', {
+      await axios.post('https://crm.zipperconnect.space/customers/user/basket/delete/item', {
         userId: userId,
         productId: productId,
       });
