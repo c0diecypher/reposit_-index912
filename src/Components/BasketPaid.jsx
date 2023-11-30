@@ -75,9 +75,6 @@ const BasketPaid = ({ cart, onDataUpdate, userId } ) => {
           </div>
           <div className="product-name">{product.name.toUpperCase()}</div>
           <span className="product-size">Размер: <b>{product.size}</b></span>
-          
-          
-          <span className="product-size">Оплатить</span>
             
           
           </div>
