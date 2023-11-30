@@ -90,7 +90,7 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
           </div>
           <div className="product-name">{product.name}</div>
           <span className="product-size">Размер: <b>{product.size}</b></span>
-          
+          <span className="product-size">id: <b>{product.order_id}</b></span>
           
           <span className="product-size">Оплатить</span>
             
