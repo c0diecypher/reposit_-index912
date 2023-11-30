@@ -43,6 +43,7 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
       await axios.post('https://crm.zipperconnect.space/customers/user/basket/delete/item', {
         userId: userId,
         productId: productId,
+        order_id: product.order_id,
       });
 
       // Обновляем локальный стейт basketData, удаляя элемент с заданным productId
@@ -90,7 +91,6 @@ const BasketItem = ({ cart, onDataUpdate, userId } ) => {
           </div>
           <div className="product-name">{product.name}</div>
           <span className="product-size">Размер: <b>{product.size}</b></span>
-          <span className="product-size">id: <b>{product.order_id}</b></span>
           
           <span className="product-size">Оплатить</span>
             
