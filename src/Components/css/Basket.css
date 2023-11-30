@@ -97,7 +97,7 @@
 }
 
 .product-container-order button:first-of-type {
-  border-radius: 0 0 20px;
+  border-radius: 0 20px 20px 0;
   flex: 1 0 30%;
   max-width: 30%; /* Можете также установить максимальную ширину */
   background-color: #FB6F5F;
