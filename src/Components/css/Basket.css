@@ -79,22 +79,30 @@
 
 .product-container-order button {
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   color: white;
   cursor: pointer;
+  margin: 0; /* Убедимся, что нет дополнительных отступов */
+  padding: 0;
 }
 
 .product-container-order button svg {
   width: 25px;
   height: 25px;
   display: inline;
-  margin-top: -4px;
+  
 }
 
 .product-container-order button:first-of-type {
+  border-radius: 0 0 20px;
   flex: 1 0 30%;
+  max-width: 30%; /* Можете также установить максимальную ширину */
   background-color: #FB6F5F;
   overflow: hidden;
+  touch-action: manipulation;
 }
 
 .product-image-component{
