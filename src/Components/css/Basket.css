@@ -78,6 +78,7 @@
 }
 
 .product-container-order button {
+  width: 100%;
   border: none;
   color: white;
   cursor: pointer;
@@ -93,6 +94,7 @@
 .product-container-order button:first-of-type {
   flex: 1 0 30%;
   background-color: #FB6F5F;
+  overflow: hidden;
 }
 
 .product-image-component{
