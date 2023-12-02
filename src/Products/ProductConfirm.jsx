@@ -150,7 +150,7 @@ function ProductConfirm() {
   },[])
   
   const reloadBonus = async () => {
-    const eventSource = new EventSource('https://crm.zipperconnect.space/connect/bonus')
+    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/bonus/${userId}`)
     eventSource.onmessage = function (event){
       const bonus = JSON.parse(event.data);
       setUserBonus(bonus);
@@ -158,7 +158,7 @@ function ProductConfirm() {
   };
   
   const SendData = async () => {
-    await axios.post('https://crm.zipperconnect.space/get/bonus',{
+    await axios.post(`https://crm.zipperconnect.space/get/bonus/${userId}`,{
       userId: userId,
     })
   };
