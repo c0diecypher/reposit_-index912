@@ -18,7 +18,7 @@ const BasketPaid = ({ cart, onDataUpdate, userId } ) => {
   },[])
   
   const reloadBasketPaid = async () => {
-    const eventSource = new EventSource('https://crm.zipperconnect.space/connect/basketpaid')
+    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/basketpaid/${userId}`)
     eventSource.onmessage = function (event){
       const basketpaid = JSON.parse(event.data);
       setPaidData(basketpaid);
@@ -26,7 +26,7 @@ const BasketPaid = ({ cart, onDataUpdate, userId } ) => {
   };
   
   const SendBasketPaid = async () => {
-    await axios.post('https://crm.zipperconnect.space/get/basketpaid',{
+    await axios.post(`https://crm.zipperconnect.space/get/basketpaid/${userId}`,{
       userId: userId,
     })
   };
