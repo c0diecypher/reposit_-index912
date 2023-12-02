@@ -11,7 +11,8 @@ function ButtonBonus({userId}) {
   },[])
   
   const reloadBonus = async () => {
-    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/bonus/${userId}`)
+    const encodedUserId = encodeURIComponent(JSON.stringify({ userId }));
+    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/bonus/${encodedUserId}`);
     eventSource.onmessage = function (event){
       const bonus = JSON.parse(event.data);
       setUserBonus(bonus);
