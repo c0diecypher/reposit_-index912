@@ -16,7 +16,7 @@ function ButtonBonus({userId}) {
       const bonus = JSON.parse(event.data);
       const { userId, bonus } = bonus;
       console.log(`Received bonus for user ${userId}: ${bonus}`);
-      setUserBonus(prev => [bonus]);
+      setUserBonus(bonus);
     }
   };
   
