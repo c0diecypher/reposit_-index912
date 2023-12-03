@@ -95,7 +95,6 @@ function App() {
         const headers = new Headers();
           // Преобразуем объект в строку JSON и добавляем в заголовок
           headers.append('Authorization', `twa-init-data ${initDataString}`);
-          console.log(headers);
           // Проверяем, если данные инициализации отсутствуют
         if (!initDataString) {
             throw new Error('Unauthorized');
@@ -132,7 +131,10 @@ function App() {
   useEffect(() => {
     window.scrollTo(0, scrollPosition);
   }, [scrollPosition]);
-  const shouldShowBanner = userId === 204688184 || userId === 1201116054;
+   const userIdString = userId.toString();
+
+  // Проверка userId для определения, должен ли пользователь видеть баннер
+  const shouldShowBanner = userIdString === '204688184' || userIdString === '1201116054';
   return (
     <>
       <Routes>
@@ -148,7 +150,7 @@ function App() {
             <Searchbar />
             <Stories />
               {isAuthenticated && <ButtonBonus userId={userId} />}
-              {shouldShowBanner && <Banner />}
+              {shouldShowBanner && <Banner userId={userId}/>}
               {isAuthenticated && <BasketItem userId={userId} />}
               <div></div>
               {isAuthenticated && <BasketPaid userId={userId} />}
