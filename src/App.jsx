@@ -161,7 +161,7 @@ function App() {
                   <Footer />
                 </>
               ) : (
-                <div>У вас нет доступа:(</div>
+                <img srcSet="../public/img/svg/1586512296radial-stripes-background-freesvg.org.svg" alt="krossi"/>
               )}
             </>
           }
