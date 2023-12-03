@@ -142,27 +142,29 @@ function App() {
         exact
         path="/"
         element={
-          <>
-            {Telegram.WebApp.setHeaderColor('secondary_bg_color')}
-            {tg.expand()}
-            {tg.enableClosingConfirmation()}
-            {shouldShowBanner ? (
-            <Header userId={userId} />
-            <Searchbar />
-            <Stories />
-              {isAuthenticated && <ButtonBonus userId={userId} />}
-              {shouldShowBanner && <Banner userId={userId}/>}
-              {isAuthenticated && <BasketItem userId={userId} />}
-              <div></div>
-              {isAuthenticated && <BasketPaid userId={userId} />}
-            <Catalog  userId={userId} />
-            {isAuthenticated && <Products  userId={userId} />}
-            <Footer />
-            ) : (
+            <>
+              {Telegram.WebApp.setHeaderColor('secondary_bg_color')}
+              {tg.expand()}
+              {tg.enableClosingConfirmation()}
+              {shouldShowBanner ? (
+                <>
+                  <Header userId={userId} />
+                  <Searchbar />
+                  <Stories />
+                  {isAuthenticated && <ButtonBonus userId={userId} />}
+                  {shouldShowBanner && <Banner userId={userId} />}
+                  {isAuthenticated && <BasketItem userId={userId} />}
+                  <div></div>
+                  {isAuthenticated && <BasketPaid userId={userId} />}
+                  <Catalog userId={userId} />
+                  {isAuthenticated && <Products userId={userId} />}
+                  <Footer />
+                </>
+              ) : (
                 <div>У вас нет доступа:(</div>
               )}
-          </>
-        }
+            </>
+          }
         >
 
         </Route>
