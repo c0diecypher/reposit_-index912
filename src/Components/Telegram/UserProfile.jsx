@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useQuery } from "react-query";
 import { useTelegram } from "../Hooks/useTelegram";
 import { InitialsAvatar } from "@twa-dev/mark42";
 import "../../css/body.css";
@@ -8,49 +7,42 @@ function UserProfile({ userId }) {
   const { tg, user } = useTelegram();
   const [imageSrc, setImageSrc] = useState(null);
   const [error, setError] = useState(null);
-  const [userDataState, setUserData] = useState(null); // Renamed to userDataState to avoid conflict
 
-  // Используем react-query для кэширования данных пользователя
-  const { data: queryUserData, isSuccess, refetch } = useQuery(
-    ["userProfile", userId],
-    () => fetch(`https://zipperconnect.space/userProfile/${userId}`).then((res) => res.json()),
-    {
-      enabled: !!userId,
-      onSuccess: (data) => {
-        // Устанавливаем данные пользователя и сбрасываем ошибки
-        setUserData(data);
-        setError(null);
-
-        // Выводим данные в консоль
-        console.log("UserData:", data);
-      },
-      onError: (err) => {
-        // Обработка ошибок
-        setUserData(null);
-        setError(err);
-      },
-    }
-  );
-
-  // Кэширование и обновление изображения
-  useEffect(() => {
+ useEffect(() => {
     if (userId) {
       fetch(`https://cdn.zipperconnect.space/customer/settings/client/photo/${userId}`)
         .then((response) => {
           if (response.ok) {
             return response.blob();
           } else {
-            throw new Error("Network response was not ok");
+            throw new Error('Network response was not ok');
           }
         })
         .then((imageBlob) => {
           const imageUrl = URL.createObjectURL(imageBlob);
           setImageSrc(imageUrl);
-
-          // Выводим данные в консоль
-          console.log("ImageSrc:", imageUrl);
         })
         .catch((err) => {
+          setError(err);
+        });
+    }
+  }, [userId]);
+
+  useEffect(() => {
+    if (userId) {
+      fetch(`https://zipperconnect.space/userProfile/${userId}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          // Обработка успешного ответа
+          setUserData(data);
+        })
+        .catch((err) => {
+          // Обработка ошибки
           setError(err);
         });
     }
