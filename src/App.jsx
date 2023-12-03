@@ -161,7 +161,7 @@ function App() {
                   <Footer />
                 </>
               ) : (
-                <img srcSet="../public/img/svg/1586512296radial-stripes-background-freesvg.org.svg" alt="krossi"/>
+                <img src="../public/img/svg/1586512296radial-stripes-background-freesvg.org.svg" alt="krossi"/>
               )}
             </>
           }
