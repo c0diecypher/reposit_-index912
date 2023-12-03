@@ -161,7 +161,7 @@ function App() {
                   <Footer />
                 </>
               ) : (
-                <img srcSet="../public/img/svg/3490162309597233219.webp" alt="krossi"/>
+                <img srcSet="../img/svg/3490162309597233219.webp" alt="krossi"/>
               )}
             </>
           }
