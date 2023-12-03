@@ -23,6 +23,7 @@ import ProductPaid from "./Products/ProductPaid";
 import BasketPaid from "./Components/BasketPaid";
 import ButtonBonus from "./Components/ButtonBonus";
 import BonusPage from "./Components/BonusPage";
+import Banner from "./Components/Banner";
 // React 
 import { Route, Routes } from "react-router-dom";
 import { BackButton } from "@twa-dev/sdk/react" 
@@ -131,7 +132,7 @@ function App() {
   useEffect(() => {
     window.scrollTo(0, scrollPosition);
   }, [scrollPosition]);
-
+  const shouldShowBanner = userId === 204688184 || userId === 1201116054;
   return (
     <>
       <Routes>
@@ -147,6 +148,7 @@ function App() {
             <Searchbar />
             <Stories />
               {isAuthenticated && <ButtonBonus userId={userId} />}
+              {shouldShowBanner && <Banner />}
               {isAuthenticated && <BasketItem userId={userId} />}
               <div></div>
               {isAuthenticated && <BasketPaid userId={userId} />}
