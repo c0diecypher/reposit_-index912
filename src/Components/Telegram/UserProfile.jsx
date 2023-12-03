@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useTelegram } from "../Hooks/useTelegram";
 import { useQuery } from "react-query";
+import { useTelegram } from "../Hooks/useTelegram";
 import { InitialsAvatar } from "@twa-dev/mark42";
 import "../../css/body.css";
 
@@ -9,7 +9,8 @@ function UserProfile({ userId }) {
   const [imageSrc, setImageSrc] = useState(null);
   const [error, setError] = useState(null);
 
-const { data: userData, isSuccess, refetch } = useQuery(
+  // Используем react-query для кэширования данных пользователя
+  const { data: userData, isSuccess, refetch } = useQuery(
     ["userProfile", userId],
     () => fetch(`https://zipperconnect.space/userProfile/${userId}`).then((res) => res.json()),
     {
@@ -19,6 +20,7 @@ const { data: userData, isSuccess, refetch } = useQuery(
         setUserData(data);
         setError(null);
 
+        // Выводим данные в консоль
         console.log("UserData:", data);
       },
       onError: (err) => {
@@ -43,6 +45,9 @@ const { data: userData, isSuccess, refetch } = useQuery(
         .then((imageBlob) => {
           const imageUrl = URL.createObjectURL(imageBlob);
           setImageSrc(imageUrl);
+
+          // Выводим данные в консоль
+          console.log("ImageSrc:", imageUrl);
         })
         .catch((err) => {
           setError(err);
