@@ -16,7 +16,7 @@ function UserProfile({ userId }) {
     } else {
       // Если данных нет в localStorage, делаем запрос на сервер
       if (userId) {
-        fetch(`https://cdn.zipperconnect.space/customer/settings/client/photo/${userId}`)
+        fetch(`https://cdn.zipperconnect.space/customer/settings/client/photo/${userId}?timestamp=${Date.now()}`)
           .then((response) => {
             if (response.ok) {
               return response.blob();
