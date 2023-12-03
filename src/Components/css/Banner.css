@@ -401,15 +401,3 @@
     color: #fff;
   }
   
-  .banner-card-QWE13S:focus {
-    outline: none;
-  }
-  
-  .banner-card-QWE13S:active {
-    letter-spacing: normal;
-    transform: translateY(4px);
-    box-shadow: none;
-    transform: scale(0.94);
-    transition: .1s linear;
-  }
-  
