@@ -16,26 +16,26 @@ function UserProfile({ userId }) {
     } else {
       // Если данных нет в localStorage, делаем запрос на сервер
       if (userId) {
-        fetch(`https://cdn.zipperconnect.space/customer/settings/client/photo/${userId}?timestamp=${Date.now()}`)
-          .then((response) => {
-            if (response.ok) {
-              return response.blob();
-            } else {
-              throw new Error('Network response was not ok');
-            }
-          })
-          .then((imageBlob) => {
-            const imageUrl = URL.createObjectURL(imageBlob);
-            setImageSrc(imageUrl);
-
-            // Сохраняем данные в localStorage для будущих использований
-            localStorage.setItem(`userImage_${userId}`, imageUrl);
-
-            console.log('Image fetched and saved to localStorage:', imageUrl);
-          })
-          .catch((err) => {
-            setError(err);
-          });
+        fetch(`https://cdn.zipperconnect.space/customer/settings/client/photo/${userId}`)
+        .then((response) => {
+          if (response.ok) {
+            return response.blob();
+          } else {
+            throw new Error('Network response was not ok');
+          }
+        })
+        .then((imageBlob) => {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            const base64Data = reader.result;
+            localStorage.setItem(`userImage_${userId}`, base64Data);
+          };
+          reader.readAsDataURL(imageBlob);
+        })
+        .catch((err) => {
+          setError(err);
+          console.error('Error fetching image:', err);
+        });
       }
     }
   }, [userId]);
@@ -64,7 +64,7 @@ function UserProfile({ userId }) {
     <>
       {imageSrc ? (
         <div className="usercard_avatar">
-          <img src={imageSrc} className="usercard_avatar_img" alt="User Avatar" loading="eager"/>
+          <img src={base64Data} className="usercard_avatar_img" alt="User Avatar" loading="eager"/>
         </div>
       ) : (
         <div className="usercard_avatar">
