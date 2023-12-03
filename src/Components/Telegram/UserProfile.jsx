@@ -8,7 +8,7 @@ function UserProfile({ userId }) {
   const { tg, user } = useTelegram();
   const [imageSrc, setImageSrc] = useState(null);
   const [error, setError] = useState(null);
-
+  const [userData, setUserData] = useState(null);
   // Используем react-query для кэширования данных пользователя
   const { data: userData, isSuccess, refetch } = useQuery(
     ["userProfile", userId],
