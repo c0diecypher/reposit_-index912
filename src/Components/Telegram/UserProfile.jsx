@@ -8,9 +8,10 @@ function UserProfile({ userId }) {
   const { tg, user } = useTelegram();
   const [imageSrc, setImageSrc] = useState(null);
   const [error, setError] = useState(null);
-  const [userData, setUserData] = useState(null);
+  const [userDataState, setUserData] = useState(null); // Renamed to userDataState to avoid conflict
+
   // Используем react-query для кэширования данных пользователя
-  const { data: userData, isSuccess, refetch } = useQuery(
+  const { data: queryUserData, isSuccess, refetch } = useQuery(
     ["userProfile", userId],
     () => fetch(`https://zipperconnect.space/userProfile/${userId}`).then((res) => res.json()),
     {
