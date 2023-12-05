@@ -23,6 +23,7 @@ function UserProfile({ userId }) {
           setImageSrc(imageUrl);
           // Сохраняем imageSrc в localStorage
           localStorage.setItem('userImage', imageUrl);
+          console.log('Image fetched and saved to localStorage:', imageUrl);
         })
         .catch((err) => {
           setError(err);
