@@ -8,7 +8,7 @@ function UserProfile({ userId }) {
   const [imageSrc, setImageSrc] = useState(null);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
+ useEffect(() => {
     if (userId) {
       fetch(`https://cdn.zipperconnect.space/customer/settings/client/photo/${userId}`)
         .then((response) => {
@@ -21,11 +21,28 @@ function UserProfile({ userId }) {
         .then((imageBlob) => {
           const imageUrl = URL.createObjectURL(imageBlob);
           setImageSrc(imageUrl);
-          // Сохраняем imageSrc в localStorage
-          localStorage.setItem('userImage', imageUrl);
-          console.log('Image fetched and saved to localStorage:', imageUrl);
         })
         .catch((err) => {
+          setError(err);
+        });
+    }
+  }, [userId]);
+
+  useEffect(() => {
+    if (userId) {
+      fetch(`https://zipperconnect.space/userProfile/${userId}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          // Обработка успешного ответа
+          setUserData(data);
+        })
+        .catch((err) => {
+          // Обработка ошибки
           setError(err);
         });
     }
