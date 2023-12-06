@@ -1,73 +1,128 @@
-import React, { useState, useEffect } from 'react';
-
-const CloudStorage = () => {
-  const [cloudStorage, setCloudStorage] = useState(null);
-  const [data, setData] = useState({});
-  const [keys, setKeys] = useState([]);
+import { useState, useEffect } from 'react';
+import './css/ProfilePage.css'
+function CloudStorage() {
+  const [cloudStorageKeys, setCloudStorageKeys] = useState([]);
+  const [cloudStorageItems, setCloudStorageItems] = useState({});
+  const [editKey, setEditKey] = useState('');
+  const [editValue, setEditValue] = useState('');
 
   useEffect(() => {
-    // Assume you have a function to initialize the CloudStorage object
-    const initializeCloudStorage = () => {
-      // Replace the following line with actual code to initialize your CloudStorage object
-      const cloudStorageObject = /* ... */;
-      setCloudStorage(cloudStorageObject);
-    };
-
-    initializeCloudStorage();
+    loadCloudKeys();
   }, []);
 
-  const handleSetItem = () => {
-    // Replace with actual logic
-    cloudStorage.setItem('exampleKey', 'exampleValue', (error, success) => {
-      if (error) {
-        console.error('Error setting item:', error);
+  const cleanHTML = (text) => {
+    // Ваша логика очистки HTML
+    return text;
+  };
+
+  const loadCloudKeys = () => {
+    window.Telegram.WebApp.CloudStorage.getKeys((err, keys) => {
+      if (err) {
+        showAlert('Error: ' + err);
       } else {
-        console.log('Item set successfully:', success);
+        if (keys.length > 0) {
+          window.Telegram.WebApp.CloudStorage.getItems(keys, (err, values) => {
+            if (err) {
+              showAlert('Error: ' + err);
+            } else {
+              setCloudStorageKeys(keys);
+              const items = {};
+              for (let i = 0; i < keys.length; i++) {
+                const key = keys[i];
+                items[key] = values[key];
+              }
+              setCloudStorageItems(items);
+            }
+          });
+        }
       }
     });
   };
 
-  const handleGetItem = () => {
-    // Replace with actual logic
-    cloudStorage.getItem('exampleKey', (error, value) => {
-      if (error) {
-        console.error('Error getting item:', error);
+  const editCloudRow = (key) => {
+    const value = cloudStorageItems[key];
+    setEditKey(key);
+    setEditValue(value);
+  };
+
+  const deleteCloudRow = (key) => {
+    window.Telegram.WebApp.CloudStorage.removeItem(key, (err, deleted) => {
+      if (err) {
+        showAlert('Error: ' + err);
       } else {
-        console.log('Item retrieved successfully:', value);
-        setData({ exampleKey: value });
+        if (deleted) {
+          const updatedKeys = cloudStorageKeys.filter((k) => k !== key);
+          setCloudStorageKeys(updatedKeys);
+          const updatedItems = { ...cloudStorageItems };
+          delete updatedItems[key];
+          setCloudStorageItems(updatedItems);
+        }
       }
     });
   };
 
-  const handleGetKeys = () => {
-    // Replace with actual logic
-    cloudStorage.getKeys((error, keyList) => {
-      if (error) {
-        console.error('Error getting keys:', error);
+  const saveCloudForm = (event) => {
+    event.preventDefault();
+    window.Telegram.WebApp.CloudStorage.setItem(editKey, editValue, (err, saved) => {
+      if (err) {
+        showAlert('Error: ' + err);
       } else {
-        console.log('Keys retrieved successfully:', keyList);
-        setKeys(keyList);
+        if (saved) {
+          const updatedItems = { ...cloudStorageItems };
+          updatedItems[editKey] = editValue;
+          setCloudStorageItems(updatedItems);
+          setEditKey('');
+          setEditValue('');
+        }
       }
     });
+  };
+
+  const showAlert = (message) => {
+    // Ваша логика отображения сообщения об ошибке
+    console.log(message);
   };
 
   return (
     <div>
-      <button onClick={handleSetItem}>Set Item</button>
-      <button onClick={handleGetItem}>Get Item</button>
-      <button onClick={handleGetKeys}>Get Keys</button>
-
-      <div>
-        <h3>Data:</h3>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-      </div>
-
-      <div>
-        <h3>Keys:</h3>
-        <pre>{JSON.stringify(keys, null, 2)}</pre>
-      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Номер телефона</th>
+            <th>ФИО</th>
+            <th>Адрес</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cloudStorageKeys.map((key) => (
+            <tr key={key}>
+              <td>{cleanHTML(key)}</td>
+              <td>{cleanHTML(cloudStorageItems[key])}</td>
+              <td>
+                <button onClick={() => editCloudRow(key)}>Изменить</button>
+                <button onClick={() => deleteCloudRow(key)}>Удалить</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <form onSubmit={saveCloudForm}>
+        <input
+          type="text"
+          placeholder="Номер телефона"
+          value={editKey}
+          onChange={(e) => setEditKey(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="ФИО"
+          value={editValue}
+          onChange={(e) => setEditValue(e.target.value)}
+        />
+        <button type="submit">Сохранить</button>
+      </form>
     </div>
   );
-};
+}
 
 export default CloudStorage;
