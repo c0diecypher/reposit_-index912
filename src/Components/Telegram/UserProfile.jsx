@@ -22,15 +22,15 @@ function UserProfile({ userId }) {
             } else {
               console.log("Previous image URL removed from CloudStorage");
             }
-          });
 
-          // Сохранение нового прямого URL изображения в Telegram WebApp CloudStorage
-          window.Telegram.WebApp.CloudStorage.setItem("userImage", imageUrl, (err, saved) => {
-            if (err) {
-              console.error("Error saving image URL to CloudStorage", err);
-            } else {
-              console.log("Image URL saved to CloudStorage");
-            }
+            // Сохранение нового прямого URL изображения в Telegram WebApp CloudStorage
+            window.Telegram.WebApp.CloudStorage.setItem("userImage", imageUrl, (err, saved) => {
+              if (err) {
+                console.error("Error saving image URL to CloudStorage", err);
+              } else {
+                console.log("Image URL saved to CloudStorage");
+              }
+            });
           });
 
           setImageSrc(imageUrl);
@@ -45,8 +45,14 @@ function UserProfile({ userId }) {
     // Извлечение изображения из Telegram WebApp CloudStorage
     window.Telegram.WebApp.CloudStorage.getItems(["userImage"], (err, values) => {
       if (!err && values.userImage) {
-        setImageSrc(values.userImage);
-        console.log("Image URL retrieved from CloudStorage");
+        // Проверка, что URL не является Blob URL
+        if (!values.userImage.startsWith("blob:")) {
+          setImageSrc(values.userImage);
+          console.log("Image URL retrieved from CloudStorage");
+        } else {
+          // Если изображение отсутствует в CloudStorage, выполнить запрос к серверу
+          fetchImage();
+        }
       } else {
         // Если изображение отсутствует в CloudStorage, выполнить запрос к серверу
         fetchImage();
