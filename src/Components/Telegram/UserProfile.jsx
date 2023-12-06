@@ -8,7 +8,7 @@ function UserProfile({ userId }) {
   const [imageSrc, setImageSrc] = useState(null);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
+   useEffect(() => {
     const fetchImage = async () => {
       try {
         const response = await fetch(`https://cdn.zipperconnect.space/customer/settings/client/photo/${userId}`);
@@ -37,6 +37,7 @@ function UserProfile({ userId }) {
     window.Telegram.WebApp.CloudStorage.getItems(["userImage"], (err, values) => {
       if (!err && values.userImage) {
         setImageSrc(values.userImage);
+        console.log("Image retrieved from CloudStorage");
       } else {
         // Если изображение отсутствует в CloudStorage, выполнить запрос к серверу
         fetchImage();
