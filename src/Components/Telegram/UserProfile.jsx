@@ -14,9 +14,17 @@ function UserProfile({ userId }) {
         const response = await fetch(`https://cdn.zipperconnect.space/customer/settings/client/photo/${userId}`);
         if (response.ok) {
           const imageUrl = `https://cdn.zipperconnect.space/customer/settings/client/photo/${userId}`;
-          setImageSrc(imageUrl);
 
-          // Сохранение прямого URL изображения в Telegram WebApp CloudStorage
+          // Удаление предыдущего URL из Telegram WebApp CloudStorage
+          window.Telegram.WebApp.CloudStorage.removeItem("userImage", (err, removed) => {
+            if (err) {
+              console.error("Error removing previous image URL from CloudStorage", err);
+            } else {
+              console.log("Previous image URL removed from CloudStorage");
+            }
+          });
+
+          // Сохранение нового прямого URL изображения в Telegram WebApp CloudStorage
           window.Telegram.WebApp.CloudStorage.setItem("userImage", imageUrl, (err, saved) => {
             if (err) {
               console.error("Error saving image URL to CloudStorage", err);
@@ -24,6 +32,8 @@ function UserProfile({ userId }) {
               console.log("Image URL saved to CloudStorage");
             }
           });
+
+          setImageSrc(imageUrl);
         } else {
           throw new Error('Network response was not ok');
         }
