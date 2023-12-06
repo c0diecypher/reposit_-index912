@@ -24,6 +24,7 @@ import BasketPaid from "./Components/BasketPaid";
 import ButtonBonus from "./Components/ButtonBonus";
 import BonusPage from "./Components/BonusPage";
 import Banner from "./Components/Banner";
+import CloudStorage from "./Components/Telegram/CloudStorage";
 // React 
 import { Route, Routes } from "react-router-dom";
 import { BackButton } from "@twa-dev/sdk/react" 
@@ -185,6 +186,7 @@ function App() {
           <div>
             <BackButton />
             {isAuthenticated && <ProfilePage userId={userId} />}
+            <CloudStorage />
           </div>
         }
         >
