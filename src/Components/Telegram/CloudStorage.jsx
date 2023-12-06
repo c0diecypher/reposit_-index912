@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
-import './css/ProfilePage.css'
+import React, { useState, useEffect } from 'react';
 
-function CloudStorage() {
+const CloudStorage = () => {
   const [cloudStorage, setCloudStorage] = useState(null);
   const [data, setData] = useState({});
   const [keys, setKeys] = useState([]);
@@ -70,4 +69,5 @@ function CloudStorage() {
     </div>
   );
 };
+
 export default CloudStorage;
