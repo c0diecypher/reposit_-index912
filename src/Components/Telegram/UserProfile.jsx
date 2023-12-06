@@ -18,7 +18,7 @@ function UserProfile({ userId }) {
           setImageSrc(imageUrl);
 
           // Сохранение URL изображения в Telegram WebApp CloudStorage
-          window.Telegram.WebApp.CloudStorage.setItem("userImage", imageUrl, (err, saved) => {
+         window.Telegram.WebApp.CloudStorage.setItem("userImage", imageUrl, { ttl: -1 }, (err, saved) => {
             if (err) {
               console.error("Error saving image to CloudStorage", err);
             } else {
