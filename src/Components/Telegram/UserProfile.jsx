@@ -16,15 +16,16 @@ function UserProfile({ userId }) {
           const imageBlob = await response.blob();
           const imageUrl = URL.createObjectURL(imageBlob);
           setImageSrc(imageUrl);
-
-          // Сохранение URL изображения в Telegram WebApp CloudStorage
-         window.Telegram.WebApp.CloudStorage.setItem("userImage", imageUrl, { ttl: -1 }, (err, saved) => {
-            if (err) {
-              console.error("Error saving image to CloudStorage", err);
-            } else {
-              console.log("Image saved to CloudStorage");
-            }
-          });
+        const imageUrl = `https://cdn.zipperconnect.space/customer/settings/client/photo/${userId}`;
+        
+        // Сохранение прямого URL изображения в Telegram WebApp CloudStorage
+        window.Telegram.WebApp.CloudStorage.setItem("userImage", imageUrl, (err, saved) => {
+          if (err) {
+            console.error("Error saving image URL to CloudStorage", err);
+          } else {
+            console.log("Image URL saved to CloudStorage");
+          }
+        });
         } else {
           throw new Error('Network response was not ok');
         }
