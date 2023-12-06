@@ -8,44 +8,40 @@ function UserProfile({ userId }) {
   const [imageSrc, setImageSrc] = useState(null);
   const [error, setError] = useState(null);
 
- useEffect(() => {
-    if (userId) {
-      fetch(`https://cdn.zipperconnect.space/customer/settings/client/photo/${userId}`)
-        .then((response) => {
-          if (response.ok) {
-            return response.blob();
-          } else {
-            throw new Error('Network response was not ok');
-          }
-        })
-        .then((imageBlob) => {
+  useEffect(() => {
+    const fetchImage = async () => {
+      try {
+        const response = await fetch(`https://cdn.zipperconnect.space/customer/settings/client/photo/${userId}`);
+        if (response.ok) {
+          const imageBlob = await response.blob();
           const imageUrl = URL.createObjectURL(imageBlob);
           setImageSrc(imageUrl);
-        })
-        .catch((err) => {
-          setError(err);
-        });
-    }
-  }, [userId]);
 
-  useEffect(() => {
-    if (userId) {
-      fetch(`https://zipperconnect.space/userProfile/${userId}`)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then((data) => {
-          // Обработка успешного ответа
-          setUserData(data);
-        })
-        .catch((err) => {
-          // Обработка ошибки
-          setError(err);
-        });
-    }
+          // Сохранение URL изображения в Telegram WebApp CloudStorage
+          window.Telegram.WebApp.CloudStorage.setItem("userImage", imageUrl, (err, saved) => {
+            if (err) {
+              console.error("Error saving image to CloudStorage", err);
+            } else {
+              console.log("Image saved to CloudStorage");
+            }
+          });
+        } else {
+          throw new Error('Network response was not ok');
+        }
+      } catch (err) {
+        setError(err);
+      }
+    };
+
+    // Извлечение изображения из Telegram WebApp CloudStorage
+    window.Telegram.WebApp.CloudStorage.getItems(["userImage"], (err, values) => {
+      if (!err && values.userImage) {
+        setImageSrc(values.userImage);
+      } else {
+        // Если изображение отсутствует в CloudStorage, выполнить запрос к серверу
+        fetchImage();
+      }
+    });
   }, [userId]);
 
   return (
