@@ -6,12 +6,12 @@ import axios from 'axios';
 function ButtonBonus({userId}) {
   const [userBonus, setUserBonus] = useState(0);
 
-  useEffect(() => {
+ useEffect(() => {
     reloadBonus();
     SendData();
-  }, []);
+  }, [userId]);
 
-  const reloadBonus = async () => {
+  const reloadBonus = () => {
     // Извлечение бонуса из Local Storage
     const storedBonus = window.Telegram.WebApp.CloudStorage.getItems(["userBonus"], (err, values) => {
       if (!err && values.userBonus) {
@@ -22,31 +22,35 @@ function ButtonBonus({userId}) {
         fetchData();
       }
     });
-  };
 
-  const fetchData = async () => {
+    // Слушатель событий для обновления бонуса
     const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/bonus/${userId}`);
-    eventSource.onmessage = function (event){
+    eventSource.onmessage = function (event) {
       const bonus = JSON.parse(event.data);
 
-      // Сохранение бонуса в Local Storage
+      // Обновление бонуса в Local Storage и состоянии компонента
       window.Telegram.WebApp.CloudStorage.setItem("userBonus", bonus, (err, saved) => {
         if (err) {
           console.error("Error saving bonus to CloudStorage", err);
         } else {
           console.log("Bonus saved to CloudStorage");
-          setUserBonus(bonus);
-          console.log('BONUSDATA',bonus);
+          setUserBonus(bonus); // Обновление состояния userBonus
+          console.log('BONUSDATA', bonus);
         }
       });
-    }
+    };
   };
-  
-  const SendData = async () => {
-    await axios.post(`https://crm.zipperconnect.space/get/bonus/${userId}`,{
+
+  const fetchData = async () => {
+    await axios.post(`https://crm.zipperconnect.space/get/bonus/${userId}`, {
       userId: userId,
     });
   };
+
+  const SendData = async () => {
+    fetchData();
+  };
+
 
   return (
     <>
