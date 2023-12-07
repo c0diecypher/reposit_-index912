@@ -14,7 +14,7 @@ function ButtonBonus({userId}) {
   const reloadBonus = async () => {
     // Извлечение бонуса и req_id из Local Storage
     const storedData = window.Telegram.WebApp.CloudStorage.getItems(["userBonus", "reqId"], (err, values) => {
-      if (!err && values.userBonus && values.reqId) {
+      if (!err && values.userBonus !== undefined && values.reqId !== undefined) {
         // Выполнить запрос к серверу с сохраненным req_id
         fetchData(values.reqId);
         setUserBonus(values.userBonus);
@@ -33,12 +33,15 @@ function ButtonBonus({userId}) {
     eventSource.onmessage = function (event) {
       const bonus = JSON.parse(event.data);
 
-      // Сохранение бонуса в Local Storage
-      window.Telegram.WebApp.CloudStorage.setItem("userBonus", bonus, (err, saved) => {
+      // Сохранение бонуса и req_id в Local Storage
+      window.Telegram.WebApp.CloudStorage.setItems({
+        "userBonus": bonus,
+        "reqId": currentReqId
+      }, (err, saved) => {
         if (err) {
-          console.error("Ошибка сохранения бонуса в CloudStorage", err);
+          console.error("Ошибка сохранения данных в CloudStorage", err);
         } else {
-          console.log("Бонус сохранен в CloudStorage");
+          console.log("Данные сохранены в CloudStorage");
         }
       });
 
