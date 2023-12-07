@@ -4,11 +4,15 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 
 function ButtonBonus({userId}) {
- // Используйте useState с функцией для установки начального значения
-  const [userBonus, setUserBonus] = useState(() => {
-    // Получение бонуса из Telegram WebApp CloudStorage при монтировании компонента
-    const storedBonus = JSON.parse(window.Telegram.WebApp.CloudStorage.getItems(["userBonus"]).userBonus);
-    return storedBonus || 0; // Если значение отсутствует, установите 0
+ const [userBonus, setUserBonus] = useState(() => {
+    try {
+      // Получение бонуса из Telegram WebApp CloudStorage при монтировании компонента
+      const storedBonusString = window.Telegram.WebApp.CloudStorage.getItems(["userBonus"]).userBonus;
+      return storedBonusString ? JSON.parse(storedBonusString) : 0;
+    } catch (error) {
+      console.error("Error parsing storedBonusString", error);
+      return 0;
+    }
   });
 
   useEffect(() => {
@@ -17,30 +21,39 @@ function ButtonBonus({userId}) {
   }, []);
 
   const reloadBonus = async () => {
-    const storedBonus = JSON.parse(window.Telegram.WebApp.CloudStorage.getItems(["userBonus"]).userBonus);
+    try {
+      const storedBonusString = window.Telegram.WebApp.CloudStorage.getItems(["userBonus"]).userBonus;
 
-    if (storedBonus) {
-      setUserBonus(storedBonus);
-      console.log("Bonus retrieved from CloudStorage");
-    } else {
-      fetchData();
+      if (storedBonusString) {
+        const storedBonus = JSON.parse(storedBonusString);
+        setUserBonus(storedBonus);
+        console.log("Bonus retrieved from CloudStorage");
+      } else {
+        fetchData();
+      }
+    } catch (error) {
+      console.error("Error during reloadBonus", error);
     }
   };
 
   const fetchData = async () => {
     const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/bonus/${userId}`);
     eventSource.onmessage = function (event) {
-      const bonus = JSON.parse(event.data);
+      try {
+        const bonus = JSON.parse(event.data);
 
-      window.Telegram.WebApp.CloudStorage.setItem("userBonus", bonus, (err, saved) => {
-        if (err) {
-          console.error("Error saving bonus to CloudStorage", err);
-        } else {
-          console.log("Bonus saved to CloudStorage");
-        }
-      });
+        window.Telegram.WebApp.CloudStorage.setItem("userBonus", JSON.stringify(bonus), (err, saved) => {
+          if (err) {
+            console.error("Error saving bonus to CloudStorage", err);
+          } else {
+            console.log("Bonus saved to CloudStorage");
+          }
+        });
 
-      setUserBonus(bonus);
+        setUserBonus(bonus);
+      } catch (error) {
+        console.error("Error parsing bonus from server", error);
+      }
     };
   };
 
@@ -49,6 +62,7 @@ function ButtonBonus({userId}) {
       userId: userId,
     });
   };
+
 
   return (
     <>
