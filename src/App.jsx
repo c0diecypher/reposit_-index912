@@ -121,6 +121,7 @@ function App() {
   }, []);
 
  const [scrollPosition, setScrollPosition] = useState(0);
+  const navigate = useNavigate();
 
   const handleScroll = () => {
     setScrollPosition(window.scrollY);
@@ -133,6 +134,7 @@ function App() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
   
    const userIdString = userId.toString();
 
@@ -216,7 +218,7 @@ function App() {
             dataFromMainButton={dataFromMainButton}
             isAuthenticated={isAuthenticated}
             userId={userId}
-            onReturn={() => navigate('/', { state: { scrollPosition } })}
+            onReturn={(position) => navigate('/', { state: { scrollPosition: position } })}
               />}
               {dataFromMainButton}
           </div>
