@@ -160,7 +160,7 @@ function App() {
                   <div></div>
                   {isAuthenticated && <BasketPaid userId={userId} />}
                   <Catalog userId={userId} />
-                  {isAuthenticated && <Products userId={userId} onReturn={() => window.scrollTo(0, scrollPosition) />}
+                  {isAuthenticated && <Products userId={userId} />}
                   <Footer />
                 </>
               ) : (
@@ -216,6 +216,7 @@ function App() {
             dataFromMainButton={dataFromMainButton}
             isAuthenticated={isAuthenticated}
             userId={userId}
+            onReturn={() => navigate('/', { state: { scrollPosition } })}
               />}
               {dataFromMainButton}
           </div>
