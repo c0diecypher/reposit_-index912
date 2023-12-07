@@ -25,9 +25,9 @@ import ButtonBonus from "./Components/ButtonBonus";
 import BonusPage from "./Components/BonusPage";
 import Banner from "./Components/Banner";
 // React 
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { BackButton } from "@twa-dev/sdk/react" 
-import { useState, useEffect, useCallback, useRef, useNavigate  } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 
 
 function App() {
