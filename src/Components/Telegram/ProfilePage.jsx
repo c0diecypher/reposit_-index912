@@ -59,25 +59,63 @@ function ProfilePage({userId}) {
   }, [userId]);
    
   useEffect(() => {
-    if (userId) {
-      fetch(`https://cdn.zipperconnect.space/customer/settings/client/photo/${userId}`)
-        .then((response) => {
-          if (response.ok) {
-            return response.blob();
-          } else {
-            throw new Error('Network response was not ok');
-          }
-        })
-        .then((imageBlob) => {
-          const imageUrl = URL.createObjectURL(imageBlob);
-          setImageSrc(imageUrl);
-        })
-        .catch((err) => {
-          setError(err);
-        });
-    }
-  }, [userId]);
+    const fetchImage = async () => {
+      try {
+        const response = await fetch(`https://cdn.zipperconnect.space/customer/settings/client/photo/${userId}`);
+        if (response.ok) {
+          const imageUrl = `https://cdn.zipperconnect.space/customer/settings/client/photo/${userId}`;
 
+          // Проверка, было ли изменено изображение в CloudStorage
+          window.Telegram.WebApp.CloudStorage.getItems(["userImage"], (err, values) => {
+            if (!err && values.userImage === imageUrl) {
+              // Изображение в CloudStorage не изменилось, используем его
+              setImageSrc(values.userImage);
+            } else {
+              // Изображение изменилось в CloudStorage, сохраняем новый URL и используем его
+              window.Telegram.WebApp.CloudStorage.removeItem("userImage", (err, removed) => {
+                if (err) {
+                  console.error("Error removing previous image URL from CloudStorage", err);
+                } else {
+                }
+
+                window.Telegram.WebApp.CloudStorage.setItem("userImage", imageUrl, (err, saved) => {
+                  if (err) {
+                    console.error("Error saving image URL to CloudStorage", err);
+                  } else {
+                  }
+
+                  setImageSrc(imageUrl);
+                });
+              });
+            }
+          });
+        } else {
+          throw new Error('Network response was not ok');
+        }
+      } catch (err) {
+        setError(err);
+      }
+    };
+
+    // Извлечение изображения из Telegram WebApp CloudStorage
+    window.Telegram.WebApp.CloudStorage.getItems(["userImage"], (err, values) => {
+      if (!err && values.userImage) {
+        // Проверка, что URL не является Blob URL
+        if (!values.userImage.startsWith("blob:")) {
+          // Изображение в CloudStorage не является Blob URL, используем его
+          setImageSrc(values.userImage);
+          console.log("Image URL retrieved from CloudStorage");
+        } else {
+          // Если изображение отсутствует в CloudStorage, выполнить запрос к серверу
+          fetchImage();
+        }
+      } else {
+        // Если изображение отсутствует в CloudStorage, выполнить запрос к серверу
+        fetchImage();
+      }
+    });
+  }, [userId]);
+  
   useEffect(() => {
     if (userId) {
     fetch(`https://crm.zipperconnect.space/customer/settings/client/${userId}`)
