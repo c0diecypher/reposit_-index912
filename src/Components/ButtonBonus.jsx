@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 
 function ButtonBonus({userId}) {
-  const [userBonus, setUserBonus] = useState(0);
+  const [userBonus, setUserBonus] = useState(() => {
+    // Получение бонуса из Telegram WebApp CloudStorage при монтировании компонента
+    const storedBonus = JSON.parse(window.Telegram.WebApp.CloudStorage.getItems(["userBonus"]).userBonus);
+    return storedBonus || 0; // Если значение отсутствует, установите 0
+  });
 
   useEffect(() => {
     reloadBonus();
