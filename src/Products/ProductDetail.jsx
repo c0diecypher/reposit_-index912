@@ -1,6 +1,6 @@
 
 import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import productsData from "./productsData";
 import "./css/Product.css";
 import SizeInfo from "./SizeInfo/SizeInfo";
