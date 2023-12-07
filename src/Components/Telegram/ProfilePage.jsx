@@ -104,7 +104,6 @@ function ProfilePage({userId}) {
         if (!values.userImage.startsWith("blob:")) {
           // Изображение в CloudStorage не является Blob URL, используем его
           setImageSrc(values.userImage);
-          console.log("Image URL retrieved from CloudStorage");
         } else {
           // Если изображение отсутствует в CloudStorage, выполнить запрос к серверу
           fetchImage();
