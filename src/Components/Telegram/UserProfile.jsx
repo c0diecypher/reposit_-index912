@@ -15,25 +15,33 @@ function UserProfile({ userId }) {
         if (response.ok) {
           const imageUrl = `https://cdn.zipperconnect.space/customer/settings/client/photo/${userId}`;
 
-          // Удаление предыдущего URL из Telegram WebApp CloudStorage
-          window.Telegram.WebApp.CloudStorage.removeItem("userImage", (err, removed) => {
-            if (err) {
-              console.error("Error removing previous image URL from CloudStorage", err);
+          // Проверка, было ли изменено изображение в CloudStorage
+          window.Telegram.WebApp.CloudStorage.getItems(["userImage"], (err, values) => {
+            if (!err && values.userImage === imageUrl) {
+              // Изображение в CloudStorage не изменилось, используем его
+              setImageSrc(values.userImage);
+              console.log("Image URL retrieved from CloudStorage");
             } else {
-              console.log("Previous image URL removed from CloudStorage");
+              // Изображение изменилось в CloudStorage, сохраняем новый URL и используем его
+              window.Telegram.WebApp.CloudStorage.removeItem("userImage", (err, removed) => {
+                if (err) {
+                  console.error("Error removing previous image URL from CloudStorage", err);
+                } else {
+                  console.log("Previous image URL removed from CloudStorage");
+                }
+
+                window.Telegram.WebApp.CloudStorage.setItem("userImage", imageUrl, (err, saved) => {
+                  if (err) {
+                    console.error("Error saving image URL to CloudStorage", err);
+                  } else {
+                    console.log("Image URL saved to CloudStorage");
+                  }
+
+                  setImageSrc(imageUrl);
+                });
+              });
             }
-
-            // Сохранение нового прямого URL изображения в Telegram WebApp CloudStorage
-            window.Telegram.WebApp.CloudStorage.setItem("userImage", imageUrl, (err, saved) => {
-              if (err) {
-                console.error("Error saving image URL to CloudStorage", err);
-              } else {
-                console.log("Image URL saved to CloudStorage");
-              }
-            });
           });
-
-          setImageSrc(imageUrl);
         } else {
           throw new Error('Network response was not ok');
         }
@@ -47,6 +55,7 @@ function UserProfile({ userId }) {
       if (!err && values.userImage) {
         // Проверка, что URL не является Blob URL
         if (!values.userImage.startsWith("blob:")) {
+          // Изображение в CloudStorage не является Blob URL, используем его
           setImageSrc(values.userImage);
           console.log("Image URL retrieved from CloudStorage");
         } else {
@@ -59,7 +68,7 @@ function UserProfile({ userId }) {
       }
     });
   }, [userId]);
-
+  
   return (
     <>
       {imageSrc ? (
