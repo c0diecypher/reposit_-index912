@@ -7,9 +7,22 @@ function ButtonBonus({userId}) {
   const [userBonus, setUserBonus] = useState(0);
 
   useEffect(() => {
-    fetchData();
+    reloadBonus();
     SendData();
   }, []);
+
+  const reloadBonus = async () => {
+    // Извлечение бонуса из Local Storage
+    const storedBonus = window.Telegram.WebApp.CloudStorage.getItem("userBonus", (err, value) => {
+      if (!err && value !== null) {
+        setUserBonus(value);
+        console.log("Бонус получен из CloudStorage");
+      } else {
+        // Если бонус отсутствует в CloudStorage, выполнить запрос к серверу
+        fetchData();
+      }
+    });
+  };
 
   const fetchData = async () => {
     try {
