@@ -20,21 +20,18 @@ function UserProfile({ userId }) {
             if (!err && values.userImage === imageUrl) {
               // Изображение в CloudStorage не изменилось, используем его
               setImageSrc(values.userImage);
-              console.log("Image URL retrieved from CloudStorage");
             } else {
               // Изображение изменилось в CloudStorage, сохраняем новый URL и используем его
               window.Telegram.WebApp.CloudStorage.removeItem("userImage", (err, removed) => {
                 if (err) {
                   console.error("Error removing previous image URL from CloudStorage", err);
                 } else {
-                  console.log("Previous image URL removed from CloudStorage");
                 }
 
                 window.Telegram.WebApp.CloudStorage.setItem("userImage", imageUrl, (err, saved) => {
                   if (err) {
                     console.error("Error saving image URL to CloudStorage", err);
                   } else {
-                    console.log("Image URL saved to CloudStorage");
                   }
 
                   setImageSrc(imageUrl);
