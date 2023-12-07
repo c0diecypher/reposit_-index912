@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 function BonusPage({userId}) {
   
   const [isCopied, setIsCopied] = useState(false);
-  const [userBonus, setUserBonus] = useState(0);
   
     const handleCopyClick = async () => {
       try {
@@ -17,23 +16,51 @@ function BonusPage({userId}) {
       }
     };
 
-   useEffect(() => {
+   const [userBonus, setUserBonus] = useState(0);
+
+ useEffect(() => {
     reloadBonus();
     SendData();
-  },[])
-  
-  const reloadBonus = async () => {
-    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/bonus/${userId}`)
-    eventSource.onmessage = function (event){
+  }, [userId]);
+
+  const reloadBonus = () => {
+    // Извлечение бонуса из Local Storage
+    const storedBonus = window.Telegram.WebApp.CloudStorage.getItems(["userBonus"], (err, values) => {
+      if (!err && values.userBonus) {
+        setUserBonus(values.userBonus);
+        console.log("Bonus retrieved from CloudStorage");
+      } else {
+        // Если бонус отсутствует в CloudStorage, выполнить запрос к серверу
+        fetchData();
+      }
+    });
+
+    // Слушатель событий для обновления бонуса
+    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/bonus/${userId}`);
+    eventSource.onmessage = function (event) {
       const bonus = JSON.parse(event.data);
-      setUserBonus(bonus);
-    }
+
+      // Обновление бонуса в Local Storage и состоянии компонента
+      window.Telegram.WebApp.CloudStorage.setItem("userBonus", bonus, (err, saved) => {
+        if (err) {
+          console.error("Error saving bonus to CloudStorage", err);
+        } else {
+          console.log("Bonus saved to CloudStorage");
+          setUserBonus(bonus); // Обновление состояния userBonus
+          console.log('BONUSDATA', bonus);
+        }
+      });
+    };
   };
-  
-  const SendData = async () => {
-    await axios.post(`https://crm.zipperconnect.space/get/bonus/${userId}`,{
+
+  const fetchData = async () => {
+    await axios.post(`https://crm.zipperconnect.space/get/bonus/${userId}`, {
       userId: userId,
-    })
+    });
+  };
+
+  const SendData = async () => {
+    fetchData();
   };
 
   return (
