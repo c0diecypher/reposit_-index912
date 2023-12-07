@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 
 function ButtonBonus({userId}) {
-  const [userBonus, setUserBonus] = useState(0);
+   const [userBonus, setUserBonus] = useState(0);
+  const [editKey, setEditKey] = useState(""); // Новое состояние для editKey
 
   useEffect(() => {
     reloadBonus();
@@ -38,9 +39,10 @@ function ButtonBonus({userId}) {
         }
       });
 
-      // Обновление userBonus только если он изменился
+      // Обновление userBonus и setEditKey только если они изменились
       if (bonus.toString() !== userBonus) {
         setUserBonus(bonus.toString());
+        setEditKey(bonus.toString()); // Обновление editKey
         console.log("Бонус обновлен из сервера");
       } else {
         console.log("Бонус не изменился из сервера");
