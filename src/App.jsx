@@ -120,21 +120,15 @@ function App() {
     fetchData();
   }, []);
 
- // Используем реф для хранения текущего положения прокрутки
-  const scrollPositionRef = useRef(0);
+ const [scrollPosition, setScrollPosition] = useState(0);
+
+  const handleScroll = () => {
+    setScrollPosition(window.scrollY);
+  };
 
   useEffect(() => {
-    // Восстанавливаем положение прокрутки при монтировании компонента
-    window.scrollTo(0, scrollPositionRef.current);
-
-    // Добавляем слушателя события прокрутки
-    const handleScroll = () => {
-      scrollPositionRef.current = window.scrollY;
-    };
-    
     window.addEventListener('scroll', handleScroll);
 
-    // Отписываемся от события прокрутки при размонтировании компонента
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -166,7 +160,7 @@ function App() {
                   <div></div>
                   {isAuthenticated && <BasketPaid userId={userId} />}
                   <Catalog userId={userId} />
-                  {isAuthenticated && <Products userId={userId} />}
+                  {isAuthenticated && <Products userId={userId} onReturn={() => window.scrollTo(0, scrollPosition) />}
                   <Footer />
                 </>
               ) : (
