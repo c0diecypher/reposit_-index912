@@ -125,43 +125,48 @@ function ProductConfirm() {
     window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
   };
 
-   useEffect(() => {
-    reloadDiscount();
-    SendDiscount();
-  },[])
-  
-  const reloadDiscount = async () => {
-    const eventSource = new EventSource('https://crm.zipperconnect.space/connect/discount')
-    eventSource.onmessage = function (event){
-      const discount = JSON.parse(event.data);
-      setDiscount(discount);
-    }
-  };
-  
-  const SendDiscount = async () => {
-    await axios.post('https://crm.zipperconnect.space/get/discount',{
-      userId: userId,
-    })
-  };
-
-  useEffect(() => {
+ useEffect(() => {
     reloadBonus();
     SendData();
-  },[])
-  
-  const reloadBonus = async () => {
-    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/bonus/${userId}`)
-    eventSource.onmessage = function (event){
+  }, [userId]);
+
+  const reloadBonus = () => {
+    // Извлечение бонуса из Local Storage
+    const storedBonus = window.Telegram.WebApp.CloudStorage.getItems(["userBonus"], (err, values) => {
+      if (!err && values.userBonus) {
+        setUserBonus(values.userBonus);
+      } else {
+        // Если бонус отсутствует в CloudStorage, выполнить запрос к серверу
+        fetchData();
+      }
+    });
+
+    // Слушатель событий для обновления бонуса
+    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/bonus/${userId}`);
+    eventSource.onmessage = function (event) {
       const bonus = JSON.parse(event.data);
-      setUserBonus(bonus);
-    }
+
+      // Обновление бонуса в Local Storage и состоянии компонента
+      window.Telegram.WebApp.CloudStorage.setItem("userBonus", bonus, (err, saved) => {
+        if (err) {
+          console.error("Error saving bonus to CloudStorage", err);
+        } else {
+          setUserBonus(bonus); // Обновление состояния userBonus
+        }
+      });
+    };
   };
-  
-  const SendData = async () => {
-    await axios.post(`https://crm.zipperconnect.space/get/bonus/${userId}`,{
+
+  const fetchData = async () => {
+    await axios.post(`https://crm.zipperconnect.space/get/bonus/${userId}`, {
       userId: userId,
-    })
+    });
   };
+
+  const SendData = async () => {
+    fetchData();
+  };
+
 
   return (
     <>
