@@ -28,7 +28,6 @@ function BonusPage({userId}) {
     const storedBonus = window.Telegram.WebApp.CloudStorage.getItems(["userBonus"], (err, values) => {
       if (!err && values.userBonus) {
         setUserBonus(values.userBonus);
-        console.log("Bonus retrieved from CloudStorage");
       } else {
         // Если бонус отсутствует в CloudStorage, выполнить запрос к серверу
         fetchData();
@@ -43,11 +42,9 @@ function BonusPage({userId}) {
       // Обновление бонуса в Local Storage и состоянии компонента
       window.Telegram.WebApp.CloudStorage.setItem("userBonus", bonus, (err, saved) => {
         if (err) {
-          console.error("Error saving bonus to CloudStorage", err);
+          console.error("Error render bonus", err);
         } else {
-          console.log("Bonus saved to CloudStorage");
           setUserBonus(bonus); // Обновление состояния userBonus
-          console.log('BONUSDATA', bonus);
         }
       });
     };
