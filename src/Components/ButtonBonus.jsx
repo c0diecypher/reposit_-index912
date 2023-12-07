@@ -3,17 +3,19 @@ import "./css/Buttons.css";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 
-function ButtonBonus({userId}) {
-   const [userBonus, setUserBonus] = useState(0);
+function ButtonBonus({ userId }) {
+  const [userBonus, setUserBonus] = useState(0);
+  const [bonusKey, setBonusKey] = useState("userBonus");
+  const [bonusValue, setBonusValue] = useState(0);
 
   useEffect(() => {
     reloadBonus();
     SendData();
-  }, []);
+  }, [userBonus]);
 
   const reloadBonus = async () => {
     // Извлечение бонуса из Local Storage
-    const storedBonus = window.Telegram.WebApp.CloudStorage.getItem("userBonus", (err, value) => {
+    const storedBonus = window.Telegram.WebApp.CloudStorage.getItem(bonusKey, (err, value) => {
       if (!err && value !== null) {
         setUserBonus(value);
         console.log("Бонус получен из CloudStorage");
@@ -31,41 +33,30 @@ function ButtonBonus({userId}) {
       const response = await axios.get(`https://crm.zipperconnect.space/get/bonus/${userId}`);
       const bonus = response.data;
 
-      // Получение текущего бонуса из Local Storage
-      const storedBonus = window.Telegram.WebApp.CloudStorage.getItem("userBonus", (err, value) => {
-        if (!err && value !== null) {
-          // Обновление значения в Local Storage только если оно изменилось
-          if (bonus.toString() !== value) {
-            window.Telegram.WebApp.CloudStorage.setItem("userBonus", bonus.toString(), (err, saved) => {
-              if (err) {
-                console.error("Ошибка сохранения бонуса в CloudStorage", err);
-              } else {
-                console.log("Бонус сохранен в CloudStorage");
-              }
-            });
-          }
-        }
-      });
-
-      // Обновление userBonus только если он изменился
+      // Обновление значения userBonus
       if (bonus.toString() !== userBonus) {
         setUserBonus(bonus.toString());
         console.log("Бонус обновлен из сервера");
       } else {
         console.log("Бонус не изменился из сервера");
       }
+
+      // Отправка данных на сервер
+      SendData();
     } catch (error) {
       console.error("Ошибка при получении бонуса с сервера", error);
     }
   };
 
   const SendData = async () => {
-    await axios.post(`https://crm.zipperconnect.space/get/bonus/${userId}`, {
+    // Отправка данных на сервер (вы можете использовать bonusKey и bonusValue)
+    await axios.post(`https://crm.zipperconnect.space/post/bonus/${userId}`, {
       userId: userId,
+      key: bonusKey,
+      value: bonusValue,
     });
   };
 
-   
   return (
     <>
       <div className='action-buttons'>
@@ -103,7 +94,7 @@ function ButtonBonus({userId}) {
         </div>
       </div>
     </>
-  )
+  );
 }
 
 export default ButtonBonus;
