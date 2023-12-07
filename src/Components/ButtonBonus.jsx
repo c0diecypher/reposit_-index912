@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 
 function ButtonBonus({userId}) {
+ // Используйте useState с функцией для установки начального значения
   const [userBonus, setUserBonus] = useState(() => {
     // Получение бонуса из Telegram WebApp CloudStorage при монтировании компонента
     const storedBonus = JSON.parse(window.Telegram.WebApp.CloudStorage.getItems(["userBonus"]).userBonus);
@@ -16,24 +17,21 @@ function ButtonBonus({userId}) {
   }, []);
 
   const reloadBonus = async () => {
-    // Извлечение бонуса из Local Storage
-    const storedBonus = window.Telegram.WebApp.CloudStorage.getItems(["userBonus"], (err, values) => {
-      if (!err && values.userBonus) {
-        setUserBonus(values.userBonus);
-        console.log("Bonus retrieved from CloudStorage");
-      } else {
-        // Если бонус отсутствует в CloudStorage, выполнить запрос к серверу
-        fetchData();
-      }
-    });
+    const storedBonus = JSON.parse(window.Telegram.WebApp.CloudStorage.getItems(["userBonus"]).userBonus);
+
+    if (storedBonus) {
+      setUserBonus(storedBonus);
+      console.log("Bonus retrieved from CloudStorage");
+    } else {
+      fetchData();
+    }
   };
 
   const fetchData = async () => {
     const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/bonus/${userId}`);
-    eventSource.onmessage = function (event){
+    eventSource.onmessage = function (event) {
       const bonus = JSON.parse(event.data);
 
-      // Сохранение бонуса в Local Storage
       window.Telegram.WebApp.CloudStorage.setItem("userBonus", bonus, (err, saved) => {
         if (err) {
           console.error("Error saving bonus to CloudStorage", err);
@@ -43,11 +41,11 @@ function ButtonBonus({userId}) {
       });
 
       setUserBonus(bonus);
-    }
+    };
   };
-  
+
   const SendData = async () => {
-    await axios.post(`https://crm.zipperconnect.space/get/bonus/${userId}`,{
+    await axios.post(`https://crm.zipperconnect.space/get/bonus/${userId}`, {
       userId: userId,
     });
   };
