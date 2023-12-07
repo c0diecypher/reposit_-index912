@@ -120,16 +120,18 @@ function App() {
     fetchData();
   }, []);
 
-  const [scrollPosition, setScrollPosition] = useState(0);
+ // Используем реф для хранения текущего положения прокрутки
+  const scrollPositionRef = useRef(0);
 
-  // Сохраните текущее положение прокрутки при монтировании компонента
-   useEffect(() => {
-    // Сохраняем текущее положение прокрутки при монтировании компонента
-    const handleScroll = () => {
-      setScrollPosition(window.scrollY);
-    };
+  useEffect(() => {
+    // Восстанавливаем положение прокрутки при монтировании компонента
+    window.scrollTo(0, scrollPositionRef.current);
 
     // Добавляем слушателя события прокрутки
+    const handleScroll = () => {
+      scrollPositionRef.current = window.scrollY;
+    };
+    
     window.addEventListener('scroll', handleScroll);
 
     // Отписываемся от события прокрутки при размонтировании компонента
@@ -137,11 +139,6 @@ function App() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  // Восстанавливаем положение прокрутки при возврате на главную страницу
-  useEffect(() => {
-    window.scrollTo(0, scrollPosition);
-  }, [scrollPosition]);
   
    const userIdString = userId.toString();
 
