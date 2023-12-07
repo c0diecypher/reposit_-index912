@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 
 function ButtonBonus({userId}) {
-  const [userBonus, setUserBonus] = useState(0);
+   const [userBonus, setUserBonus] = useState(0);
 
   useEffect(() => {
     reloadBonus();
@@ -17,6 +17,8 @@ function ButtonBonus({userId}) {
       if (!err && value !== null) {
         setUserBonus(value);
         console.log("Бонус получен из CloudStorage");
+        // Проверка обновления значения с сервера
+        fetchData();
       } else {
         // Если бонус отсутствует в CloudStorage, выполнить запрос к серверу
         fetchData();
@@ -29,12 +31,19 @@ function ButtonBonus({userId}) {
       const response = await axios.get(`https://crm.zipperconnect.space/get/bonus/${userId}`);
       const bonus = response.data;
 
-      // Сохранение бонуса в Local Storage
-      window.Telegram.WebApp.CloudStorage.setItem("userBonus", bonus.toString(), (err, saved) => {
-        if (err) {
-          console.error("Ошибка сохранения бонуса в CloudStorage", err);
-        } else {
-          console.log("Бонус сохранен в CloudStorage");
+      // Получение текущего бонуса из Local Storage
+      const storedBonus = window.Telegram.WebApp.CloudStorage.getItem("userBonus", (err, value) => {
+        if (!err && value !== null) {
+          // Обновление значения в Local Storage только если оно изменилось
+          if (bonus.toString() !== value) {
+            window.Telegram.WebApp.CloudStorage.setItem("userBonus", bonus.toString(), (err, saved) => {
+              if (err) {
+                console.error("Ошибка сохранения бонуса в CloudStorage", err);
+              } else {
+                console.log("Бонус сохранен в CloudStorage");
+              }
+            });
+          }
         }
       });
 
@@ -55,6 +64,7 @@ function ButtonBonus({userId}) {
       userId: userId,
     });
   };
+
    
   return (
     <>
