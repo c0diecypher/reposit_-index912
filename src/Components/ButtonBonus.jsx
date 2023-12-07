@@ -35,10 +35,10 @@ function ButtonBonus({userId}) {
           console.error("Error saving bonus to CloudStorage", err);
         } else {
           console.log("Bonus saved to CloudStorage");
+          setUserBonus(bonus);
+          console.log('BONUSDATA',bonus);
         }
       });
-
-      setUserBonus(bonus);
     }
   };
   
