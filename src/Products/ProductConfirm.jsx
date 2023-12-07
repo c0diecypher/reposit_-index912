@@ -444,7 +444,7 @@ function ProductConfirm() {
             
           
              </div>):(<><div className="order-card-text">
-                <span style={{marginTop: '12px', textAlign:'left'}}>Среднее время доставки 16-20 дней. <br/> 
+                <span style={{marginTop: '12px', textAlign:'left'}}>Среднее время доставки от 20 дней. <br/> 
                 После оплаты вы сможете отслеживать статусы доставки и получать уведомления об их изменении.<br/> 
                 </span>
               </div>
