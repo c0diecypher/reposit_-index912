@@ -123,14 +123,26 @@ function App() {
   const [scrollPosition, setScrollPosition] = useState(0);
 
   // Сохраните текущее положение прокрутки при монтировании компонента
-  useEffect(() => {
-    setScrollPosition(window.scrollY);
+   useEffect(() => {
+    // Сохраняем текущее положение прокрутки при монтировании компонента
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+
+    // Добавляем слушателя события прокрутки
+    window.addEventListener('scroll', handleScroll);
+
+    // Отписываемся от события прокрутки при размонтировании компонента
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
-  // Восстановите положение прокрутки при возврате на страницу Products
+  // Восстанавливаем положение прокрутки при возврате на главную страницу
   useEffect(() => {
     window.scrollTo(0, scrollPosition);
   }, [scrollPosition]);
+  
    const userIdString = userId.toString();
 
   // Проверка userId для определения, должен ли пользователь видеть баннер
