@@ -447,6 +447,9 @@ function ProductConfirm() {
                 <span style={{marginTop: '12px', textAlign:'left'}}>Среднее время доставки от 20 дней. <br/> 
                 После оплаты вы сможете отслеживать статусы доставки и получать уведомления об их изменении.<br/> 
                 </span>
+               <span style={{marginTop: '8px', textAlign:'left'}}>В предновогоднее время таможня и логистические узлы обрабатывают много заказов, в связи с этим время доставки заказа может увеличиться <br/> 
+                О всех новостях и логистических форс-мажорах можно узнать подробнее <a className="public-oferta-link" href="https://t.me/zipper_store" target="_blank">в канале/a><br/> 
+                </span>
               </div>
               </>)}
   </div>
