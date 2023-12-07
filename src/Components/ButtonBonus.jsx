@@ -4,26 +4,12 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 
 function ButtonBonus({userId}) {
-   const [userBonus, setUserBonus] = useState(0);
-  const [editKey, setEditKey] = useState(""); // Новое состояние для editKey
+  const [userBonus, setUserBonus] = useState(0);
 
   useEffect(() => {
-    reloadBonus();
+    fetchData();
     SendData();
   }, []);
-
-  const reloadBonus = async () => {
-    // Извлечение бонуса из Local Storage
-    const storedBonus = window.Telegram.WebApp.CloudStorage.getItem("userBonus", (err, value) => {
-      if (!err && value !== null) {
-        setUserBonus(value);
-        console.log("Бонус получен из CloudStorage");
-      } else {
-        // Если бонус отсутствует в CloudStorage, выполнить запрос к серверу
-        fetchData();
-      }
-    });
-  };
 
   const fetchData = async () => {
     try {
@@ -39,10 +25,9 @@ function ButtonBonus({userId}) {
         }
       });
 
-      // Обновление userBonus и setEditKey только если они изменились
+      // Обновление userBonus только если он изменился
       if (bonus.toString() !== userBonus) {
         setUserBonus(bonus.toString());
-        setEditKey(bonus.toString()); // Обновление editKey
         console.log("Бонус обновлен из сервера");
       } else {
         console.log("Бонус не изменился из сервера");
@@ -57,7 +42,7 @@ function ButtonBonus({userId}) {
       userId: userId,
     });
   };
-
+   
   return (
     <>
       <div className='action-buttons'>
