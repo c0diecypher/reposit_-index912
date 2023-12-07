@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 
 function ButtonBonus({userId}) {
- const [userBonus, setUserBonus] = useState(0);
+  const [userBonus, setUserBonus] = useState(0);
 
   useEffect(() => {
     reloadBonus();
@@ -12,40 +12,41 @@ function ButtonBonus({userId}) {
   }, []);
 
   const reloadBonus = async () => {
-    // Извлечение бонуса и req_id из Local Storage
-    const storedData = window.Telegram.WebApp.CloudStorage.getItems(["userBonus", "reqId"], (err, values) => {
-      if (!err && values.userBonus !== undefined && values.reqId !== undefined) {
-        // Выполнить запрос к серверу с сохраненным req_id
-        fetchData(values.reqId);
-        setUserBonus(values.userBonus);
+    // Извлечение бонуса из Local Storage
+    const storedBonus = window.Telegram.WebApp.CloudStorage.getItem("userBonus", (err, value) => {
+      if (!err && value !== null) {
+        setUserBonus(value);
+        console.log("Бонус получен из CloudStorage");
       } else {
-        // Если данные отсутствуют в CloudStorage, выполнить запрос к серверу
+        // Если бонус отсутствует в CloudStorage, выполнить запрос к серверу
         fetchData();
       }
     });
   };
 
-  const fetchData = async (savedReqId = null) => {
-    const currentReqId = savedReqId;
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`https://crm.zipperconnect.space/get/bonus/${userId}`);
+      const bonus = response.data;
 
-    // Выполнить запрос к серверу с текущим req_id
-    const eventSource = new EventSource(`https://crm.zipperconnect.space/connect/bonus/${userId}?req_id=${currentReqId}`);
-    eventSource.onmessage = function (event) {
-      const bonus = JSON.parse(event.data);
-
-      // Сохранение бонуса и req_id в Local Storage
-      window.Telegram.WebApp.CloudStorage.setItems({
-        "userBonus": bonus,
-        "reqId": currentReqId
-      }, (err, saved) => {
+      // Сохранение бонуса в Local Storage
+      window.Telegram.WebApp.CloudStorage.setItem("userBonus", bonus.toString(), (err, saved) => {
         if (err) {
-          console.error("Ошибка сохранения данных в CloudStorage", err);
+          console.error("Ошибка сохранения бонуса в CloudStorage", err);
         } else {
-          console.log("Данные сохранены в CloudStorage");
+          console.log("Бонус сохранен в CloudStorage");
         }
       });
 
-      setUserBonus(bonus);
+      // Обновление userBonus только если он изменился
+      if (bonus.toString() !== userBonus) {
+        setUserBonus(bonus.toString());
+        console.log("Бонус обновлен из сервера");
+      } else {
+        console.log("Бонус не изменился из сервера");
+      }
+    } catch (error) {
+      console.error("Ошибка при получении бонуса с сервера", error);
     }
   };
 
