@@ -148,9 +148,6 @@ function App() {
         path="/"
         element={
             <>
-              {Telegram.WebApp.setHeaderColor('secondary_bg_color')}
-              {tg.expand()}
-              {tg.enableClosingConfirmation()}
               {shouldShowBanner ? (
                 <>
                   <Header userId={userId} />
