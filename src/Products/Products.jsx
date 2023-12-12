@@ -24,21 +24,24 @@ const Products = () => {
     loadMore();
   }, []);
 
-  return (
-    <InfiniteScroll
-      dataLength={items.length}
-      next={loadMore}
-      hasMore={hasMore}
-      loader={<h4>Загрузка товаров...</h4>}
-    >
-      <main>
-      {items.map((product) => (
-        <div className="item" key={product.id}>
+  useEffect(() => {
+    if (items.length) {
+      const scrollPosition = sessionStorage.getItem('scrollPosition');
+      if (scrollPosition) {
+        window.scrollTo(0, parseInt(scrollPosition, 10));
+        sessionStorage.removeItem('scrollPosition');
+      }
+    }
+  }, [items]);
+  
+
+    const products = productsData.map((product) => (
+      <div className="item" key={product.id}>
           <Link to={`/products/${product.id}`}>
-            <div className="item-img">
+          <div className="item-img">
               <img src={product.img[0]} alt="" />
             </div>
-              <div className="item-info">
+            <div className="item-info">
               <h4>{product.price}₽</h4>
               <p>{product.name}</p>
               <button className="add-item">
@@ -46,11 +49,15 @@ const Products = () => {
               </button>
               </div>
           </Link>
-        </div>
-      ))}
-      </main>
-    </InfiniteScroll>
-  );
+      </div>
+    ));
+  
+    return (
+      <main>{products}</main>
+    );
+
+  
+
 };
 
 export default Products;
