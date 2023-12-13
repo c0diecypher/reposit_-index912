@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
 import "./css/item.css";
 import productsData from "./productsData";
 import { Link } from "react-router-dom";
 
 const Products = () => {
   const [items, setItems] = useState(productsData);
-  const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
     if (items.length) {
@@ -39,14 +37,9 @@ const Products = () => {
   ));
 
   return (
-    <InfiniteScroll
-      dataLength={items.length}
-      next={setItems}
-      hasMore={hasMore}
-      loader={<p>...</p>}
-    >
+
       <main>{products}</main>
-    </InfiniteScroll>
+ 
   );
 };
 
