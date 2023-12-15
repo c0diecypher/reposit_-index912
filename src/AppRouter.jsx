@@ -13,7 +13,8 @@ const AppRouter = ({ cart, addToCart, sendDataToParent, dataFromMainButton, hand
                 addToCart={addToCart} 
                 sendDataToParent={sendDataToParent} 
                 dataFromMainButton={dataFromMainButton} 
-                handleDataFromMainButton={handleDataFromMainButton} 
+                handleDataFromMainButton={handleDataFromMainButton}
+                userId={userId}
             />}
             path={route.path} 
             exact={route.exact}
