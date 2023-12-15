@@ -2,29 +2,7 @@
 import "./App.css"
 import "bootstrap/dist/css/bootstrap.css";
 
-// Components
-import Header from "./Components/Header";
-import Footer from "./Components/Footer";
-import Products from './Products/Products';
-import ProductDetail from "./Products/ProductDetail";
-import Searchbar from "./Search/Search-bar";
-import Search from "./Search/Search";
-import Stories from "./Stories/Stories";
-import Catalog from "./Search/Catalog";
-import SizeInfoDetails from "./Products/SizeInfo/SizeInfoDetails";
-import BasketItem from "./Components/BasketItem";
 import { useTelegram } from "./Components/Hooks/useTelegram";
-import ProfilePage from "./Components/Telegram/ProfilePage";
-import ProductConfirm from "./Products/ProductConfirm";
-import FilterProducts from "./Products/FilterProducts";
-import SettingsProfile from "./Components/Telegram/SettingsProfile";
-import ProductPay from "./Products/ProductPay";
-import ProductPaid from "./Products/ProductPaid";
-import BasketPaid from "./Components/BasketPaid";
-import ButtonBonus from "./Components/ButtonBonus";
-import BonusPage from "./Components/BonusPage";
-import Banner from "./Components/Banner";
-// React 
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { BackButton } from "@twa-dev/sdk/react" 
 import { useState, useEffect, useCallback, useRef } from "react"
@@ -120,21 +98,6 @@ function App() {
     fetchData();
   }, []);
 
- const [scrollPosition, setScrollPosition] = useState(0);
-  const navigate = useNavigate();
-
-  const handleScroll = () => {
-    setScrollPosition(window.scrollY);
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   
    const userIdString = userId.toString();
 
@@ -142,156 +105,23 @@ function App() {
   const shouldShowBanner = userIdString === '204688184' || userIdString === '1201116054';
   return (
     <>
-      <Routes>
-        <Route
-        exact
-        path="/"
-        element={
-            <>
               {shouldShowBanner ? (
                 <>
-                  <Header userId={userId} />
-                  <Searchbar />
-                  <Stories />
-                  {isAuthenticated && <ButtonBonus userId={userId} />}
-                  {shouldShowBanner && <Banner userId={userId} />}
-                  {isAuthenticated && <BasketItem userId={userId} />}
-                  <div></div>
-                  {isAuthenticated && <BasketPaid userId={userId} />}
-                  <Catalog userId={userId} />
-                  {isAuthenticated && <Products userId={userId} />}
-                  <Footer />
+                 <AppRouter 
+      cart={cart} 
+      addToCart={addToCart} 
+      onDataUpdate={handleDataFromMainButton}
+      sendDataToParent={sendDataToParent} 
+      dataFromMainButton={dataFromMainButton} 
+      handleDataFromMainButton={handleDataFromMainButton}
+      userId={userId}
+      />
                 </>
               ) : (
                 <img srcSet="../img/svg/3490162309597233219.webp" alt="krossi"/>
               )}
-            </>
-          }
-        >
 
-        </Route>
-        <Route
-        path="/bonus/"
-        element={
-          <div>
-            <BackButton />
-            <BonusPage userId={userId} />
-          </div>
-        }
-        >
-          
-        </Route>
-        <Route
-        path="/profile/"
-        element={
-          <div>
-            <BackButton />
-            {isAuthenticated && <ProfilePage userId={userId} />}
-          </div>
-        }
-        >
-          
-        </Route>
-        <Route
-        path="/profile/settings"
-        element={
-          <div>
-            <BackButton />
-            {isAuthenticated && <SettingsProfile userId={userId}/>}
-          </div>
-        }
-        >
-          
-        </Route>
-        <Route
-        path="/products/:productId"
-        element={
-          <div>
-            <BackButton />
-           {isAuthenticated && <ProductDetail
-            addToCart={addToCart} 
-            sendDataToParent={sendDataToParent}
-            onDataUpdate={handleDataFromMainButton}
-            dataFromMainButton={dataFromMainButton}
-            isAuthenticated={isAuthenticated}
-            userId={userId}
-            onReturn={(position) => navigate('/', { state: { scrollPosition: position } })}
-              />}
-              {dataFromMainButton}
-          </div>
-        }
-        >
-          
-        </Route>
-        <Route
-        path="/products/confirm/:name/:size/:price"
-        element={
-          <div>
-            <BackButton />
-            {isAuthenticated && <ProductConfirm userId={userId}/>}
-              
-          </div>
-        }
-        >
-          
-        </Route>
-        <Route
-        path="/products/confirm/offer/:name/:size/:price"
-        element={
-          <div>
-            <BackButton />
-            {isAuthenticated && <ProductPay userId={userId}/>}
-              
-          </div>
-        }
-        >
-          
-        </Route>
-        <Route
-        path="/products/confirm/offer/paid/:name/:size/:price"
-        element={
-          <div>
-            <BackButton />
-            {isAuthenticated && <ProductPaid userId={userId}/>}
-              
-          </div>
-        }
-        >
-          
-        </Route>
-        <Route
-          path="/search"
-          element={
-            <>
-              <BackButton />
-              <Search />
-            </>
-          }
-        ></Route>
-        <Route
-        path="/products/size/"
-        element={
-          <div>
-          <BackButton />
-          <SizeInfoDetails />
-          </div>
-        }
-        >
-          
-        </Route>
-        <Route
-        path="/filtered"
-        element={
-          <>
-          <BackButton />
-          {isAuthenticated &&<FilterProducts />}
-          </>
-        }
-        >
-          
-        </Route>
-      </Routes>
-      
+        
     </>
   )
 }
