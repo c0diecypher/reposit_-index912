@@ -57,20 +57,23 @@ function Layout({cart, onDataUpdate, dataFromMainButton}) {
             onDataUpdate={onDataUpdate}
             dataFromMainButton={dataFromMainButton}
             />
-            <Header />
-                <Searchbar />
-                <Stories />
-                <ButtonBonus />
-                <Banner />
+            <Header userId={userId}/>
+                <Searchbar userId={userId}/>
+                <Stories userId={userId} />
+                <ButtonBonus userId={userId} />
+                <Banner userId={userId}/>
                 {cart.length > 0 && (
                 <BasketItem 
-                cart={cart}  />
+                cart={cart}
+                userId={userId}
+                />
                 )}
-                <Catalog />
+                <Catalog userId={userId} />
 
                 <Products 
                 setModalActive={setModalActive} 
-                openModal={openModal} />
+                openModal={openModal} 
+                userId={userId}/>
                 
                 
             <Footer />
