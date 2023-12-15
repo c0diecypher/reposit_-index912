@@ -1,53 +1,49 @@
 import { useState, useEffect } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
-import "./css/item.css";
-import productsData from "./productsData";
 import { Link } from "react-router-dom";
+import "./css/item.css";
+import axios from "axios";
+import productsData from "./productsData";
 
-const Products = () => {
-  const [items, setItems] = useState(productsData);
-  const [hasMore, setHasMore] = useState(true);
 
-  useEffect(() => {
-    if (items.length) {
-      const scrollPosition = sessionStorage.getItem('scrollPosition');
-      if (scrollPosition) {
-        window.scrollTo(0, parseInt(scrollPosition, 10));
-        sessionStorage.removeItem('scrollPosition');
-      }
+const Products = ({openModal}) => {
+  const [product, setProduct] = useState(productsData);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [fetching, setFetching] = useState(true);
+  
+
+  useEffect(()=>{
+    document.addEventListener('scroll',ScrollHandler);
+    return function () {
+      document.removeEventListener('scroll', ScrollHandler)
     }
-  }, [items]);
+  }, []);
 
-  const products = items.map((product) => (
-    <div className="item" key={product.id}>
-      <Link 
-        to={`/products/${product.id}`} 
-        onClick={() => sessionStorage.setItem('scrollPosition', window.scrollY)}
-      >
-        <div className="item-img">
-          <img src={product.img[0]} alt="" />
-        </div>
-        <div className="item-info">
-          <h4>{product.price}₽</h4>
-          <p>{product.name}</p>
-          <button className="add-item">
-            <div className="buy-item">Купить</div>
-          </button>
-        </div>
-      </Link>
+  const ScrollHandler = (e) => {
+    if(e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100){
+      setFetching(true);
+    }
+  }
+  
+return (
+
+    <main>
+    {product.map((product) => (
+      <div className="item" key={product.id} onClick={() => openModal(product)}>
+        
+          <div className="item-img">
+            <img src={product.img[0]} alt="" />
+          </div>  
+          <div className="item-info">
+            <h4>{product.price}₽</h4>
+            <p>{product.name}</p>
+            <button className="add-item">
+              <div className="buy-item">Купить</div>
+            </button>
+          </div>
     </div>
-  ));
-
-  return (
-    <InfiniteScroll
-      dataLength={items.length}
-      next={setItems}
-      hasMore={hasMore}
-      loader={<p>...</p>}
-    >
-      <main>{products}</main>
-    </InfiniteScroll>
-  );
+    ))}
+    </main>
+);
 };
 
 export default Products;
