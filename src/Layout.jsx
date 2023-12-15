@@ -20,6 +20,7 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
       window.history.pushState(null, `/`, `/products/${product.id}`);
       // Устанавливаем флаг modalActive в true
       setModalActive(true);
+        document.body.classList.add("product-detail");
     };
 
     const closeModal = () => {
@@ -31,6 +32,7 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
       const newURL = currentURL.replace(/\/products\/[0-9]+$/, "");
       // Заменяем текущий URL измененным URL
       window.history.replaceState(null, "", newURL);
+        document.body.classList.remove("product-detail");
     }
     
     useEffect(() => {
