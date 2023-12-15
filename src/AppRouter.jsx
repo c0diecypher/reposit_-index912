@@ -3,7 +3,7 @@
 import { Route, Navigate, Routes } from "react-router-dom";
 import { routes } from './router'
 
-const AppRouter = ({ cart, addToCart, sendDataToParent, dataFromMainButton, handleDataFromMainButton }) => {
+const AppRouter = ({ cart, addToCart, sendDataToParent, dataFromMainButton, handleDataFromMainButton, userId }) => {
     return (
       <Routes>
         {routes.map(route => (
