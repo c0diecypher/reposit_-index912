@@ -10,7 +10,7 @@ import SizeInfo from "./Products/SizeInfo/SizeInfo";
 import "./Products/css/SelectSize.css";
 import styled from "styled-components";
 import Stories from "./Stories/Stories"
-
+import { BackButton } from "@twa-dev/sdk/react" 
 const Size = styled.button`
   display: flex;
   flex-direction: column;
@@ -149,7 +149,9 @@ typesKeys.sort(customSort)
 
 return (
   <>
+  <BackButton />
   {active && (
+    
     <div className={active ? "modal active": "modal"} onClick={() => closeModal()}>
       <div className="modal__content" onClick={e => e.stopPropagation()}>
       <div className="full-item" key={thisProduct.id} >
