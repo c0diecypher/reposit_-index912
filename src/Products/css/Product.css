@@ -22,7 +22,6 @@ body::-webkit-scrollbar {
 .full-item {
   width: 100%;
   border-radius: 0 0 18px 18px;
-  padding-bottom: 4px;
   position: relative;
 }
 
