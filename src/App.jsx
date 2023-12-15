@@ -6,7 +6,7 @@ import { useTelegram } from "./Components/Hooks/useTelegram";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { BackButton } from "@twa-dev/sdk/react" 
 import { useState, useEffect, useCallback, useRef } from "react"
-
+import AppRouter from "./AppRouter";
 
 function App() {
   
