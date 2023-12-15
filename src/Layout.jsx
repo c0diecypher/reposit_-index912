@@ -11,7 +11,7 @@ import Products from "./Products/Products";
 import { useState, useEffect } from "react";
 
 
-function Layout({cart, onDataUpdate, dataFromMainButton}) {
+function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
     const [modalActive, setModalActive] = useState(false);
     const [modalProductId, setModalProductId] = useState(null);
     const openModal = (product) => { 
