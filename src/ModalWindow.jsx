@@ -1,7 +1,7 @@
 import "./css/modal.css"
 import "./Products/css/Product.css";
 import PropTypes from 'prop-types';
-
+import { MainButton } from "@twa-dev/sdk/react" 
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react"
 import productsData from "./Products/productsData";
@@ -15,7 +15,6 @@ const Size = styled.button`
   display: flex;
   flex-direction: column;
   min-width: 60px;
-  
   opacity: 0.6;
   background: var(--tg-bg);
   border-radius: 10px;
@@ -37,7 +36,7 @@ const Size = styled.button`
   `}
 `;
 
-function ModalWindow({active, product, closeModal,  sendDataToParent, addToCart, onDataUpdate }) {
+function ModalWindow({active, product, closeModal,  sendDataToParent, addToCart, onDataUpdate, dataFromMainButton }) {
 
   ModalWindow.propTypes = {
     active: PropTypes.bool.isRequired,
@@ -196,12 +195,16 @@ return (
         </div>
         <hr/>
        
-      <button
+      {dataFromMainButton && (
+      <MainButton 
       onClick={handlePaymentClick}
+      text={text}
       color={color}
+      textColor={textColor}
+      />
       
-      >
-      </button>
+        
+)}
       
         
 
