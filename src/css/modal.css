@@ -40,4 +40,11 @@
 .modal__content::-webkit-scrollbar {
     display: none;
   }
-  
+
+.modal::-webkit-scrollbar {
+    display: none;
+  }
+
+.product-detail{
+    overflow: hidden;
+}
