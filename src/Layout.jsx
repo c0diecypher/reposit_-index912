@@ -32,6 +32,7 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
       const newURL = currentURL.replace(/\/products\/[0-9]+$/, "");
       // Заменяем текущий URL измененным URL
       window.history.replaceState(null, "", newURL);
+        window.history.replaceState(null, "", window.location.pathname);
         document.body.classList.remove("product-detail");
     }
     
