@@ -150,7 +150,7 @@ typesKeys.sort(customSort)
   };
   const [openConfirm, setOpenConfirm] = useState(false);
   const handleOpenConfirm = () => {
-    const uniqueOrderId = generateOrderId();
+    document.body.classList.add("product-confirm");
     setOpenConfirm(true);
     
   };
