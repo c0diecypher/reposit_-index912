@@ -225,7 +225,7 @@ return (
           ))}
         </div>
         <hr/>
-       
+       <button onClick={handleOpenConfirm} >купить</button>
       {dataFromMainButton && (
       <MainButton 
       onClick={handleOpenConfirm}
