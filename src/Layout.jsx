@@ -62,8 +62,8 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
             onDataUpdate={onDataUpdate}
             dataFromMainButton={dataFromMainButton}
             />
-          </>):(<>
-                <Header userId={userId}/>
+          </>)}
+         <Header userId={userId}/>
                 <Searchbar userId={userId}/>
                 <Stories userId={userId} />
                 <ButtonBonus userId={userId} />
@@ -83,7 +83,6 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
                 
                 
             <Footer />
-            </>)}
             
             
 
