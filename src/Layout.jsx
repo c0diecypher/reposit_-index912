@@ -15,22 +15,24 @@ import { BackButton } from "@twa-dev/sdk/react";
 function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
     const [modalActive, setModalActive] = useState(false);
     const [modalProductId, setModalProductId] = useState(null);
+
     const openModal = (product) => { 
       setModalProductId(product);
       // Изменяем маршрут, чтобы открыть модальное окно с определенным productId
       window.history.pushState(null, `/`, `/products/${product.id}`);
       // Устанавливаем флаг modalActive в true
       setModalActive(true);
-        document.body.classList.add("product-detail");
+      document.body.classList.add("product-detail");
     };
 
     const closeModal: () => void = useCallback(() => {
-  setModalActive(false);
-  setModalProductId(null);
-  // Заменяем текущий URL измененным URL
-  document.body.classList.remove("product-detail");
-}, [setModalActive, setModalProductId]);
+      setModalActive(false);
+      setModalProductId(null);
+      // Заменяем текущий URL измененным URL
+      document.body.classList.remove("product-detail");
+    }, [setModalActive, setModalProductId]);
 
+    // Effect to show/hide the BackButton based on modalActive state
     useEffect(() => {
       const backButton = Telegram.WebApp.BackButton;
 
@@ -43,11 +45,11 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
       // Clean up the event handler when the component unmounts
       return () => backButton.hide().offClick(() => closeModal());
     }, [modalActive, closeModal]);
-  
-  return (
-    <>
-      {modalProductId && (<>
-          
+
+    return (
+      <>
+        {modalActive && (<>
+          {/* Render the BackButton here */}
           <ModalWindow 
             active={modalActive} 
             setActive={setModalActive} 
@@ -55,33 +57,28 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
             product={modalProductId} 
             onDataUpdate={onDataUpdate}
             dataFromMainButton={dataFromMainButton}
-            />
-          </>)}
-         <Header userId={userId}/>
-                <Searchbar userId={userId}/>
-                <Stories userId={userId} />
-                <ButtonBonus userId={userId} />
-                <Banner userId={userId}/>
-                {cart.length > 0 && (
-                <BasketItem 
-                cart={cart}
-                userId={userId}
-                />
-                )}
-                <Catalog userId={userId} />
-
-                <Products 
-                setModalActive={setModalActive} 
-                openModal={openModal} 
-                userId={userId}/>
-                
-                
-            <Footer />
-            
-            
-
-    </>
-  )
+          />
+        </>)}
+        <Header userId={userId}/>
+        <Searchbar userId={userId}/>
+        <Stories userId={userId} />
+        <ButtonBonus userId={userId} />
+        <Banner userId={userId}/>
+        {cart.length > 0 && (
+          <BasketItem 
+            cart={cart}
+            userId={userId}
+          />
+        )}
+        <Catalog userId={userId} />
+        <Products 
+          setModalActive={setModalActive} 
+          openModal={openModal} 
+          userId={userId}
+        />
+        <Footer />
+      </>
+    );
 }
 
 export default Layout;
