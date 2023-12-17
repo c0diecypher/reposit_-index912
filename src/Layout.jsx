@@ -23,32 +23,13 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
         document.body.classList.add("product-detail");
     };
 
-    const closeModal = () => {
+    const closeModal = useCallback(() => {
       setModalActive(false);
       setModalProductId(null);
-      // Получаем текущий URL
-      const currentURL = window.location.href;
-      // Удаляем "/products/${productId}" из текущего URL
-      const newURL = currentURL.replace(/\/products\/[0-9]+$/, "");
       // Заменяем текущий URL измененным URL
-      window.history.replaceState(null, "", newURL);
-        window.history.replaceState(null, "", window.location.pathname);
-        document.body.classList.remove("product-detail");
+      window.history.replaceState(null, /\/products\/[0-9]+$/, "");
+      document.body.classList.remove("product-detail");
     }
-    
-    useEffect(() => {
-      const handlePopstate = () => {
-        closeModal();
-      };
-  
-      // Добавляем слушателя события popstate
-      window.addEventListener("popstate", handlePopstate);
-  
-      // Убираем слушателя при размонтировании компонента
-      return () => {
-        window.removeEventListener("popstate", handlePopstate);
-      };
-    }, []);
   
   return (
     <>
