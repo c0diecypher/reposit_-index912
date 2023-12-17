@@ -1,5 +1,6 @@
 
 import '../css/modal.css';
+import CustomBackButton from './CustomBackButton'
 import { BackButton, MainButton } from "@twa-dev/sdk/react" 
 function Confirm({ active, setActive, product, closeConfirm }) {
   if (!active || !product) {
@@ -10,7 +11,7 @@ function Confirm({ active, setActive, product, closeConfirm }) {
 
   return (
     <> 
-    <BackButton onClick={closeConfirm}/>
+    <CustomBackButton onClick={closeConfirm}/>
     <div className={active ? 'confirm active' : 'confirm'}>
       <div className="confirm__content" onClick={(e) => e.stopPropagation()}>
         <p>{product.id}</p>
