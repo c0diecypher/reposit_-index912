@@ -52,7 +52,8 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
   
   return (
     <>
-            <ModalWindow 
+      {active ? (<>
+          <ModalWindow 
             active={modalActive} 
             setActive={setModalActive} 
             closeModal={closeModal} 
@@ -60,7 +61,8 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
             onDataUpdate={onDataUpdate}
             dataFromMainButton={dataFromMainButton}
             />
-            <Header userId={userId}/>
+          </>):(<>
+                <Header userId={userId}/>
                 <Searchbar userId={userId}/>
                 <Stories userId={userId} />
                 <ButtonBonus userId={userId} />
@@ -80,6 +82,8 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
                 
                 
             <Footer />
+            </>)}
+            
             
 
     </>
