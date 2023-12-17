@@ -262,7 +262,6 @@ return (
       </div>
           {openConfirm && (
         <>
-      <BackButton onClick={(closeConfirm)} />
       <Confirm active={openConfirm} setActive={setOpenConfirm} closeConfirm={closeConfirm} product={paymentData} closeModal={closeModal} />
       </>
       )}
