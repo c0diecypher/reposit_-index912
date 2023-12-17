@@ -178,6 +178,13 @@ typesKeys.sort(customSort)
       closeConfirm();
     });
   }
+       return () => {
+    console.log('Cleaning up back button');
+    backButton.hide().offClick(() => {
+      console.log('Back button click handler removed during cleanup');
+      closeConfirm();
+    });
+  };
 
 }, [openConfirm, closeConfirm]);
 
