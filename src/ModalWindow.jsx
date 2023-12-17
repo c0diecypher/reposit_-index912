@@ -165,7 +165,7 @@ typesKeys.sort(customSort)
    useEffect(() => {
   const backButton = Telegram.WebApp.BackButton;
 
-  if (modalActive) {
+  if (openConfirm) {
     console.log('Showing back button');
     backButton.show().onClick(() => {
       console.log('Back button clicked');
