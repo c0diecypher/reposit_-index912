@@ -8,7 +8,7 @@ import Searchbar from "./Search/Search-bar";
 import Stories from "./Stories/Stories";
 import Footer from './Components/Footer'
 import Products from "./Products/Products";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import HomeBackButton from './Products/HomeBackButton'
 
 function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
