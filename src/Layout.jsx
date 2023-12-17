@@ -34,7 +34,7 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
   return (
     <>
       {modalProductId && (<>
-          <BackButton onClick={(closeModal)}/>
+          <BackButton onClick={() => console.log()}/>
           <ModalWindow 
             active={modalActive} 
             setActive={setModalActive} 
