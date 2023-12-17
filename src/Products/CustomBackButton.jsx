@@ -5,10 +5,9 @@ const CustomBackButton = ({ closeConfirm, onClick, ...props }) => {
     console.log('Нажата кнопка назад!');
     closeConfirm();  
     console.log('Нажата closeConfirm', closeConfirm);
-    onClick && onClick();
   };
 
-  return <BackButton {...props} onClick={handleClick} />;
+  return <BackButton onClick={handleClick} />;
 };
 
 export default CustomBackButton;
