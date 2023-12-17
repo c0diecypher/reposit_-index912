@@ -214,7 +214,7 @@ return (
        <button onClick={handleOpenConfirm} >купить</button>
       {dataFromMainButton && (
       <MainButton 
-      onClick={handlePaymentClick}
+      onClick={handleOpenConfirm}
       text={text}
       color={color}
       textColor={textColor}
