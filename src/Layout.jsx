@@ -32,7 +32,7 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
   
   return (
     <>
-      {modalActive && (<>
+      {modalProductId && (<>
           <HomeBackButton closeModal={closeModal}/>
           <ModalWindow 
             active={modalActive} 
