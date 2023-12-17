@@ -166,9 +166,6 @@ typesKeys.sort(customSort)
   
 
 return (
-  <>
-  
-  {active && (
     <>
     <HomeBackButton closeModal={closeModal}/>
     <div className={active ? "modal active": "modal"}>
@@ -239,14 +236,11 @@ return (
       </div>
       
           </>
-          )}
           {openConfirm && (
         <>
       <Confirm active={openConfirm} setActive={setOpenConfirm} closeConfirm={closeConfirm} product={paymentData}/>
       </>
       )}
-          
-  </>
   
 )
 }
