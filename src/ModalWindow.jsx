@@ -166,9 +166,11 @@ typesKeys.sort(customSort)
   
 
 return (
+  <>
+  <HomeBackButton closeModal={closeModal}/>
+  {active && (
     <>
-    <HomeBackButton closeModal={closeModal}/>
-    <div className={active ? "modal active": "modal"}>
+    <div className={active ? "modal active": "modal"} onClick={() => closeModal()}>
       <div className="modal__content" onClick={e => e.stopPropagation()}>
       <div className="full-item" key={thisProduct.id} >
        <div className="images-slider-wrapper">
@@ -211,9 +213,10 @@ return (
           ))}
         </div>
         <hr/>
+       <button onClick={handleOpenConfirm} >купить</button>
       {dataFromMainButton && (
       <MainButton 
-      onClick={handleOpenConfirm}
+      onClick={handlePaymentClick}
       text={text}
       color={color}
       textColor={textColor}
@@ -236,11 +239,14 @@ return (
       </div>
       
           </>
+          )}
           {openConfirm && (
         <>
       <Confirm active={openConfirm} setActive={setOpenConfirm} closeConfirm={closeConfirm} product={paymentData}/>
       </>
       )}
+          
+  </>
   
 )
 }
