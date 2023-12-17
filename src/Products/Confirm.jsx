@@ -2,7 +2,7 @@
 import '../css/modal.css';
 import CustomBackButton from './CustomBackButton'
 import { BackButton, MainButton } from "@twa-dev/sdk/react" 
-function Confirm({ active, setActive, product, closeConfirm }) {
+function Confirm({ active, setActive, product, closeConfirm, closeModal }) {
   if (!active || !product) {
     // Add some logging to help identify the issue
     console.error('Confirm component not rendered. Active:', active, 'Product:', product);
@@ -11,7 +11,7 @@ function Confirm({ active, setActive, product, closeConfirm }) {
 
   return (
     <> 
-    <CustomBackButton closeConfirm={closeConfirm}/>
+    <CustomBackButton closeConfirm={closeConfirm} closeModal={closeModal} />
     <div className={active ? 'confirm active' : 'confirm'}>
       <div className="confirm__content" onClick={(e) => e.stopPropagation()}>
         <p>{product.id}</p>
