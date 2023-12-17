@@ -150,9 +150,9 @@ typesKeys.sort(customSort)
   };
   const [openConfirm, setOpenConfirm] = useState(false);
   const handleOpenConfirm = () => {
-    const uniqueOrderId = generateOrderId();
-    setOpenConfirm(true);
     
+    setOpenConfirm(true);
+    console.log('true', handleOpenConfirm);
   };
 
   const closeConfirm = useCallback(() => {
@@ -160,20 +160,6 @@ typesKeys.sort(customSort)
     document.body.classList.remove("product-confirm");
   }, [setOpenConfirm, product.id]);
 
-  useEffect(() => {
-    const handlePopstate = () => {
-      if (openConfirm) {
-        closeConfirm();
-        
-      }
-    };
-
-    window.addEventListener('popstate', handlePopstate);
-    
-    return () => {
-      window.removeEventListener('popstate', handlePopstate);
-    };
-  }, [openConfirm, closeConfirm]);
 
   
 
@@ -228,7 +214,7 @@ return (
        <button onClick={handleOpenConfirm} >купить</button>
       {dataFromMainButton && (
       <MainButton 
-      onClick={handleOpenConfirm}
+      onClick={handlePaymentClick}
       text={text}
       color={color}
       textColor={textColor}
@@ -251,6 +237,7 @@ return (
       </div>
       {openConfirm && (
         <>
+        <BackButton onClick={() => closeConfirm()}/>
       <Confirm active={openConfirm} setActive={setOpenConfirm} closeConfirm={closeConfirm} product={paymentData}/>
       </>
       )}
