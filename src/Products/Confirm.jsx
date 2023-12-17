@@ -11,7 +11,6 @@ function Confirm({ active, setActive, product, closeConfirm, closeModal }) {
 
   return (
     <> 
-    <BackButton onClick={(closeConfirm)} />
     <div className={active ? 'confirm active' : 'confirm'}>
       <div className="confirm__content" onClick={(e) => e.stopPropagation()}>
         <p>{product.id}</p>
