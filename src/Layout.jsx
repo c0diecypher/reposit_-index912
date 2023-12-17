@@ -24,17 +24,17 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
         document.body.classList.add("product-detail");
     };
 
-    const closeModal = useCallback(() => {
-      setModalActive(false);
+    const closeModal = () => {
+        setModalActive(false);
       setModalProductId(null);
       // Заменяем текущий URL измененным URL
       document.body.classList.remove("product-detail");
-    }, [setModalActive,setModalProductId]);
+    };
   
   return (
     <>
       {modalProductId && (<>
-          <BackButton onClick={() => setModalActive(false)} />
+          <BackButton onClick={(closeModal)} />
           <ModalWindow 
             active={modalActive} 
             setActive={setModalActive} 
