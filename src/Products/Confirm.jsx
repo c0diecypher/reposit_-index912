@@ -1,4 +1,4 @@
-import React from 'react';
+
 import '../css/modal.css';
 
 function Confirm({ active, setActive, product, closeConfirm }) {
