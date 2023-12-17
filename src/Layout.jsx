@@ -29,7 +29,7 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
       // Заменяем текущий URL измененным URL
       window.history.replaceState(null, /\/products\/[0-9]+$/, "");
       document.body.classList.remove("product-detail");
-    }
+    }, [setModalActive,setModalProductId]);
   
   return (
     <>
