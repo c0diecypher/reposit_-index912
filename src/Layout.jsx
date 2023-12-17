@@ -34,17 +34,31 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
 
     // Effect to show/hide the BackButton based on modalActive state
     useEffect(() => {
-      const backButton = Telegram.WebApp.BackButton;
+  const backButton = Telegram.WebApp.BackButton;
 
-      if (modalActive) {
-        backButton.show().onClick(() => closeModal());
-      } else {
-        backButton.hide().offClick(() => closeModal());
-      }
+  if (modalActive) {
+    console.log('Showing back button');
+    backButton.show().onClick(() => {
+      console.log('Back button clicked');
+      closeModal();
+    });
+  } else {
+    console.log('Hiding back button');
+    backButton.hide().offClick(() => {
+      console.log('Back button click handler removed');
+      closeModal();
+    });
+  }
 
-      // Clean up the event handler when the component unmounts
-      return () => backButton.hide().offClick(() => closeModal());
-    }, [modalActive, closeModal]);
+  // Clean up the event handler when the component unmounts
+  return () => {
+    console.log('Cleaning up back button');
+    backButton.hide().offClick(() => {
+      console.log('Back button click handler removed during cleanup');
+      closeModal();
+    });
+  };
+}, [modalActive, closeModal]);
 
     return (
       <>
