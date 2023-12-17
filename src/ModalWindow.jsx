@@ -166,9 +166,10 @@ typesKeys.sort(customSort)
 
 return (
   <>
-  <BackButton />
+  
   {active && (
     <>
+    <BackButton />
     <div className={active ? "modal active": "modal"} onClick={() => closeModal()}>
       <div className="modal__content" onClick={e => e.stopPropagation()}>
       <div className="full-item" key={thisProduct.id} >
@@ -235,14 +236,14 @@ return (
   </div>
       </div>
       </div>
-      {openConfirm && (
+      
+          </>
+          )}
+          {openConfirm && (
         <>
       <Confirm active={openConfirm} setActive={setOpenConfirm} closeConfirm={closeConfirm} product={paymentData}/>
       </>
       )}
-          </>
-          )}
-          
           
   </>
   
