@@ -49,7 +49,7 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
     return (
       <>
         {modalActive && (<>
-          {/* Render the BackButton here */}
+          
           <ModalWindow 
             active={modalActive} 
             setActive={setModalActive} 
