@@ -2,8 +2,8 @@ import "./css/modal.css"
 import "./Products/css/Product.css";
 import PropTypes from 'prop-types';
 import { MainButton } from "@twa-dev/sdk/react" 
-import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useCallback } from "react"
 import productsData from "./Products/productsData";
 import "./Products/css/Product.css";
 import SizeInfo from "./Products/SizeInfo/SizeInfo";
@@ -11,6 +11,8 @@ import "./Products/css/SelectSize.css";
 import styled from "styled-components";
 import Stories from "./Stories/Stories"
 import { BackButton } from "@twa-dev/sdk/react" 
+import ProductConfirm from "./Products/ProductConfirm";
+import Confirm from './Products/Confirm'
 const Size = styled.button`
   display: flex;
   flex-direction: column;
@@ -37,16 +39,16 @@ const Size = styled.button`
 `;
 
 function ModalWindow({active, product, closeModal,  sendDataToParent, addToCart, onDataUpdate, dataFromMainButton }) {
-
+  if (!product) {
+    return null; // or provide some default behavior
+  }
   ModalWindow.propTypes = {
     active: PropTypes.bool.isRequired,
     product: PropTypes.object.isRequired, // Замените 'object' на ожидаемый тип вашего объекта продукта
     closeModal: PropTypes.func.isRequired,
   };
 
-  if (!product) {
-    return null; // or provide some default behavior
-  }
+  
   const [paymentData, setPaymentData] = useState(null);
   const thisProduct = productsData.find((prod) => prod.id === product.id);
   const [select, setSelect] = useState(paymentData ? paymentData : thisProduct.size[0]);
@@ -88,13 +90,14 @@ typesKeys.sort(customSort)
         name: thisProduct.name,
         img: thisProduct.img,
         price: thisProduct.size[matchingSize],
-        id: thisProduct.id
+        id: thisProduct.id,
+        order_id: generateOrderId
       });
     }
   }
 }, [thisProduct]);
   
-  const handleAddToCard = (price, size, name, img) => {
+  const handleAddToCard = (price, size, generateOrderId) => {
     setSelect(size);
     const productData = {
       size,
@@ -102,7 +105,7 @@ typesKeys.sort(customSort)
       name: thisProduct.name,
       img: thisProduct.img,
       price,
-      id: thisProduct.id
+      order_id: generateOrderId
     };
 
 
@@ -111,7 +114,8 @@ typesKeys.sort(customSort)
       name: thisProduct.name,
       img: thisProduct.img,
       price,
-      id: thisProduct.id
+      id: thisProduct.id,
+      order_id: generateOrderId
     });
 
     if (size) {
@@ -134,7 +138,7 @@ typesKeys.sort(customSort)
     if (paymentData && paymentData.size) {
       // Вызываем функцию onDataUpdate, передавая ей данные
       onDataUpdate(paymentData.size, paymentData.price, paymentData);
-      navigate(`/products/confirm/${thisProduct.name}/${paymentData.size}/${paymentData.price}`, {
+      navigate(`/products/confirm/${paymentData.name}/${paymentData.size}/${paymentData.price}`, {
         state: { productData: { ...paymentData, order_id: uniqueOrderId } }
       });
       sendDataToParent({ ...paymentData, order_id: uniqueOrderId });  // Передаем данные в родительский компонент
@@ -144,13 +148,40 @@ typesKeys.sort(customSort)
       window.Telegram.WebApp.HapticFeedback.notificationOccurred('error');
     }
   };
+  const [openConfirm, setOpenConfirm] = useState(false);
+  const handleOpenConfirm = () => {
+    const uniqueOrderId = generateOrderId();
+    setOpenConfirm(true);
+    
+  };
 
+  const closeConfirm = useCallback(() => {
+    setOpenConfirm(false);
+    document.body.classList.remove("product-confirm");
+  }, [setOpenConfirm, product.id]);
+
+  useEffect(() => {
+    const handlePopstate = () => {
+      if (openConfirm) {
+        closeConfirm();
+        
+      }
+    };
+
+    window.addEventListener('popstate', handlePopstate);
+    
+    return () => {
+      window.removeEventListener('popstate', handlePopstate);
+    };
+  }, [openConfirm, closeConfirm]);
+
+  
 
 return (
   <>
   <BackButton />
   {active && (
-    
+    <>
     <div className={active ? "modal active": "modal"} onClick={() => closeModal()}>
       <div className="modal__content" onClick={e => e.stopPropagation()}>
       <div className="full-item" key={thisProduct.id} >
@@ -197,7 +228,7 @@ return (
        
       {dataFromMainButton && (
       <MainButton 
-      onClick={handlePaymentClick}
+      onClick={handleOpenConfirm}
       text={text}
       color={color}
       textColor={textColor}
@@ -218,9 +249,16 @@ return (
   </div>
       </div>
       </div>
-
-          
+      {openConfirm && (
+        <>
+        <BackButton onClick={() => closeConfirm()}/>
+      <Confirm active={openConfirm} setActive={setOpenConfirm} closeConfirm={closeConfirm} product={paymentData}/>
+      </>
+      )}
+          </>
           )}
+          
+          
   </>
   
 )
