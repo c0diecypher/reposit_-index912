@@ -217,10 +217,9 @@ return (
           ))}
         </div>
         <hr/>
-       <button onClick={handleOpenConfirm} >купить</button>
       {dataFromMainButton && (
       <MainButton 
-      onClick={handlePaymentClick}
+      onClick={handleOpenConfirm}
       text={text}
       color={color}
       textColor={textColor}
@@ -243,7 +242,6 @@ return (
       </div>
       {openConfirm && (
         <>
-        <BackButton onClick={() => closeConfirm()}/>
       <Confirm active={openConfirm} setActive={setOpenConfirm} closeConfirm={closeConfirm} product={paymentData}/>
       </>
       )}
