@@ -237,7 +237,7 @@ return (
       </div>
           {openConfirm && (
         <>
-      <Confirm active={openConfirm} setActive={setOpenConfirm} closeConfirm={closeConfirm} product={paymentData}/>
+      <Confirm active={openConfirm} setActive={setOpenConfirm} closeConfirm={closeConfirm} product={paymentData} closeModal={closeModal} />
       </>
       )}
           
