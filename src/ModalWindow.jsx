@@ -152,17 +152,12 @@ typesKeys.sort(customSort)
   const handleOpenConfirm = () => {
     const uniqueOrderId = generateOrderId();
     setOpenConfirm(true);
-    window.history.pushState(null, `/products/${product.id}`, `/products/confirm/${thisProduct.name}/${paymentData.size}/${paymentData.price}`,
-    {
-      state: { productData: { ...paymentData, order_id: uniqueOrderId } }
-    });
   };
 
   const closeConfirm = useCallback(() => {
     setOpenConfirm(false);
-    window.history.replaceState(null, /\/products\/confirm\/[a-zA-Z0-9-]+$/, `/products/${product.id}`);
     document.body.classList.remove("product-confirm");
-  }, [setOpenConfirm, product.id]);
+  }, [setOpenConfirm]);
 
   
 
