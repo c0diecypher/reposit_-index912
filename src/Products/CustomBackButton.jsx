@@ -1,11 +1,10 @@
-import React from 'react';
 import { BackButton } from "@twa-dev/sdk/react"; 
 
-const CustomBackButton = (props) => {
+const CustomBackButton = ({ closeConfirm, ...props }) => {
   const handleClick = () => {
     console.log('Нажата кнопка назад!');
-    // Добавьте здесь дополнительные действия по необходимости
-    // Например, вызов функции closeConfirm
+    closeConfirm();  
+    console.log('Нажата closeConfirm', closeConfirm);
     props.onClick && props.onClick();
   };
 
