@@ -241,7 +241,6 @@ return (
           )}
           {openConfirm && (
         <>
-          <BackButton onClick={() => console.log('Кнопка назад Confirm')} />
       <Confirm active={openConfirm} setActive={setOpenConfirm} closeConfirm={closeConfirm} product={paymentData}/>
       </>
       )}
