@@ -13,6 +13,7 @@ import Stories from "./Stories/Stories"
 import { BackButton } from "@twa-dev/sdk/react" 
 import ProductConfirm from "./Products/ProductConfirm";
 import Confirm from './Products/Confirm'
+import HomeBackButton from './Products/HomeBackButton'
 const Size = styled.button`
   display: flex;
   flex-direction: column;
@@ -169,8 +170,8 @@ return (
   
   {active && (
     <>
-    <BackButton onClick={() => console.log('Кнопка назад ModalWindow')} />
-    <div className={active ? "modal active": "modal"} onClick={() => closeModal()}>
+    <HomeBackButton closeModal={closeModal}/>
+    <div className={active ? "modal active": "modal"}>
       <div className="modal__content" onClick={e => e.stopPropagation()}>
       <div className="full-item" key={thisProduct.id} >
        <div className="images-slider-wrapper">
