@@ -1,6 +1,6 @@
 
 import '../css/modal.css';
-
+import { BackButton, MainButton } from "@twa-dev/sdk/react" 
 function Confirm({ active, setActive, product, closeConfirm }) {
   if (!active || !product) {
     // Add some logging to help identify the issue
@@ -9,6 +9,8 @@ function Confirm({ active, setActive, product, closeConfirm }) {
   }
 
   return (
+    <> 
+    <BackButton onClick={() => closeConfirm()}/>
     <div className={active ? 'confirm active' : 'confirm'} onClick={() => closeConfirm()}>
       <div className="confirm__content" onClick={(e) => e.stopPropagation()}>
         <p>{product.id}</p>
@@ -20,6 +22,7 @@ function Confirm({ active, setActive, product, closeConfirm }) {
       </div>
     </div>
   );
+ </>
 }
 
 export default Confirm;
