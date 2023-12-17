@@ -179,14 +179,6 @@ typesKeys.sort(customSort)
     });
   }
 
-  // Clean up the event handler when the component unmounts
-  return () => {
-    console.log('Cleaning up back button');
-    backButton.hide().offClick(() => {
-      console.log('Back button click handler removed during cleanup');
-      closeConfirm();
-    });
-  };
 }, [openConfirm, closeConfirm]);
 
   
