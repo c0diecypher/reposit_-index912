@@ -169,7 +169,7 @@ return (
   
   {active && (
     <>
-    <BackButton />
+    <BackButton onClick={() => console.log('Кнопка назад ModalWindow')} />
     <div className={active ? "modal active": "modal"} onClick={() => closeModal()}>
       <div className="modal__content" onClick={e => e.stopPropagation()}>
       <div className="full-item" key={thisProduct.id} >
@@ -241,6 +241,7 @@ return (
           )}
           {openConfirm && (
         <>
+          <BackButton onClick={() => console.log('Кнопка назад Confirm')} />
       <Confirm active={openConfirm} setActive={setOpenConfirm} closeConfirm={closeConfirm} product={paymentData}/>
       </>
       )}
