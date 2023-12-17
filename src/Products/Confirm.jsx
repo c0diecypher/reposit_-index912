@@ -11,7 +11,7 @@ function Confirm({ active, setActive, product, closeConfirm }) {
   return (
     <> 
     <BackButton onClick={closeConfirm}/>
-    <div className={active ? 'confirm active' : 'confirm'} onClick={() => closeConfirm()}>
+    <div className={active ? 'confirm active' : 'confirm'}>
       <div className="confirm__content" onClick={(e) => e.stopPropagation()}>
         <p>{product.id}</p>
         <p>{product.name}</p>
@@ -21,8 +21,8 @@ function Confirm({ active, setActive, product, closeConfirm }) {
         <p>{product.img}</p>
       </div>
     </div>
+      </>
   );
- </>
 }
 
 export default Confirm;
