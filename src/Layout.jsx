@@ -10,6 +10,7 @@ import Footer from './Components/Footer'
 import Products from "./Products/Products";
 import { useState, useEffect, useCallback } from "react";
 import HomeBackButton from './Products/HomeBackButton'
+import { BackButton } from "@twa-dev/sdk/react"; 
 
 function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
     const [modalActive, setModalActive] = useState(false);
@@ -33,7 +34,7 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
   return (
     <>
       {modalProductId && (<>
-          <HomeBackButton closeModal={closeModal}/>
+          <BackButton onClick={() => {console.log()}/>
           <ModalWindow 
             active={modalActive} 
             setActive={setModalActive} 
