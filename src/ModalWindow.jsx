@@ -167,7 +167,6 @@ typesKeys.sort(customSort)
 
 return (
   <>
-  <HomeBackButton closeModal={closeModal}/>
   {active && (
     <>
     <div className={active ? "modal active": "modal"} onClick={() => closeModal()}>
