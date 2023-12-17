@@ -13,7 +13,6 @@ import Stories from "./Stories/Stories"
 import { BackButton } from "@twa-dev/sdk/react" 
 import ProductConfirm from "./Products/ProductConfirm";
 import Confirm from './Products/Confirm'
-import HomeBackButton from './Products/HomeBackButton'
 const Size = styled.button`
   display: flex;
   flex-direction: column;
@@ -153,12 +152,14 @@ typesKeys.sort(customSort)
   const handleOpenConfirm = () => {
     const uniqueOrderId = generateOrderId();
     setOpenConfirm(true);
+    
   };
 
-  const closeConfirm = useCallback(() => {
-    setOpenConfirm(false);
-    document.body.classList.remove("product-confirm");
-  }, [setOpenConfirm]);
+    const closeConfirm = useCallback(() => {
+      setOpenConfirm(false);
+      console.log('close', closeConfirm)
+      document.body.classList.remove("product-confirm");
+    }, [setOpenConfirm]);
 
   
 
@@ -166,8 +167,6 @@ typesKeys.sort(customSort)
   
 
 return (
-  <>
-  {active && (
     <>
     <div className={active ? "modal active": "modal"} onClick={() => closeModal()}>
       <div className="modal__content" onClick={e => e.stopPropagation()}>
@@ -236,9 +235,6 @@ return (
   </div>
       </div>
       </div>
-      
-          </>
-          )}
           {openConfirm && (
         <>
       <Confirm active={openConfirm} setActive={setOpenConfirm} closeConfirm={closeConfirm} product={paymentData}/>
