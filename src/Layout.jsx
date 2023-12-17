@@ -24,17 +24,30 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
         document.body.classList.add("product-detail");
     };
 
-    const closeModal = () => {
-        setModalActive(false);
-      setModalProductId(null);
-      // Заменяем текущий URL измененным URL
-      document.body.classList.remove("product-detail");
-    };
+    const closeModal: () => void = useCallback(() => {
+  setModalActive(false);
+  setModalProductId(null);
+  // Заменяем текущий URL измененным URL
+  document.body.classList.remove("product-detail");
+}, [setModalActive, setModalProductId]);
+
+    useEffect(() => {
+      const backButton = Telegram.WebApp.BackButton;
+
+      if (modalActive) {
+        backButton.show().onClick(() => closeModal());
+      } else {
+        backButton.hide().offClick(() => closeModal());
+      }
+
+      // Clean up the event handler when the component unmounts
+      return () => backButton.hide().offClick(() => closeModal());
+    }, [modalActive, closeModal]);
   
   return (
     <>
       {modalProductId && (<>
-          <BackButton onClick={() => console.log('Hello, I am back button!', BackButton)} />
+          
           <ModalWindow 
             active={modalActive} 
             setActive={setModalActive} 
