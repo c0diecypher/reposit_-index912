@@ -162,7 +162,32 @@ typesKeys.sort(customSort)
     }, [setOpenConfirm]);
 
   
+   useEffect(() => {
+  const backButton = Telegram.WebApp.BackButton;
 
+  if (modalActive) {
+    console.log('Showing back button');
+    backButton.show().onClick(() => {
+      console.log('Back button clicked');
+      closeConfirm();
+    });
+  } else {
+    console.log('Hiding back button');
+    backButton.hide().offClick(() => {
+      console.log('Back button click handler removed');
+      closeConfirm();
+    });
+  }
+
+  // Clean up the event handler when the component unmounts
+  return () => {
+    console.log('Cleaning up back button');
+    backButton.hide().offClick(() => {
+      console.log('Back button click handler removed during cleanup');
+      closeConfirm();
+    });
+  };
+}, [openConfirm, closeConfirm]);
 
   
 
