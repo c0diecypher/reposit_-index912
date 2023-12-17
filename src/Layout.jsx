@@ -9,7 +9,7 @@ import Stories from "./Stories/Stories";
 import Footer from './Components/Footer'
 import Products from "./Products/Products";
 import { useState, useEffect } from "react";
-
+import HomeBackButton from './Products/HomeBackButton'
 
 function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
     const [modalActive, setModalActive] = useState(false);
@@ -52,7 +52,8 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
   
   return (
     <>
-      {active ? (<>
+      {modalActive ? (<>
+          <HomeBackButton closeModal={closeModal}/>
           <ModalWindow 
             active={modalActive} 
             setActive={setModalActive} 
