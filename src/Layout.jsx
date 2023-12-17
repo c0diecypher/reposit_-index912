@@ -25,7 +25,7 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
       document.body.classList.add("product-detail");
     };
 
-    const closeModal: () => void = useCallback(() => {
+    const closeModal = useCallback(() => {
       setModalActive(false);
       setModalProductId(null);
       // Заменяем текущий URL измененным URL
