@@ -49,14 +49,15 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
       closeModal();
     });
   }
-    return () => {
+
+  return () => {
     console.log('Cleaning up back button');
     backButton.hide().offClick(() => {
       console.log('Back button click handler removed during cleanup');
+      closeModal(); // Вызываем closeModal при размонтировании компонента
     });
-    closeConfirm(); // Вызываем closeConfirm при размонтировании компонента
   };
-  // Clean up the event handler when the component unmounts
+
 }, [modalActive, closeModal]);
 
     return (
