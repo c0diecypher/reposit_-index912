@@ -6,12 +6,7 @@ function Confirm({ active, setActive, product, closeConfirm, closeModal, openCon
   const location = useLocation();
   const [productData, setProductData] = useState(null);
 
-  useEffect(() => {
-    const locationState = location.state;
-    if (locationState && locationState.productData) {
-      setProductData(locationState.productData);
-    }
-  }, [location]);
+ const { productData } = location.state || { productData: {} };
   useEffect(() => {
     const handleBackButtonClick = () => {
       console.log('Back button clicked in Confirm');
@@ -59,12 +54,12 @@ function Confirm({ active, setActive, product, closeConfirm, closeModal, openCon
         <>
           <div className={active ? 'confirm active' : 'confirm'}>
             <div className="confirm__content" onClick={(e) => e.stopPropagation()}>
-              <p>{productData?.id}</p>
-            <p>{productData?.name}</p>
-            <p>{productData?.order_id}</p>
-            <p>{productData?.size}</p>
-            <p>{productData?.price}</p>
-            <p>{productData?.img}</p>
+              <p>{productData.id}</p>
+            <p>{productData.name}</p>
+            <p>{productData.order_id}</p>
+            <p>{productData.size}</p>
+            <p>{productData.price}</p>
+            <p>{productData.img}</p>
             </div>
           </div>
           {active && (
