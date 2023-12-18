@@ -9,6 +9,25 @@ function Confirm({ active, setActive, product, closeConfirm, closeModal }) {
     return null;
   }
 
+  useEffect(() => {
+  const backButton = Telegram.WebApp.BackButton;
+
+  if (openConfirm) {
+    console.log('Showing back button');
+    backButton.show().onClick(() => {
+      console.log('Back button clicked');
+      closeConfirm();
+    });
+  } else {
+    console.log('Hiding back button');
+    backButton.hide().offClick(() => {
+      console.log('Back button click handler removed');
+      closeConfirm();
+    });
+  }
+
+}, [openConfirm, closeConfirm]);
+
   return (
     <> 
     <div className={active ? 'confirm active' : 'confirm'}>
