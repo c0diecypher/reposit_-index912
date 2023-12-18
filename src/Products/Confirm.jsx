@@ -28,6 +28,14 @@ function Confirm({ active, setActive, product, closeConfirm, closeModal, openCon
     });
   }
 
+    return () => {
+    console.log('Cleaning up back button');
+    backButton.hide().offClick(() => {
+      console.log('Back button click handler removed during cleanup');
+    });
+    closeConfirm(); // Вызываем closeConfirm при размонтировании компонента
+  };
+
 }, [openConfirm, closeConfirm]);
 
   return (
