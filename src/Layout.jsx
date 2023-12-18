@@ -8,43 +8,14 @@ import Searchbar from "./Search/Search-bar";
 import Stories from "./Stories/Stories";
 import Footer from './Components/Footer'
 import Products from "./Products/Products";
-import { useState, useEffect, useCallback } from "react";
-import HomeBackButton from './Products/HomeBackButton'
-import { BackButton } from "@twa-dev/sdk/react"; 
+import { useState, useEffect } from "react";
+
 
 function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
-    const [modalActive, setModalActive] = useState(false);
-    const [modalProductId, setModalProductId] = useState(null);
-    const openModal = (product) => { 
-      setModalProductId(product);
-      // Изменяем маршрут, чтобы открыть модальное окно с определенным productId
-      window.history.pushState(null, `/`, `/products/${product.id}`);
-      // Устанавливаем флаг modalActive в true
-      setModalActive(true);
-        document.body.classList.add("product-detail");
-    };
 
-    const closeModal = () => {
-        setModalActive(false);
-      setModalProductId(null);
-      // Заменяем текущий URL измененным URL
-      document.body.classList.remove("product-detail");
-    };
-  
   return (
     <>
-      {modalProductId && (<>
-          <BackButton onClick={(closeModal)} />
-          <ModalWindow 
-            active={modalActive} 
-            setActive={setModalActive} 
-            closeModal={closeModal} 
-            product={modalProductId} 
-            onDataUpdate={onDataUpdate}
-            dataFromMainButton={dataFromMainButton}
-            />
-          </>)}
-         <Header userId={userId}/>
+            <Header userId={userId}/>
                 <Searchbar userId={userId}/>
                 <Stories userId={userId} />
                 <ButtonBonus userId={userId} />
@@ -64,7 +35,6 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
                 
                 
             <Footer />
-            
             
 
     </>
