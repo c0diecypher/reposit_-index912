@@ -6,7 +6,7 @@ import { useTelegram } from "../Components/Hooks/useTelegram"
 import { MainButton } from "@twa-dev/sdk/react"
 import axios from 'axios';
 
-function ProductConfirm() {
+function ProductConfirm({userId}) {
   const { productId, size, price, name, img, id } = useParams();
   const location = useLocation();
   const [progress, setProgress] = useState(false);
