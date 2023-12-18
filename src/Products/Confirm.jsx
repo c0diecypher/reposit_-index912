@@ -4,7 +4,7 @@ import CustomBackButton from './CustomBackButton'
 import { BackButton, MainButton } from "@twa-dev/sdk/react" 
 import { useEffect } from "react";
 
-function Confirm({ active, setActive, product, closeConfirm, closeModal, openConfirm }) {
+function Confirm({ active, setActive, product, closeConfirm, closeModal, openConfirm, setOpenConfirm }) {
   if (!active || !product) {
     // Add some logging to help identify the issue
     console.error('Confirm component not rendered. Active:', active, 'Product:', product);
@@ -18,13 +18,13 @@ function Confirm({ active, setActive, product, closeConfirm, closeModal, openCon
     console.log('Showing back button');
     backButton.show().onClick(() => {
       console.log('Back button clicked');
-      closeConfirm();
+      setOpenConfirm(false);
     });
   } else {
     console.log('Hiding back button');
     backButton.hide().offClick(() => {
       console.log('Back button click handler removed');
-      closeConfirm();
+      setOpenConfirm(false);
     });
   }
 
