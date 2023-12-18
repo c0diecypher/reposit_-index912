@@ -2,7 +2,7 @@ import "./css/modal.css"
 import "./Products/css/Product.css";
 import PropTypes from 'prop-types';
 import { MainButton } from "@twa-dev/sdk/react" 
-import { useNavigate } from "react-router-dom";
+
 import { useState, useEffect, useCallback } from "react"
 import productsData from "./Products/productsData";
 import "./Products/css/Product.css";
@@ -71,7 +71,6 @@ typesKeys.sort(customSort)
     window.Telegram.WebApp.themeParams.button_text_color
   );
   const [text] = useState("Перейти к оплате");
-  const navigate = useNavigate();
 
  useEffect(() => {
   if (thisProduct && thisProduct.size && thisProduct.price) {
