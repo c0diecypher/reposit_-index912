@@ -162,26 +162,6 @@ typesKeys.sort(customSort)
     }, [setOpenConfirm]);
 
   
-   useEffect(() => {
-  const backButton = Telegram.WebApp.BackButton;
-
-  if (openConfirm) {
-    console.log('Showing back button');
-    backButton.show().onClick(() => {
-      console.log('Back button clicked');
-      closeConfirm();
-    });
-  } else {
-    console.log('Hiding back button');
-    backButton.hide().offClick(() => {
-      console.log('Back button click handler removed');
-      closeConfirm();
-    });
-  }
-
-}, [openConfirm, closeConfirm]);
-
-  
 
 return (
     <>
@@ -254,7 +234,7 @@ return (
       </div>
           {openConfirm && (
         <>
-      <Confirm active={openConfirm} setActive={setOpenConfirm} closeConfirm={closeConfirm} product={paymentData} closeModal={closeModal} />
+      <Confirm active={openConfirm} setActive={setOpenConfirm} closeConfirm={closeConfirm} product={paymentData} closeModal={closeModal} openConfirm={openConfirm} />
       </>
       )}
           
