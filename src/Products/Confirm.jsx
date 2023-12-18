@@ -34,6 +34,12 @@ function Confirm({ active, setActive, product, closeConfirm, closeModal, openCon
     return null;
   }
 
+  const [color] = useState(window.Telegram.WebApp.themeParams.button_color);
+  const [textColor] = useState(
+    window.Telegram.WebApp.themeParams.button_text_color
+  );
+  const [text] = useState(`Купить за ${product.price}`);
+
   return (
     <> 
     <div className={active ? 'confirm active' : 'confirm'}>
@@ -46,6 +52,12 @@ function Confirm({ active, setActive, product, closeConfirm, closeModal, openCon
         <p>{product.img}</p>
       </div>
     </div>
+       <MainButton 
+
+      text={text}
+      color={color}
+      textColor={textColor}
+      />
       </>
   );
 }
