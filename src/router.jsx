@@ -8,7 +8,6 @@ import ProductPay from "./Products/ProductPay";
 import Search from "./Search/Search";
 import SizeInfoDetails from "./Products/SizeInfo/SizeInfoDetails";
 import FilterProducts from "./Products/FilterProducts";
-i
 import ModalWindow from "./ModalWindow";
 
 export const routes = [
