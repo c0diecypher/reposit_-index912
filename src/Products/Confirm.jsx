@@ -5,38 +5,34 @@ import { BackButton, MainButton } from "@twa-dev/sdk/react"
 import { useEffect } from "react";
 
 function Confirm({ active, setActive, product, closeConfirm, closeModal, openConfirm }) {
+  useEffect(() => {
+    const backButton = Telegram.WebApp.BackButton;
+
+    if (active) {
+      backButton.show().onClick(() => {
+        console.log('Back button clicked in Confirm');
+        closeConfirm();
+      });
+    } else {
+      backButton.hide().offClick(() => {
+        console.log('Back button click handler removed in Confirm');
+        closeConfirm();
+      });
+    }
+
+    return () => {
+      console.log('Cleaning up back button in Confirm');
+      backButton.hide().offClick(() => {
+        console.log('Back button click handler removed during cleanup in Confirm');
+        closeConfirm();
+      });
+    };
+  }, [active, closeConfirm, product]);
+
   if (!active || !product) {
-    // Add some logging to help identify the issue
     console.error('Confirm component not rendered. Active:', active, 'Product:', product);
     return null;
   }
-
-  useEffect(() => {
-  const backButton = Telegram.WebApp.BackButton;
-
-  if (openConfirm) {
-    console.log('Showing back button');
-    backButton.show().onClick(() => {
-      console.log('Back button clicked');
-      setActive(false);
-    });
-  } else {
-    console.log('Hiding back button');
-    backButton.hide().offClick(() => {
-      console.log('Back button click handler removed');
-      setActive(false);
-    });
-  }
-
-    return () => {
-    console.log('Cleaning up back button');
-    backButton.hide().offClick(() => {
-      console.log('Back button click handler removed during cleanup');
-    });
-    closeConfirm(); // Вызываем closeConfirm при размонтировании компонента
-  };
-
-}, [openConfirm, closeConfirm]);
 
   return (
     <> 
