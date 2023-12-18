@@ -38,7 +38,7 @@ const Size = styled.button`
   `}
 `;
 
-function ModalWindow({active, product, closeModal,  sendDataToParent, addToCart, onDataUpdate, dataFromMainButton }) {
+function ModalWindow({active, product, closeModal,  sendDataToParent, addToCart, onDataUpdate, dataFromMainButton, navigate }) {
   if (!product) {
     return null; // or provide some default behavior
   }
@@ -152,7 +152,9 @@ typesKeys.sort(customSort)
   const handleOpenConfirm = () => {
     document.body.classList.add("product-confirm");
     setOpenConfirm(true);
-    
+    navigate(`/products/confirm/${paymentData.name}/${paymentData.size}/${paymentData.price}`, {
+      state: { productData: { ...paymentData, order_id: uniqueOrderId } }
+    });
   };
 
     const closeConfirm = useCallback(() => {
@@ -234,7 +236,7 @@ return (
       </div>
           {openConfirm && (
         <>
-      <Confirm active={openConfirm} setActive={setOpenConfirm} closeConfirm={closeConfirm} product={paymentData} closeModal={closeModal} openConfirm={openConfirm} />
+      <Confirm active={openConfirm} setActive={setOpenConfirm} closeConfirm={closeConfirm} product={paymentData} closeModal={closeModal} openConfirm={openConfirm} navigate={navigate}/>
       </>
       )}
           
