@@ -43,7 +43,7 @@ function Confirm({ active, setActive, product, closeConfirm, closeModal, openCon
   }
   return (
     <>
-     {openConfirm && (
+     {active && (
     <> 
     <div className={active ? 'confirm active' : 'confirm'}>
       <div className="confirm__content" onClick={(e) => e.stopPropagation()}>
@@ -55,7 +55,7 @@ function Confirm({ active, setActive, product, closeConfirm, closeModal, openCon
         <p>{product.img}</p>
       </div>
     </div>
-      {openConfirm && (
+      {active && (
        <MainButton 
       onClick={Payment}
       text={text}
