@@ -2,7 +2,7 @@ import "./css/modal.css"
 import "./Products/css/Product.css";
 import PropTypes from 'prop-types';
 import { MainButton } from "@twa-dev/sdk/react" 
-
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react"
 import productsData from "./Products/productsData";
 import "./Products/css/Product.css";
@@ -38,7 +38,7 @@ const Size = styled.button`
   `}
 `;
 
-function ModalWindow({active, product, closeModal,  sendDataToParent, addToCart, onDataUpdate, dataFromMainButton, navigate }) {
+function ModalWindow({active, product, closeModal,  sendDataToParent, addToCart, onDataUpdate, dataFromMainButton }) {
   if (!product) {
     return null; // or provide some default behavior
   }
@@ -71,6 +71,7 @@ typesKeys.sort(customSort)
     window.Telegram.WebApp.themeParams.button_text_color
   );
   const [text] = useState("Перейти к оплате");
+  const navigate = useNavigate();
 
  useEffect(() => {
   if (thisProduct && thisProduct.size && thisProduct.price) {
@@ -148,14 +149,10 @@ typesKeys.sort(customSort)
     }
   };
   const [openConfirm, setOpenConfirm] = useState(false);
-  
   const handleOpenConfirm = () => {
-    const uniqueOrderId = generateOrderId();
     document.body.classList.add("product-confirm");
     setOpenConfirm(true);
-    navigate(`/products/confirm/${paymentData.name}/${paymentData.size}/${paymentData.price}`, {
-      state: { productData: { ...paymentData, order_id: uniqueOrderId } }
-    });
+    
   };
 
     const closeConfirm = useCallback(() => {
@@ -163,6 +160,9 @@ typesKeys.sort(customSort)
       console.log('close', closeConfirm)
       document.body.classList.remove("product-confirm");
     }, [setOpenConfirm]);
+
+  
+
 
   
 
@@ -212,7 +212,7 @@ return (
         </div>
         <hr/>
        <button onClick={handleOpenConfirm} >купить</button>
-      {!openConfirm && dataFromMainButton && (
+      {dataFromMainButton && (
       <MainButton 
       onClick={handleOpenConfirm}
       text={text}
@@ -237,7 +237,8 @@ return (
       </div>
           {openConfirm && (
         <>
-      <Confirm active={openConfirm} setActive={setOpenConfirm} closeConfirm={closeConfirm} product={paymentData} closeModal={closeModal} openConfirm={openConfirm} navigate={navigate}/>
+      <BackButton onClick={(closeConfirm)} />
+      <Confirm active={openConfirm} setActive={setOpenConfirm} closeConfirm={closeConfirm} product={paymentData} closeModal={closeModal} />
       </>
       )}
           
