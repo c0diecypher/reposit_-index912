@@ -35,7 +35,7 @@ const Size = styled.button`
   `}
 `;
 
-function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMainButton, isAuthenticated, onReturn  }) {  
+function ProductDetail({ sendDataToParent, addToCart, onDataUpdate, dataFromMainButton, isAuthenticated, onReturn, userId  }) {  
   const { productId } = useParams();
   const [paymentData, setPaymentData] = useState(null);
   const thisProduct = productsData.find((prod) => prod.id === productId);
