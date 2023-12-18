@@ -2,7 +2,7 @@
 import '../css/modal.css';
 import CustomBackButton from './CustomBackButton'
 import { BackButton, MainButton } from "@twa-dev/sdk/react" 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function Confirm({ active, setActive, product, closeConfirm, closeModal, openConfirm }) {
   useEffect(() => {
