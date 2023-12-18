@@ -11,12 +11,11 @@ function Confirm({ active, setActive, product, closeConfirm, closeModal, openCon
     if (active) {
       backButton.show().onClick(() => {
         console.log('Back button clicked in Confirm');
-        closeConfirm();
+        setActive(false);
       });
     } else {
       backButton.hide().offClick(() => {
         console.log('Back button click handler removed in Confirm');
-        closeConfirm();
       });
     }
 
@@ -24,10 +23,10 @@ function Confirm({ active, setActive, product, closeConfirm, closeModal, openCon
       console.log('Cleaning up back button in Confirm');
       backButton.hide().offClick(() => {
         console.log('Back button click handler removed during cleanup in Confirm');
-        closeConfirm();
+        setActive(false);
       });
     };
-  }, [active, closeConfirm, product]);
+  }, [active, setActive, closeConfirm, product]);
 
   if (!active || !product) {
     console.error('Confirm component not rendered. Active:', active, 'Product:', product);
@@ -43,6 +42,8 @@ function Confirm({ active, setActive, product, closeConfirm, closeModal, openCon
     console.log('payment click');
   }
   return (
+    <>
+     {openConfirm && (
     <> 
     <div className={active ? 'confirm active' : 'confirm'}>
       <div className="confirm__content" onClick={(e) => e.stopPropagation()}>
@@ -63,6 +64,8 @@ function Confirm({ active, setActive, product, closeConfirm, closeModal, openCon
       />
       )}
       </>
+    )}
+  </>
   );
 }
 
