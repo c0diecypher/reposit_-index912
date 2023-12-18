@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { MainButton } from "@twa-dev/sdk/react" 
-function Confirm({ active, setActive, product, closeConfirm, closeModal, openConfirm }) {
+function Confirm({ active, setActive, product, closeConfirm, closeModal, openConfirm, navigate }) {
   const navigate = useNavigate();
 
   useEffect(() => {
