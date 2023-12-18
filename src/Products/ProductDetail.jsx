@@ -156,11 +156,23 @@ typesKeys.sort(customSort)
  const location = useLocation();
   const prevScrollPositionRef = useRef();
 
- useEffect(() => {
-    window.scrollTo(0, 0);
+  useEffect(() => {
+    if (location.state && location.state.scrollPosition) {
+      window.scrollTo(0, location.state.scrollPosition);
+      prevScrollPositionRef.current = location.state.scrollPosition;
+    }
+  }, [location.state]);
+
+  const handleScroll = () => {
+    const currentPosition = window.scrollY;
+    prevScrollPositionRef.current = currentPosition;
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.scrollTo(0, 0);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
