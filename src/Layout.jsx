@@ -11,6 +11,7 @@ import Products from "./Products/Products";
 import { useState, useEffect, useCallback } from "react";
 import HomeBackButton from './Products/HomeBackButton'
 import { BackButton } from "@twa-dev/sdk/react"; 
+import { useNavigate } from 'react-router-dom';
 
 function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
     const [modalActive, setModalActive] = useState(false);
@@ -59,7 +60,7 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
   };
 
 }, [modalActive, closeModal]);
-
+const navigate = useNavigate();
     return (
       <>
         {modalActive && (<>
@@ -71,6 +72,7 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
             product={modalProductId} 
             onDataUpdate={onDataUpdate}
             dataFromMainButton={dataFromMainButton}
+            navigate={navigate}
           />
         </>)}
         <Header userId={userId}/>
