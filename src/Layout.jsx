@@ -29,8 +29,6 @@ function Layout({cart, onDataUpdate, dataFromMainButton, userId}) {
                 <Catalog userId={userId} />
 
                 <Products 
-                setModalActive={setModalActive} 
-                openModal={openModal} 
                 userId={userId}/>
                 
                 
