@@ -61,6 +61,7 @@ function Confirm({ active, setActive, product, closeConfirm, closeModal, openCon
       color={color}
       textColor={textColor}
       />
+      )}
       </>
   );
 }
