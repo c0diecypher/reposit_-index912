@@ -15,7 +15,7 @@ export const routes = [
     {path:'/bonus', component: BonusPage, exact:true},
     {path:'/profile/', component: ProfilePage, exact:true},
     {path:'/profile/settings', component: SettingsProfile, exact:true},
-    {path:'/products/:productId', component: ModalWindow, exact:true},
+    {path:'/products/:productId', component: ProductDetail, exact:true},
     {path:'/products/confirm/:name/:size/:price', component: ProductConfirm, exact:true},
     {path:'/products/confirm/offer/:name/:size/:price', component: ProductPay, exact:true},
     {path:'/search', component: Search, exact:true},
